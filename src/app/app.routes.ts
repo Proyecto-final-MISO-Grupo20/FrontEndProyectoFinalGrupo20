@@ -7,4 +7,8 @@ export const appRoutes: Route[] = [
     loadChildren: () =>
       import('./modules/auth/auth.routes').then((routes) => routes.authRoutes),
   },
+  {
+    path: '**',
+    redirectTo: 'auth',
+  },
 ];
