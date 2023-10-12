@@ -1,9 +1,9 @@
 /* eslint-disable */
 export default {
-  displayName: 'front-end-proyecto-final-grupo20',
+  displayName: 'group20-frontend',
   preset: './jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
-  coverageDirectory: './coverage/front-end-proyecto-final-grupo20',
+  coverageDirectory: './coverage/group20-frontend',
   transform: {
     '^.+\\.(ts|mjs|js|html)$': [
       'jest-preset-angular',

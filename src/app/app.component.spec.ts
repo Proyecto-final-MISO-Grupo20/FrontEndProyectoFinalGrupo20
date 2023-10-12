@@ -15,13 +15,13 @@ describe('AppComponent', () => {
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
     expect(compiled.querySelector('h1')?.textContent).toContain(
-      'Welcome front-end-proyecto-final-grupo20'
+      'Welcome group20-frontend'
     );
   });
 
-  it(`should have as title 'front-end-proyecto-final-grupo20'`, () => {
+  it(`should have as title 'group20-frontend'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('front-end-proyecto-final-grupo20');
+    expect(app.title).toEqual('group20-frontend');
   });
 });

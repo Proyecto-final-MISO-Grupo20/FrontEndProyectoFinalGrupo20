@@ -8,15 +8,15 @@
       "executor": "@nx/cypress:cypress",
       "options": {
         "cypressConfig": "e2e/cypress.config.ts",
-        "devServerTarget": "front-end-proyecto-final-grupo20:serve:development",
+        "devServerTarget": "group20-frontend:serve:development",
         "testingType": "e2e"
       },
       "configurations": {
         "production": {
-          "devServerTarget": "front-end-proyecto-final-grupo20:serve:production"
+          "devServerTarget": "group20-frontend:serve:production"
         },
         "ci": {
-          "devServerTarget": "front-end-proyecto-final-grupo20:serve-static"
+          "devServerTarget": "group20-frontend:serve-static"
         }
       }
     },
@@ -29,5 +29,5 @@
     }
   },
   "tags": [],
-  "implicitDependencies": ["front-end-proyecto-final-grupo20"]
+  "implicitDependencies": ["group20-frontend"]
 }

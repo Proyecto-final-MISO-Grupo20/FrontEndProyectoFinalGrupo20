@@ -1,5 +1,5 @@
 {
-  "name": "front-end-proyecto-final-grupo20",
+  "name": "group20-frontend",
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
@@ -18,6 +18,8 @@
     "@angular/platform-browser-dynamic": "~16.2.0",
     "@angular/router": "~16.2.0",
     "@nx/angular": "16.10.0",
+    "primeicons": "^6.0.1",
+    "primeng": "^16.5.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.13.0"
