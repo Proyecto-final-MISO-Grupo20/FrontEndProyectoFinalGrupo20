@@ -1,10 +1,17 @@
-<section class="register-wrapper">
-    <div class="register-container">
-        <div class="register__welcome">
-            
-        </div>
+<lib-language-picker> </lib-language-picker>
 
-        <div class="register__form">
-        </div>
+<section class="register-wrapper">
+  <div class="register-container">
+    <div class="register__welcome">
+      <h1 class="welcome__title">
+        {{ 'register.welcome' | transloco }}
+      </h1>
+
+      <span class="welcome__description">
+        {{ 'register.description' | transloco }}
+      </span>
     </div>
+
+    <div class="register__form"></div>
+  </div>
 </section>
