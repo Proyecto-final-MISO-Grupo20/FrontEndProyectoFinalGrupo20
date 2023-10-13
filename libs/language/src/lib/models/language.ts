@@ -1,3 +1,5 @@
+import { LanguageCode } from './language-code.enum';
+
 export class Language {
-  constructor(public code: string, public name: string) {}
+  constructor(public code: LanguageCode, public name: string) {}
 }

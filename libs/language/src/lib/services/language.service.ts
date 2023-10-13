@@ -1,19 +1,35 @@
 import { Injectable } from '@angular/core';
-import { Observable, from } from 'rxjs';
+import { BehaviorSubject, Observable, from, tap } from 'rxjs';
 import { Language } from '../models/language';
+import { LanguageCode } from '../models/language-code.enum';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LanguageService {
-  #languageEnglish: Language = new Language('en', 'English');
-  #languageSpanish: Language = new Language('es', 'Spanish');
+  #languageSpanish: Language = new Language(LanguageCode.spanish, 'Spanish');
+  #languageEnglish: Language = new Language(LanguageCode.english, 'English');
 
-  constructor() {}
+  activeLanguageSubject = new BehaviorSubject<string>(
+    this.getDefaultLanguage().code
+  );
+
+  activeLanguage$ = this.activeLanguageSubject
+    .asObservable()
+    .pipe(
+      tap((languageCode) => localStorage.setItem('languageCode', languageCode))
+    );
+
+  constructor() {
+    const languageCode: string =
+      localStorage.getItem('languageCode') || this.getDefaultLanguage().code;
+
+    this.setActiveLanguage(languageCode);
+  }
 
   getAllLanguages(): Observable<Language[]> {
     const result: Observable<Language[]> = from([
-      [this.#languageEnglish, this.#languageSpanish],
+      [this.#languageSpanish, this.#languageEnglish],
     ]);
 
     return result;
@@ -24,14 +40,13 @@ export class LanguageService {
   }
 
   getLanguageByCode(code: string): Language {
-    const filter = {
-      en: this.#languageEnglish,
-      es: this.#languageSpanish,
-    };
-
     const result =
       code === 'en' ? this.#languageEnglish : this.#languageSpanish;
 
     return result;
+  }
+
+  setActiveLanguage(languageCode: string) {
+    this.activeLanguageSubject.next(languageCode);
   }
 }

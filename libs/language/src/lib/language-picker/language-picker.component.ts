@@ -21,20 +21,24 @@ export class LanguagePickerComponent implements OnInit {
       },
     });
 
-    const activeLanguage = this.languageService.getLanguageByCode(
-      this.translocoService.getActiveLang()
-    );
+    this.languageService.activeLanguage$.subscribe({
+      next: (res) => {
+        this.translocoService.setActiveLang(res);
 
-    console.log(activeLanguage);
+        const activeLanguage = this.languageService.getLanguageByCode(
+          this.translocoService.getActiveLang()
+        );
 
-    this.selectedLanguage =
-      activeLanguage != null
-        ? activeLanguage
-        : this.languageService.getDefaultLanguage();
+        this.selectedLanguage =
+          activeLanguage != null
+            ? activeLanguage
+            : this.languageService.getDefaultLanguage();
+      },
+    });
   }
 
   changeSiteLanguage(languageEvent: any) {
-    console.log(languageEvent);
     this.translocoService.setActiveLang(languageEvent.value.code);
+    this.languageService.setActiveLanguage(languageEvent.value.code);
   }
 }
