@@ -2,6 +2,8 @@
   "register": {
     "welcome": "Bienvenido a ABC JOBS!",
     "description": "Te acompañamos en todo el proceso de intermediación de recursos calificados en TI",
-    "create-account": "Crea tu cuenta"
+    "create-account": "Crea tu cuenta",
+    "confirmation": "¿Ya se encuentra registrado?",
+    "sign-in": "Ingresar"
   }
 }

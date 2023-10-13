@@ -7,7 +7,7 @@ import { LanguageCode } from '../models/language-code.enum';
   providedIn: 'root',
 })
 export class LanguageService {
-  #languageSpanish: Language = new Language(LanguageCode.spanish, 'Spanish');
+  #languageSpanish: Language = new Language(LanguageCode.spanish, 'Español');
   #languageEnglish: Language = new Language(LanguageCode.english, 'English');
 
   activeLanguageSubject = new BehaviorSubject<string>(

@@ -1,15 +1,29 @@
 <section class="register-wrapper">
   <div class="register-container">
     <div class="register__welcome">
-      <h1 class="welcome__title">
-        {{ 'register.welcome' | transloco }}
-      </h1>
+      <div class="welcome-container">
+        <h1 class="welcome__title">
+          {{ 'register.welcome' | transloco }}
+        </h1>
 
-      <span class="welcome__description">
-        {{ 'register.description' | transloco }}
-      </span>
+        <span class="welcome__description">
+          {{ 'register.description' | transloco }}
+        </span>
+      </div>
+
+      <img src="assets/images/logo.png" alt="ABC Jobs Logo" />
     </div>
 
-    <div class="register__form"></div>
+    <div class="register__form">
+      <div class="register__title">
+        <h2 class="register__title--blue">
+          {{ 'register.create-account' | transloco }}
+        </h2>
+        <p class="register__confirmation">
+          {{ 'register.confirmation' | transloco }}
+          <span>{{ 'register.sign-in' | transloco }}</span>
+        </p>
+      </div>
+    </div>
   </div>
 </section>

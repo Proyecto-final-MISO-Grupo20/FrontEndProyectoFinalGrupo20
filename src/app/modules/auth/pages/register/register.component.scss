@@ -13,27 +13,59 @@
   }
 
   &__welcome {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
+    @include abstracts.flexbox(column, space-evenly, center, 0);
     width: 50%;
     background-color: abstracts.$primary;
     color: white;
+  }
 
-    .welcome {
-      &__title {
-        text-align: center;
-        width: 16rem;
-      }
-      &__description {
-        text-align: center;
-        width: 26.25rem;
-      }
+  &__title {
+    @include abstracts.flexbox(column, center, center, 0);
+    height: 50%;
+    &--blue {
+      color: abstracts.$primary;
+    }
+  }
+
+  &__confirmation {
+    color: #718096;
+    font-size: 1.125rem;
+    font-weight: abstracts.$semi-bold;
+
+    span {
+      font-weight: bolder;
+      @include abstracts.hoverable();
     }
   }
 
   &__form {
     width: 50%;
+  }
+}
+
+.welcome {
+  &-container {
+    @include abstracts.flexbox(column, center, center, 0);
+  }
+
+  &__title {
+    text-align: center;
+    width: 16rem;
+  }
+  &__description {
+    text-align: center;
+    width: 26.25rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .register {
+    &__welcome {
+      display: none;
+    }
+
+    &__form {
+      width: 100%;
+    }
   }
 }

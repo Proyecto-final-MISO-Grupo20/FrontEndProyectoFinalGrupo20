@@ -1,5 +1,12 @@
-.language-picker {
-  margin: 2rem;
-  position: absolute;
-  right: 0;
+.language {
+  &-picker {
+    margin: 2rem;
+    position: absolute;
+    right: 0;
+  }
+
+  &-item {
+    display: flex;
+    gap: 0.5rem;
+  }
 }
