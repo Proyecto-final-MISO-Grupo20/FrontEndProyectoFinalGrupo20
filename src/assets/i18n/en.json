@@ -15,7 +15,11 @@
     "sign-in": "Sign In",
     "enter-email": "Enter email",
     "enter-passward": "Enter passward",
-    "hi": "Hi!"
+    "hi": "Hi!",
+    "log-in": "Log in",
+    "log-in-register": "Log in"
+
+    
 
   },
 

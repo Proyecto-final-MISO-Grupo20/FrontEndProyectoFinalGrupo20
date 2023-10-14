@@ -48,10 +48,11 @@
       
 
         <p-button
-          label="{{ 'next' | transloco }}"
+          label="{{ 'login.log-in' | transloco }}"
           [style]="{ width: '22.5rem' }"
           type="submit"
-          [disabled]="!registerForm.valid"
+          [disabled]="!loginForm.valid"
+          
         ></p-button>
 
         <p-button
@@ -60,6 +61,12 @@
           severity="secondary"
         ></p-button>
       </form>
+
+      <div class="login__register">
+        <p class="login__register">
+          {{ 'login.confirmation' | transloco }}
+        </p>
+      </div>
 
     </div>
   </div>
