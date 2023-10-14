@@ -7,6 +7,10 @@
     "sign-in": "Sign In",
     "select-user-type": "Select the user type"
   },
+  "log in": {
+
+  },
+
   "next": "Next",
   "cancel": "Cancel"
 }

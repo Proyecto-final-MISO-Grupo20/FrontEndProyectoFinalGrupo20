@@ -1,0 +1,62 @@
+<section class="register-wrapper">
+  <div class="register-container">
+    <div class="register__welcome">
+      <div class="welcome-container">
+        <h1 class="welcome__title">
+          {{ 'register.welcome' | transloco }}
+        </h1>
+
+        <span class="welcome__description">
+          {{ 'register.description' | transloco }}
+        </span>
+      </div>
+
+      <img src="assets/images/logo.png" alt="ABC Jobs Logo" />
+    </div>
+
+    <div class="register__content">
+      <div class="register__title">
+        <h2 class="register__title--blue">
+          {{ 'register.create-account' | transloco }}
+        </h2>
+        <p class="register__confirmation">
+          {{ 'register.confirmation' | transloco }}
+          <span>{{ 'register.sign-in' | transloco }}</span>
+        </p>
+      </div>
+
+      <form
+        class="register__form"
+        [formGroup]="registerForm"
+        (ngSubmit)="onSubmit()"
+      >
+      <div class="p-field p-grid">
+        <label for="username" class="p-col-12 p-md-3">Username</label>
+        <div class="p-col-12 p-md-6">
+          <input id="username" type="text" pInputText>
+        </div>
+        <div class="p-col-12 p-md-3">
+          <small id="username-help">Enter your username to reset your password.</small>
+        </div>
+      </div>
+
+        <p-button
+          label="{{ 'next' | transloco }}"
+          [style]="{ width: '22.5rem' }"
+          type="submit"
+          [disabled]="!registerForm.valid"
+        ></p-button>
+
+        <p-button
+          label="{{ 'cancel' | transloco }}"
+          [style]="{ width: '22.5rem' }"
+          severity="secondary"
+        ></p-button>
+      </form>
+
+      
+  
+
+    </div>
+  </div>
+</section>

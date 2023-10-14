@@ -1,0 +1,78 @@
+@use '/src/styles/abstracts';
+
+.register {
+  &-wrapper {
+    display: flex;
+    width: 100dvw;
+    height: 100dvh;
+  }
+
+  &-container {
+    display: flex;
+    width: 100%;
+  }
+
+  &__welcome {
+    @include abstracts.flexbox(column, space-evenly, center, 0);
+    background-color: abstracts.$primary;
+    color: white;
+    width: 50%;
+  }
+
+  &__title {
+    @include abstracts.flexbox(column, center, center, 0);
+    padding-top: 12rem;
+
+    &--blue {
+      color: abstracts.$primary;
+      margin: 0;
+    }
+  }
+
+  &__confirmation {
+    color: #718096;
+    font-weight: abstracts.$semi-bold;
+
+    span {
+      @include abstracts.hoverable();
+      font-weight: bolder;
+    }
+  }
+
+  &__content {
+    @include abstracts.flexbox(column, normal, center, 5rem);
+    width: 50%;
+  }
+
+  &__form {
+    @include abstracts.flexbox(column, normal, center, 1.5rem);
+  }
+}
+
+.welcome {
+  &-container {
+    @include abstracts.flexbox(column, center, center, 0);
+    height: 0%;
+  }
+
+  &__title {
+    text-align: center;
+    width: 16rem;
+  }
+  &__description {
+    text-align: center;
+    width: 26.25rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .register {
+    &__welcome {
+      display: none;
+    }
+
+    &__content {
+      width: 100%;
+    }
+  }
+}
