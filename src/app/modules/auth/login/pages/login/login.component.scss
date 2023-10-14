@@ -51,9 +51,17 @@
   }
 
   &__form {
-    @include abstracts.flexbox(column, normal, center, 1.5rem);
+    @include abstracts.flexbox(column, normal, center, 1rem);
           .custom-width {
             width: 22.5rem;
+          }     
+  }
+
+  &__register {
+          .custom-width {
+            color: #718096;
+            width: 22.5rem;
+            padding-top: 1rem;
           }     
   }
 }

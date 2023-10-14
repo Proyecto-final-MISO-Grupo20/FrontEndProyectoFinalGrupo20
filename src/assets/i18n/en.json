@@ -7,6 +7,7 @@
     "sign-in": "Sign In",
     "select-user-type": "Select the user type"
   },
+  
   "login": {
     "welcome": "Welcome to ABC JOBS!",
     "description": "We accompany you throughout the entire process of intermediation of qualified IT resources",
@@ -17,7 +18,7 @@
     "enter-passward": "Enter passward",
     "hi": "Hi!",
     "log-in": "Log in",
-    "log-in-register": "Log in"
+    "register": "Not registered?"
 
     
 
