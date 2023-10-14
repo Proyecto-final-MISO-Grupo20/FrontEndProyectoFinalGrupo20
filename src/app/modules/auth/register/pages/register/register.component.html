@@ -25,18 +25,25 @@
         </p>
       </div>
 
-      <form class="register__form" [formGroup]="registerForm">
+      <form
+        class="register__form"
+        [formGroup]="registerForm"
+        (ngSubmit)="onSubmit()"
+        *ngIf="step === steps.initialStep"
+      >
         <p-dropdown
           [style]="{ width: '22.5rem' }"
           formControlName="user"
           placeholder="{{ 'register.select-user-type' | transloco }} "
-          [options]="typeUsers"
+          [options]="typeUsersData"
           optionLabel="name"
         ></p-dropdown>
 
         <p-button
           label="{{ 'next' | transloco }}"
           [style]="{ width: '22.5rem' }"
+          type="submit"
+          [disabled]="!registerForm.valid"
         ></p-button>
 
         <p-button
@@ -45,6 +52,10 @@
           severity="secondary"
         ></p-button>
       </form>
+
+      <app-register-candidate-form
+        *ngIf="step === steps.createCandidateAccount"
+      ></app-register-candidate-form>
     </div>
   </div>
 </section>

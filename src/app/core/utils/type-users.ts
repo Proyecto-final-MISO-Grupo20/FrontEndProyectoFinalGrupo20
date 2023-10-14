@@ -1,9 +1,14 @@
 export type typeUser = {
   name: string;
-  code: string;
+  code: typeUsers;
 };
 
-export const typeUsers: typeUser[] = [
-  { name: 'Candidato', code: 'candidate' },
-  { name: 'Empresa', code: 'business' },
+export const enum typeUsers {
+  candidate = 'candidate',
+  business = 'business',
+}
+
+export const typeUsersData: typeUser[] = [
+  { name: 'Candidato', code: typeUsers.candidate },
+  { name: 'Empresa', code: typeUsers.business },
 ];

@@ -1,1 +1,14 @@
-<p>register-candidate-form works!</p>
+<form class="register__form" [formGroup]="registerForm">
+  <p-button
+    label="{{ 'next' | transloco }}"
+    [style]="{ width: '22.5rem' }"
+    type="submit"
+    [disabled]="!registerForm.valid"
+  ></p-button>
+
+  <p-button
+    label="{{ 'cancel' | transloco }}"
+    [style]="{ width: '22.5rem' }"
+    severity="secondary"
+  ></p-button>
+</form>
