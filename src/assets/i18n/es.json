@@ -4,6 +4,9 @@
     "description": "Te acompañamos en todo el proceso de intermediación de recursos calificados en TI",
     "create-account": "Crea tu cuenta",
     "confirmation": "¿Ya se encuentra registrado?",
-    "sign-in": "Ingresar"
-  }
+    "sign-in": "Ingresar",
+    "select-user-type": "Seleccione el tipo de usuario"
+  },
+  "next": "Siguiente",
+  "cancel": "Cancelar"
 }

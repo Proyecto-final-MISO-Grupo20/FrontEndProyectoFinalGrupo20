@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, from, tap } from 'rxjs';
+import { getBrowserLang } from '@ngneat/transloco';
 import { Language } from '../models/language';
 import { LanguageCode } from '../models/language-code.enum';
 
@@ -22,7 +23,9 @@ export class LanguageService {
 
   constructor() {
     const languageCode: string =
-      localStorage.getItem('languageCode') || this.getDefaultLanguage().code;
+      localStorage.getItem('languageCode') ||
+      getBrowserLang() ||
+      this.getDefaultLanguage().code;
 
     this.setActiveLanguage(languageCode);
   }

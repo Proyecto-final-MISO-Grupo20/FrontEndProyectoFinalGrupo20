@@ -1,5 +1,5 @@
 import { Route } from '@angular/router';
-import { RegisterComponent } from './pages/register/register.component';
+import { RegisterComponent } from './register/pages/register/register.component';
 
 export const authRoutes: Route[] = [
   {

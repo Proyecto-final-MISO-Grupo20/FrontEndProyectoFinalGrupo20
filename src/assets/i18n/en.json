@@ -4,6 +4,9 @@
     "description": "We accompany you throughout the entire process of intermediation of qualified IT resources",
     "create-account": "Create your account",
     "confirmation": "Are you already registered?",
-    "sign-in": "Sign In"
-  }
+    "sign-in": "Sign In",
+    "select-user-type": "Select the user type"
+  },
+  "next": "Next",
+  "cancel": "Cancel"
 }

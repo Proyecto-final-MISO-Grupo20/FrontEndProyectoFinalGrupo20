@@ -14,7 +14,7 @@
       <img src="assets/images/logo.png" alt="ABC Jobs Logo" />
     </div>
 
-    <div class="register__form">
+    <div class="register__content">
       <div class="register__title">
         <h2 class="register__title--blue">
           {{ 'register.create-account' | transloco }}
@@ -24,6 +24,27 @@
           <span>{{ 'register.sign-in' | transloco }}</span>
         </p>
       </div>
+
+      <form class="register__form" [formGroup]="registerForm">
+        <p-dropdown
+          [style]="{ width: '22.5rem' }"
+          formControlName="user"
+          placeholder="{{ 'register.select-user-type' | transloco }} "
+          [options]="typeUsers"
+          optionLabel="name"
+        ></p-dropdown>
+
+        <p-button
+          label="{{ 'next' | transloco }}"
+          [style]="{ width: '22.5rem' }"
+        ></p-button>
+
+        <p-button
+          label="{{ 'cancel' | transloco }}"
+          [style]="{ width: '22.5rem' }"
+          severity="secondary"
+        ></p-button>
+      </form>
     </div>
   </div>
 </section>

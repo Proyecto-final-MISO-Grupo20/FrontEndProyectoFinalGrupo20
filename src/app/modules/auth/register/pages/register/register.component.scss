@@ -1,4 +1,4 @@
-@use '../../../../../styles/abstracts';
+@use '/src/styles/abstracts';
 
 .register {
   &-wrapper {
@@ -14,38 +14,45 @@
 
   &__welcome {
     @include abstracts.flexbox(column, space-evenly, center, 0);
-    width: 50%;
     background-color: abstracts.$primary;
     color: white;
+    width: 50%;
   }
 
   &__title {
     @include abstracts.flexbox(column, center, center, 0);
-    height: 50%;
+    padding-top: 12rem;
+
     &--blue {
       color: abstracts.$primary;
+      margin: 0;
     }
   }
 
   &__confirmation {
     color: #718096;
-    font-size: 1.125rem;
     font-weight: abstracts.$semi-bold;
 
     span {
-      font-weight: bolder;
       @include abstracts.hoverable();
+      font-weight: bolder;
     }
   }
 
-  &__form {
+  &__content {
+    @include abstracts.flexbox(column, normal, center, 5rem);
     width: 50%;
+  }
+
+  &__form {
+    @include abstracts.flexbox(column, normal, center, 1.5rem);
   }
 }
 
 .welcome {
   &-container {
     @include abstracts.flexbox(column, center, center, 0);
+    height: 0%;
   }
 
   &__title {
@@ -64,7 +71,7 @@
       display: none;
     }
 
-    &__form {
+    &__content {
       width: 100%;
     }
   }
