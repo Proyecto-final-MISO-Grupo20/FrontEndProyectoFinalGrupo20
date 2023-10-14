@@ -1,6 +1,6 @@
 @use '/src/styles/abstracts';
 
-.register {
+.login {
   &-wrapper {
     display: flex;
     width: 100dvw;
@@ -20,12 +20,15 @@
   }
 
   &__title {
-    @include abstracts.flexbox(column, center, center, 0);
-    padding-top: 12rem;
+    @include abstracts.flexbox(column, center, left, 0);
+    padding-top: 5rem;
 
     &--blue {
       color: abstracts.$primary;
       margin: 0;
+    }
+    .custom-width {
+      width: 22.5rem;
     }
   }
 
@@ -37,6 +40,9 @@
       @include abstracts.hoverable();
       font-weight: bolder;
     }
+    .custom-width {
+      width: 22.5rem;
+    }
   }
 
   &__content {
@@ -46,6 +52,9 @@
 
   &__form {
     @include abstracts.flexbox(column, normal, center, 1.5rem);
+          .custom-width {
+            width: 22.5rem;
+          }     
   }
 }
 
@@ -53,11 +62,17 @@
   &-container {
     @include abstracts.flexbox(column, center, center, 0);
     height: 0%;
+    .custom-width {
+      width: 22.5rem;
+    }
   }
 
   &__title {
-    text-align: center;
+    text-align: left;
     width: 16rem;
+    .custom-width {
+      width: 22.5rem;
+    }
   }
   &__description {
     text-align: center;
@@ -66,7 +81,7 @@
 }
 
 @media (max-width: 768px) {
-  .register {
+  .login {
     &__welcome {
       display: none;
     }

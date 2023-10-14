@@ -1,44 +1,51 @@
-<section class="register-wrapper">
-  <div class="register-container">
-    <div class="register__welcome">
+<section class="login-wrapper">
+  <div class="login-container">
+    <div class="login__welcome">
       <div class="welcome-container">
         <h1 class="welcome__title">
-          {{ 'register.welcome' | transloco }}
+          {{ 'login.welcome' | transloco }}
         </h1>
 
         <span class="welcome__description">
-          {{ 'register.description' | transloco }}
+          {{ 'login.description' | transloco }}
         </span>
       </div>
 
       <img src="assets/images/logo.png" alt="ABC Jobs Logo" />
     </div>
 
-    <div class="register__content">
-      <div class="register__title">
-        <h2 class="register__title--blue">
-          {{ 'register.create-account' | transloco }}
+    <div class="login__content">
+      <div class="login__title">
+        <h2 class="login__title--blue">
+          {{ 'login.hi' | transloco }}
+          
         </h2>
-        <p class="register__confirmation">
-          {{ 'register.confirmation' | transloco }}
-          <span>{{ 'register.sign-in' | transloco }}</span>
+        <p class="login__confirmation">
+          {{ 'login.confirmation' | transloco }}
         </p>
       </div>
 
       <form
-        class="register__form"
-        [formGroup]="registerForm"
-        (ngSubmit)="onSubmit()"
+        class="login__form"
+        [formGroup]="loginForm"
+        
       >
+     
       <div class="p-field p-grid">
-        <label for="username" class="p-col-12 p-md-3">Username</label>
-        <div class="p-col-12 p-md-6">
-          <input id="username" type="text" pInputText>
-        </div>
-        <div class="p-col-12 p-md-3">
-          <small id="username-help">Enter your username to reset your password.</small>
+        <label for="email" class="p-col-12 p-md-3">Email</label>
+        <div class="p-col-12 p-md-9">
+          <input id="email" type="text" pInputText placeholder="Enter email" class="custom-width" placeholder="{{ 'login.enter-email' | transloco }} ">
+          
         </div>
       </div>
+      
+      <div class="p-field p-grid">
+        <label for="password" class="p-col-12 p-md-3">Password</label>
+        <div class="p-col-12 p-md-9">
+          <input id="password" type="password" pInputText placeholder="Enter password" class="custom-width" placeholder="{{ 'login.enter-passward' | transloco }} ">
+        </div>
+      </div>
+      
 
         <p-button
           label="{{ 'next' | transloco }}"
@@ -53,9 +60,6 @@
           severity="secondary"
         ></p-button>
       </form>
-
-      
-  
 
     </div>
   </div>

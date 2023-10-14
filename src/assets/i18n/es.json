@@ -7,6 +7,17 @@
     "sign-in": "Ingresar",
     "select-user-type": "Seleccione el tipo de usuario"
   },
+
+  "login": {
+    "welcome": "Bienvenido a ABC JOBS!",
+    "description": "Te acompañamos en todo el proceso de intermediación de recursos calificados en TI",
+    "create-account": "Crea tu cuenta",
+    "confirmation": "Bienvenido a ABC Jobs",
+    "enter-email": "Ingresar correo electrónico",
+    "enter-passward": "Ingresar contraseña",
+    "hi": "Hola!"
+
+  },
   "next": "Siguiente",
   "cancel": "Cancelar"
 }

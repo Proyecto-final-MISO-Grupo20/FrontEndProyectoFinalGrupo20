@@ -8,7 +8,6 @@ import {
 } from '@angular/forms';
 import { LanguageModule } from 'language';
 import { UiModule } from 'ui';
-import { typeUsers, typeUsersData } from '../../../../../core/utils/type-users';
 
 @Component({
   selector: 'app-login',
@@ -24,6 +23,7 @@ import { typeUsers, typeUsersData } from '../../../../../core/utils/type-users';
 })
 export class LoginComponent implements OnInit {
   registerForm!: FormGroup;
+  loginForm!: FormGroup;
   formBuilder = inject(FormBuilder);
  
 
@@ -32,13 +32,16 @@ export class LoginComponent implements OnInit {
   }
 
   initializeForm() {
-    this.registerForm = this.formBuilder.group({
-      user: ['', Validators.required],
+    this.loginForm = this.formBuilder.group({
+      email: ['', Validators.required],
     });
   }
 
+  
+
   onSubmit() {
-    const { user } = this.registerForm.value;
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { email } = this.loginForm.value;
 
   }
 }

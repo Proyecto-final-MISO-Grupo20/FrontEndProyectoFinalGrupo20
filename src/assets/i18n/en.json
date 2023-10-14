@@ -7,7 +7,15 @@
     "sign-in": "Sign In",
     "select-user-type": "Select the user type"
   },
-  "log in": {
+  "login": {
+    "welcome": "Welcome to ABC JOBS!",
+    "description": "We accompany you throughout the entire process of intermediation of qualified IT resources",
+    "create-account": "Create your account",
+    "confirmation": "Welcome to ABC JOBS",
+    "sign-in": "Sign In",
+    "enter-email": "Enter email",
+    "enter-passward": "Enter passward",
+    "hi": "Hi!"
 
   },
 
