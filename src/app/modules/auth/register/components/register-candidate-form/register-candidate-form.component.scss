@@ -1,0 +1,15 @@
+@use '/src/styles/abstracts';
+
+.register {
+  &__form {
+    @include abstracts.flexbox(column, normal, center, 1.5rem);
+  }
+}
+
+.form {
+  &__input {
+    &--label {
+      @include abstracts.flexbox(column, normal, normal, 0.5rem);
+    }
+  }
+}

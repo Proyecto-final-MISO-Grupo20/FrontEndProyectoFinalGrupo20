@@ -5,7 +5,21 @@
     "create-account": "Crea tu cuenta",
     "confirmation": "¿Ya se encuentra registrado?",
     "sign-in": "Ingresar",
-    "select-user-type": "Seleccione el tipo de usuario"
+    "select-user-type": "Seleccione el tipo de usuario",
+    "candidate-account-step": {
+      "names": "Nombres",
+      "enter-names": "Ingrese sus nombres",
+      "last-names": "Apellidos",
+      "enter-last-names": "Ingrese sus apellidos",
+      "birthday": "Cumpleaños",
+      "enter-birthday": "Ingrese su cumpleaños",
+      "email": "Correo Electrónico",
+      "enter-email": "Ingrese su correo electrónico",
+      "password": "Contraseña",
+      "enter-password": "Ingrese su contraseña",
+      "password-confirm": "Confirmar contraseña",
+      "enter-password-confirm": "Confirme su contraseña"
+    }
   },
   "next": "Siguiente",
   "cancel": "Cancelar"

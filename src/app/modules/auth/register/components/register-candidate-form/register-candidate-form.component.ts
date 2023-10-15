@@ -1,6 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
+  EmailValidator,
   FormBuilder,
   FormGroup,
   ReactiveFormsModule,
@@ -26,7 +27,12 @@ export class RegisterCandidateFormComponent implements OnInit {
 
   initializeForm() {
     this.registerForm = this.formBuilder.group({
-      user: ['', Validators.required],
+      name: ['', Validators.required],
+      lastName: ['', Validators.required],
+      birthday: ['', Validators.required],
+      email: ['', Validators.required, EmailValidator],
+      password: ['', Validators.required],
+      passwordConfirm: ['', Validators.required],
     });
   }
 }
