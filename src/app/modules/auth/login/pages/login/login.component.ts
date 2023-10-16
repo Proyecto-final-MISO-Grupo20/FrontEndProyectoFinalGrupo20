@@ -1,3 +1,4 @@
+/* eslint-disable @nx/enforce-module-boundaries */
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
@@ -8,6 +9,9 @@ import {
 } from '@angular/forms';
 import { LanguageModule } from 'language';
 import { UiModule } from 'ui';
+import { LoginService } from '../../services/login.service';
+import { RegisterSteps } from '../../../register/utils/register-steps';
+import { typeUsersData } from 'src/app/core/utils/type-users';
 
 @Component({
   selector: 'app-login',
@@ -22,10 +26,18 @@ import { UiModule } from 'ui';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  registerForm!: FormGroup;
   loginForm!: FormGroup;
   formBuilder = inject(FormBuilder);
- 
+  steps = RegisterSteps;
+  step!: RegisterSteps;
+  loginMessage: string | undefined;
+  router: any;
+
+  get typeUsersData() {
+    return typeUsersData;
+  }
+
+  constructor(private loginService: LoginService) {}
 
   ngOnInit(): void {
     this.initializeForm();
@@ -33,15 +45,33 @@ export class LoginComponent implements OnInit {
 
   initializeForm() {
     this.loginForm = this.formBuilder.group({
-      email: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required], 
     });
   }
 
-  
-
   onSubmit() {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { email } = this.loginForm.value;
+    if (this.loginForm.valid) {
+      const credentials = {
+        email: this.loginForm.get('email')?.value,
+        password: this.loginForm.get('password')?.value,
+      };
 
+      this.loginService.loginUser(credentials).subscribe(
+        (response) => {
+          if (response === 'correcto') {
+            this.loginMessage = 'El ingreso es correcto';
+            this.router.navigate(['/register']);
+          } else {
+            this.loginMessage = 'Ingreso incorrecto';
+            console.log('Ingreso incorrecto'); // Puedes omitir este console.log si lo deseas
+          }
+        },
+        (error) => {
+          console.error('Error en el inicio de sesión', error);
+          this.loginMessage = 'Error en el inicio de sesión'; // Mensaje de error
+        }
+      );
+    }
   }
 }
