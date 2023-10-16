@@ -13,6 +13,8 @@
       "enter-last-names": "Enter your Last Names",
       "birthday": "Birthday",
       "enter-birthday": "Enter your birthday",
+      "residence-country": "Residence Country",
+      "enter-residence-country": "Enter your Residence Country",
       "email": "Email",
       "enter-email": "Enter your email",
       "username": "Username",
@@ -25,5 +27,6 @@
   },
   "next": "Next",
   "cancel": "Cancel",
-  "previous": "Previous"
+  "previous": "Previous",
+  "sign-up": "Sign Up"
 }

@@ -3,6 +3,7 @@
 .register {
   &__form {
     @include abstracts.flexbox(column, normal, center, 1.5rem);
+    padding-bottom: 2rem;
   }
 }
 
@@ -12,4 +13,9 @@
       @include abstracts.flexbox(column, normal, normal, 0.5rem);
     }
   }
+}
+
+.countries-dropdown--item {
+  display: flex;
+  gap: 0.5rem;
 }

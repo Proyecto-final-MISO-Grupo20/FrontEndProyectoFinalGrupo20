@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   EmailValidator,
@@ -11,6 +11,7 @@ import { UiModule } from 'ui';
 import { LanguageModule } from 'language';
 import { MenuItem } from 'primeng/api';
 import { RegisterCandidateSteps } from '../../utils/register-candidate-steps';
+import { countries } from '../../utils/countries';
 
 @Component({
   selector: 'app-register-candidate-form',
@@ -26,10 +27,22 @@ export class RegisterCandidateFormComponent implements OnInit {
   currentStep!: RegisterCandidateSteps;
   steps = RegisterCandidateSteps;
 
+  @Output() createAccountStepChange = new EventEmitter();
+
+  get countries() {
+    return countries;
+  }
+
+  get nextText() {
+    return this.currentStep === this.steps.personalInformation
+      ? 'next'
+      : 'sign-up';
+  }
+
   get registerFormValid(): boolean | undefined {
     const step1Validation =
       this.registerForm.get('name')?.valid &&
-      this.registerForm.get('lastName')?.valid &&
+      this.registerForm.get('residenceCountry')?.valid &&
       this.registerForm.get('birthday')?.valid;
 
     return this.currentStep === this.steps.personalInformation
@@ -46,8 +59,9 @@ export class RegisterCandidateFormComponent implements OnInit {
   initializeForm() {
     this.registerForm = this.formBuilder.group({
       name: ['', Validators.required],
-      lastName: ['', Validators.required],
       birthday: ['', Validators.required],
+      residenceCountry: ['', Validators.required],
+      username: ['', Validators.required],
       email: ['', Validators.required, EmailValidator],
       password: ['', Validators.required],
       passwordConfirm: ['', Validators.required],
@@ -68,10 +82,12 @@ export class RegisterCandidateFormComponent implements OnInit {
   onSubmit() {
     if (this.currentStep === this.steps.personalInformation) {
       this.currentStep = this.steps.createAccount;
+      this.createAccountStepChange.emit(true);
     }
   }
 
   backToPreviousStep() {
     this.currentStep = this.steps.personalInformation;
+    this.createAccountStepChange.emit(false);
   }
 }

@@ -15,8 +15,10 @@
       "enter-birthday": "Ingrese su fecha de nacimiento",
       "email": "Correo Electrónico",
       "enter-email": "Ingrese su correo electrónico",
+      "residence-country": "País de residencia",
+      "enter-residence-country": "Ingrese su país de residencia",
       "username": "Nombre de usuario",
-      "enter-username": "ngrese su nombre de usuario",
+      "enter-username": "Ingrese su nombre de usuario",
       "password": "Contraseña",
       "enter-password": "Ingrese su contraseña",
       "password-confirm": "Confirmar contraseña",
@@ -25,5 +27,6 @@
   },
   "next": "Siguiente",
   "cancel": "Cancelar",
-  "previous": "Volver"
+  "previous": "Volver",
+  "sign-up": "Registrar"
 }

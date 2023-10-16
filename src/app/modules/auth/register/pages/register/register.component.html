@@ -15,7 +15,10 @@
     </div>
 
     <div class="register__content">
-      <div class="register__title">
+      <div
+        class="register__title"
+        [class.candidate-padding]="createCandidateActivated"
+      >
         <h2 class="register__title--blue">
           {{ 'register.create-account' | transloco }}
         </h2>
@@ -54,6 +57,7 @@
       </form>
 
       <app-register-candidate-form
+        (createAccountStepChange)="setCandidateActivated($event)"
         *ngIf="step === steps.createCandidateAccount"
       ></app-register-candidate-form>
     </div>

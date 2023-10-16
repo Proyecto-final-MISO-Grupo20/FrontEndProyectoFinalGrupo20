@@ -19,22 +19,6 @@
       />
     </div>
 
-    <!-- Lastname-->
-    <div class="form__input--label">
-      <label htmlFor="lastName">{{
-        'register.candidate-account-step.last-names' | transloco
-      }}</label>
-      <input
-        [style]="{ width: '22.5rem' }"
-        pInputText
-        id="lastName"
-        formControlName="lastName"
-        placeholder=" {{
-          'register.candidate-account-step.enter-last-names' | transloco
-        }} "
-      />
-    </div>
-
     <!-- BirthDay-->
     <div class="form__input--label">
       <label htmlFor="birthday">{{
@@ -50,6 +34,56 @@
           'register.candidate-account-step.enter-birthday' | transloco
         }} "
       ></p-calendar>
+    </div>
+
+    <!-- Birth Place-->
+    <div class="form__input--label">
+      <label htmlFor="birthday">{{
+        'register.candidate-account-step.residence-country' | transloco
+      }}</label>
+
+      <p-dropdown
+        [options]="countries"
+        optionLabel="name"
+        filterBy="name"
+        [style]="{ width: '22.5rem' }"
+        placeholder="{{
+          'register.candidate-account-step.enter-residence-country' | transloco
+        }} "
+        formControlName="residenceCountry"
+        class="countries-dropdown"
+      >
+        <ng-template pTemplate="selectedItem">
+          <div
+            class="flex align-items-center gap-2"
+            *ngIf="registerForm.get('residenceCountry')"
+            class="countries-dropdown--item"
+          >
+            <img
+              [src]="
+                'assets/images/flags/' +
+                registerForm.get('residenceCountry')?.value.code +
+                '.png'
+              "
+              style="width: 18px"
+            />
+            <div>{{ registerForm.get('residenceCountry')?.value.name }}</div>
+          </div>
+        </ng-template>
+        <ng-template let-country pTemplate="item">
+          <div
+            class="flex align-items-center gap-2"
+            class="countries-dropdown--item"
+          >
+            <img
+              class="countries-dropdown--item"
+              [src]="'assets/images/flags/' + country.code + '.png'"
+              style="width: 18px"
+            />
+            <div>{{ country.name }}</div>
+          </div>
+        </ng-template>
+      </p-dropdown>
     </div>
   </ng-container>
 
@@ -125,7 +159,7 @@
   </ng-container>
 
   <p-button
-    label="{{ 'next' | transloco }}"
+    label="{{ nextText | transloco }}"
     [style]="{ width: '22.5rem' }"
     type="submit"
     [disabled]="!registerFormValid"

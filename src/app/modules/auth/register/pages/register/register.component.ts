@@ -30,6 +30,7 @@ export class RegisterComponent implements OnInit {
   formBuilder = inject(FormBuilder);
   steps = RegisterSteps;
   step!: RegisterSteps;
+  createCandidateActivated = false;
 
   items: any[] | undefined;
 
@@ -54,5 +55,9 @@ export class RegisterComponent implements OnInit {
     if (user.code === typeUsers.candidate) {
       this.step = this.steps.createCandidateAccount;
     }
+  }
+
+  setCandidateActivated(status: boolean) {
+    this.createCandidateActivated = status;
   }
 }
