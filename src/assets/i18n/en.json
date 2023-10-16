@@ -22,5 +22,6 @@
     }
   },
   "next": "Next",
-  "cancel": "Cancel"
+  "cancel": "Cancel",
+  "previous": "Previous"
 }

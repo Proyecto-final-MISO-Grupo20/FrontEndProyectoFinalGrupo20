@@ -4,6 +4,8 @@ import { DropdownModule } from 'primeng/dropdown';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { CalendarModule } from 'primeng/calendar';
+import { StepsModule } from 'primeng/steps';
+import { StepsComponent } from './components/steps/steps.component';
 
 @NgModule({
   imports: [
@@ -12,7 +14,16 @@ import { CalendarModule } from 'primeng/calendar';
     ButtonModule,
     InputTextModule,
     CalendarModule,
+    StepsModule,
+    StepsComponent,
   ],
-  exports: [DropdownModule, ButtonModule, InputTextModule, CalendarModule],
+  exports: [
+    DropdownModule,
+    ButtonModule,
+    InputTextModule,
+    CalendarModule,
+    StepsModule,
+    StepsComponent,
+  ],
 })
 export class UiModule {}

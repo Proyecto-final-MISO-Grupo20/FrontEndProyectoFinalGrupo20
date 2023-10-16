@@ -1,109 +1,125 @@
-<form class="register__form" [formGroup]="registerForm">
-  <!-- Name-->
-  <div class="form__input--label">
-    <label htmlFor="name">{{
-      'register.candidate-account-step.names' | transloco
-    }}</label>
-    <input
-      [style]="{ width: '22.5rem' }"
-      pInputText
-      id="name"
-      formControlName="name"
-      placeholder=" {{
-        'register.candidate-account-step.enter-names' | transloco
-      }} "
-    />
-  </div>
+<form class="register__form" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+  <lib-steps [items]="stepsData" [activeIndex]="currentStep"> </lib-steps>
 
-  <!-- Lastname-->
-  <div class="form__input--label">
-    <label htmlFor="lastName">{{
-      'register.candidate-account-step.last-names' | transloco
-    }}</label>
-    <input
-      [style]="{ width: '22.5rem' }"
-      pInputText
-      id="lastName"
-      formControlName="lastName"
-      placeholder=" {{
-        'register.candidate-account-step.enter-last-names' | transloco
-      }} "
-    />
-  </div>
+  <!-- STEP 1-->
+  <ng-container *ngIf="currentStep === steps.personalInformation">
+    <!-- Name-->
+    <div class="form__input--label">
+      <label htmlFor="name">{{
+        'register.candidate-account-step.names' | transloco
+      }}</label>
+      <input
+        [style]="{ width: '22.5rem' }"
+        pInputText
+        id="name"
+        formControlName="name"
+        placeholder=" {{
+          'register.candidate-account-step.enter-names' | transloco
+        }} "
+      />
+    </div>
 
-  <!-- BirthDay-->
-  <div class="form__input--label">
-    <label htmlFor="birthday">{{
-      'register.candidate-account-step.birthday' | transloco
-    }}</label>
+    <!-- Lastname-->
+    <div class="form__input--label">
+      <label htmlFor="lastName">{{
+        'register.candidate-account-step.last-names' | transloco
+      }}</label>
+      <input
+        [style]="{ width: '22.5rem' }"
+        pInputText
+        id="lastName"
+        formControlName="lastName"
+        placeholder=" {{
+          'register.candidate-account-step.enter-last-names' | transloco
+        }} "
+      />
+    </div>
 
-    <p-calendar
-      [style]="{ width: '22.5rem' }"
-      [showIcon]="true"
-      id="birthday"
-      formControlName="birthday"
-      placeholder=" {{
-        'register.candidate-account-step.enter-birthday' | transloco
-      }} "
-    ></p-calendar>
-  </div>
+    <!-- BirthDay-->
+    <div class="form__input--label">
+      <label htmlFor="birthday">{{
+        'register.candidate-account-step.birthday' | transloco
+      }}</label>
 
-  <!-- Email-->
-  <div class="form__input--label">
-    <label htmlFor="email">{{
-      'register.candidate-account-step.email' | transloco
-    }}</label>
-    <input
-      type="email"
-      [style]="{ width: '22.5rem' }"
-      pInputText
-      id="email"
-      formControlName="email"
-      placeholder=" {{
-        'register.candidate-account-step.enter-email' | transloco
-      }} "
-    />
-  </div>
+      <p-calendar
+        [style]="{ width: '22.5rem' }"
+        [showIcon]="true"
+        id="birthday"
+        formControlName="birthday"
+        placeholder=" {{
+          'register.candidate-account-step.enter-birthday' | transloco
+        }} "
+      ></p-calendar>
+    </div>
+  </ng-container>
 
-  <!-- Password-->
-  <div class="form__input--label">
-    <label htmlFor="password">{{
-      'register.candidate-account-step.password' | transloco
-    }}</label>
-    <input
-      type="password"
-      [style]="{ width: '22.5rem' }"
-      pInputText
-      id="password"
-      formControlName="password"
-      placeholder=" {{
-        'register.candidate-account-step.enter-password' | transloco
-      }} "
-    />
-  </div>
+  <!-- STEP 2-->
+  <ng-container *ngIf="currentStep === steps.createAccount">
+    <!-- Email-->
+    <div class="form__input--label">
+      <label htmlFor="email">{{
+        'register.candidate-account-step.email' | transloco
+      }}</label>
+      <input
+        type="email"
+        [style]="{ width: '22.5rem' }"
+        pInputText
+        id="email"
+        formControlName="email"
+        placeholder=" {{
+          'register.candidate-account-step.enter-email' | transloco
+        }} "
+      />
+    </div>
 
-  <!-- Password Confirm-->
-  <div class="form__input--label">
-    <label htmlFor="passwordConfirm">{{
-      'register.candidate-account-step.password-confirm' | transloco
-    }}</label>
-    <input
-      type="password"
-      [style]="{ width: '22.5rem' }"
-      pInputText
-      id="passwordConfirm"
-      formControlName="passwordConfirm"
-      placeholder=" {{
-        'register.candidate-account-step.enter-password-confirm' | transloco
-      }} "
-    />
-  </div>
+    <!-- Password-->
+    <div class="form__input--label">
+      <label htmlFor="password">{{
+        'register.candidate-account-step.password' | transloco
+      }}</label>
+      <input
+        type="password"
+        [style]="{ width: '22.5rem' }"
+        pInputText
+        id="password"
+        formControlName="password"
+        placeholder=" {{
+          'register.candidate-account-step.enter-password' | transloco
+        }} "
+      />
+    </div>
+
+    <!-- Password Confirm-->
+    <div class="form__input--label">
+      <label htmlFor="passwordConfirm">{{
+        'register.candidate-account-step.password-confirm' | transloco
+      }}</label>
+      <input
+        type="password"
+        [style]="{ width: '22.5rem' }"
+        pInputText
+        id="passwordConfirm"
+        formControlName="passwordConfirm"
+        placeholder=" {{
+          'register.candidate-account-step.enter-password-confirm' | transloco
+        }} "
+      />
+    </div>
+  </ng-container>
 
   <p-button
     label="{{ 'next' | transloco }}"
     [style]="{ width: '22.5rem' }"
     type="submit"
-    [disabled]="!registerForm.valid"
+    [disabled]="!registerFormValid"
+  ></p-button>
+
+  <p-button
+    label="{{ 'previous' | transloco }}"
+    [style]="{ width: '22.5rem' }"
+    (onClick)="backToPreviousStep()"
+    severity="warning"
+    *ngIf="currentStep === steps.createAccount"
   ></p-button>
 
   <p-button

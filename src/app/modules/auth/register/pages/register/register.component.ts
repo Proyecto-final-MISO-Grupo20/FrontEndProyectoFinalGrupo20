@@ -31,6 +31,8 @@ export class RegisterComponent implements OnInit {
   steps = RegisterSteps;
   step!: RegisterSteps;
 
+  items: any[] | undefined;
+
   get typeUsersData() {
     return typeUsersData;
   }

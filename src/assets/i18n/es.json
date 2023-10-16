@@ -11,8 +11,8 @@
       "enter-names": "Ingrese sus nombres",
       "last-names": "Apellidos",
       "enter-last-names": "Ingrese sus apellidos",
-      "birthday": "Cumpleaños",
-      "enter-birthday": "Ingrese su cumpleaños",
+      "birthday": "Fecha de nacimiento",
+      "enter-birthday": "Ingrese su fecha de nacimiento",
       "email": "Correo Electrónico",
       "enter-email": "Ingrese su correo electrónico",
       "password": "Contraseña",
@@ -22,5 +22,6 @@
     }
   },
   "next": "Siguiente",
-  "cancel": "Cancelar"
+  "cancel": "Cancelar",
+  "previous": "Volver"
 }

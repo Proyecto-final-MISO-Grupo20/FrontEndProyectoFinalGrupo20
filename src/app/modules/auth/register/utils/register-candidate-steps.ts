@@ -1,7 +1,4 @@
 export enum RegisterCandidateSteps {
-  initialStep,
+  personalInformation,
   createAccount,
-  academicInformation,
-  technicalInformation,
-  workingInformation,
 }

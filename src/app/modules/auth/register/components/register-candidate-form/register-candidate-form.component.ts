@@ -9,6 +9,8 @@ import {
 } from '@angular/forms';
 import { UiModule } from 'ui';
 import { LanguageModule } from 'language';
+import { MenuItem } from 'primeng/api';
+import { RegisterCandidateSteps } from '../../utils/register-candidate-steps';
 
 @Component({
   selector: 'app-register-candidate-form',
@@ -20,8 +22,22 @@ import { LanguageModule } from 'language';
 export class RegisterCandidateFormComponent implements OnInit {
   registerForm!: FormGroup;
   formBuilder = inject(FormBuilder);
+  stepsData: MenuItem[] | undefined;
+  currentStep!: RegisterCandidateSteps;
+  steps = RegisterCandidateSteps;
+
+  get registerFormValid(): boolean | undefined {
+    const step1Validation =
+      this.registerForm.get('name')?.valid &&
+      this.registerForm.get('lastName')?.valid &&
+      this.registerForm.get('birthday')?.valid;
+
+    return step1Validation;
+  }
 
   ngOnInit(): void {
+    this.currentStep = this.steps.personalInformation;
+    this.setStepItems();
     this.initializeForm();
   }
 
@@ -34,5 +50,26 @@ export class RegisterCandidateFormComponent implements OnInit {
       password: ['', Validators.required],
       passwordConfirm: ['', Validators.required],
     });
+  }
+
+  setStepItems() {
+    this.stepsData = [
+      {
+        label: 'Información Personal',
+      },
+      {
+        label: 'Cuenta',
+      },
+    ];
+  }
+
+  onSubmit() {
+    if (this.currentStep === this.steps.personalInformation) {
+      this.currentStep = this.steps.createAccount;
+    }
+  }
+
+  backToPreviousStep() {
+    this.currentStep = this.steps.personalInformation;
   }
 }
