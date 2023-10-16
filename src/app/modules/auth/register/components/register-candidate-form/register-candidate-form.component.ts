@@ -32,7 +32,9 @@ export class RegisterCandidateFormComponent implements OnInit {
       this.registerForm.get('lastName')?.valid &&
       this.registerForm.get('birthday')?.valid;
 
-    return step1Validation;
+    return this.currentStep === this.steps.personalInformation
+      ? step1Validation
+      : false;
   }
 
   ngOnInit(): void {

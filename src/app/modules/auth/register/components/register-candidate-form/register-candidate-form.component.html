@@ -55,6 +55,23 @@
 
   <!-- STEP 2-->
   <ng-container *ngIf="currentStep === steps.createAccount">
+    <!-- Username-->
+    <div class="form__input--label">
+      <label htmlFor="username">{{
+        'register.candidate-account-step.username' | transloco
+      }}</label>
+      <input
+        type="username"
+        [style]="{ width: '22.5rem' }"
+        pInputText
+        id="username"
+        formControlName="username"
+        placeholder=" {{
+          'register.candidate-account-step.enter-username' | transloco
+        }} "
+      />
+    </div>
+
     <!-- Email-->
     <div class="form__input--label">
       <label htmlFor="email">{{
@@ -118,7 +135,6 @@
     label="{{ 'previous' | transloco }}"
     [style]="{ width: '22.5rem' }"
     (onClick)="backToPreviousStep()"
-    severity="warning"
     *ngIf="currentStep === steps.createAccount"
   ></p-button>
 

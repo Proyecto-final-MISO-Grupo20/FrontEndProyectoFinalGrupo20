@@ -15,6 +15,8 @@
       "enter-birthday": "Ingrese su fecha de nacimiento",
       "email": "Correo Electrónico",
       "enter-email": "Ingrese su correo electrónico",
+      "username": "Nombre de usuario",
+      "enter-username": "ngrese su nombre de usuario",
       "password": "Contraseña",
       "enter-password": "Ingrese su contraseña",
       "password-confirm": "Confirmar contraseña",

@@ -15,6 +15,8 @@
       "enter-birthday": "Enter your birthday",
       "email": "Email",
       "enter-email": "Enter your email",
+      "username": "Username",
+      "enter-username": "Enter your username",
       "password": "Password",
       "enter-password": "Enter your password",
       "password-confirm": "Password Confirm",
