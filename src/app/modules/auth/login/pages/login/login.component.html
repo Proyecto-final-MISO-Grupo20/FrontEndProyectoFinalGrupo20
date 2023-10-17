@@ -29,13 +29,12 @@
       <form
         class="login__form"
         [formGroup]="loginForm"
-        
-      >
+        (ngSubmit)="onSubmit()">
      
       <div class="p-field p-grid">
         <label for="email" class="p-col-12 p-md-3">Email</label>
         <div class="p-col-12 p-md-9">
-          <input id="email" type="text" pInputText placeholder="Enter email" class="custom-width" placeholder="{{ 'login.enter-email' | transloco }} ">
+          <input id="email" formControlName="email" type="text" pInputText placeholder="Enter email" class="custom-width" placeholder="{{ 'login.enter-email' | transloco }}">
           
         </div>
       </div>
@@ -43,7 +42,7 @@
       <div class="p-field p-grid">
         <label for="password" class="p-col-12 p-md-3">Password</label>
         <div class="p-col-12 p-md-9">
-          <input id="password" type="password" pInputText placeholder="Enter password" class="custom-width" placeholder="{{ 'login.enter-passward' | transloco }} ">
+          <input id="password" formControlName="password" type="password" pInputText placeholder="Enter password" class="custom-width" placeholder="{{ 'login.enter-passward' | transloco }} ">
         </div>
       </div>
 

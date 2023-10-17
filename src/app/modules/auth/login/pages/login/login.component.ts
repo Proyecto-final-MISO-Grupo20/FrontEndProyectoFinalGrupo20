@@ -28,8 +28,6 @@ import { typeUsersData } from 'src/app/core/utils/type-users';
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   formBuilder = inject(FormBuilder);
-  steps = RegisterSteps;
-  step!: RegisterSteps;
   loginMessage: string | undefined;
   router: any;
 
@@ -46,7 +44,7 @@ export class LoginComponent implements OnInit {
   initializeForm() {
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required], 
+      password: ['', Validators.required],
     });
   }
 
@@ -56,6 +54,8 @@ export class LoginComponent implements OnInit {
         email: this.loginForm.get('email')?.value,
         password: this.loginForm.get('password')?.value,
       };
+      console.log(credentials)
+      
 
       this.loginService.loginUser(credentials).subscribe(
         (response) => {
@@ -64,12 +64,12 @@ export class LoginComponent implements OnInit {
             this.router.navigate(['/register']);
           } else {
             this.loginMessage = 'Ingreso incorrecto';
-            console.log('Ingreso incorrecto'); // Puedes omitir este console.log si lo deseas
+            console.log('Ingreso incorrecto');
           }
         },
         (error) => {
           console.error('Error en el inicio de sesión', error);
-          this.loginMessage = 'Error en el inicio de sesión'; // Mensaje de error
+          this.loginMessage = 'Error en el inicio de sesión';
         }
       );
     }
