@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
 
   initializeForm() {
     this.loginForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
+      username: ['', [Validators.required]],
       password: ['', Validators.required],
     });
   }
@@ -51,7 +51,7 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     if (this.loginForm.valid) {
       const credentials = {
-        email: this.loginForm.get('email')?.value,
+        username: this.loginForm.get('username')?.value,
         password: this.loginForm.get('password')?.value,
       };
       console.log(credentials)
