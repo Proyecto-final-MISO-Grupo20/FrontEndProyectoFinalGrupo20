@@ -13,6 +13,7 @@ import { MenuItem } from 'primeng/api';
 import { RegisterCandidateSteps } from '../../utils/register-candidate-steps';
 import { countries } from '../../utils/countries';
 import { identificationTypes } from '../../../../../core/utils/identification-types';
+import { RegisterService } from '../../services/register.service';
 
 @Component({
   selector: 'app-register-candidate-form',
@@ -33,6 +34,9 @@ export class RegisterCandidateFormComponent implements OnInit {
 
   // Event
   @Output() backToMainForm = new EventEmitter();
+
+  // Service
+  registerService = inject(RegisterService);
 
   get countries() {
     return countries;
@@ -67,11 +71,11 @@ export class RegisterCandidateFormComponent implements OnInit {
 
   initializeForm() {
     this.registerForm = this.formBuilder.group({
-      name: ['', Validators.required],
-      identificationType: ['', Validators.required],
-      identification: ['', Validators.required],
-      birthday: ['', Validators.required],
-      residenceCountry: ['', Validators.required],
+      nombre: ['', Validators.required],
+      tipoDocumento: ['', Validators.required],
+      documento: ['', Validators.required],
+      fechaNacimiento: ['', Validators.required],
+      pais: ['', Validators.required],
       username: ['', Validators.required],
       email: ['', Validators.required, EmailValidator],
       password: ['', Validators.required],
@@ -93,6 +97,15 @@ export class RegisterCandidateFormComponent implements OnInit {
   onSubmit() {
     if (this.currentStep === this.steps.personalInformation) {
       this.currentStep = this.steps.createAccount;
+    }
+
+    if (this.currentStep === this.steps.createAccount) {
+      this.registerService
+        .createCandidateAccount(this.registerForm.value)
+        .subscribe({
+          next: (res) => console.log(res),
+          error: (err) => console.error(err),
+        });
     }
   }
 
