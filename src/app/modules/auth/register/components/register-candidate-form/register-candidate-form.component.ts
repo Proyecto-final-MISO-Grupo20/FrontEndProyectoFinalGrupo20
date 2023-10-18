@@ -12,6 +12,7 @@ import { LanguageModule } from 'language';
 import { MenuItem } from 'primeng/api';
 import { RegisterCandidateSteps } from '../../utils/register-candidate-steps';
 import { countries } from '../../utils/countries';
+import { identificationTypes } from '../../../../../core/utils/identification-types';
 
 @Component({
   selector: 'app-register-candidate-form',
@@ -21,16 +22,24 @@ import { countries } from '../../utils/countries';
   styleUrls: ['./register-candidate-form.component.scss'],
 })
 export class RegisterCandidateFormComponent implements OnInit {
+  // Form
   registerForm!: FormGroup;
   formBuilder = inject(FormBuilder);
+
+  // Data
   stepsData: MenuItem[] | undefined;
   currentStep!: RegisterCandidateSteps;
   steps = RegisterCandidateSteps;
 
-  @Output() createAccountStepChange = new EventEmitter();
+  // Event
+  @Output() backToMainForm = new EventEmitter();
 
   get countries() {
     return countries;
+  }
+
+  get identificationTypesData() {
+    return identificationTypes;
   }
 
   get nextText() {
@@ -59,6 +68,8 @@ export class RegisterCandidateFormComponent implements OnInit {
   initializeForm() {
     this.registerForm = this.formBuilder.group({
       name: ['', Validators.required],
+      identificationType: ['', Validators.required],
+      identification: ['', Validators.required],
       birthday: ['', Validators.required],
       residenceCountry: ['', Validators.required],
       username: ['', Validators.required],
@@ -82,12 +93,14 @@ export class RegisterCandidateFormComponent implements OnInit {
   onSubmit() {
     if (this.currentStep === this.steps.personalInformation) {
       this.currentStep = this.steps.createAccount;
-      this.createAccountStepChange.emit(true);
     }
   }
 
   backToPreviousStep() {
     this.currentStep = this.steps.personalInformation;
-    this.createAccountStepChange.emit(false);
+  }
+
+  goToMainRegister() {
+    this.backToMainForm.emit(true);
   }
 }

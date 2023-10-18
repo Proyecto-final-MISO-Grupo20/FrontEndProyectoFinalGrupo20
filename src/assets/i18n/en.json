@@ -9,6 +9,8 @@
     "candidate-account-step": {
       "names": "Names",
       "enter-names": "Enter your names",
+      "identification": "Identification",
+      "enter-identification": "Enter your identification number",
       "last-names": "Last Names",
       "enter-last-names": "Enter your Last Names",
       "birthday": "Birthday",

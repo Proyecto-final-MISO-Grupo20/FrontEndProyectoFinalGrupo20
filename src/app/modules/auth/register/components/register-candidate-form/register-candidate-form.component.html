@@ -19,6 +19,28 @@
       />
     </div>
 
+    <div class="form__input--label">
+      <label htmlFor="identification">{{
+        'register.candidate-account-step.identification' | transloco
+      }}</label>
+      <div class="identification-form">
+        <p-dropdown
+          [options]="identificationTypesData"
+          optionLabel="name"
+          formControlName="identificationType"
+        ></p-dropdown>
+        <input
+          [style]="{ width: '15.5rem' }"
+          pInputText
+          id="identification"
+          formControlName="identification"
+          placeholder=" {{
+            'register.candidate-account-step.enter-identification' | transloco
+          }} "
+        />
+      </div>
+    </div>
+
     <!-- BirthDay-->
     <div class="form__input--label">
       <label htmlFor="birthday">{{
@@ -173,6 +195,7 @@
   ></p-button>
 
   <p-button
+    (onClick)="goToMainRegister()"
     label="{{ 'cancel' | transloco }}"
     [style]="{ width: '22.5rem' }"
     severity="secondary"

@@ -9,6 +9,8 @@
     "candidate-account-step": {
       "names": "Nombres",
       "enter-names": "Ingrese sus nombres",
+      "identification": "Identificación",
+      "enter-identification": "Ingrese su número de identificación",
       "last-names": "Apellidos",
       "enter-last-names": "Ingrese sus apellidos",
       "birthday": "Fecha de nacimiento",
