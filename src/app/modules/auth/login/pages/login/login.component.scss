@@ -1,0 +1,101 @@
+@use '/src/styles/abstracts';
+
+.login {
+  &-wrapper {
+    display: flex;
+    width: 100dvw;
+    height: 100dvh;
+  }
+
+  &-container {
+    display: flex;
+    width: 100%;
+  }
+
+  &__welcome {
+    @include abstracts.flexbox(column, space-evenly, center, 0);
+    background-color: abstracts.$primary;
+    color: white;
+    width: 50%;
+  }
+
+  &__title {
+    @include abstracts.flexbox(column, center, left, 0);
+    padding-top: 5rem;
+
+    &--blue {
+      color: abstracts.$primary;
+      margin: 0;
+    }
+    .custom-width {
+      width: 22.5rem;
+    }
+  }
+
+  &__confirmation {
+    color: #718096;
+    font-weight: abstracts.$semi-bold;
+
+    span {
+      @include abstracts.hoverable();
+      font-weight: bolder;
+    }
+    .custom-width {
+      width: 22.5rem;
+    }
+  }
+
+  &__content {
+    @include abstracts.flexbox(column, normal, center, 5rem);
+    width: 50%;
+  }
+
+  &__form {
+    @include abstracts.flexbox(column, normal, center, 1rem);
+    .custom-width {
+      width: 22.5rem;
+    }
+  }
+
+  &__register {
+    .custom-width {
+      color: #718096;
+      width: 22.5rem;
+      padding-top: 1rem;
+    }
+  }
+}
+
+.welcome {
+  &-container {
+    @include abstracts.flexbox(column, center, center, 0);
+    height: 0%;
+    .custom-width {
+      width: 22.5rem;
+    }
+  }
+
+  &__title {
+    text-align: left;
+    width: 16rem;
+    .custom-width {
+      width: 22.5rem;
+    }
+  }
+  &__description {
+    text-align: center;
+    width: 26.25rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .login {
+    &__welcome {
+      display: none;
+    }
+
+    &__content {
+      width: 100%;
+    }
+  }
+}

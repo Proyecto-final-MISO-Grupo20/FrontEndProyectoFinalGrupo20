@@ -1,7 +1,9 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, NgModule, OnInit, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { TranslocoService } from '@ngneat/transloco';
 import { LanguageModule } from 'language';
+import { HttpClientModule } from '@angular/common/http';
+import { BrowserModule } from '@angular/platform-browser';
 
 @Component({
   standalone: true,
@@ -12,3 +14,8 @@ import { LanguageModule } from 'language';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {}
+
+@NgModule({
+  imports: [BrowserModule, HttpClientModule],
+})
+export class AppModule {}

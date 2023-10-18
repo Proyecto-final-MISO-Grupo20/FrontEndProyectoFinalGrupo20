@@ -27,6 +27,20 @@
       "enter-password-confirm": "Confirme su contraseña"
     }
   },
+
+  "login": {
+    "welcome": "Bienvenido a ABC JOBS!",
+    "description": "Te acompañamos en todo el proceso de intermediación de recursos calificados en TI",
+    "create-account": "Crea tu cuenta",
+    "confirmation": "Bienvenido a ABC Jobs",
+    "sign-in": "Ingresar",
+    "enter-username": "Ingresar su nombre de usuario",
+    "enter-passward": "Ingresar su contraseña",
+    "hi": "Hola!",
+    "log-in": "Ingresar",
+    "register": "Aún no está registrado?"
+  },
+
   "next": "Siguiente",
   "cancel": "Cancelar",
   "previous": "Volver",
