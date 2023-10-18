@@ -12,7 +12,7 @@
         [style]="{ width: '22.5rem' }"
         pInputText
         id="name"
-        formControlName="name"
+        formControlName="nombre"
         placeholder=" {{
           'register.candidate-account-step.enter-names' | transloco
         }} "
@@ -27,13 +27,13 @@
         <p-dropdown
           [options]="identificationTypesData"
           optionLabel="name"
-          formControlName="identificationType"
+          formControlName="tipoDocumento"
         ></p-dropdown>
         <input
           [style]="{ width: '15.5rem' }"
           pInputText
           id="identification"
-          formControlName="identification"
+          formControlName="documento"
           placeholder=" {{
             'register.candidate-account-step.enter-identification' | transloco
           }} "
@@ -51,7 +51,7 @@
         [style]="{ width: '22.5rem' }"
         [showIcon]="true"
         id="birthday"
-        formControlName="birthday"
+        formControlName="fechaNacimiento"
         placeholder=" {{
           'register.candidate-account-step.enter-birthday' | transloco
         }} "
@@ -72,24 +72,24 @@
         placeholder="{{
           'register.candidate-account-step.enter-residence-country' | transloco
         }} "
-        formControlName="residenceCountry"
+        formControlName="pais"
         class="countries-dropdown"
       >
         <ng-template pTemplate="selectedItem">
           <div
             class="flex align-items-center gap-2"
-            *ngIf="registerForm.get('residenceCountry')"
+            *ngIf="registerForm.get('pais')"
             class="countries-dropdown--item"
           >
             <img
               [src]="
                 'assets/images/flags/' +
-                registerForm.get('residenceCountry')?.value.code +
+                registerForm.get('pais')?.value.code +
                 '.png'
               "
               style="width: 18px"
             />
-            <div>{{ registerForm.get('residenceCountry')?.value.name }}</div>
+            <div>{{ registerForm.get('pais')?.value.name }}</div>
           </div>
         </ng-template>
         <ng-template let-country pTemplate="item">

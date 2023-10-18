@@ -1,7 +1,6 @@
 import { Component, EventEmitter, OnInit, Output, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
-  EmailValidator,
   FormBuilder,
   FormGroup,
   ReactiveFormsModule,
@@ -54,13 +53,18 @@ export class RegisterCandidateFormComponent implements OnInit {
 
   get registerFormValid(): boolean | undefined {
     const step1Validation =
-      this.registerForm.get('name')?.valid &&
-      this.registerForm.get('residenceCountry')?.valid &&
-      this.registerForm.get('birthday')?.valid;
+      this.registerForm.get('nombre')?.valid &&
+      this.registerForm.get('pais')?.valid &&
+      this.registerForm.get('fechaNacimiento')?.valid;
+
+    const step2Validation =
+      this.registerForm.get('username')?.valid &&
+      this.registerForm.get('email')?.valid &&
+      this.registerForm.get('password')?.valid;
 
     return this.currentStep === this.steps.personalInformation
       ? step1Validation
-      : false;
+      : step2Validation;
   }
 
   ngOnInit(): void {
@@ -77,7 +81,7 @@ export class RegisterCandidateFormComponent implements OnInit {
       fechaNacimiento: ['', Validators.required],
       pais: ['', Validators.required],
       username: ['', Validators.required],
-      email: ['', Validators.required, EmailValidator],
+      email: ['', Validators.required],
       password: ['', Validators.required],
       passwordConfirm: ['', Validators.required],
     });
@@ -95,10 +99,6 @@ export class RegisterCandidateFormComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.currentStep === this.steps.personalInformation) {
-      this.currentStep = this.steps.createAccount;
-    }
-
     if (this.currentStep === this.steps.createAccount) {
       this.registerService
         .createCandidateAccount(this.registerForm.value)
@@ -106,6 +106,10 @@ export class RegisterCandidateFormComponent implements OnInit {
           next: (res) => console.log(res),
           error: (err) => console.error(err),
         });
+    }
+
+    if (this.currentStep === this.steps.personalInformation) {
+      this.currentStep = this.steps.createAccount;
     }
   }
 
@@ -115,5 +119,16 @@ export class RegisterCandidateFormComponent implements OnInit {
 
   goToMainRegister() {
     this.backToMainForm.emit(true);
+  }
+
+  // Custom validator function for password confirmation
+  passwordMatchValidator() {
+    const { password, passwordConfirm } = this.registerForm.value;
+
+    if (password === passwordConfirm) {
+      return null; // Passwords match, no error
+    } else {
+      return { mismatch: true }; // Passwords do not match, return an error
+    }
   }
 }
