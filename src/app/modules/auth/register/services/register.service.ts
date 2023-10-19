@@ -1,7 +1,9 @@
 import { Injectable, inject } from '@angular/core';
 import { ApiService } from '../../../../core/services/api/api.service';
 import { Candidate } from '../models/candidate';
+import { Business } from '../models/business';
 import { Observable } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root',
@@ -13,3 +15,11 @@ export class RegisterService {
     return this.#api.post('usuario/candidato', candidateData);
   }
 }
+
+export class RegisterBussinessService {
+  #api = inject(ApiService);
+
+  createBussinessAccount(candidateData: Business): Observable<Business> {
+    return this.#api.post('usuario/candidato', candidateData);
+
+}}

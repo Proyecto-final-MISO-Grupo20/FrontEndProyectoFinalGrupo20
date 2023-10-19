@@ -1,0 +1,203 @@
+<form class="register__form" [formGroup]="registerBusinessForm" (ngSubmit)="onSubmit()">
+  
+
+  <!-- STEP 1-->
+  <ng-container *ngIf="currentStep === steps.personalInformation">
+    <!-- Name-->
+    <div class="form__input--label">
+      <label htmlFor="name">{{
+        'register.business-account-step.names' | transloco
+      }}</label>
+      <input
+        [style]="{ width: '22.5rem' }"
+        pInputText
+        id="name"
+        formControlName="nombre"
+        placeholder=" {{
+          'register.business-account-step.enter-names' | transloco
+        }} "
+      />
+    </div>
+
+    <div class="form__input--label">
+      <label htmlFor="identification">{{
+        'register.business-account-step.identification' | transloco
+      }}</label>
+      <div class="identification-form">
+        <p-dropdown
+          [options]="identificationTypesData"
+          optionLabel="name"
+          formControlName="tipoDocumento"
+        ></p-dropdown>
+        <input
+          [style]="{ width: '15.5rem' }"
+          pInputText
+          id="identification"
+          formControlName="documento"
+          placeholder=" {{
+            'register.business-account-step.enter-identification' | transloco
+          }} "
+        />
+      </div>
+    </div>
+
+    <!-- BirthDay-->
+    <div class="form__input--label">
+      <label htmlFor="birthday">{{
+        'register.business-account-step.birthday' | transloco
+      }}</label>
+
+      <p-calendar
+        [style]="{ width: '22.5rem' }"
+        [showIcon]="true"
+        id="birthday"
+        formControlName="fechaNacimiento"
+        placeholder=" {{
+          'register.business-account-step.enter-birthday' | transloco
+        }} "
+      ></p-calendar>
+    </div>
+
+    <!-- Birth Place-->
+    <div class="form__input--label">
+      <label htmlFor="birthday">{{
+        'register.business-account-step.residence-country' | transloco
+      }}</label>
+
+      <p-dropdown
+        [options]="countries"
+        optionLabel="name"
+        filterBy="name"
+        [style]="{ width: '22.5rem' }"
+        placeholder="{{
+          'register.business-account-step.enter-residence-country' | transloco
+        }} "
+        formControlName="pais"
+        class="countries-dropdown"
+      >
+        <ng-template pTemplate="selectedItem">
+          <div
+            class="flex align-items-center gap-2"
+            *ngIf="registerForm.get('pais')"
+            class="countries-dropdown--item"
+          >
+            <img
+              [src]="
+                'assets/images/flags/' +
+                registerForm.get('pais')?.value.code +
+                '.png'
+              "
+              style="width: 18px"
+            />
+            <div>{{ registerBusinessForm.get('pais')?.value.name }}</div>
+          </div>
+        </ng-template>
+        <ng-template let-country pTemplate="item">
+          <div
+            class="flex align-items-center gap-2"
+            class="countries-dropdown--item"
+          >
+            <img
+              class="countries-dropdown--item"
+              [src]="'assets/images/flags/' + country.code + '.png'"
+              style="width: 18px"
+            />
+            <div>{{ country.name }}</div>
+          </div>
+        </ng-template>
+      </p-dropdown>
+    </div>
+  </ng-container>
+
+  <!-- STEP 2-->
+  <ng-container *ngIf="currentStep === steps.createBusinessAccount">
+    <!-- Username-->
+    <div class="form__input--label">
+      <label htmlFor="username">{{
+        'register.business-account-step.username' | transloco
+      }}</label>
+      <input
+        type="username"
+        [style]="{ width: '22.5rem' }"
+        pInputText
+        id="username"
+        formControlName="username"
+        placeholder=" {{
+          'register.business-account-step.enter-username' | transloco
+        }} "
+      />
+    </div>
+
+    <!-- Email-->
+    <div class="form__input--label">
+      <label htmlFor="email">{{
+        'register.business-account-step.email' | transloco
+      }}</label>
+      <input
+        type="email"
+        [style]="{ width: '22.5rem' }"
+        pInputText
+        id="email"
+        formControlName="email"
+        placeholder=" {{
+          'register.business-account-step.enter-email' | transloco
+        }} "
+      />
+    </div>
+
+    <!-- Password-->
+    <div class="form__input--label">
+      <label htmlFor="password">{{
+        'register.business-account-step.password' | transloco
+      }}</label>
+      <input
+        type="password"
+        [style]="{ width: '22.5rem' }"
+        pInputText
+        id="password"
+        formControlName="password"
+        placeholder=" {{
+          'register.business-account-step.enter-password' | transloco
+        }} "
+      />
+    </div>
+
+    <!-- Password Confirm-->
+    <div class="form__input--label">
+      <label htmlFor="passwordConfirm">{{
+        'register.business-account-step.password-confirm' | transloco
+      }}</label>
+      <input
+        type="password"
+        [style]="{ width: '22.5rem' }"
+        pInputText
+        id="passwordConfirm"
+        formControlName="passwordConfirm"
+        placeholder=" {{
+          'register.business-account-step.enter-password-confirm' | transloco
+        }} "
+      />
+    </div>
+  </ng-container>
+
+  <p-button
+    label="{{ nextText | transloco }}"
+    [style]="{ width: '22.5rem' }"
+    type="submit"
+    [disabled]="!registerFormValid"
+  ></p-button>
+
+  <p-button
+    label="{{ 'previous' | transloco }}"
+    [style]="{ width: '22.5rem' }"
+    (onClick)="backToPreviousStep()"
+    *ngIf="currentStep === steps.createBusinessAccount"
+  ></p-button>
+
+  <p-button
+    (onClick)="goToMainRegister()"
+    label="{{ 'cancel' | transloco }}"
+    [style]="{ width: '22.5rem' }"
+    severity="secondary"
+  ></p-button>
+</form>
