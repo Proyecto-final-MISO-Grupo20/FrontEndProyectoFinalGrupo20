@@ -5,6 +5,7 @@ import {
   FormGroup,
   ReactiveFormsModule,
   Validators,
+  AbstractControl,
 } from '@angular/forms';
 import { UiModule } from 'ui';
 import { LanguageModule } from 'language';
@@ -13,6 +14,10 @@ import { RegisterCandidateSteps } from '../../utils/register-candidate-steps';
 import { countries } from '../../utils/countries';
 import { identificationTypes } from '../../../../../core/utils/identification-types';
 import { RegisterService } from '../../services/register.service';
+import {
+  ageRangeValidator,
+  passwordMatchValidator,
+} from '../../utils/candidate-form-validators';
 
 @Component({
   selector: 'app-register-candidate-form',
@@ -55,12 +60,16 @@ export class RegisterCandidateFormComponent implements OnInit {
     const step1Validation =
       this.registerForm.get('nombre')?.valid &&
       this.registerForm.get('pais')?.valid &&
-      this.registerForm.get('fechaNacimiento')?.valid;
+      this.registerForm.get('fechaNacimiento')?.valid &&
+      this.registerForm.get('documento')?.valid &&
+      this.registerForm.get('ciudad')?.valid;
 
     const step2Validation =
       this.registerForm.get('username')?.valid &&
       this.registerForm.get('email')?.valid &&
-      this.registerForm.get('password')?.valid;
+      this.registerForm.get('password')?.valid &&
+      this.registerForm.get('passwordConfirm')?.valid &&
+      this.registerForm.errors === null;
 
     return this.currentStep === this.steps.personalInformation
       ? step1Validation
@@ -74,17 +83,42 @@ export class RegisterCandidateFormComponent implements OnInit {
   }
 
   initializeForm() {
-    this.registerForm = this.formBuilder.group({
-      nombre: ['', Validators.required],
-      tipoDocumento: ['', Validators.required],
-      documento: ['', Validators.required],
-      fechaNacimiento: ['', Validators.required],
-      pais: ['', Validators.required],
-      username: ['', Validators.required],
-      email: ['', Validators.required],
-      password: ['', Validators.required],
-      passwordConfirm: ['', Validators.required],
-    });
+    this.registerForm = this.formBuilder.group(
+      {
+        nombre: [
+          '',
+          [
+            Validators.required,
+            Validators.minLength(3),
+            Validators.maxLength(50),
+          ],
+        ],
+        tipoDocumento: ['', Validators.required],
+        documento: ['', Validators.required],
+        fechaNacimiento: ['', [Validators.required, ageRangeValidator]],
+        pais: ['', Validators.required],
+        ciudad: ['', [Validators.required, Validators.maxLength(50)]],
+        username: [
+          '',
+          [
+            Validators.required,
+            Validators.minLength(3),
+            Validators.maxLength(50),
+          ],
+        ],
+        email: ['', [Validators.required, Validators.email]],
+        password: [
+          '',
+          [
+            Validators.required,
+            Validators.minLength(8),
+            Validators.maxLength(50),
+          ],
+        ],
+        passwordConfirm: ['', Validators.required],
+      },
+      { validator: passwordMatchValidator }
+    );
   }
 
   setStepItems() {
@@ -119,16 +153,5 @@ export class RegisterCandidateFormComponent implements OnInit {
 
   goToMainRegister() {
     this.backToMainForm.emit(true);
-  }
-
-  // Custom validator function for password confirmation
-  passwordMatchValidator() {
-    const { password, passwordConfirm } = this.registerForm.value;
-
-    if (password === passwordConfirm) {
-      return null; // Passwords match, no error
-    } else {
-      return { mismatch: true }; // Passwords do not match, return an error
-    }
   }
 }

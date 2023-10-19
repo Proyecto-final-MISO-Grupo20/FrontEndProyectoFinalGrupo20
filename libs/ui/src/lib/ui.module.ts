@@ -6,6 +6,8 @@ import { InputTextModule } from 'primeng/inputtext';
 import { CalendarModule } from 'primeng/calendar';
 import { StepsModule } from 'primeng/steps';
 import { StepsComponent } from './components/steps/steps.component';
+import { MessagesModule } from 'primeng/messages';
+import { MessageModule } from 'primeng/message';
 
 @NgModule({
   imports: [
@@ -14,12 +16,16 @@ import { StepsComponent } from './components/steps/steps.component';
     ButtonModule,
     InputTextModule,
     CalendarModule,
+    MessagesModule,
+    MessageModule,
     StepsModule,
     StepsComponent,
   ],
   exports: [
     DropdownModule,
     ButtonModule,
+    MessagesModule,
+    MessageModule,
     InputTextModule,
     CalendarModule,
     StepsModule,
