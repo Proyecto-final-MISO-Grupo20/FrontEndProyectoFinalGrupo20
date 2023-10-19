@@ -1,4 +1,5 @@
 <form class="register__form" [formGroup]="registerBusinessForm" (ngSubmit)="onSubmit()">
+  <lib-steps [items]="stepsData" [activeIndex]="currentStep"> </lib-steps>
   
 
   <!-- STEP 1-->
@@ -78,13 +79,13 @@
         <ng-template pTemplate="selectedItem">
           <div
             class="flex align-items-center gap-2"
-            *ngIf="registerForm.get('pais')"
+            *ngIf="registerBusinessForm.get('pais')"
             class="countries-dropdown--item"
           >
             <img
               [src]="
                 'assets/images/flags/' +
-                registerForm.get('pais')?.value.code +
+                registerBusinessForm.get('pais')?.value.code +
                 '.png'
               "
               style="width: 18px"

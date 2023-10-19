@@ -11,8 +11,9 @@ import { LanguageModule } from 'language';
 import { MenuItem } from 'primeng/api';
 import { countries } from '../../utils/countries';
 import { identificationTypes } from '../../../../../core/utils/identification-types';
-import { RegisterService } from '../../services/register.service';
+import { RegisterBusinessService, RegisterService } from '../../services/register.service';
 import { RegisterBusinessSteps } from '../../utils/register-business-steps';
+import { Business } from '../../models/business';
 
 @Component({
   selector: 'app-register-business-form',
@@ -23,7 +24,7 @@ import { RegisterBusinessSteps } from '../../utils/register-business-steps';
 })
 export class RegisterBusinessFormComponent implements OnInit {
   // Form
-  registerForm!: FormGroup;
+  registerBusinessForm!: FormGroup;
   formBuilder = inject(FormBuilder);
 
   // Data
@@ -35,9 +36,9 @@ export class RegisterBusinessFormComponent implements OnInit {
   @Output() backToMainForm = new EventEmitter();
 
   // Service
-  registerService = inject(RegisterService);
-  registerBusinessForm: any;
-  registerBusinessService: any;
+  registerBusinessService = inject(RegisterBusinessService);
+
+  
 
   get countries() {
     return countries;
@@ -48,7 +49,7 @@ export class RegisterBusinessFormComponent implements OnInit {
   }
 
   get nextText() {
-    return this.currentStep === this.steps.personalInformation
+    return this.currentStep === this.steps.createBusinessAccount
       ? 'next'
       : 'sign-up';
   }
@@ -101,11 +102,11 @@ export class RegisterBusinessFormComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.currentStep === this.steps.createBusinessAccount) {
+    if (this.currentStep === this.steps.personalInformation) {
       this.registerBusinessService
-        .createCandidateAccount(this.registerForm.value)
+        .createBusinessAccount(this.registerBusinessForm.value)
         .subscribe({
-          next: (res: any) => console.log(res),
+          next: (res: Business) => console.log(res),
           error: (err: any) => console.error(err),
         });
     }
@@ -125,7 +126,7 @@ export class RegisterBusinessFormComponent implements OnInit {
 
   // Custom validator function for password confirmation
   passwordMatchValidator() {
-    const { password, passwordConfirm } = this.registerForm.value;
+    const { password, passwordConfirm } = this.registerBusinessForm.value;
 
     if (password === passwordConfirm) {
       return null; // Passwords match, no error

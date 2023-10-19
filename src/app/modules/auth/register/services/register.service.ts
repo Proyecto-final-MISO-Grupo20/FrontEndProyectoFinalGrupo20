@@ -16,10 +16,10 @@ export class RegisterService {
   }
 }
 
-export class RegisterBussinessService {
+export class RegisterBusinessService {
   #api = inject(ApiService);
 
-  createBussinessAccount(candidateData: Business): Observable<Business> {
+  createBusinessAccount(candidateData: Business): Observable<Business> {
     return this.#api.post('usuario/candidato', candidateData);
 
 }}
