@@ -14,12 +14,6 @@ export class RegisterService {
   createCandidateAccount(candidateData: Candidate): Observable<Candidate> {
     return this.#api.post('usuario/candidato', candidateData);
   }
-}
-
-export class RegisterBusinessService {
-  #api = inject(ApiService);
-
   createBusinessAccount(candidateData: Business): Observable<Business> {
-    return this.#api.post('usuario/candidato', candidateData);
-
-}}
+    return this.#api.post('usuario/candidato', candidateData);}
+}

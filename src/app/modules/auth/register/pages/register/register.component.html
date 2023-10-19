@@ -60,6 +60,11 @@
         (backToMainForm)="step = steps.initialStep"
         *ngIf="step === steps.createCandidateAccount"
       ></app-register-candidate-form>
+
+      <app-register-business-form
+        (backToMainForm)="step = steps.initialStep"
+        *ngIf="step === steps.createBusinessAccount"
+      ></app-register-business-form>
     </div>
   </div>
 </section>

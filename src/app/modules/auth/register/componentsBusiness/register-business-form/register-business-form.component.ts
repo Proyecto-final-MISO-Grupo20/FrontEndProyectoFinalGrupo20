@@ -11,7 +11,7 @@ import { LanguageModule } from 'language';
 import { MenuItem } from 'primeng/api';
 import { countries } from '../../utils/countries';
 import { identificationTypes } from '../../../../../core/utils/identification-types';
-import { RegisterBusinessService, RegisterService } from '../../services/register.service';
+import { RegisterService } from '../../services/register.service';
 import { RegisterBusinessSteps } from '../../utils/register-business-steps';
 import { Business } from '../../models/business';
 
@@ -36,7 +36,7 @@ export class RegisterBusinessFormComponent implements OnInit {
   @Output() backToMainForm = new EventEmitter();
 
   // Service
-  registerBusinessService = inject(RegisterBusinessService);
+  registerBusinessService = inject(RegisterService);
 
   
 

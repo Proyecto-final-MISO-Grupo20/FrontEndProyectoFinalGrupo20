@@ -11,6 +11,7 @@ import { UiModule } from 'ui';
 import { typeUsers, typeUsersData } from '../../../../../core/utils/type-users';
 import { RegisterSteps } from '../../utils/register-steps';
 import { RegisterCandidateFormComponent } from '../../components/register-candidate-form/register-candidate-form.component';
+import { RegisterBusinessFormComponent } from '../../componentsBusiness/register-business-form/register-business-form.component';
 
 @Component({
   selector: 'app-register',
@@ -21,6 +22,7 @@ import { RegisterCandidateFormComponent } from '../../components/register-candid
     LanguageModule,
     UiModule,
     RegisterCandidateFormComponent,
+    RegisterBusinessFormComponent
   ],
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
@@ -54,6 +56,9 @@ export class RegisterComponent implements OnInit {
 
     if (user.code === typeUsers.candidate) {
       this.step = this.steps.createCandidateAccount;
+    }
+    if (user.code === typeUsers.business) {
+      this.step = this.steps.createBusinessAccount;
     }
   }
 

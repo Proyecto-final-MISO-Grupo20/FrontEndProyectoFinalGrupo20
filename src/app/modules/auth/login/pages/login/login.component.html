@@ -64,7 +64,7 @@
       
       <p class="login__register">
         {{ 'login.register' | transloco }}
-        <span>{{ 'login.create-account' | transloco }}</span>
+        <span class="register-redirect" (click)="navigateToRegister()">{{ 'login.create-account' | transloco }}</span>
       </p>
     </div>
 
