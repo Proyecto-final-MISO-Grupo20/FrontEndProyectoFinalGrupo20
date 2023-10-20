@@ -15,7 +15,7 @@ COPY package.json .
 RUN npm i -g pnpm
 
 # Install dependencies
-RUN pnpm install
+RUN pnpm install --production
 
 # Copy the rest of files
 COPY . .

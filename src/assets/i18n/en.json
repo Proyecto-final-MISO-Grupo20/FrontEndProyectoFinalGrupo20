@@ -7,7 +7,7 @@
     "sign-in": "Sign In",
     "select-user-type": "Select the user type",
     "candidate-account-step": {
-      "names": "Names",
+      "names": "Complete names",
       "enter-names": "Enter your names",
       "name-required": "Name is required",
       "name-min-length": "Minimum name length is 3 characters",
@@ -40,7 +40,11 @@
       "password-min-length": "Minimum name length is 8 characters",
       "password-confirm": "Password Confirm",
       "enter-password-confirm": "Confirm your password",
-      "password-confirm-mismatch": "Passwords doesn't match"
+      "password-confirm-mismatch": "Passwords doesn't match",
+      "phone": "Phone",
+      "enter-phone": "Enter your phone",
+      "phone-required": "Phone is required",
+      "type": "Type"
     }
   },
 

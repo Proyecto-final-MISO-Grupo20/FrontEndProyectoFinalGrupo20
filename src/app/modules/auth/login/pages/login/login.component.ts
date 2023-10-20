@@ -12,6 +12,7 @@ import { UiModule } from 'ui';
 import { LoginService } from '../../services/login.service';
 import { RegisterSteps } from '../../../register/utils/register-steps';
 import { typeUsersData } from 'src/app/core/utils/type-users';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -25,6 +26,9 @@ export class LoginComponent implements OnInit {
   formBuilder = inject(FormBuilder);
   loginMessage: string | undefined;
   router: any;
+  activatedRoute = inject(ActivatedRoute);
+  username!: string | null;
+  successRegister = false;
 
   get typeUsersData() {
     return typeUsersData;
@@ -33,12 +37,13 @@ export class LoginComponent implements OnInit {
   constructor(private loginService: LoginService) {}
 
   ngOnInit(): void {
+    this.setUserName();
     this.initializeForm();
   }
 
   initializeForm() {
     this.loginForm = this.formBuilder.group({
-      username: ['', [Validators.required]],
+      username: [this.username, [Validators.required]],
       password: ['', Validators.required],
     });
   }
@@ -66,6 +71,17 @@ export class LoginComponent implements OnInit {
           this.loginMessage = 'Error en el inicio de sesión';
         }
       );
+    }
+  }
+
+  setUserName() {
+    this.username = localStorage.getItem('[Register] username');
+    localStorage.removeItem('[Register] username');
+
+    if (this.username) {
+      this.successRegister = true;
+
+      setTimeout(() => (this.successRegister = false), 3000);
     }
   }
 }

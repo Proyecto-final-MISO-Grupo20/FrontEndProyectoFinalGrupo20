@@ -5,7 +5,6 @@ import {
   FormGroup,
   ReactiveFormsModule,
   Validators,
-  AbstractControl,
 } from '@angular/forms';
 import { UiModule } from 'ui';
 import { LanguageModule } from 'language';
@@ -18,6 +17,8 @@ import {
   ageRangeValidator,
   passwordMatchValidator,
 } from '../../utils/candidate-form-validators';
+import { map } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register-candidate-form',
@@ -38,9 +39,11 @@ export class RegisterCandidateFormComponent implements OnInit {
 
   // Event
   @Output() backToMainForm = new EventEmitter();
+  error!: string | null;
 
   // Service
   registerService = inject(RegisterService);
+  router = inject(Router);
 
   get countries() {
     return countries;
@@ -60,8 +63,9 @@ export class RegisterCandidateFormComponent implements OnInit {
     const step1Validation =
       this.registerForm.get('nombre')?.valid &&
       this.registerForm.get('pais')?.valid &&
-      this.registerForm.get('fechaNacimiento')?.valid &&
+      this.registerForm.get('fecha_nacimiento')?.valid &&
       this.registerForm.get('documento')?.valid &&
+      this.registerForm.get('tipo_documento')?.valid &&
       this.registerForm.get('ciudad')?.valid;
 
     const step2Validation =
@@ -80,6 +84,27 @@ export class RegisterCandidateFormComponent implements OnInit {
     this.currentStep = this.steps.personalInformation;
     this.setStepItems();
     this.initializeForm();
+
+    this.registerForm.valueChanges
+      .pipe(
+        map((changes) => {
+          if (changes.tipo_documento) {
+            changes.tipo_documento = changes.tipo_documento.code;
+          }
+
+          if (changes.pais) {
+            changes.pais = changes.pais.name;
+
+            if (changes.pais !== 'Colombia') {
+              changes.tipo_documento = 2;
+              this.registerForm?.get('tipo_documento')?.setErrors(null);
+            }
+          }
+
+          return changes;
+        })
+      )
+      .subscribe();
   }
 
   initializeForm() {
@@ -93,11 +118,12 @@ export class RegisterCandidateFormComponent implements OnInit {
             Validators.maxLength(50),
           ],
         ],
-        tipoDocumento: ['', Validators.required],
-        documento: ['', Validators.required],
-        fechaNacimiento: ['', [Validators.required, ageRangeValidator]],
+        tipo_documento: [null, Validators.required],
+        documento: [null, Validators.required],
+        fecha_nacimiento: ['', [Validators.required, ageRangeValidator]],
         pais: ['', Validators.required],
         ciudad: ['', [Validators.required, Validators.maxLength(50)]],
+        telefono: [null, Validators.required],
         username: [
           '',
           [
@@ -137,8 +163,17 @@ export class RegisterCandidateFormComponent implements OnInit {
       this.registerService
         .createCandidateAccount(this.registerForm.value)
         .subscribe({
-          next: (res) => console.log(res),
-          error: (err) => console.error(err),
+          next: ({ username }) => {
+            if (username) {
+              localStorage.setItem('[Register] username', username);
+              this.router.navigate(['/auth/login']);
+            }
+          },
+          error: (err) => {
+            this.error = err.error.detail;
+
+            setTimeout(() => (this.error = null), 3000);
+          },
         });
     }
 

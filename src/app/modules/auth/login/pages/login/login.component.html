@@ -1,4 +1,3 @@
-
 <section class="login-wrapper">
   <div class="login-container">
     <div class="login__welcome">
@@ -18,40 +17,56 @@
     <div class="login__content">
       <div class="login__title">
         <h2 class="login__title--blue">
-          {{ 'login.hi' | transloco }}
-          
+          {{ 'login.hi' | transloco }} {{ username }}
         </h2>
         <p class="login__confirmation">
           {{ 'login.confirmation' | transloco }}
         </p>
       </div>
 
-      <form
-        class="login__form"
-        [formGroup]="loginForm"
-        (ngSubmit)="onSubmit()">
-     
-      <div class="p-field p-grid">
-        <label for="username" class="p-col-12 p-md-3">Username</label>
-        <div class="p-col-12 p-md-9">
-          <input id="username" formControlName="username" type="text" pInputText placeholder="Enter username" class="custom-width" placeholder="{{ 'login.enter-username' | transloco }}">
-          
+      <form class="login__form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <p-message
+          *ngIf="successRegister"
+          [style]="{ width: '22.5rem' }"
+          severity="success"
+          text="{{ 'Registro exitoso' }}"
+        ></p-message>
+
+        <div class="p-field p-grid">
+          <label for="username" class="p-col-12 p-md-3">Username</label>
+          <div class="p-col-12 p-md-9">
+            <input
+              id="username"
+              formControlName="username"
+              type="text"
+              pInputText
+              placeholder="Enter username"
+              class="custom-width"
+              placeholder="{{ 'login.enter-username' | transloco }}"
+            />
+          </div>
         </div>
-      </div>
-      
-      <div class="p-field p-grid">
-        <label for="password" class="p-col-12 p-md-3">Password</label>
-        <div class="p-col-12 p-md-9">
-          <input id="password" formControlName="password" type="password" pInputText placeholder="Enter password" class="custom-width" placeholder="{{ 'login.enter-passward' | transloco }} ">
+
+        <div class="p-field p-grid">
+          <label for="password" class="p-col-12 p-md-3">Password</label>
+          <div class="p-col-12 p-md-9">
+            <input
+              id="password"
+              formControlName="password"
+              type="password"
+              pInputText
+              placeholder="Enter password"
+              class="custom-width"
+              placeholder="{{ 'login.enter-passward' | transloco }} "
+            />
+          </div>
         </div>
-      </div>
 
         <p-button
           label="{{ 'login.log-in' | transloco }}"
           [style]="{ width: '22.5rem' }"
           type="submit"
           [disabled]="!loginForm.valid"
-          
         ></p-button>
 
         <p-button
@@ -61,14 +76,10 @@
         ></p-button>
       </form>
 
-      
       <p class="login__register">
         {{ 'login.register' | transloco }}
         <span>{{ 'login.create-account' | transloco }}</span>
       </p>
     </div>
-
-    </div>
+  </div>
 </section>
-
-

@@ -50,7 +50,7 @@
         [style]="{ width: '22.5rem' }"
         [showIcon]="true"
         id="birthday"
-        formControlName="fechaNacimiento"
+        formControlName="fecha_nacimiento"
         placeholder=" {{
           'register.candidate-account-step.enter-birthday' | transloco
         }} "
@@ -59,8 +59,8 @@
       <p-message
         [style]="{ width: '22.5rem' }"
         *ngIf="
-          registerForm.get('fechaNacimiento')?.hasError('required') &&
-          registerForm.get('fechaNacimiento')?.touched
+          registerForm.get('fecha_nacimiento')?.hasError('required') &&
+          registerForm.get('fecha_nacimiento')?.touched
         "
         severity="error"
         text="{{
@@ -169,6 +169,35 @@
       ></p-message>
     </div>
 
+    <!-- Phone -->
+    <div class="form__input--label">
+      <label htmlFor="telefono">{{
+        'register.candidate-account-step.phone' | transloco
+      }}</label>
+      <input
+        type="number"
+        [maxLength]="50"
+        [style]="{ width: '22.5rem' }"
+        pInputText
+        id="name"
+        formControlName="telefono"
+        placeholder=" {{
+          'register.candidate-account-step.enter-phone' | transloco
+        }} "
+      />
+      <p-message
+        [style]="{ width: '22.5rem' }"
+        *ngIf="
+          registerForm.get('telefono')?.hasError('required') &&
+          registerForm.get('telefono')?.touched
+        "
+        severity="error"
+        text="{{
+          'register.candidate-account-step.phone-required' | transloco
+        }}"
+      ></p-message>
+    </div>
+
     <!-- Identification-->
     <div class="form__input--label">
       <label htmlFor="identification">{{
@@ -176,10 +205,11 @@
       }}</label>
       <div class="identification-form">
         <p-dropdown
+          placeholder="{{ 'register.candidate-account-step.type' | transloco }}"
           *ngIf="registerForm.get('pais')?.value.code === 'co'"
           [options]="identificationTypesData"
           optionLabel="name"
-          formControlName="tipoDocumento"
+          formControlName="tipo_documento"
         ></p-dropdown>
         <input
           [maxlength]="50"
@@ -360,6 +390,13 @@
       ></p-message>
     </div>
   </ng-container>
+
+  <p-message
+    [style]="{ width: '22.5rem' }"
+    severity="error"
+    *ngIf="error"
+    text="{{ error }}"
+  ></p-message>
 
   <p-button
     label="{{ nextText | transloco }}"

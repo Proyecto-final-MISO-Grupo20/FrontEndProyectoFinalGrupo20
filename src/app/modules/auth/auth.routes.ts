@@ -12,6 +12,7 @@ export const authRoutes: Route[] = [
   {
     path: 'login',
     title: 'ABC Jobs | Log in',
+    data: { username: undefined },
     component: LoginComponent,
   },
   {

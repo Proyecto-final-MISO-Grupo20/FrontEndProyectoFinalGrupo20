@@ -7,7 +7,7 @@
     "sign-in": "Ingresar",
     "select-user-type": "Seleccione el tipo de usuario",
     "candidate-account-step": {
-      "names": "Nombres",
+      "names": "Nombres completos",
       "enter-names": "Ingrese sus nombres",
       "name-required": "El nombre es requerido",
       "name-min-length": "El nombre debe tener mínimo 3 carácteres",
@@ -40,7 +40,11 @@
       "enter-password": "Ingrese su contraseña",
       "password-confirm": "Confirmar contraseña",
       "enter-password-confirm": "Confirme su contraseña",
-      "password-confirm-mismatch": "Las contraseñas no coinciden"
+      "password-confirm-mismatch": "Las contraseñas no coinciden",
+      "phone": "Teléfono",
+      "enter-phone": "Ingrese su teléfono",
+      "phone-required": "El teléfono es requerido",
+      "type": "Tipo"
     }
   },
 
