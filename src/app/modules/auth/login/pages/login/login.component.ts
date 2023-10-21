@@ -12,7 +12,7 @@ import { UiModule } from 'ui';
 import { LoginService } from '../../services/login.service';
 import { RegisterSteps } from '../../../register/utils/register-steps';
 import { typeUsersData } from 'src/app/core/utils/type-users';
-import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -25,10 +25,9 @@ export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   formBuilder = inject(FormBuilder);
   loginMessage: string | undefined;
-  router: any;
-  activatedRoute = inject(ActivatedRoute);
   username!: string | null;
   successRegister = false;
+  router = inject(Router);
 
   get typeUsersData() {
     return typeUsersData;
@@ -83,5 +82,9 @@ export class LoginComponent implements OnInit {
 
       setTimeout(() => (this.successRegister = false), 3000);
     }
+  }
+
+  navigateToRegister() {
+    this.router.navigateByUrl('auth/register');
   }
 }

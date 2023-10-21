@@ -47,6 +47,26 @@
       "type": "Type"
     }
   },
+  "business-account-step": {
+    "names": "Names",
+    "enter-names": "Enter your names",
+    "identification": "Identification",
+    "enter-identification": "Enter your identification number",
+    "last-names": "Last Names",
+    "enter-last-names": "Enter your Last Names",
+    "birthday": "Birthday",
+    "enter-birthday": "Enter your birthday",
+    "residence-country": "Residence Country",
+    "enter-residence-country": "Enter your Residence Country",
+    "email": "Email",
+    "enter-email": "Enter your email",
+    "username": "Username",
+    "enter-username": "Enter your username",
+    "password": "Password",
+    "enter-password": "Enter your password",
+    "password-confirm": "Password Confirm",
+    "enter-password-confirm": "Confirm your password"
+  },
 
   "login": {
     "welcome": "Welcome to ABC JOBS!",
