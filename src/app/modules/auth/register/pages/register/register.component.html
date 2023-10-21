@@ -31,7 +31,9 @@
         </h2>
         <p class="register__confirmation">
           {{ 'register.confirmation' | transloco }}
-          <span>{{ 'register.sign-in' | transloco }}</span>
+          <span (click)="navigateToLogin()">{{
+            'register.sign-in' | transloco
+          }}</span>
         </p>
       </div>
 

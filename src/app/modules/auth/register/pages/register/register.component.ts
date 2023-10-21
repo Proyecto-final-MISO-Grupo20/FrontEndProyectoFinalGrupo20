@@ -12,6 +12,7 @@ import { typeUsers, typeUsersData } from '../../../../../core/utils/type-users';
 import { RegisterSteps } from '../../utils/register-steps';
 import { RegisterCandidateFormComponent } from '../../components/register-candidate-form/register-candidate-form.component';
 import { RegisterBusinessFormComponent } from '../../componentsBusiness/register-business-form/register-business-form.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -30,6 +31,7 @@ import { RegisterBusinessFormComponent } from '../../componentsBusiness/register
 export class RegisterComponent implements OnInit {
   registerForm!: FormGroup;
   formBuilder = inject(FormBuilder);
+  router = inject(Router);
   steps = RegisterSteps;
   step!: RegisterSteps;
   createCandidateActivated = false;
@@ -64,5 +66,9 @@ export class RegisterComponent implements OnInit {
 
   setCandidateActivated(status: boolean) {
     this.createCandidateActivated = status;
+  }
+
+  navigateToLogin() {
+    this.router.navigateByUrl('/auth/login');
   }
 }

@@ -1,15 +1,33 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { ApiService } from '../../../../core/services/api/api.service';
+import { SessionService } from '../../../../core/services/session/session.service';
+import { Observable, concatMap, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LoginService {
-  private backendUrl = 'http://34.71.25.18/users/auth';
+  #api = inject(ApiService);
+  #http = inject(HttpClient);
+  #session = inject(SessionService);
 
-  constructor(private http: HttpClient) {}
+  loginUser(credentials: any): Observable<any> {
+    return this.#api.post('auth/login', credentials).pipe(
+      tap(({ token }) => {
+        if (token) {
+          this.#session.setUser({ ...this.#session.getUser(), token: token });
+        }
+      }),
+      concatMap(() => this.getUserInfo())
+    );
+  }
 
-  loginUser(credentials: any) {
-    return this.http.post(this.backendUrl, credentials);
+  getUserInfo() {
+    return this.#api.get('auth/me').pipe(
+      tap((user) => {
+        this.#session.setUser({ ...this.#session.getUser(), ...user });
+      })
+    );
   }
 }

@@ -69,6 +69,13 @@
           </div>
         </div>
 
+        <p-message
+          [style]="{ width: '22.5rem' }"
+          severity="error"
+          *ngIf="errorMessage"
+          text="{{ errorMessage }}"
+        ></p-message>
+
         <p-button
           label="{{ 'login.log-in' | transloco }}"
           [style]="{ width: '22.5rem' }"
@@ -85,7 +92,9 @@
 
       <p class="login__register">
         {{ 'login.register' | transloco }}
-        <span class="register-redirect" (click)="navigateToRegister()">{{ 'login.create-account' | transloco }}</span>
+        <span class="register-redirect" (click)="navigateToRegister()">{{
+          'login.create-account' | transloco
+        }}</span>
       </p>
     </div>
   </div>

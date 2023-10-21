@@ -10,7 +10,6 @@ import {
 import { LanguageModule } from 'language';
 import { UiModule } from 'ui';
 import { LoginService } from '../../services/login.service';
-import { RegisterSteps } from '../../../register/utils/register-steps';
 import { typeUsersData } from 'src/app/core/utils/type-users';
 import { Router } from '@angular/router';
 
@@ -24,7 +23,7 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   formBuilder = inject(FormBuilder);
-  loginMessage: string | undefined;
+  errorMessage: string | undefined;
   username!: string | null;
   successRegister = false;
   router = inject(Router);
@@ -42,35 +41,13 @@ export class LoginComponent implements OnInit {
 
   initializeForm() {
     this.loginForm = this.formBuilder.group({
-      username: [this.username, [Validators.required]],
-      password: ['', Validators.required],
+      username: ['rr2r', [Validators.required]],
+      password: ['12345678', Validators.required],
     });
   }
 
   onSubmit() {
-    if (this.loginForm.valid) {
-      const credentials = {
-        username: this.loginForm.get('username')?.value,
-        password: this.loginForm.get('password')?.value,
-      };
-      console.log(credentials);
-
-      this.loginService.loginUser(credentials).subscribe(
-        (response) => {
-          if (response === 'correcto') {
-            this.loginMessage = 'El ingreso es correcto';
-            this.router.navigate(['/register']);
-          } else {
-            this.loginMessage = 'Ingreso incorrecto';
-            console.log('Ingreso incorrecto');
-          }
-        },
-        (error) => {
-          console.error('Error en el inicio de sesión', error);
-          this.loginMessage = 'Error en el inicio de sesión';
-        }
-      );
-    }
+    this.loginService.loginUser(this.loginForm.value).subscribe();
   }
 
   setUserName() {
