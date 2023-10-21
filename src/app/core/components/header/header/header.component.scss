@@ -27,6 +27,7 @@
 
   &-list {
     @include abstracts.flexbox(row, space-evenly, center, 2rem);
+    @include abstracts.hoverable();
     list-style-type: none;
     padding: 0 1rem;
     font-weight: 500;
