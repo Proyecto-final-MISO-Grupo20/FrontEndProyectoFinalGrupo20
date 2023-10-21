@@ -41,13 +41,20 @@ export class LoginComponent implements OnInit {
 
   initializeForm() {
     this.loginForm = this.formBuilder.group({
-      username: ['rr2r', [Validators.required]],
-      password: ['12345678', Validators.required],
+      username: [this.username, [Validators.required]],
+      password: ['', Validators.required],
     });
   }
 
   onSubmit() {
-    this.loginService.loginUser(this.loginForm.value).subscribe();
+    this.loginService.loginUser(this.loginForm.value).subscribe({
+      next: () => this.router.navigateByUrl('home'),
+      error: (error) => {
+        this.errorMessage = error.error.error;
+
+        setTimeout(() => (this.errorMessage = undefined), 2000);
+      },
+    });
   }
 
   setUserName() {
@@ -57,7 +64,7 @@ export class LoginComponent implements OnInit {
     if (this.username) {
       this.successRegister = true;
 
-      setTimeout(() => (this.successRegister = false), 3000);
+      setTimeout(() => (this.successRegister = false), 2000);
     }
   }
 

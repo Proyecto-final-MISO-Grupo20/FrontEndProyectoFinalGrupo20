@@ -172,7 +172,7 @@ export class RegisterCandidateFormComponent implements OnInit {
           error: (err) => {
             this.error = err.error.detail;
 
-            setTimeout(() => (this.error = null), 3000);
+            setTimeout(() => (this.error = null), 2000);
           },
         });
     }

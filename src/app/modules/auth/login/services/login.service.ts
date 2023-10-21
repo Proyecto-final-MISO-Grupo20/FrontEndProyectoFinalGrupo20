@@ -16,7 +16,7 @@ export class LoginService {
     return this.#api.post('auth/login', credentials).pipe(
       tap(({ token }) => {
         if (token) {
-          this.#session.setUser({ ...this.#session.getUser(), token: token });
+          this.#session.setUser({ token });
         }
       }),
       concatMap(() => this.getUserInfo())
