@@ -76,6 +76,7 @@ throw new Error('Method not implemented.');
       this.registerBusinessForm.get('nombre')?.valid &&
       this.registerBusinessForm.get('pais')?.valid &&
       this.registerBusinessForm.get('ciudad')?.valid &&
+      this.registerBusinessForm.get('direccion')?.valid &&
       this.registerBusinessForm.get('businessType')?.valid &&
       this.registerBusinessForm.get('businessSegment')?.valid;
 
@@ -97,17 +98,18 @@ throw new Error('Method not implemented.');
 
   initializeForm() {
     this.registerBusinessForm = this.formBuilder.group({
-      nombre: ['', Validators.required],
-      tipoDocumento: ['', Validators.required],
-      documento: ['', Validators.required],
-      ciudad: ['', Validators.required],
-      pais: ['', Validators.required],
-      businessType: ['', Validators.required],
-      businessSegment: ['', Validators.required],
-      username: ['', Validators.required],
-      email: ['', Validators.required],
-      password: ['', Validators.required],
-      passwordConfirm: ['', Validators.required],
+      nombre: ['', [Validators.required, Validators.maxLength(10)]],
+      tipoDocumento: ['', [Validators.required, Validators.maxLength(10)]],
+      documento: ['', [Validators.required, Validators.maxLength(10)]],
+      ciudad: ['', [Validators.required, Validators.maxLength(255)]],
+      pais: ['', [Validators.required, Validators.maxLength(255)]],
+      direccion: ['', [Validators.required, Validators.maxLength(10)]],
+      businessType: ['', [Validators.required, Validators.maxLength(50)]],
+      businessSegment: ['', [Validators.required, Validators.maxLength(255)]],
+      username: ['', [Validators.required, Validators.maxLength(10)]],
+      email: ['', [Validators.required, Validators.maxLength(255)]],
+      password: ['', [Validators.required, Validators.maxLength(10)]],
+      passwordConfirm: ['', [Validators.required, Validators.maxLength(10)]],
     });
   }
 
