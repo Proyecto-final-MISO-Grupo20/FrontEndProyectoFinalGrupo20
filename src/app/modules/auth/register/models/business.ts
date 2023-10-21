@@ -5,7 +5,10 @@ export interface Business {
   username: string;
   password: string;
   email: string;
-  fechaNacimiento: Date;
   telefono: number;
   pais: string;
+  direccion: string;
+  ciudad: string;
+  tipoEmpresa: string;
+  segmentoEmpresa: string
 }

@@ -24,27 +24,35 @@
       "password": "Contraseña",
       "enter-password": "Ingrese su contraseña",
       "password-confirm": "Confirmar contraseña",
-      "enter-password-confirm": "Confirme su contraseña",
+      "enter-password-confirm": "Confirme su contraseña"
+    },
     "business-account-step": {
       "names": "Nombre de la empresa",
       "enter-names": "Ingrese el nombre de la empresa",
       "identification": "Identificación de la empresa",
-      "enter-identification": "Ingrese el número de identificación de la empresa",
+      "enter-identification": "Ingrese la identificación",
       "last-names": "Apellidos de la empresa",
       "enter-last-names": "Ingrese los apellidos de la empresa",
-      "birthday": "Fecha de nacimiento de la empresa",
+      "city": "Ciudad",
       "enter-birthday": "Ingrese la fecha de nacimiento de la empresa",
       "email": "Correo Electrónico de la empresa",
       "enter-email": "Ingrese el correo electrónico de la empresa",
-      "residence-country": "País de residencia de la empresa",
-      "enter-residence-country": "Ingrese el país de residencia de la empresa",
+      "residence-country": "Ubicación",
+      "enter-residence-country": "País",
       "username": "Nombre de usuario de la empresa",
       "enter-username": "Ingrese el nombre de usuario de la empresa",
       "password": "Contraseña de la empresa",
       "enter-password": "Ingrese la contraseña de la empresa",
       "password-confirm": "Confirmar la contraseña de la empresa",
-      "enter-password-confirm": "Confirme la contraseña de la empresa"
-  }}},
+      "enter-password-confirm": "Confirme la contraseña de la empresa",
+      "address": "Dirección",
+      "business": "Empresa",
+      "business-type": "Tipo de empresa",
+      "enter-business-type": "Ingrese Tipo de empresa",
+      "business-segment": "Segmento de empresa",
+      "segment": "Segmento"
+      
+  }},
 
   "login": {
     "welcome": "Bienvenido a ABC JOBS!",

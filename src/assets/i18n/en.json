@@ -24,18 +24,19 @@
       "password": "Password",
       "enter-password": "Enter your password",
       "password-confirm": "Password Confirm",
-      "enter-password-confirm": "Confirm your password",
+      "enter-password-confirm": "Confirm your password"
+    },
       "business-account-step": {
         "names": "Names",
-        "enter-names": "Enter your names",
-        "identification": "Identification",
-        "enter-identification": "Enter your identification number",
+        "enter-names": "Enter business names",
+        "identification": "Business identification",
+        "enter-identification": "Enter business identification",
         "last-names": "Last Names",
         "enter-last-names": "Enter your Last Names",
-        "birthday": "Birthday",
+        "city": "City",
         "enter-birthday": "Enter your birthday",
-        "residence-country": "Residence Country",
-        "enter-residence-country": "Enter your Residence Country",
+        "residence-country": "Ubication",
+        "enter-residence-country": "Country",
         "email": "Email",
         "enter-email": "Enter your email",
         "username": "Username",
@@ -43,9 +44,15 @@
         "password": "Password",
         "enter-password": "Enter your password",
         "password-confirm": "Password Confirm",
-        "enter-password-confirm": "Confirm your password"
+        "enter-password-confirm": "Confirm your password",
+        "address": "Address",
+        "business": "Business",
+        "business-type": "Business Type",
+        "enter-business-type": "Enter business type",
+        "business-segment": "Busines Segment",
+        "segment": "Segment"
     
-  }}},
+  }},
 
   "login": {
     "welcome": "Welcome to ABC JOBS!",

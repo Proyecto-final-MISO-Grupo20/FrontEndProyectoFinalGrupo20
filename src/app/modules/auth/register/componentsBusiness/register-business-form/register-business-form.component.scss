@@ -20,6 +20,11 @@
   gap: 0.5rem;
 }
 
+.cities-dropdown--item {
+  display: flex;
+  gap: 0.5rem;
+}
+
 .identification-form {
   @include abstracts.flexbox(row, normal, normal, 0.5rem);
 }

@@ -10,10 +10,13 @@ import { UiModule } from 'ui';
 import { LanguageModule } from 'language';
 import { MenuItem } from 'primeng/api';
 import { countries } from '../../utils/countries';
-import { identificationTypes } from '../../../../../core/utils/identification-types';
+import { businessIdentificationTypes } from '../../../../../core/utils/identification-types';
 import { RegisterService } from '../../services/register.service';
 import { RegisterBusinessSteps } from '../../utils/register-business-steps';
 import { Business } from '../../models/business';
+import { cities } from '../../utils/cities';
+import { businessType } from '../../utils/businessType';
+import { businessSegment } from '../../utils/businessSegment';
 
 @Component({
   selector: 'app-register-business-form',
@@ -23,6 +26,9 @@ import { Business } from '../../models/business';
   styleUrls: ['./register-business-form.component.scss'],
 })
 export class RegisterBusinessFormComponent implements OnInit {
+getCityOptions(): unknown[]|undefined {
+throw new Error('Method not implemented.');
+}
   // Form
   registerBusinessForm!: FormGroup;
   formBuilder = inject(FormBuilder);
@@ -38,18 +44,29 @@ export class RegisterBusinessFormComponent implements OnInit {
   // Service
   registerBusinessService = inject(RegisterService);
 
-  
 
   get countries() {
     return countries;
   }
+  
+  get cities() {
+    return cities;
+  }
 
-  get identificationTypesData() {
-    return identificationTypes;
+  get businessType() {
+    return businessType;
+  }
+
+  get businessSegment() {
+    return businessSegment;
+  }
+
+  get businessIdentificationTypesData() {
+    return businessIdentificationTypes;
   }
 
   get nextText() {
-    return this.currentStep === this.steps.createBusinessAccount
+    return this.currentStep === this.steps.personalInformation
       ? 'next'
       : 'sign-up';
   }
@@ -58,7 +75,9 @@ export class RegisterBusinessFormComponent implements OnInit {
     const step1Validation =
       this.registerBusinessForm.get('nombre')?.valid &&
       this.registerBusinessForm.get('pais')?.valid &&
-      this.registerBusinessForm.get('fechaNacimiento')?.valid;
+      this.registerBusinessForm.get('ciudad')?.valid &&
+      this.registerBusinessForm.get('businessType')?.valid &&
+      this.registerBusinessForm.get('businessSegment')?.valid;
 
     const step2Validation =
       this.registerBusinessForm.get('username')?.valid &&
@@ -81,8 +100,10 @@ export class RegisterBusinessFormComponent implements OnInit {
       nombre: ['', Validators.required],
       tipoDocumento: ['', Validators.required],
       documento: ['', Validators.required],
-      fechaNacimiento: ['', Validators.required],
+      ciudad: ['', Validators.required],
       pais: ['', Validators.required],
+      businessType: ['', Validators.required],
+      businessSegment: ['', Validators.required],
       username: ['', Validators.required],
       email: ['', Validators.required],
       password: ['', Validators.required],
