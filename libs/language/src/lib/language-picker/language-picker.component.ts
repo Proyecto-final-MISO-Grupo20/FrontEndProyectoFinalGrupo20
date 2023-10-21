@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, Input, OnInit, inject } from '@angular/core';
 import { Language } from '../models/language';
 import { TranslocoService } from '@ngneat/transloco';
 import { LanguageService } from '../services/language.service';
@@ -13,6 +13,8 @@ export class LanguagePickerComponent implements OnInit {
   selectedLanguage!: Language;
   languageService = inject(LanguageService);
   translocoService = inject(TranslocoService);
+
+  @Input() styleClass!: string;
 
   ngOnInit(): void {
     this.languageService.getAllLanguages().subscribe({

@@ -15,6 +15,13 @@
     </div>
 
     <div class="register__content">
+      <!-- Language changer -->
+      <lib-language-picker
+        [style]="{ display: 'contents' }"
+        styleClass="lib-picker"
+      >
+      </lib-language-picker>
+
       <div
         class="register__title"
         [class.candidate-padding]="step === steps.createCandidateAccount"

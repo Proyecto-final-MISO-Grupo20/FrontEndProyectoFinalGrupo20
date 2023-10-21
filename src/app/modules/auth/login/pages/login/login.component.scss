@@ -21,7 +21,6 @@
 
   &__title {
     @include abstracts.flexbox(column, center, left, 0);
-    padding-top: 5rem;
 
     &--blue {
       color: abstracts.$primary;
