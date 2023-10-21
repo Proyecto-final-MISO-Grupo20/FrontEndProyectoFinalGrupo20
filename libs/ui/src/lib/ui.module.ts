@@ -8,6 +8,7 @@ import { StepsModule } from 'primeng/steps';
 import { StepsComponent } from './components/steps/steps.component';
 import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
+import { TableModule } from 'primeng/table';
 
 @NgModule({
   imports: [
@@ -20,6 +21,7 @@ import { MessageModule } from 'primeng/message';
     MessageModule,
     StepsModule,
     StepsComponent,
+    TableModule,
   ],
   exports: [
     DropdownModule,
@@ -30,6 +32,7 @@ import { MessageModule } from 'primeng/message';
     CalendarModule,
     StepsModule,
     StepsComponent,
+    TableModule,
   ],
 })
 export class UiModule {}

@@ -80,12 +80,21 @@
     "log-in": "Log in",
     "register": "Not registered?"
   },
-  "header": {
-    "home": "Home",
-    "projects": "Projects",
-    "interviews": "Interviews",
-    "tests": "Tests",
-    "employees": "Employees"
+  "projects": {
+    "title": "Projects",
+    "list": "Projects List"
+  },
+  "home": {
+    "title": "Home"
+  },
+  "interviews": {
+    "title": "Interviews"
+  },
+  "tests": {
+    "title": "Tests"
+  },
+  "employees": {
+    "title": "Employees"
   },
   "next": "Next",
   "cancel": "Cancel",
