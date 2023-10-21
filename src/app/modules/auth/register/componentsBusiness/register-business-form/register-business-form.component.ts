@@ -83,7 +83,8 @@ throw new Error('Method not implemented.');
     const step2Validation =
       this.registerBusinessForm.get('username')?.valid &&
       this.registerBusinessForm.get('email')?.valid &&
-      this.registerBusinessForm.get('password')?.valid;
+      this.registerBusinessForm.get('password')?.valid &&
+      this.registerBusinessForm.get('passwordConfirm')?.valid;
 
     return this.currentStep === this.steps.personalInformation
       ? step1Validation
@@ -116,7 +117,7 @@ throw new Error('Method not implemented.');
   setStepItems() {
     this.stepsData = [
       {
-        label: 'Información Personal',
+        label: 'Información General',
       },
       {
         label: 'Cuenta',
