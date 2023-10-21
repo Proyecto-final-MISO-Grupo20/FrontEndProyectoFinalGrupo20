@@ -80,7 +80,13 @@
     "log-in": "Ingresar",
     "register": "Aún no está registrado?"
   },
-
+  "header": {
+    "home": "Inicio",
+    "projects": "Proyectos",
+    "interviews": "Entrevistas",
+    "tests": "Pruebas",
+    "employees": "Empleados"
+  },
   "next": "Siguiente",
   "cancel": "Cancelar",
   "previous": "Volver",

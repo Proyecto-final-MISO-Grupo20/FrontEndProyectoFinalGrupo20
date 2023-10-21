@@ -80,7 +80,13 @@
     "log-in": "Log in",
     "register": "Not registered?"
   },
-
+  "header": {
+    "home": "Home",
+    "projects": "Projects",
+    "interviews": "Interviews",
+    "tests": "Tests",
+    "employees": "Employees"
+  },
   "next": "Next",
   "cancel": "Cancel",
   "previous": "Previous",

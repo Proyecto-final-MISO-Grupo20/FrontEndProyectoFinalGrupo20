@@ -1,0 +1,38 @@
+@use '/src/styles/abstracts';
+
+.header {
+  &-wrapper {
+    height: 6rem;
+    border-bottom: 1px solid abstracts.$gray-2;
+  }
+
+  &-container {
+    @include abstracts.flexbox(row, center, center, 2rem);
+    height: 100%;
+    padding: 0 13rem;
+  }
+
+  &__image {
+    width: 12rem;
+    @include abstracts.rounded(0.5rem);
+  }
+}
+
+.items {
+  &-section {
+    @include abstracts.rounded(0.5rem);
+    background-color: abstracts.$white;
+    border: 1px solid abstracts.$gray-2;
+  }
+
+  &-list {
+    @include abstracts.flexbox(row, space-evenly, center, 2rem);
+    list-style-type: none;
+    padding: 0 1rem;
+    font-weight: 500;
+  }
+}
+
+.link-active {
+  color: abstracts.$primary;
+}

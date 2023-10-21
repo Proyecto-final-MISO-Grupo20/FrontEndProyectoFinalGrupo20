@@ -15,9 +15,7 @@ export class LoginService {
   loginUser(credentials: any): Observable<any> {
     return this.#api.post('auth/login', credentials).pipe(
       tap(({ token }) => {
-        if (token) {
-          this.#session.setUser({ token });
-        }
+        token && this.#session.setUser({ token });
       }),
       concatMap(() => this.getUserInfo())
     );
