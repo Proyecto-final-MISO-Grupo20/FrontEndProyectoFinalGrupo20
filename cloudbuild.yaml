@@ -18,23 +18,7 @@ options:
 
 # [START cloudbuild_basic_config]
 steps:
-  # Docker Build
-  - name: "gcr.io/cloud-builders/docker"
-    args:
-      [
-        "build",
-        "-t",
-        "us-central1-docker.pkg.dev/abc-jobs-402104/abc-jobs-repository/abc-jobs-frontend:latest",
-        "."
-      ]
-
-  # Docker Push Offers
-  - name: "gcr.io/cloud-builders/docker"
-    args:
-      [
-        "push",
-        "us-central1-docker.pkg.dev/abc-jobs-402104/abc-jobs-repository/abc-jobs-frontend:latest",
-      ]
+  
 
   # Set Cluster, Region, and Zone environment variables
   - name: "gcr.io/cloud-builders/gcloud"
@@ -46,6 +30,14 @@ steps:
         --region us-central1 \
         --project abc-jobs-402104
 
+    # Deploy
+  - name: "gcr.io/cloud-builders/gcloud"
+    entrypoint: "bash"
+    args:
+      - "-c"
+      - |
+        kubectl apply -f deployment/k8s-deployment.yaml
+
   # Set Cluster, Region, and Zone environment variables
   - name: "gcr.io/cloud-builders/gcloud"
     entrypoint: "bash"
@@ -54,13 +46,7 @@ steps:
       - |
         kubectl rollout restart deployment offers
 
-  # Deploy
-  - name: "gcr.io/cloud-builders/gcloud"
-    entrypoint: "bash"
-    args:
-      - "-c"
-      - |
-        kubectl apply -f deployment/k8s-deployment.yaml
+
 
   # # Entrypoint, timeout and environment variables
   # - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
