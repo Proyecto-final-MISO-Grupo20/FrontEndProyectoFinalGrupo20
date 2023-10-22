@@ -26,7 +26,7 @@ steps:
         "-t",
         "us-central1-docker.pkg.dev/abc-jobs-402104/abc-jobs-repository/abc-jobs-frontend:latest",
         "-f",
-        "Dockerfile",
+        "deplyment/Dockerfile",
         "../"
       ]
 
