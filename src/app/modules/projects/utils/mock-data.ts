@@ -9,7 +9,7 @@ export const mockData = [
     name: 'Project 2',
     description: 'Description of Project 2',
     code: 'P002',
-    profiles: ['Profile C', 'Profile D'],
+    profiles: [],
   },
   {
     name: 'Project 3',
