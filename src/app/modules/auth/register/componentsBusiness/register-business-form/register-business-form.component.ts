@@ -10,10 +10,13 @@ import { UiModule } from 'ui';
 import { LanguageModule } from 'language';
 import { MenuItem } from 'primeng/api';
 import { countries } from '../../utils/countries';
-import { identificationTypes } from '../../../../../core/utils/identification-types';
+import { businessIdentificationTypes } from '../../../../../core/utils/identification-types';
 import { RegisterService } from '../../services/register.service';
 import { RegisterBusinessSteps } from '../../utils/register-business-steps';
 import { Business } from '../../models/business';
+import { cities } from '../../utils/cities';
+import { businessType } from '../../utils/businessType';
+import { businessSegment } from '../../utils/businessSegment';
 
 @Component({
   selector: 'app-register-business-form',
@@ -23,6 +26,9 @@ import { Business } from '../../models/business';
   styleUrls: ['./register-business-form.component.scss'],
 })
 export class RegisterBusinessFormComponent implements OnInit {
+  getCityOptions(): unknown[] | undefined {
+    throw new Error('Method not implemented.');
+  }
   // Form
   registerBusinessForm!: FormGroup;
   formBuilder = inject(FormBuilder);
@@ -42,12 +48,24 @@ export class RegisterBusinessFormComponent implements OnInit {
     return countries;
   }
 
-  get identificationTypesData() {
-    return identificationTypes;
+  get cities() {
+    return cities;
+  }
+
+  get businessType() {
+    return businessType;
+  }
+
+  get businessSegment() {
+    return businessSegment;
+  }
+
+  get businessIdentificationTypesData() {
+    return businessIdentificationTypes;
   }
 
   get nextText() {
-    return this.currentStep === this.steps.createBusinessAccount
+    return this.currentStep === this.steps.personalInformation
       ? 'next'
       : 'sign-up';
   }
@@ -56,12 +74,16 @@ export class RegisterBusinessFormComponent implements OnInit {
     const step1Validation =
       this.registerBusinessForm.get('nombre')?.valid &&
       this.registerBusinessForm.get('pais')?.valid &&
-      this.registerBusinessForm.get('fechaNacimiento')?.valid;
+      this.registerBusinessForm.get('ciudad')?.valid &&
+      this.registerBusinessForm.get('direccion')?.valid &&
+      this.registerBusinessForm.get('businessType')?.valid &&
+      this.registerBusinessForm.get('businessSegment')?.valid;
 
     const step2Validation =
       this.registerBusinessForm.get('username')?.valid &&
       this.registerBusinessForm.get('email')?.valid &&
-      this.registerBusinessForm.get('password')?.valid;
+      this.registerBusinessForm.get('password')?.valid &&
+      this.registerBusinessForm.get('passwordConfirm')?.valid;
 
     return this.currentStep === this.steps.personalInformation
       ? step1Validation
@@ -76,22 +98,25 @@ export class RegisterBusinessFormComponent implements OnInit {
 
   initializeForm() {
     this.registerBusinessForm = this.formBuilder.group({
-      nombre: ['', Validators.required],
-      tipoDocumento: ['', Validators.required],
-      documento: ['', Validators.required],
-      fechaNacimiento: ['', Validators.required],
-      pais: ['', Validators.required],
-      username: ['', Validators.required],
-      email: ['', Validators.required],
-      password: ['', Validators.required],
-      passwordConfirm: ['', Validators.required],
+      nombre: ['', [Validators.required, Validators.maxLength(10)]],
+      tipoDocumento: ['', [Validators.required, Validators.maxLength(10)]],
+      documento: ['', [Validators.required, Validators.maxLength(10)]],
+      ciudad: ['', [Validators.required, Validators.maxLength(255)]],
+      pais: ['', [Validators.required, Validators.maxLength(255)]],
+      direccion: ['', [Validators.required, Validators.maxLength(10)]],
+      businessType: ['', [Validators.required, Validators.maxLength(50)]],
+      businessSegment: ['', [Validators.required, Validators.maxLength(255)]],
+      username: ['', [Validators.required, Validators.maxLength(10)]],
+      email: ['', [Validators.required, Validators.maxLength(255)]],
+      password: ['', [Validators.required, Validators.maxLength(10)]],
+      passwordConfirm: ['', [Validators.required, Validators.maxLength(10)]],
     });
   }
 
   setStepItems() {
     this.stepsData = [
       {
-        label: 'Información Personal',
+        label: 'Información General',
       },
       {
         label: 'Cuenta',
