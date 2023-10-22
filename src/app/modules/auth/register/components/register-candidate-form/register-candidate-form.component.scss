@@ -7,14 +7,6 @@
   }
 }
 
-.form {
-  &__input {
-    &--label {
-      @include abstracts.flexbox(column, normal, normal, 0.5rem);
-    }
-  }
-}
-
 .countries-dropdown--item {
   display: flex;
   gap: 0.5rem;

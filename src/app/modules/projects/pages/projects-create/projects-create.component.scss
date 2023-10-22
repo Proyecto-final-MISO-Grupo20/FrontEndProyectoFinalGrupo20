@@ -12,4 +12,16 @@
   &-title {
     color: abstracts.$primary;
   }
+
+  &__form {
+    @include abstracts.flexbox(column, space-evenly, center, 2rem);
+  }
+}
+
+.form {
+  &__input {
+    &--label {
+      @include abstracts.flexbox(column, normal, normal, 0.5rem);
+    }
+  }
 }

@@ -83,7 +83,17 @@
   "projects": {
     "title": "Projects",
     "list": "Projects List",
-    "create": "Create Project"
+    "create": "Create Project",
+    "name": "Name",
+    "enter-name": "Enter project name",
+    "name-required": "Name is required",
+    "description": "Description",
+    "enter-description": "Enter a description",
+    "code": "Code",
+    "enter-code": "Enter a code",
+    "code-required": "Code is required",
+    "confirm": "Confirm",
+    "confirm-body": "Are you sure you want to exit from the projects creation?"
   },
   "home": {
     "title": "Home"
@@ -100,5 +110,7 @@
   "next": "Next",
   "cancel": "Cancel",
   "previous": "Previous",
-  "sign-up": "Sign Up"
+  "sign-up": "Sign Up",
+  "create": "create",
+  "exit": "Exit"
 }
