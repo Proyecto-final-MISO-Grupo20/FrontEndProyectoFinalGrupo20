@@ -1,4 +1,6 @@
 <p-table
+  responsiveLayout="stack"
+  [breakpoint]="'960px'"
   *ngIf="data && columns"
   [paginator]="true"
   [rows]="5"
@@ -20,7 +22,19 @@
   <ng-template pTemplate="body" let-data>
     <tr>
       <td *ngFor="let column of columns">{{ data[column] }}</td>
-      <td>j</td>
+      <td>
+        <div class="actions-container">
+          <div class="actions__button actions__button--blue">
+            <i
+              class="pi pi-arrow-circle-right"
+              style="color: #fff; font-size: 1.2rem"
+            ></i>
+          </div>
+          <div class="actions__button actions__button--red">
+            <i class="pi pi-trash" style="color: #fff; font-size: 1.2rem"></i>
+          </div>
+        </div>
+      </td>
     </tr>
   </ng-template>
 

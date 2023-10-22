@@ -32,7 +32,7 @@ export class SortTableComponent implements OnInit {
   }
 
   checkScreenWidth(): void {
-    this.isMobile = window.innerWidth <= 768;
+    this.isMobile = window.innerWidth <= 1115;
     this.setTableStyle();
   }
 
