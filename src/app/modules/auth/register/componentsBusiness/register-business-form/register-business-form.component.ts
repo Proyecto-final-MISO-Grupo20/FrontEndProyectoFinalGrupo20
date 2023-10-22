@@ -26,9 +26,9 @@ import { businessSegment } from '../../utils/businessSegment';
   styleUrls: ['./register-business-form.component.scss'],
 })
 export class RegisterBusinessFormComponent implements OnInit {
-getCityOptions(): unknown[]|undefined {
-throw new Error('Method not implemented.');
-}
+  getCityOptions(): unknown[] | undefined {
+    throw new Error('Method not implemented.');
+  }
   // Form
   registerBusinessForm!: FormGroup;
   formBuilder = inject(FormBuilder);
@@ -44,11 +44,10 @@ throw new Error('Method not implemented.');
   // Service
   registerBusinessService = inject(RegisterService);
 
-
   get countries() {
     return countries;
   }
-  
+
   get cities() {
     return cities;
   }

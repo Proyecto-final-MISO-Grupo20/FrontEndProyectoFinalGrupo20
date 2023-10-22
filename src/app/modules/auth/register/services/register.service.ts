@@ -4,7 +4,6 @@ import { Candidate } from '../models/candidate';
 import { Business } from '../models/business';
 import { Observable } from 'rxjs';
 
-
 @Injectable({
   providedIn: 'root',
 })
@@ -15,5 +14,6 @@ export class RegisterService {
     return this.#api.post('usuario/candidato', candidateData);
   }
   createBusinessAccount(candidateData: Business): Observable<Business> {
-    return this.#api.post('usuario/candidato', candidateData);}
+    return this.#api.post('usuario/candidato', candidateData);
+  }
 }

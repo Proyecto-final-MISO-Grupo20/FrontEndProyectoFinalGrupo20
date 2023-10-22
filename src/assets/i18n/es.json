@@ -7,24 +7,44 @@
     "sign-in": "Ingresar",
     "select-user-type": "Seleccione el tipo de usuario",
     "candidate-account-step": {
-      "names": "Nombres",
+      "names": "Nombres completos",
       "enter-names": "Ingrese sus nombres",
+      "name-required": "El nombre es requerido",
+      "name-min-length": "El nombre debe tener mínimo 3 carácteres",
       "identification": "Identificación",
       "enter-identification": "Ingrese su número de identificación",
+      "identification-required": "La identificación es requerida",
       "last-names": "Apellidos",
       "enter-last-names": "Ingrese sus apellidos",
       "birthday": "Fecha de nacimiento",
       "enter-birthday": "Ingrese su fecha de nacimiento",
+      "birthday-required": "Fecha de nacimiento es requerido",
+      "birthday-invalid-age": "La edad debe estar entre 18 y 99",
       "email": "Correo Electrónico",
       "enter-email": "Ingrese su correo electrónico",
+      "email-required": "Email es requerido",
+      "email-format-error": "No es un email válido",
       "residence-country": "País de residencia",
       "enter-residence-country": "Ingrese su país de residencia",
+      "residence-country-required": "País de residencia es requerido",
+      "residence-city": "Ciudad de residencia",
+      "enter-residence-city": "Ingrese su ciudad de residencia",
+      "residence-city-required": "Ciudad de residencia es requeido",
       "username": "Nombre de usuario",
       "enter-username": "Ingrese su nombre de usuario",
+      "username-required": "El nombre de usuario es requerido",
+      "username-min-length": "El nombre de usuario debe tener mínimo 3 carácteres",
       "password": "Contraseña",
+      "password-required": "La contraseña es requerida",
+      "password-min-length": "La contraseña debe tener mínimo 8 carácteres",
       "enter-password": "Ingrese su contraseña",
       "password-confirm": "Confirmar contraseña",
-      "enter-password-confirm": "Confirme su contraseña"
+      "enter-password-confirm": "Confirme su contraseña",
+      "password-confirm-mismatch": "Las contraseñas no coinciden",
+      "phone": "Teléfono",
+      "enter-phone": "Ingrese su teléfono",
+      "phone-required": "El teléfono es requerido",
+      "type": "Tipo"
     },
     "business-account-step": {
       "names": "Nombre de la empresa",
@@ -48,9 +68,8 @@
       "enter-business-type": "Ingrese Tipo de empresa",
       "business-segment": "Segmento de empresa",
       "segment": "Segmento"
-      
-  }},
-
+    }
+  },
   "login": {
     "welcome": "Bienvenido a ABC JOBS!",
     "description": "Te acompañamos en todo el proceso de intermediación de recursos calificados en TI",
@@ -63,9 +82,37 @@
     "log-in": "Ingresar",
     "register": "Aún no está registrado?"
   },
-
+  "projects": {
+    "title": "Proyectos",
+    "list": "Lista de Proyectos",
+    "create": "Crear Proyecto",
+    "name": "Nombre",
+    "enter-name": "Ingrese el nombre del proyecto",
+    "name-required": "El nombre es requerido",
+    "description": "Descripción",
+    "enter-description": "Ingrese una descripción",
+    "code": "Código",
+    "enter-code": "Ingrese un código",
+    "code-required": "El código es requerido",
+    "confirm": "Confirmación",
+    "confirm-body": "¿Desea salir de la creación de proyectos?"
+  },
+  "home": {
+    "title": "Inicio"
+  },
+  "interviews": {
+    "title": "Entrevistas"
+  },
+  "tests": {
+    "title": "Pruebas"
+  },
+  "employees": {
+    "title": "Empleados"
+  },
   "next": "Siguiente",
   "cancel": "Cancelar",
   "previous": "Volver",
-  "sign-up": "Registrar"
+  "sign-up": "Registrar",
+  "create": "Crear",
+  "exit": "Salir"
 }

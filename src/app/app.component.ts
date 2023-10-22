@@ -1,21 +1,39 @@
-import { Component, NgModule, OnInit, inject } from '@angular/core';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { TranslocoService } from '@ngneat/transloco';
 import { LanguageModule } from 'language';
-import { HttpClientModule } from '@angular/common/http';
-import { BrowserModule } from '@angular/platform-browser';
+import { HeaderComponent } from './core/components/header/header/header.component';
+import { CommonModule, Location } from '@angular/common';
 
 @Component({
   standalone: true,
-  imports: [RouterModule, LanguageModule],
+  imports: [CommonModule, RouterModule, LanguageModule, HeaderComponent],
   providers: [TranslocoService],
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {}
+export class AppComponent implements OnInit {
+  location = inject(Location);
+  urlChange$!: VoidFunction;
+  isAuthRoute = false;
+  headerBusinessList!: string[];
 
-@NgModule({
-  imports: [BrowserModule, HttpClientModule],
-})
-export class AppModule {}
+  ngOnInit(): void {
+    this.urlChange$ = this.location.onUrlChange(
+      (url) => (this.isAuthRoute = url.includes('auth'))
+    );
+
+    this.getHeaderBusinessList();
+  }
+
+  getHeaderBusinessList() {
+    this.headerBusinessList = [
+      'home',
+      'projects',
+      'interviews',
+      'tests',
+      'employees',
+    ];
+  }
+}

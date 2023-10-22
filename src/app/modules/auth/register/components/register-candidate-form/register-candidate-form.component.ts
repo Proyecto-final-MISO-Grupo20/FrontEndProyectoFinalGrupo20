@@ -13,6 +13,12 @@ import { RegisterCandidateSteps } from '../../utils/register-candidate-steps';
 import { countries } from '../../utils/countries';
 import { identificationTypes } from '../../../../../core/utils/identification-types';
 import { RegisterService } from '../../services/register.service';
+import {
+  ageRangeValidator,
+  passwordMatchValidator,
+} from '../../utils/candidate-form-validators';
+import { map } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register-candidate-form',
@@ -33,9 +39,11 @@ export class RegisterCandidateFormComponent implements OnInit {
 
   // Event
   @Output() backToMainForm = new EventEmitter();
+  error!: string | null;
 
   // Service
   registerService = inject(RegisterService);
+  router = inject(Router);
 
   get countries() {
     return countries;
@@ -55,12 +63,17 @@ export class RegisterCandidateFormComponent implements OnInit {
     const step1Validation =
       this.registerForm.get('nombre')?.valid &&
       this.registerForm.get('pais')?.valid &&
-      this.registerForm.get('fechaNacimiento')?.valid;
+      this.registerForm.get('fecha_nacimiento')?.valid &&
+      this.registerForm.get('documento')?.valid &&
+      this.registerForm.get('tipo_documento')?.valid &&
+      this.registerForm.get('ciudad')?.valid;
 
     const step2Validation =
       this.registerForm.get('username')?.valid &&
       this.registerForm.get('email')?.valid &&
-      this.registerForm.get('password')?.valid;
+      this.registerForm.get('password')?.valid &&
+      this.registerForm.get('passwordConfirm')?.valid &&
+      this.registerForm.errors === null;
 
     return this.currentStep === this.steps.personalInformation
       ? step1Validation
@@ -71,20 +84,67 @@ export class RegisterCandidateFormComponent implements OnInit {
     this.currentStep = this.steps.personalInformation;
     this.setStepItems();
     this.initializeForm();
+
+    this.registerForm.valueChanges
+      .pipe(
+        map((changes) => {
+          if (changes.tipo_documento) {
+            changes.tipo_documento = changes.tipo_documento.code;
+          }
+
+          if (changes.pais) {
+            changes.pais = changes.pais.name;
+
+            if (changes.pais !== 'Colombia') {
+              changes.tipo_documento = 2;
+              this.registerForm?.get('tipo_documento')?.setErrors(null);
+            }
+          }
+
+          return changes;
+        })
+      )
+      .subscribe();
   }
 
   initializeForm() {
-    this.registerForm = this.formBuilder.group({
-      nombre: ['', Validators.required],
-      tipoDocumento: ['', Validators.required],
-      documento: ['', Validators.required],
-      fechaNacimiento: ['', Validators.required],
-      pais: ['', Validators.required],
-      username: ['', Validators.required],
-      email: ['', Validators.required],
-      password: ['', Validators.required],
-      passwordConfirm: ['', Validators.required],
-    });
+    this.registerForm = this.formBuilder.group(
+      {
+        nombre: [
+          '',
+          [
+            Validators.required,
+            Validators.minLength(3),
+            Validators.maxLength(50),
+          ],
+        ],
+        tipo_documento: [null, Validators.required],
+        documento: [null, Validators.required],
+        fecha_nacimiento: ['', [Validators.required, ageRangeValidator]],
+        pais: ['', Validators.required],
+        ciudad: ['', [Validators.required, Validators.maxLength(50)]],
+        telefono: [null, Validators.required],
+        username: [
+          '',
+          [
+            Validators.required,
+            Validators.minLength(3),
+            Validators.maxLength(50),
+          ],
+        ],
+        email: ['', [Validators.required, Validators.email]],
+        password: [
+          '',
+          [
+            Validators.required,
+            Validators.minLength(8),
+            Validators.maxLength(50),
+          ],
+        ],
+        passwordConfirm: ['', Validators.required],
+      },
+      { validator: passwordMatchValidator }
+    );
   }
 
   setStepItems() {
@@ -103,8 +163,17 @@ export class RegisterCandidateFormComponent implements OnInit {
       this.registerService
         .createCandidateAccount(this.registerForm.value)
         .subscribe({
-          next: (res) => console.log(res),
-          error: (err) => console.error(err),
+          next: ({ username }) => {
+            if (username) {
+              localStorage.setItem('[Register] username', username);
+              this.router.navigate(['/auth/login']);
+            }
+          },
+          error: (err) => {
+            this.error = err.error.detail;
+
+            setTimeout(() => (this.error = null), 2000);
+          },
         });
     }
 
@@ -119,16 +188,5 @@ export class RegisterCandidateFormComponent implements OnInit {
 
   goToMainRegister() {
     this.backToMainForm.emit(true);
-  }
-
-  // Custom validator function for password confirmation
-  passwordMatchValidator() {
-    const { password, passwordConfirm } = this.registerForm.value;
-
-    if (password === passwordConfirm) {
-      return null; // Passwords match, no error
-    } else {
-      return { mismatch: true }; // Passwords do not match, return an error
-    }
   }
 }

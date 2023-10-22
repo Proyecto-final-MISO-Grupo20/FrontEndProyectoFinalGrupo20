@@ -1,0 +1,24 @@
+<section class="header-wrapper">
+  <div class="header-container">
+    <img
+      src="assets/images/logo.png"
+      alt="ABC Jobs Logo"
+      class="header__image"
+    />
+    <div class="items-section" *ngIf="itemList">
+      <ul class="items-list">
+        <li
+          *ngFor="let item of itemList"
+          [routerLink]="item"
+          routerLinkActive="link-active"
+        >
+          {{ item + '.title' | transloco }}
+        </li>
+      </ul>
+    </div>
+
+    <lib-language-picker></lib-language-picker>
+
+    <i (click)="logout()" class="pi pi-sign-out logout"></i>
+  </div>
+</section>

@@ -22,7 +22,6 @@
 
   &__title {
     @include abstracts.flexbox(column, center, center, 0);
-    padding-top: 10rem;
 
     &--blue {
       color: abstracts.$primary;
@@ -65,10 +64,6 @@
     text-align: center;
     width: 26.25rem;
   }
-}
-
-.candidate-padding {
-  padding-top: 6rem;
 }
 
 @media (max-width: 768px) {

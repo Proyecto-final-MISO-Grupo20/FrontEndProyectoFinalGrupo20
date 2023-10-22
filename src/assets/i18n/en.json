@@ -7,50 +7,69 @@
     "sign-in": "Sign In",
     "select-user-type": "Select the user type",
     "candidate-account-step": {
-      "names": "Names",
+      "names": "Complete names",
       "enter-names": "Enter your names",
+      "name-required": "Name is required",
+      "name-min-length": "Minimum name length is 3 characters",
       "identification": "Identification",
       "enter-identification": "Enter your identification number",
+      "identification-required": "Identification is required",
       "last-names": "Last Names",
       "enter-last-names": "Enter your Last Names",
       "birthday": "Birthday",
       "enter-birthday": "Enter your birthday",
+      "birthday-required": "Birthday is required",
+      "birthday-invalid-age": "The age should be between 18 and 99",
       "residence-country": "Residence Country",
       "enter-residence-country": "Enter your Residence Country",
+      "residence-country-required": "Residence country is required",
+      "residence-city": "Residence city",
+      "enter-residence-city": "Enter your Residence City",
+      "residence-city-required": "Residence city is required",
       "email": "Email",
       "enter-email": "Enter your email",
+      "email-required": "Email is required",
+      "email-format-error": "Is not a valid email",
       "username": "Username",
       "enter-username": "Enter your username",
+      "username-required": "Username is required",
+      "username-min-length": "Minimum username length is 3 characters",
       "password": "Password",
       "enter-password": "Enter your password",
+      "password-required": "Password is required",
+      "password-min-length": "Minimum name length is 8 characters",
       "password-confirm": "Password Confirm",
-      "enter-password-confirm": "Confirm your password"
+      "enter-password-confirm": "Confirm your password",
+      "password-confirm-mismatch": "Passwords doesn't match",
+      "phone": "Phone",
+      "enter-phone": "Enter your phone",
+      "phone-required": "Phone is required",
+      "type": "Type"
     },
-      "business-account-step": {
-        "names": "Business name",
-        "enter-names": "Enter business names",
-        "identification": "Business identification",
-        "enter-identification": "Enter business identification",
-        "city": "City",
-        "residence-country": "Ubication",
-        "enter-residence-country": "Country",
-        "email": "Business Email",
-        "enter-email": "Enter Business Email",
-        "username": "Business Username",
-        "enter-username": "Enter Business Username",
-        "password": "Password",
-        "enter-password": "Enter Business Password",
-        "password-confirm": "Password Confirm",
-        "enter-password-confirm": "Confirm Business Password",
-        "address": "Address",
-        "business": "Business",
-        "business-type": "Business Type",
-        "enter-business-type": "Enter business type",
-        "business-segment": "Busines Segment",
-        "segment": "Segment"
-    
-  }},
-
+    "business-account-step": {
+      "names": "Business name",
+      "enter-names": "Enter business names",
+      "identification": "Business identification",
+      "enter-identification": "Enter business identification",
+      "city": "City",
+      "residence-country": "Ubication",
+      "enter-residence-country": "Country",
+      "email": "Business Email",
+      "enter-email": "Enter Business Email",
+      "username": "Business Username",
+      "enter-username": "Enter Business Username",
+      "password": "Password",
+      "enter-password": "Enter Business Password",
+      "password-confirm": "Password Confirm",
+      "enter-password-confirm": "Confirm Business Password",
+      "address": "Address",
+      "business": "Business",
+      "business-type": "Business Type",
+      "enter-business-type": "Enter business type",
+      "business-segment": "Busines Segment",
+      "segment": "Segment"
+    }
+  },
   "login": {
     "welcome": "Welcome to ABC JOBS!",
     "description": "We accompany you throughout the entire process of intermediation of qualified IT resources",
@@ -63,9 +82,37 @@
     "log-in": "Log in",
     "register": "Not registered?"
   },
-
+  "projects": {
+    "title": "Projects",
+    "list": "Projects List",
+    "create": "Create Project",
+    "name": "Name",
+    "enter-name": "Enter project name",
+    "name-required": "Name is required",
+    "description": "Description",
+    "enter-description": "Enter a description",
+    "code": "Code",
+    "enter-code": "Enter a code",
+    "code-required": "Code is required",
+    "confirm": "Confirm",
+    "confirm-body": "Are you sure you want to exit from the projects creation?"
+  },
+  "home": {
+    "title": "Home"
+  },
+  "interviews": {
+    "title": "Interviews"
+  },
+  "tests": {
+    "title": "Tests"
+  },
+  "employees": {
+    "title": "Employees"
+  },
   "next": "Next",
   "cancel": "Cancel",
   "previous": "Previous",
-  "sign-up": "Sign Up"
+  "sign-up": "Sign Up",
+  "create": "Create",
+  "exit": "Exit"
 }

@@ -10,5 +10,5 @@ export interface Business {
   direccion: string;
   ciudad: string;
   tipoEmpresa: string;
-  segmentoEmpresa: string
+  segmentoEmpresa: string;
 }

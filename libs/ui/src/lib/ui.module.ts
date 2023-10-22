@@ -6,6 +6,11 @@ import { InputTextModule } from 'primeng/inputtext';
 import { CalendarModule } from 'primeng/calendar';
 import { StepsModule } from 'primeng/steps';
 import { StepsComponent } from './components/steps/steps.component';
+import { MessagesModule } from 'primeng/messages';
+import { MessageModule } from 'primeng/message';
+import { TableModule } from 'primeng/table';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { DialogModule } from 'primeng/dialog';
 
 @NgModule({
   imports: [
@@ -14,16 +19,26 @@ import { StepsComponent } from './components/steps/steps.component';
     ButtonModule,
     InputTextModule,
     CalendarModule,
+    MessagesModule,
+    MessageModule,
     StepsModule,
     StepsComponent,
+    TableModule,
+    InputTextareaModule,
+    DialogModule,
   ],
   exports: [
     DropdownModule,
     ButtonModule,
+    MessagesModule,
+    MessageModule,
     InputTextModule,
     CalendarModule,
     StepsModule,
     StepsComponent,
+    TableModule,
+    InputTextareaModule,
+    DialogModule,
   ],
 })
 export class UiModule {}
