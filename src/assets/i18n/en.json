@@ -82,7 +82,8 @@
   },
   "projects": {
     "title": "Projects",
-    "list": "Projects List"
+    "list": "Projects List",
+    "create": "Create Project"
   },
   "home": {
     "title": "Home"

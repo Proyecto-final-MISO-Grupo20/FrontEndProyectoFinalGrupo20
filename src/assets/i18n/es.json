@@ -82,7 +82,8 @@
   },
   "projects": {
     "title": "Proyectos",
-    "list": "Lista de Proyectos"
+    "list": "Lista de Proyectos",
+    "create": "Crear Proyecto"
   },
   "home": {
     "title": "Inicio"

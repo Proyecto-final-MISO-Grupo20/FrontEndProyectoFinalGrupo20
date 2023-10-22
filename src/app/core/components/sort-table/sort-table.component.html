@@ -14,7 +14,11 @@
     <div class="header-container">
       <h3>{{ header | transloco }}</h3>
       <div class="actions__button actions__button--blue">
-        <i class="pi pi-plus" style="color: #fff; font-size: 1.2rem"></i>
+        <i
+          [routerLink]="'/projects/create'"
+          class="pi pi-plus"
+          style="color: #fff; font-size: 1.2rem"
+        ></i>
       </div>
     </div>
   </ng-template>

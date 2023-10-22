@@ -1,12 +1,15 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
+import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
+import { User } from '../../models/user.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SessionService {
-  userSubject = new BehaviorSubject({});
+  userSubject = new BehaviorSubject<any>({});
   user$ = this.userSubject.asObservable();
+  router = inject(Router);
 
   constructor() {
     const user = localStorage.getItem('user');
@@ -23,5 +26,12 @@ export class SessionService {
 
   getUser(): any {
     return this.userSubject.value;
+  }
+
+  logout() {
+    this.userSubject.next({});
+    console.log(this.userSubject.value);
+    localStorage.removeItem('user');
+    this.router.navigateByUrl('/auth');
   }
 }
