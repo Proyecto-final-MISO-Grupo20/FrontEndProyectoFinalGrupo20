@@ -19,7 +19,6 @@ spec:
           image: us-central1-docker.pkg.dev/abc-jobs-402104/abc-jobs-repository/abc-jobs-frontend:latest
           ports:
             - containerPort: 80
-          # Realizar pull siempre a la imagen
           imagePullPolicy: Always
 
 ---
@@ -41,36 +40,11 @@ metadata:
   annotations:
     cloud.google.com/backend-config: '{"default": "abc-jobs-frontend-config"}'
 spec:
-  type: NodePort
+  type: LoadBalancer  # Change the service type to LoadBalancer
   selector:
-    app: offers
+    app: abc-jobs-frontend
   ports:
     - protocol: TCP
       port: 80
       targetPort: 80
-      nodePort: 31020
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: gateway-ingress-8
-  labels:
-    name: gateway-ingress-8
-spec:
-  rules:
-    - http:
-        paths:
-          - pathType: Prefix
-            path: /offers
-            backend:
-              service:
-                name: offers-service
-                port:
-                  number: 80
-          - pathType: Prefix
-            path: /auth
-            backend:
-              service:
-                name: auth-service
-                port:
-                  number: 80
+
