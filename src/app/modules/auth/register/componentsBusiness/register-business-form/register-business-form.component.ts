@@ -17,6 +17,7 @@ import { Business } from '../../models/business';
 import { cities } from '../../utils/cities';
 import { businessType } from '../../utils/businessType';
 import { businessSegment } from '../../utils/businessSegment';
+import { passwordMatchValidator } from '../../utils/candidate-form-validators';
 
 @Component({
   selector: 'app-register-business-form',
@@ -83,7 +84,8 @@ export class RegisterBusinessFormComponent implements OnInit {
       this.registerBusinessForm.get('username')?.valid &&
       this.registerBusinessForm.get('email')?.valid &&
       this.registerBusinessForm.get('password')?.valid &&
-      this.registerBusinessForm.get('passwordConfirm')?.valid;
+      this.registerBusinessForm.get('passwordConfirm')?.valid &&
+      this.registerBusinessForm.errors === null;
 
     return this.currentStep === this.steps.personalInformation
       ? step1Validation
@@ -110,7 +112,10 @@ export class RegisterBusinessFormComponent implements OnInit {
       email: ['', [Validators.required, Validators.maxLength(255)]],
       password: ['', [Validators.required, Validators.maxLength(10)]],
       passwordConfirm: ['', [Validators.required, Validators.maxLength(10)]],
-    });
+    },
+    { validator: passwordMatchValidator }
+    );
+    
   }
 
   setStepItems() {

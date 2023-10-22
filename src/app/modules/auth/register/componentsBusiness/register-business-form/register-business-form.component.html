@@ -257,6 +257,15 @@
           'register.business-account-step.enter-password-confirm' | transloco
         }} "
       />
+      <p-message
+        *ngIf="registerBusinessForm.hasError('passwordMismatch')"
+        [style]="{ width: '22.5rem' }"
+        severity="error"
+        text="{{
+          'register.candidate-account-step.password-confirm-mismatch'
+            | transloco
+        }}"
+      ></p-message>
     </div>
   </ng-container>
 
