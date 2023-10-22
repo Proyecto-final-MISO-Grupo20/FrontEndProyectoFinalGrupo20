@@ -35,6 +35,7 @@ steps:
   #       "push",
   #       "us-central1-docker.pkg.dev/abc-jobs-402104/abc-jobs-repository/abc-jobs-frontend:latest",
   #     ]
+  
 
   # Set Cluster, Region, and Zone environment variables
   - name: "gcr.io/cloud-builders/gcloud"
