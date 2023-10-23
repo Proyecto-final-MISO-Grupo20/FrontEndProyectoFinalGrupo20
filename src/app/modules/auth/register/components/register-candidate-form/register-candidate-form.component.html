@@ -139,6 +139,15 @@
             | transloco
         }}"
       ></p-message>
+
+      <p-message
+        [style]="{ width: '22.5rem' }"
+        *ngIf="registerForm.get('fechaNacimiento')?.hasError('invalidAge')"
+        severity="error"
+        text="{{
+          'register.candidate-account-step.birthday-invalid-age' | transloco
+        }}"
+      ></p-message>
     </div>
 
     <!-- City -->
