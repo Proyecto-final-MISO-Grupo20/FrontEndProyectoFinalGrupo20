@@ -1,14 +1,14 @@
 export const businessType = [
   {
     name: 'Pública',
-    code: 'pu',
+    code: 0,
   },
   {
     name: 'Privada',
-    code: 'pr',
+    code: 1,
   },
   {
     name: 'Mixta',
-    code: 'mx',
+    code: 2,
   },
 ];

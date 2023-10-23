@@ -13,11 +13,12 @@ import { countries } from '../../utils/countries';
 import { businessIdentificationTypes } from '../../../../../core/utils/identification-types';
 import { RegisterService } from '../../services/register.service';
 import { RegisterBusinessSteps } from '../../utils/register-business-steps';
-import { Business } from '../../models/business';
 import { cities } from '../../utils/cities';
 import { businessType } from '../../utils/businessType';
 import { businessSegment } from '../../utils/businessSegment';
 import { passwordMatchValidator } from '../../utils/candidate-form-validators';
+import { map } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register-business-form',
@@ -27,9 +28,6 @@ import { passwordMatchValidator } from '../../utils/candidate-form-validators';
   styleUrls: ['./register-business-form.component.scss'],
 })
 export class RegisterBusinessFormComponent implements OnInit {
-  getCityOptions(): unknown[] | undefined {
-    throw new Error('Method not implemented.');
-  }
   // Form
   registerBusinessForm!: FormGroup;
   formBuilder = inject(FormBuilder);
@@ -38,6 +36,9 @@ export class RegisterBusinessFormComponent implements OnInit {
   stepsData: MenuItem[] | undefined;
   currentStep!: RegisterBusinessSteps;
   steps = RegisterBusinessSteps;
+
+  router = inject(Router);
+  error!: string | null;
 
   // Event
   @Output() backToMainForm = new EventEmitter();
@@ -77,8 +78,9 @@ export class RegisterBusinessFormComponent implements OnInit {
       this.registerBusinessForm.get('pais')?.valid &&
       this.registerBusinessForm.get('ciudad')?.valid &&
       this.registerBusinessForm.get('direccion')?.valid &&
-      this.registerBusinessForm.get('businessType')?.valid &&
-      this.registerBusinessForm.get('businessSegment')?.valid;
+      this.registerBusinessForm.get('tipoEmpresaId')?.valid &&
+      this.registerBusinessForm.get('tipo_documento')?.valid;
+    this.registerBusinessForm.get('segmentoId')?.valid;
 
     const step2Validation =
       this.registerBusinessForm.get('username')?.valid &&
@@ -96,26 +98,27 @@ export class RegisterBusinessFormComponent implements OnInit {
     this.currentStep = this.steps.personalInformation;
     this.setStepItems();
     this.initializeForm();
+    this.listenFormChanges();
   }
 
   initializeForm() {
-    this.registerBusinessForm = this.formBuilder.group({
-      nombre: ['', [Validators.required, Validators.maxLength(10)]],
-      tipoDocumento: ['', [Validators.required, Validators.maxLength(10)]],
-      documento: ['', [Validators.required, Validators.maxLength(10)]],
-      ciudad: ['', [Validators.required, Validators.maxLength(255)]],
-      pais: ['', [Validators.required, Validators.maxLength(255)]],
-      direccion: ['', [Validators.required, Validators.maxLength(10)]],
-      businessType: ['', [Validators.required, Validators.maxLength(50)]],
-      businessSegment: ['', [Validators.required, Validators.maxLength(255)]],
-      username: ['', [Validators.required, Validators.maxLength(10)]],
-      email: ['', [Validators.required, Validators.maxLength(255)]],
-      password: ['', [Validators.required, Validators.maxLength(10)]],
-      passwordConfirm: ['', [Validators.required, Validators.maxLength(10)]],
-    },
-    { validator: passwordMatchValidator }
+    this.registerBusinessForm = this.formBuilder.group(
+      {
+        nombre: ['', [Validators.required, Validators.maxLength(10)]],
+        tipo_documento: ['', [Validators.required, Validators.maxLength(10)]],
+        documento: ['', [Validators.required, Validators.maxLength(10)]],
+        ciudad: ['', [Validators.required, Validators.maxLength(255)]],
+        pais: ['', [Validators.required, Validators.maxLength(255)]],
+        direccion: ['', [Validators.required, Validators.maxLength(10)]],
+        tipoEmpresaId: ['', [Validators.required, Validators.maxLength(50)]],
+        segmentoId: ['', [Validators.required, Validators.maxLength(255)]],
+        username: ['', [Validators.required, Validators.maxLength(10)]],
+        email: ['', [Validators.required, Validators.maxLength(255)]],
+        password: ['', [Validators.required, Validators.maxLength(10)]],
+        passwordConfirm: ['', [Validators.required, Validators.maxLength(10)]],
+      },
+      { validator: passwordMatchValidator }
     );
-    
   }
 
   setStepItems() {
@@ -130,12 +133,21 @@ export class RegisterBusinessFormComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.currentStep === this.steps.personalInformation) {
+    if (this.currentStep === this.steps.createBusinessAccount) {
       this.registerBusinessService
         .createBusinessAccount(this.registerBusinessForm.value)
         .subscribe({
-          next: (res: Business) => console.log(res),
-          error: (err: any) => console.error(err),
+          next: ({ username }) => {
+            if (username) {
+              localStorage.setItem('[Register] username', username);
+              this.router.navigate(['/auth/login']);
+            }
+          },
+          error: (err) => {
+            this.error = err.error.detail;
+
+            setTimeout(() => (this.error = null), 2000);
+          },
         });
     }
 
@@ -161,5 +173,35 @@ export class RegisterBusinessFormComponent implements OnInit {
     } else {
       return { mismatch: true }; // Passwords do not match, return an error
     }
+  }
+
+  listenFormChanges() {
+    this.registerBusinessForm.valueChanges
+      .pipe(
+        map((changes) => {
+          if (changes.tipo_documento) {
+            changes.tipo_documento = changes.tipo_documento.code;
+          }
+
+          if (changes.pais) {
+            changes.pais = changes.pais.name;
+          }
+
+          if (changes.ciudad) {
+            changes.ciudad = changes.ciudad.name;
+          }
+
+          if (changes.tipoEmpresaId) {
+            changes.tipoEmpresaId = changes.tipoEmpresaId.code;
+          }
+
+          if (changes.segmentoId) {
+            changes.segmentoId = changes.segmentoId.code;
+          }
+
+          return changes;
+        })
+      )
+      .subscribe();
   }
 }
