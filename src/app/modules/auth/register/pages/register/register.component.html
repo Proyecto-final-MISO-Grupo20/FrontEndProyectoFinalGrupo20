@@ -1,0 +1,79 @@
+<section class="register-wrapper">
+  <div class="register-container">
+    <div class="register__welcome">
+      <div class="welcome-container">
+        <h1 class="welcome__title">
+          {{ 'register.welcome' | transloco }}
+        </h1>
+
+        <span class="welcome__description">
+          {{ 'register.description' | transloco }}
+        </span>
+      </div>
+
+      <img src="assets/images/logo.png" alt="ABC Jobs Logo" />
+    </div>
+
+    <div class="register__content">
+      <!-- Language changer -->
+      <lib-language-picker
+        [style]="{ display: 'contents' }"
+        styleClass="lib-picker"
+      >
+      </lib-language-picker>
+
+      <div
+        class="register__title"
+        [class.candidate-padding]="step === steps.createCandidateAccount"
+      >
+        <h2 class="register__title--blue">
+          {{ 'register.create-account' | transloco }}
+        </h2>
+        <p class="register__confirmation">
+          {{ 'register.confirmation' | transloco }}
+          <span (click)="navigateToLogin()">{{
+            'register.sign-in' | transloco
+          }}</span>
+        </p>
+      </div>
+
+      <form
+        class="register__form"
+        [formGroup]="registerForm"
+        (ngSubmit)="onSubmit()"
+        *ngIf="step === steps.initialStep"
+      >
+        <p-dropdown
+          [style]="{ width: '22.5rem' }"
+          formControlName="user"
+          placeholder="{{ 'register.select-user-type' | transloco }} "
+          [options]="typeUsersData"
+          optionLabel="name"
+        ></p-dropdown>
+
+        <p-button
+          label="{{ 'next' | transloco }}"
+          [style]="{ width: '22.5rem' }"
+          type="submit"
+          [disabled]="!registerForm.valid"
+        ></p-button>
+
+        <p-button
+          label="{{ 'cancel' | transloco }}"
+          [style]="{ width: '22.5rem' }"
+          severity="secondary"
+        ></p-button>
+      </form>
+
+      <app-register-candidate-form
+        (backToMainForm)="step = steps.initialStep"
+        *ngIf="step === steps.createCandidateAccount"
+      ></app-register-candidate-form>
+
+      <app-register-business-form
+        (backToMainForm)="step = steps.initialStep"
+        *ngIf="step === steps.createBusinessAccount"
+      ></app-register-business-form>
+    </div>
+  </div>
+</section>

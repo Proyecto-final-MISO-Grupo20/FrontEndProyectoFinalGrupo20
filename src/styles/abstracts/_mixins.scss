@@ -1,0 +1,25 @@
+@mixin flexbox($direction, $content, $align, $gap) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $content;
+  align-items: $align;
+  gap: $gap;
+}
+
+@mixin grid($columns, $gap-row, $gap-column) {
+  display: grid;
+  grid-template-columns: $columns;
+  gap: $gap-row $gap-column;
+}
+
+@mixin rounded($radius: 0.5em) {
+  -webkit-border-radius: 0.5em;
+  -moz-border-radius: 0.5em;
+  border-radius: 0.5em;
+}
+
+@mixin hoverable() {
+  &:hover {
+    cursor: pointer;
+  }
+}
