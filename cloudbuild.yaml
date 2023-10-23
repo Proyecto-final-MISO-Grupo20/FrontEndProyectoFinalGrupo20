@@ -37,15 +37,24 @@ steps:
       ]
   
 
-  # Set Cluster, Region, and Zone environment variables
+  # # Set Cluster, Region, and Zone environment variables
+  # - name: "gcr.io/cloud-builders/gcloud"
+  #   entrypoint: "bash"
+  #   args:
+  #     - "-c"
+  #     - |
+  #       gcloud container clusters get-credentials autopilot-cluster-abc-jobs \
+  #       --region us-central1 \
+  #       --project abc-jobs-402104
+
   - name: "gcr.io/cloud-builders/gcloud"
     entrypoint: "bash"
     args:
       - "-c"
       - |
-        gcloud container clusters get-credentials autopilot-cluster-abc-jobs \
-        --region us-central1 \
-        --project abc-jobs-402104
+        gcloud config set project abc-jobs-402104
+        gcloud config set compute/zone us-central1-a
+        gcloud container clusters get-credentials autopilot-cluster-abc-jobs --region us-central1
 
     # Deploy
   - name: "gcr.io/cloud-builders/gcloud"
