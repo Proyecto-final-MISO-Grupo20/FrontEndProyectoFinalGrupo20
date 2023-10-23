@@ -41,3 +41,7 @@
 .logout {
   @include abstracts.hoverable();
 }
+
+.list-responsive {
+  @include abstracts.flexbox(column, space-evenly, center, 2rem);
+}

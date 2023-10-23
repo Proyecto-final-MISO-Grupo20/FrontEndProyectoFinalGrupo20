@@ -1,4 +1,28 @@
-<section class="header-wrapper">
+<p-accordion
+  class="w-full"
+  *ngIf="isMobile"
+  expandIcon="pi pi-plus"
+  collapseIcon="pi pi-minus"
+>
+  <p-accordionTab>
+    <ng-template pTemplate="header"> </ng-template>
+    <ng-template pTemplate="content">
+      <ul class="items-list list-responsive">
+        <li
+          *ngFor="let item of itemList"
+          [routerLink]="item"
+          routerLinkActive="link-active"
+        >
+          {{ item + '.title' | transloco }}
+        </li>
+        <lib-language-picker></lib-language-picker>
+        <i (click)="logout()" class="pi pi-sign-out logout"></i>
+      </ul>
+    </ng-template>
+  </p-accordionTab>
+</p-accordion>
+
+<section class="header-wrapper" *ngIf="!isMobile">
   <div class="header-container">
     <img
       src="assets/images/logo.png"
