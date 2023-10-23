@@ -61,7 +61,7 @@ steps:
     args:
       - "-c"
       - |
-        kubectl rollout restart deployment offers
+        kubectl rollout restart deployment abc-jobs-frontend
 
 
 
