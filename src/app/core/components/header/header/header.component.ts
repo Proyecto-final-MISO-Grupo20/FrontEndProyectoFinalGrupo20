@@ -1,4 +1,4 @@
-import { Component, HostListener, Input, inject } from '@angular/core';
+import { Component, HostListener, Input, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UiModule } from 'ui';
 import { LanguageModule } from 'language';
@@ -12,12 +12,16 @@ import { SessionService } from '../../../../core/services/session/session.servic
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
   @Input() itemList!: string[];
   session = inject(SessionService);
 
   // Responsive
   isMobile!: boolean;
+
+  ngOnInit(): void {
+    this.checkScreenWidth();
+  }
 
   @HostListener('window:resize', ['$event'])
   onResize(event: Event): void {
