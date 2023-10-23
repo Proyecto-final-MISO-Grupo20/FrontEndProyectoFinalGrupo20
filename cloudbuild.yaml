@@ -15,7 +15,6 @@
 # Specify the logs_bucket field to resolve the error
 options:
   logging: CLOUD_LOGGING_ONLY # You can use CLOUD_LOGGING_ONLY or NONE, depending on your preference
-  serviceAccount: [CLOUD_BUILD_SERVICE_ACCOUNT]
 
 # [START cloudbuild_basic_config]
 steps:
@@ -38,7 +37,7 @@ steps:
   #     ]
   
 
-  # # Set Cluster, Region, and Zone environment variables
+  # Set Cluster, Region, and Zone environment variables
   # - name: "gcr.io/cloud-builders/gcloud"
   #   entrypoint: "bash"
   #   args:
@@ -47,15 +46,6 @@ steps:
   #       gcloud container clusters get-credentials autopilot-cluster-abc-jobs \
   #       --region us-central1 \
   #       --project abc-jobs-402104
-
-  - name: "gcr.io/cloud-builders/gcloud"
-    entrypoint: "bash"
-    args:
-      - "-c"
-      - |
-        gcloud config set project abc-jobs-402104
-        gcloud config set compute/zone us-central1-a
-        gcloud container clusters get-credentials autopilot-cluster-abc-jobs --region us-central1
 
     # Deploy
   - name: "gcr.io/cloud-builders/gcloud"
