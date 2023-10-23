@@ -1,6 +1,9 @@
-<form class="register__form" [formGroup]="registerBusinessForm" (ngSubmit)="onSubmit()">
+<form
+  class="register__form"
+  [formGroup]="registerBusinessForm"
+  (ngSubmit)="onSubmit()"
+>
   <lib-steps [items]="stepsData" [activeIndex]="currentStep"> </lib-steps>
-  
 
   <!-- STEP 1-->
   <ng-container *ngIf="currentStep === steps.personalInformation">
@@ -26,9 +29,10 @@
       }}</label>
       <div class="identification-form">
         <p-dropdown
+          placeholder="{{ 'register.candidate-account-step.type' | transloco }}"
           [options]="businessIdentificationTypesData"
           optionLabel="name"
-          formControlName="tipoDocumento"
+          formControlName="tipo_documento"
         ></p-dropdown>
         <input
           [style]="{ width: '15.5rem' }"
@@ -94,139 +98,95 @@
       <!--City-->
 
       <p-dropdown
-      [options]="cities"
-      optionLabel="name"
-      filterBy="name"
-      [style]="{ width: '22.5rem' }"
-      placeholder="{{
-        'register.business-account-step.city' | transloco
-      }} "
-      formControlName="ciudad"
-      class="city-dropdown"
-    >
-      <ng-template pTemplate="selectedItem">
-        <div
-          class="flex align-items-center gap-2"
-          *ngIf="registerBusinessForm.get('ciudad')"
-          class="city-dropdown--item"
-        >
-          <img
-            [src]="
-              'assets/images/flags/' +
-              registerBusinessForm.get('ciudad')?.value.code +
-              '.png'
-            "
-            style="width: 18px"
-          />
-          <div>{{ registerBusinessForm.get('ciudad')?.value.name }}</div>
-        </div>
-      </ng-template>
-      <ng-template let-city pTemplate="item">
-        <div
-          class="flex align-items-center gap-2"
-          class="city-dropdown--item"
-        >
-          <img
-            class="cities-dropdown--item"
-            [src]="'assets/images/flags/' + city.code + '.png'"
-            style="width: 18px"
-          />
-          <div>{{ city.name }}</div>
-        </div>
-      </ng-template>
-    </p-dropdown>
-
-    <!-- Address-->
-    <div class="form__input--label">
-      <input
+        [options]="cities"
+        optionLabel="name"
+        filterBy="name"
         [style]="{ width: '22.5rem' }"
-        pInputText
-        id="direccion"
-        formControlName="direccion"
-        placeholder=" {{
-          'register.business-account-step.address' | transloco
-        }} "
-      /> </div>
-    
-          <!--TipoEmpresa-->
-    <div class="form__input--label">
-          <label htmlFor="businessType">{{
-            'register.business-account-step.business' | transloco
-          }}</label>
+        placeholder="{{ 'register.business-account-step.city' | transloco }} "
+        formControlName="ciudad"
+        class="countries-dropdown"
+      >
+        <ng-template pTemplate="selectedItem">
+          <div
+            class="flex align-items-center gap-2"
+            *ngIf="registerBusinessForm.get('ciudad')"
+            class="countries-dropdown--item"
+          >
+            <img
+              [src]="
+                'assets/images/flags/' +
+                registerBusinessForm.get('ciudad')?.value.code +
+                '.png'
+              "
+              style="width: 18px"
+            />
+            <div>{{ registerBusinessForm.get('ciudad')?.value.name }}</div>
+          </div>
+        </ng-template>
+        <ng-template let-city pTemplate="item">
+          <div
+            class="flex align-items-center gap-2"
+            class="countries-dropdown--item"
+          >
+            <img
+              class="cities-dropdown--item"
+              [src]="'assets/images/flags/' + city.code + '.png'"
+              style="width: 18px"
+            />
+            <div>{{ city.name }}</div>
+          </div>
+        </ng-template>
+      </p-dropdown>
 
-          <p-dropdown
+      <!-- Address-->
+      <div class="form__input--label">
+        <input
+          [style]="{ width: '22.5rem' }"
+          pInputText
+          id="direccion"
+          formControlName="direccion"
+          placeholder=" {{
+            'register.business-account-step.address' | transloco
+          }} "
+        />
+      </div>
+
+      <!--TipoEmpresa-->
+      <div class="form__input--label">
+        <label htmlFor="businessType">{{
+          'register.business-account-step.business' | transloco
+        }}</label>
+
+        <p-dropdown
           [options]="businessType"
-          optionLabel="businessType"
-          filterBy="businessType"
+          optionLabel="name"
+          filterBy="name"
           [style]="{ width: '22.5rem' }"
           placeholder="{{
             'register.business-account-step.business-type' | transloco
           }} "
-          formControlName="businessType"
+          formControlName="tipoEmpresaId"
           class="businessType-dropdown"
         >
-          <ng-template pTemplate="selectedItem">
-            <div
-              class="flex align-items-center gap-2"
-              *ngIf="registerBusinessForm.get('businessType')"
-              class="businessType-dropdown--item"
-            >
-              <div>{{ registerBusinessForm.get('businessType')?.value.name }}</div>
-            </div>
-          </ng-template>
-          <ng-template let-businessType pTemplate="item">
-            <div
-              class="flex align-items-center gap-2"
-              class="businessType-dropdown--item"
-            >
-              <div>{{ businessType.name }}</div>
+        </p-dropdown>
 
+        <!--SegmentoEmpresa-->
 
-        
-            </div>
-          </ng-template>
-          </p-dropdown>
-    
-
-    <!--SegmentoEmpresa-->
-
-      <p-dropdown
-      [options]="businessSegment"
-      optionLabel="businessSegment"
-      filterBy="businessSegment"
-      [style]="{ width: '22.5rem' }"
-      placeholder="{{
-        'register.business-account-step.business-segment' | transloco
-      }} "
-      formControlName="businessSegment"
-      class="businessSegment-dropdown"
-    >
-      <ng-template pTemplate="selectedItem">
-        <div
-          class="flex align-items-center gap-2"
-          *ngIf="registerBusinessForm.get('businessSegment')"
-          class="businessSegment-dropdown--item"
+        <p-dropdown
+          [options]="businessSegment"
+          optionLabel="name"
+          filterBy="name"
+          [style]="{ width: '22.5rem' }"
+          placeholder="{{
+            'register.business-account-step.business-segment' | transloco
+          }} "
+          formControlName="segmentoId"
+          class="businessSegment-dropdown"
         >
-          <div>{{ registerBusinessForm.get('businessSegment')?.value.name }}</div>
-        </div>
-      </ng-template>
-      <ng-template let-businessSegment pTemplate="item">
-        <div
-          class="flex align-items-center gap-2"
-          class="businessSegment-dropdown--item"
-        >
-          <div>{{ businessSegment.name }}</div>
-
-
-    
-        </div>
-      </ng-template>
-      </p-dropdown>
-    </div>            
-  </div>
+        </p-dropdown>
+      </div>
+    </div>
   </ng-container>
-
-  
 
   <!-- STEP 2-->
   <ng-container *ngIf="currentStep === steps.createBusinessAccount">
@@ -296,8 +256,24 @@
           'register.business-account-step.enter-password-confirm' | transloco
         }} "
       />
+      <p-message
+        *ngIf="registerBusinessForm.hasError('passwordMismatch')"
+        [style]="{ width: '22.5rem' }"
+        severity="error"
+        text="{{
+          'register.candidate-account-step.password-confirm-mismatch'
+            | transloco
+        }}"
+      ></p-message>
     </div>
   </ng-container>
+
+  <p-message
+    [style]="{ width: '22.5rem' }"
+    severity="error"
+    *ngIf="error"
+    text="{{ error }}"
+  ></p-message>
 
   <p-button
     label="{{ nextText | transloco }}"

@@ -1,14 +1,14 @@
 export const businessSegment = [
   {
     name: 'Salud',
-    code: 'sa',
+    code: 0,
   },
   {
     name: 'Tecnología',
-    code: 'te',
+    code: 1,
   },
   {
     name: 'Aeronautica',
-    code: 'Ar',
+    code: 2,
   },
 ];
