@@ -97,6 +97,21 @@
     "confirm": "Confirmación",
     "confirm-body": "¿Desea salir de la creación de proyectos?"
   },
+  "employees": {
+    "title": "Empleados",
+    "list": "Lista de Empleados de la Empresa",
+    "create": "Crear Empleado",
+    "name": "Nombre",
+    "enter-name": "Ingrese el nombre del empleado",
+    "name-required": "El nombre es requerido",
+    "description": "Descripción",
+    "enter-description": "Ingrese una descripción",
+    "code": "Código",
+    "enter-code": "Ingrese un código",
+    "code-required": "El código es requerido",
+    "confirm": "Confirmación",
+    "confirm-body": "¿Desea salir de la creación de empleados?"
+  },
   "home": {
     "title": "Inicio"
   },
@@ -105,9 +120,6 @@
   },
   "tests": {
     "title": "Pruebas"
-  },
-  "employees": {
-    "title": "Empleados"
   },
   "next": "Siguiente",
   "cancel": "Cancelar",

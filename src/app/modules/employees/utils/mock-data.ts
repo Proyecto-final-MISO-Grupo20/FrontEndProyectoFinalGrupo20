@@ -1,0 +1,92 @@
+export const mockData = [
+  {
+    name: 'Employees 1',
+    description: 'Description of Employees 1',
+    code: 'P001',
+    profiles: ['Profile A', 'Profile B'],
+  },
+  {
+    name: 'Employees 2',
+    description: 'Description of Employees 2',
+    code: 'P002',
+    profiles: [],
+  },
+  {
+    name: 'Employees 3',
+    description: 'Description of Employees 3',
+    code: 'P003',
+    profiles: ['Profile E', 'Profile F'],
+  },
+  {
+    name: 'Employees 4',
+    description: 'Description of Employees 4',
+    code: 'P004',
+    profiles: ['Profile G', 'Profile H'],
+  },
+  {
+    name: 'Employees 5',
+    description: 'Description of Employees 5',
+    code: 'P005',
+    profiles: ['Profile I', 'Profile J'],
+  },
+  {
+    name: 'Employees 6',
+    description: 'Description of Employees 6',
+    code: 'P006',
+    profiles: ['Profile K', 'Profile L'],
+  },
+  {
+    name: 'Employees 7',
+    description: 'Description of Employees 7',
+    code: 'P007',
+    profiles: ['Profile M', 'Profile N'],
+  },
+  {
+    name: 'Employees 8',
+    description: 'Description of Employees 8',
+    code: 'P008',
+    profiles: ['Profile O', 'Profile P'],
+  },
+  {
+    name: 'Employees 9',
+    description: 'Description of Employees 9',
+    code: 'P009',
+    profiles: ['Profile Q', 'Profile R'],
+  },
+  {
+    name: 'Employees 10',
+    description: 'Description of Employees 10',
+    code: 'P010',
+    profiles: ['Profile S', 'Profile T'],
+  },
+  {
+    name: 'Employees 11',
+    description: 'Description of Employees 11',
+    code: 'P011',
+    profiles: ['Profile U', 'Profile V'],
+  },
+  {
+    name: 'Employees 12',
+    description: 'Description of Employees 12',
+    code: 'P012',
+    profiles: ['Profile W', 'Profile X'],
+  },
+  {
+    name: 'Employees 13',
+    description: 'Description of Employees 13',
+    code: 'P013',
+    profiles: ['Profile Y', 'Profile Z'],
+  },
+  {
+    name: 'Employees 14',
+    description: 'Description of Employees 14',
+    code: 'P014',
+    profiles: ['Profile AA', 'Profile BB'],
+  },
+  {
+    name: 'Employees 15',
+    description: 'Description of Employees 15',
+    code: 'P015',
+    profiles: ['Profile CC', 'Profile DD'],
+  },
+];

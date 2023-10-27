@@ -1,0 +1,10 @@
+<div class="employees-wrapper">
+  <div class="employees-container">
+    <h1 class="employees-title">{{ 'employees.title' | transloco }}</h1>
+
+    <app-sort-table
+      [header]="'employees.list'"
+      [data]="employees"
+    ></app-sort-table>
+  </div>
+</div>
