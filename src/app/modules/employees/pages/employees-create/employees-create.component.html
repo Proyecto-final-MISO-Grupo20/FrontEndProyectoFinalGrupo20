@@ -2,12 +2,7 @@
   <div class="employees-create-container">
     <h1 class="employees-create-title">{{ 'employees.create' | transloco }}</h1>
 
-    <form
-      class="employees-create__form"
-      [formGroup]="employeeCreateForm"
-      (ngSubmit)="onSubmit()"
-    >
-      <!-- Name-->
+    <form class="employees-create__form" [formGroup]="employeeCreateForm" (ngSubmit)="onSubmit()">
       <div class="form__input--label">
         <label htmlFor="name">{{ 'employees.name' | transloco }}</label>
         <input
@@ -17,90 +12,65 @@
           pInputText
           id="name"
           formControlName="name"
-          placeholder=" {{ 'employees.enter-name' | transloco }} "
+          placeholder="{{ 'employees.enter-name' | transloco }}"
         />
-        <p-message
-          [style]="{ width: '22.5rem' }"
-          *ngIf="
-            employeeCreateForm.get('name')?.hasError('required') &&
-            employeeCreateForm.get('name')?.touched
-          "
+        <p-message *ngIf="employeeCreateForm.get('name')?.hasError('required') && employeeCreateForm.get('name')?.touched"
           severity="error"
-          text="{{
-            'register.candidate-account-step.name-required' | transloco
-          }}"
-        ></p-message>
-
-        <p-message
-          [style]="{ width: '22.5rem' }"
-          *ngIf="employeeCreateForm.get('name')?.hasError('minlength')"
+          text="{{ 'register.candidate-account-step.name-required' | transloco }}">
+        </p-message>
+        <p-message *ngIf="employeeCreateForm.get('name')?.hasError('minlength')"
           severity="error"
-          text="{{
-            'register.candidate-account-step.name-min-length' | transloco
-          }}"
-        ></p-message>
+          text="{{ 'register.candidate-account-step.name-min-length' | transloco }}">
+        </p-message>
       </div>
 
-      <!-- Description -->
       <div class="form__input--label">
-        <label htmlFor="description">{{
-          'employees.description' | transloco
-        }}</label>
+        <label htmlFor="identification">{{ 'register.business-account-step.identification' | transloco }}</label>
+        <div class="identification-form">
+          <p-dropdown placeholder="{{ 'register.candidate-account-step.type' | transloco }}" [options]="identificationTypes" optionLabel="name" formControlName="tipo_documento"></p-dropdown>
+          <input [style]="{ width: '15.5rem' }" pInputText id="identification" formControlName="documento" placeholder="{{ 'register.business-account-step.enter-identification' | transloco }} ">
+        </div>
+      </div>
 
-        <textarea
-          id="description"
-          rows="5"
-          cols="30"
+      <div class="form__input--label">
+        <label htmlFor="rol">{{ 'employees.rol' | transloco }}</label>
+        <input
+          id="rol"
           [style]="{ width: '22.5rem' }"
           pInputTextarea
-          formControlName="description"
-          placeholder=" {{ 'employees.enter-description' | transloco }} "
-        ></textarea>
+          formControlName="rol"
+          placeholder="{{ 'employees.enter-rol' | transloco }}">
+      
       </div>
 
-      <!-- Code-->
       <div class="form__input--label">
-        <label htmlFor="code">{{ 'employees.code' | transloco }}</label>
+        <label htmlFor="email">{{ 'employees.email' | transloco }}</label>
         <input
           [maxLength]="25"
           [minlength]="3"
           [style]="{ width: '22.5rem' }"
           pInputText
-          id="code"
-          formControlName="code"
-          placeholder=" {{ 'employees.enter-code' | transloco }} "
-        />
-        <p-message
-          [style]="{ width: '22.5rem' }"
-          *ngIf="
-            employeeCreateForm.get('code')?.hasError('required') &&
-            employeeCreateForm.get('code')?.touched
-          "
+          id="email"
+          formControlName="email"
+          placeholder="{{ 'employees.enter-email' | transloco }}">
+        
+        <p-message *ngIf="employeeCreateForm.get('email')?.hasError('required') && employeeCreateForm.get('email')?.touched"
           severity="error"
-          text="{{ 'employees.code-required' | transloco }}"
-        ></p-message>
-
-        <p-message
-          [style]="{ width: '22.5rem' }"
-          *ngIf="employeeCreateForm.get('code')?.hasError('maxlength')"
+          text="{{ 'employees.email' | transloco }}">
+        </p-message>
+        <p-message *ngIf="employeeCreateForm.get('email')?.hasError('maxlength')"
           severity="error"
-          text="{{ 'employees.code-max-length' | transloco }}"
-        ></p-message>
+          text="{{ 'employees.email' | transloco }}">
+        </p-message>
       </div>
 
-      <p-button
-        label="{{ 'create' | transloco }}"
-        [style]="{ width: '22.5rem' }"
-        type="submit"
-        [disabled]="!employeeCreateForm.valid"
-      ></p-button>
+      <div class="form__buttons">
+        <p-button label="{{ 'create' | transloco }}" [style]="{ width: '22.5rem' }" type="submit" [disabled]="!employeeCreateForm.valid"></p-button>
+      </div>
 
-      <p-button
-        (onClick)="setShowConfirmDialog(true)"
-        label="{{ 'cancel' | transloco }}"
-        [style]="{ width: '22.5rem' }"
-        severity="secondary"
-      ></p-button>
+      <div class="form__buttons">
+        <p-button (onClick)="setShowConfirmDialog(true)" label="{{ 'cancel' | transloco }}" [style]="{ width: '22.5rem' }" severity="secondary"></p-button>
+      </div>
     </form>
   </div>
 </div>
@@ -115,25 +85,12 @@
   position="center"
 >
   <ng-template pTemplate="header">
-    <span class="text-xl font-bold">{{ 'employees.confirm' | transloco }}</span>
+    <span class="text-xl font-bold">{{ 'projects.confirm' | transloco }}</span>
   </ng-template>
   <p>
-    {{ 'employees.confirm-body' | transloco }}
+    {{ 'projects.confirm-body' | transloco }}
   </p>
   <ng-template pTemplate="footer">
-    <p-button
-      icon="pi pi-check"
-      (click)="returnToEmployees()"
-      label="{{ 'exit' | transloco }}"
-      styleClass="p-button-text"
-    ></p-button>
-
-    <p-button
-      severity="danger"
-      icon="pi pi-check"
-      (click)="setShowConfirmDialog(false)"
-      label="{{ 'cancel' | transloco }}"
-      styleClass="p-button-text"
-    ></p-button>
+    <p-button icon="pi pi-check" (click)="returnToEmployees()" label="{{ 'exit' | transloco }}" styleClass="p-button-text"></p-button>
   </ng-template>
 </p-dialog>

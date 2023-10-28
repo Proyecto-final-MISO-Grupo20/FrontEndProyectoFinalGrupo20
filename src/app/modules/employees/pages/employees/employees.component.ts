@@ -1,7 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LanguageModule } from 'language';
-import { SortTableComponent } from '../../../../core/components/sort-table/sort-table.component';
+import { SortTableComponent } from '../../../../core/components/sort-table2/sort-table2.component';
 import { EmployeesService } from '../../services/employees.service';
 import { Observable, tap } from 'rxjs';
 

@@ -1,3 +1,4 @@
+/* eslint-disable @nx/enforce-module-boundaries */
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LanguageModule } from 'language';
@@ -9,6 +10,7 @@ import {
 } from '@angular/forms';
 import { UiModule } from 'ui';
 import { Router } from '@angular/router';
+import { identificationTypes } from 'src/app/core/utils/identification-types';
 
 @Component({
   selector: 'app-employees-create',
@@ -37,6 +39,10 @@ export class EmployeesCreateComponent implements OnInit {
 
   onSubmit() {
     console.log(this.employeeCreateForm.value);
+  }
+
+  get identificationTypes() {
+    return identificationTypes;
   }
 
   setShowConfirmDialog(show: boolean) {

@@ -1,20 +1,21 @@
 @use '/src/styles/abstracts';
 
-.employeess-create {
+.employees-create {
   &-wrapper {
     padding-top: 3rem;
   }
 
   &-container {
-    @include abstracts.flexbox(column, space-evenly, center, 0);
+    @include abstracts.flexbox(column, normal, center, 0);
   }
 
   &-title {
     color: abstracts.$primary;
+    text-align: center;
   }
 
   &__form {
-    @include abstracts.flexbox(column, space-evenly, center, 2rem);
+    @include abstracts.flexbox(column, normal, center, 2rem);
   }
 }
 
