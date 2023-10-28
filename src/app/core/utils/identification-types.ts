@@ -1,6 +1,7 @@
 export const identificationTypes = [
   { name: 'CC', code: 0 },
-  { name: 'CI', code: 2 },
+  { name: 'CI', code: 1 },
+  { name: 'OTHER', code: 2 },
 ];
 
 export const businessIdentificationTypes = [
