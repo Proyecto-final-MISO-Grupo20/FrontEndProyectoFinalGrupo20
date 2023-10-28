@@ -28,6 +28,15 @@ export const appRoutes: Route[] = [
       ),
   },
   {
+    path: 'employees',
+    title: 'ABC Jobs | Employees',
+    canActivate: [authGuard],
+    loadChildren: () =>
+      import('./modules/employees/employees.routes').then(
+        (routes) => routes.employeesRoutes
+      ),
+  },
+  {
     path: '**',
     redirectTo: 'auth',
   },
