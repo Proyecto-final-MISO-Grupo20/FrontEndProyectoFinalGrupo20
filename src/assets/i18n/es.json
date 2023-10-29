@@ -122,6 +122,31 @@
     "confirm": "Confirmación",
     "confirm-body": "¿Desea salir de la creación de empleados?"
   },
+  "profiles": {
+    "title": "Creación de perfil para el proyecto",
+    "list": "Lista de Empleados de la Empresa",
+    "create": "Crear Empleado",
+    "name": "Nombre",
+    "enter-name": "Ingrese el nombre del empleado",
+    "name-required": "El nombre es requerido",
+    "name-min-length": "El nombre debe tener mínimo 3 carácteres",
+    "identification": "Identificación",
+    "enter-identification": "Ingrese identificación del empleado",
+    "identification-required": "La identification es requerida",
+    "identification-min-length": "La identificación debe tener mínimo 3 carácteres",
+    "identificationType-required": "El tipo de identification es requerido",
+    "rol": "Cargo",
+    "enter-rol": "Ingrese el cargo",
+    "rol-required": "El rol es requerido",
+    "rol-min-length": "El rol debe tener mínimo 3 carácteres",
+    "email": "Correo Electrónico",
+    "enter-email": "Ingrese el Correo Electrónico del empleado",
+    "email-required": "El correo electrónico es requerido",
+    "email-min-length": "El email debe tener mínimo 3 carácteres",
+    
+    "confirm": "Confirmación",
+    "confirm-body": "¿Desea salir de la creación de empleados?"
+  },
   "home": {
     "title": "Inicio"
   },

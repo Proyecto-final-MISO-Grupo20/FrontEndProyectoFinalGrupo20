@@ -1,0 +1,15 @@
+@use '/src/styles/abstracts';
+
+.profiles {
+  &-wrapper {
+    padding-top: 3rem;
+  }
+
+  &-container {
+    @include abstracts.flexbox(column, space-evenly, center, 0);
+  }
+
+  &-title {
+    color: abstracts.$primary;
+  }
+}
