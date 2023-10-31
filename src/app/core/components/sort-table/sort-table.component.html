@@ -38,7 +38,7 @@
         <div class="numeric-column" *ngIf="column === 'profiles'">
           {{ data[column].length }}
           <div class="actions__button actions__button--blue">
-            <i
+            <i routerLink="/profiles"
               [class]="
                 data[column].length > 0 ? 'pi pi-eye' : 'pi pi-user-plus'
               "
@@ -50,7 +50,7 @@
       <td>
         <div class="actions-container">
           <div class="actions__button actions__button--blue">
-            <i
+            <i 
               class="pi pi-arrow-circle-right"
               style="color: #fff; font-size: 1.2rem"
             ></i>

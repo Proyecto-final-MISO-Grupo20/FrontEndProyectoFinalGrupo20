@@ -1,0 +1,30 @@
+@use '/src/styles/abstracts';
+
+.profiles {
+  &-wrapper {
+    padding-top: 3rem;
+  }
+
+  &-container {
+    @include abstracts.flexbox(column, space-evenly, center, 0);
+  }
+
+  &-title {
+    color: abstracts.$primary;
+  }
+
+  &__form {
+    @include abstracts.flexbox(column, space-evenly, center, 2rem);
+  }
+}
+&-tools {
+  color: abstracts.$primary;
+}
+
+.form {
+  &__input {
+    &--label {
+      @include abstracts.flexbox(column, flex-start, normal, 0.5rem);
+    }
+  }
+}

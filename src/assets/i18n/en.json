@@ -126,10 +126,13 @@
     "title": "",
     "list": "Employees List",
     "create": "Create Employee",
-    "name": "Name",
-    "enter-name": "Enter employees name",
-    "name-required": "Name is required",
+    "name": "Profile name",
+    "enter-name": "Enter profile name",
+    "name-required": "Profile name is required",
     "name-min-length": "Minimum name length is 3 characters",
+    "tools": "Handling of Required Tools",
+
+
     "identification": "Identification",
     "enter-identification": "Enter Employee Identification",
     "identification-required": "Identification type is required",

@@ -1,10 +1,37 @@
-<div class="projects-wrapper">
-  <div class="projects-container">
-    <h1 class="projects-title">{{ 'projects.title' | transloco }}</h1>
+<div class="profiles-wrapper">
+  <div class="profiles-container">
+    <h1 class="profiles-title" transloco="profiles.title"></h1>
 
-    <app-sort-table3
-      [header]="'projects.list'"
-      [data]="profiles"
-    ></app-sort-table3>
+    <form class="profiles__form" [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+      <div class="form__input--label">
+        <!-- name -->
+        <label for="name" transloco="profiles.name" style="margin-bottom: 5px;"></label>
+        <input
+          maxlength="25"
+          minlength="3"
+          [style]="{ 'width': '60rem' }"
+          pInputText
+          id="name"
+          formControlName="name"
+          placeholder=" {{ 'profiles.enter-name' | transloco }} "
+        />
+      </div>
+      
+      <div style="margin-top: 20px;"></div> <!-- Espacio entre el input y los mensajes de error -->
+      
+      <p-message *ngIf="profileForm.get('name')?.hasError('required') && profileForm.get('name')?.touched"
+        severity="error"
+        [text]="'employees.name-required' | transloco">
+      </p-message>
+      <p-message *ngIf="profileForm.get('name')?.hasError('minlength')"
+        severity="error"
+        [text]="'profiles.name-min-length' | transloco">
+      </p-message>
+    </form>
+
+    <h3 class="profiles-tools" transloco="profiles.tools"></h3>
+    <app-sort-table3 [header]="'projects.list' | transloco" [data]="profiles"></app-sort-table3>
+    <app-sort-table3 [header]="'projects.list' | transloco" [data]="profiles"></app-sort-table3>
+    <app-sort-table3 [header]="'projects.list' | transloco" [data]="profiles"></app-sort-table3>
   </div>
 </div>

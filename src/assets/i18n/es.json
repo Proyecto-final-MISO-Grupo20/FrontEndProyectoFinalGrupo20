@@ -126,10 +126,13 @@
     "title": "Creación de perfil para el proyecto",
     "list": "Lista de Empleados de la Empresa",
     "create": "Crear Empleado",
-    "name": "Nombre",
-    "enter-name": "Ingrese el nombre del empleado",
-    "name-required": "El nombre es requerido",
+    "name": "Nombre del perfil",
+    "enter-name": "Ingrese el nombre del perfil",
+    "name-required": "El nombre del perfil es requerido",
     "name-min-length": "El nombre debe tener mínimo 3 carácteres",
+    "tools": "Manejo de Herramientas requeridas",
+    
+    
     "identification": "Identificación",
     "enter-identification": "Ingrese identificación del empleado",
     "identification-required": "La identification es requerida",
