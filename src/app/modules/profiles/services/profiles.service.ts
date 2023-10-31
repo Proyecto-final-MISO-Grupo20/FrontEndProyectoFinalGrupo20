@@ -7,9 +7,6 @@ import { of } from 'rxjs';
 })
 export class ProfilesService {
   getProfiles() {
-    throw new Error('Method not implemented.');
-  }
-  getProjects() {
     return of(mockData);
   }
 }
