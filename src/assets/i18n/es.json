@@ -131,6 +131,11 @@
     "name-required": "El nombre del perfil es requerido",
     "name-min-length": "El nombre debe tener mínimo 3 carácteres",
     "tools": "Manejo de Herramientas requeridas",
+    "list-tools": "Lista de Herramientas",
+    "skills": "Habilidades requeridas",
+    "list-skills": "Lista de Habilidades",
+    "languages": "Idiomas requeridas",
+    "list-languages": "Lista de Idiomas",
     
     
     "identification": "Identificación",

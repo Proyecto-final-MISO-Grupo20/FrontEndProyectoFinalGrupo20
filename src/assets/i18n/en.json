@@ -123,7 +123,7 @@
     "confirm-body": "Are you sure you want to exit from the employees creation?"
   },
   "profiles": {
-    "title": "",
+    "title": "Profile creation for the project",
     "list": "Employees List",
     "create": "Create Employee",
     "name": "Profile name",
@@ -131,6 +131,11 @@
     "name-required": "Profile name is required",
     "name-min-length": "Minimum name length is 3 characters",
     "tools": "Handling of Required Tools",
+    "list-tools": "List of Tools",
+    "skills": "Required skills",
+    "list-skills": "Skills list",
+    "languages": "Required languages",
+    "list-languages": "Language list",
 
 
     "identification": "Identification",

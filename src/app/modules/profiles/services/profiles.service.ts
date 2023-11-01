@@ -1,13 +1,21 @@
 import { Injectable } from '@angular/core';
 import { mockData } from '../../projects/utils/mock-data';
 import { of } from 'rxjs';
-import { mockData_profiles } from '../utils/mock-data_profiles';
+import { mockData_tools } from '../utils/mock-data_tools';
+import { mockData_skills } from '../utils/mock-data_skills';
+import { mockData_languages } from '../utils/mock-data_ language';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProfilesService {
-  getProfiles() {
-    return of(mockData_profiles);
+  getTools() {
+    return of(mockData_tools);
+  }
+  getSkills() {
+    return of(mockData_skills);
+  }
+  getLanguages() {
+    return of(mockData_languages);
   }
 }

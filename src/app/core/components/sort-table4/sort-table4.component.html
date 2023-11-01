@@ -14,15 +14,11 @@
     <div class="header-container">
       <h3>{{ header | transloco }}</h3>
       <div class="actions__button actions__button--blue">
-        <div class="actions__button actions__button--blue">
-          <i
-            [routerLink]="'/profiles/create'"
-            class="pi pi-plus"
-            (click)="setShowConfirmDialog(true)"
-            style="color: #fff; font-size: 1.2rem"
-          ></i>
-        </div>
-        
+        <i
+          [routerLink]="'/profiles/create'"
+          class="pi pi-plus"
+          style="color: #fff; font-size: 1.2rem"
+        ></i>
       </div>
     </div>
   </ng-template>
@@ -35,11 +31,11 @@
   <ng-template pTemplate="body" let-data>
     <tr>
       <td *ngFor="let column of columns">
-        <div *ngIf="column !== 'tools'">
+        <div *ngIf="column !== 'skills'">
           {{ data[column] }}
         </div>
 
-        <div class="numeric-column" *ngIf="column === 'tools'">
+        <div class="numeric-column" *ngIf="column === 'skills'">
           {{ data[column].length }}
           <div class="actions__button actions__button--blue">
             <i

@@ -4,19 +4,18 @@ import { UiModule } from 'ui';
 import { LanguageModule } from 'language';
 
 @Component({
-  selector: 'app-sort-table3',
+  selector: 'app-sort-table5',
   standalone: true,
   imports: [CommonModule, UiModule, LanguageModule],
-  templateUrl: './sort-table3.component.html',
-  styleUrls: ['./sort-table3.component.scss'],
+  templateUrl: './sort-table5.component.html',
+  styleUrls: ['./sort-table5.component.scss'],
 })
-export class SortTable3Component implements OnInit {
+export class SortTable5Component implements OnInit {
   // Input data
   @Input() header!: string;
   @Input() data!: any[];
 
   columns!: string[];
-  showConfirmDialog = false;
 
   // Responsive
   isMobile!: boolean;
@@ -30,10 +29,6 @@ export class SortTable3Component implements OnInit {
   ngOnInit(): void {
     this.setColumns();
     this.checkScreenWidth();
-  }
-  
-  setShowConfirmDialog(show: boolean) {
-    this.showConfirmDialog = show;
   }
 
   checkScreenWidth(): void {

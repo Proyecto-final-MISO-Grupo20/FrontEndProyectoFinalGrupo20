@@ -10,7 +10,7 @@ import { LanguageModule } from 'language';
   templateUrl: './sort-table2.component.html',
   styleUrls: ['./sort-table2.component.scss'],
 })
-export class SortTableComponent implements OnInit {
+export class SortTable2Component implements OnInit {
   // Input data
   @Input() header!: string;
   @Input() data!: any[];

@@ -1,14 +1,14 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LanguageModule } from 'language';
-import { SortTableComponent } from '../../../../core/components/sort-table2/sort-table2.component';
+import { SortTable2Component } from '../../../../core/components/sort-table2/sort-table2.component';
 import { EmployeesService } from '../../services/employees.service';
 import { Observable, tap } from 'rxjs';
 
 @Component({
   selector: 'app-employees',
   standalone: true,
-  imports: [CommonModule, LanguageModule, SortTableComponent],
+  imports: [CommonModule, LanguageModule, SortTable2Component],
   providers: [EmployeesService],
   templateUrl: './employees.component.html',
   styleUrls: ['./employees.component.scss'],
