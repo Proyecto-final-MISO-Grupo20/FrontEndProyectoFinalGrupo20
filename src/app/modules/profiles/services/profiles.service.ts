@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { mockData } from '../../projects/utils/mock-data';
 import { of } from 'rxjs';
 import { mockData_tools } from '../utils/mock-data_tools';
 import { mockData_skills } from '../utils/mock-data_skills';

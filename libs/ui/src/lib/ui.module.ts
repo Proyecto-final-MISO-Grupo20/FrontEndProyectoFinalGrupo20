@@ -12,6 +12,7 @@ import { TableModule } from 'primeng/table';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { DialogModule } from 'primeng/dialog';
 import { AccordionModule } from 'primeng/accordion';
+import { RatingModule } from 'primeng/rating';
 
 @NgModule({
   imports: [
@@ -28,6 +29,7 @@ import { AccordionModule } from 'primeng/accordion';
     InputTextareaModule,
     DialogModule,
     AccordionModule,
+    RatingModule,
   ],
   exports: [
     DropdownModule,
@@ -42,6 +44,7 @@ import { AccordionModule } from 'primeng/accordion';
     InputTextareaModule,
     DialogModule,
     AccordionModule,
+    RatingModule,
   ],
 })
 export class UiModule {}

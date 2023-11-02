@@ -151,6 +151,9 @@
     "enter-email": "Enter employee email",
     "email-required": "Email is required",
     "email-min-length": "Minimum email length is 3 characters",
+    "add-tool": "",
+    "select-tool-name": "",
+    "select-skill-name": "",
     
     "confirm": "Confirm",
     "confirm-body": "Are you sure you want to exit from the employees creation?"
