@@ -11,6 +11,7 @@ import { MessageModule } from 'primeng/message';
 import { TableModule } from 'primeng/table';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { DialogModule } from 'primeng/dialog';
+import { AccordionModule } from 'primeng/accordion';
 
 @NgModule({
   imports: [
@@ -26,6 +27,7 @@ import { DialogModule } from 'primeng/dialog';
     TableModule,
     InputTextareaModule,
     DialogModule,
+    AccordionModule,
   ],
   exports: [
     DropdownModule,
@@ -39,6 +41,7 @@ import { DialogModule } from 'primeng/dialog';
     TableModule,
     InputTextareaModule,
     DialogModule,
+    AccordionModule,
   ],
 })
 export class UiModule {}

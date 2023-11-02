@@ -35,6 +35,7 @@ export class RegisterComponent implements OnInit {
   steps = RegisterSteps;
   step!: RegisterSteps;
   createCandidateActivated = false;
+  createBusinessActivated = false;
 
   items: any[] | undefined;
 
@@ -70,5 +71,9 @@ export class RegisterComponent implements OnInit {
 
   navigateToLogin() {
     this.router.navigateByUrl('/auth/login');
+  }
+
+  setBusinessActivated(status: boolean) {
+    this.createBusinessActivated = status;
   }
 }
