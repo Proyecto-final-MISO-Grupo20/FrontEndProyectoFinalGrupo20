@@ -37,6 +37,7 @@ export class RegisterCandidateFormComponent implements OnInit {
   stepsData: MenuItem[] | undefined;
   currentStep!: RegisterCandidateSteps;
   steps = RegisterCandidateSteps;
+  loading = false;
 
   // Event
   @Output() backToMainForm = new EventEmitter();
@@ -161,6 +162,8 @@ export class RegisterCandidateFormComponent implements OnInit {
 
   onSubmit() {
     if (this.currentStep === this.steps.createAccount) {
+      this.loading = true;
+
       this.registerService
         .createCandidateAccount(this.registerForm.value)
         .subscribe({
@@ -172,9 +175,11 @@ export class RegisterCandidateFormComponent implements OnInit {
           },
           error: (err) => {
             this.error = err.error.detail;
+            this.loading = false;
 
             setTimeout(() => (this.error = null), 2000);
           },
+          complete: () => (this.loading = false),
         });
     }
 

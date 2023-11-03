@@ -28,6 +28,7 @@ export class LoginComponent implements OnInit {
   username!: string | null;
   successRegister = false;
   router = inject(Router);
+  loading = false;
 
   get typeUsersData() {
     return typeUsersData;
@@ -48,13 +49,17 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
+    this.loading = true;
+
     this.loginService.loginUser(this.loginForm.value).subscribe({
       next: () => this.router.navigateByUrl('home'),
       error: (error) => {
         this.errorMessage = error.error.error;
+        this.loading = false;
 
         setTimeout(() => (this.errorMessage = undefined), 3000);
       },
+      complete: () => (this.loading = false),
     });
   }
 

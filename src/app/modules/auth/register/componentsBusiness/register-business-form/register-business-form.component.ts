@@ -19,6 +19,7 @@ import { map, tap } from 'rxjs';
 import { Router } from '@angular/router';
 import { BusinessType } from '../../models/business-type';
 import { BusinessSegment } from '../../models/business-segments';
+import { Keys } from '../../../../../core/utils/keys';
 
 @Component({
   selector: 'app-register-business-form',
@@ -36,6 +37,7 @@ export class RegisterBusinessFormComponent implements OnInit {
   stepsData: MenuItem[] | undefined;
   currentStep!: RegisterBusinessSteps;
   steps = RegisterBusinessSteps;
+  loading = false;
 
   router = inject(Router);
   error!: string | null;
@@ -133,20 +135,24 @@ export class RegisterBusinessFormComponent implements OnInit {
 
   onSubmit() {
     if (this.currentStep === this.steps.createBusinessAccount) {
+      this.loading = true;
+
       this.registerBusinessService
         .createBusinessAccount(this.registerBusinessForm.value)
         .subscribe({
           next: ({ username }) => {
             if (username) {
-              localStorage.setItem('[Register] username', username);
+              localStorage.setItem(Keys.REGISTER_COMPLETE, username);
               this.router.navigate(['/auth/login']);
             }
           },
           error: (err) => {
             this.error = err.error.detail;
+            this.loading = false;
 
             setTimeout(() => (this.error = null), 2000);
           },
+          complete: () => (this.loading = false),
         });
     }
 
