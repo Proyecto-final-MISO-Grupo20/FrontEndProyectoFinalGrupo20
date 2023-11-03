@@ -36,7 +36,7 @@
           *ngIf="successRegister"
           [style]="{ width: '22.5rem' }"
           severity="success"
-          text="{{ 'Registro exitoso' }}"
+          text="{{ 'login.success-register' | transloco }}"
         ></p-message>
 
         <div class="p-field p-grid">
@@ -47,7 +47,6 @@
               formControlName="username"
               type="text"
               pInputText
-              placeholder="Enter username"
               class="custom-width"
               placeholder="{{ 'login.enter-username' | transloco }}"
             />
@@ -62,7 +61,6 @@
               formControlName="password"
               type="password"
               pInputText
-              placeholder="Enter password"
               class="custom-width"
               placeholder="{{ 'login.enter-passward' | transloco }} "
             />
@@ -81,12 +79,6 @@
           [style]="{ width: '22.5rem' }"
           type="submit"
           [disabled]="!loginForm.valid"
-        ></p-button>
-
-        <p-button
-          label="{{ 'cancel' | transloco }}"
-          [style]="{ width: '22.5rem' }"
-          severity="secondary"
         ></p-button>
       </form>
 

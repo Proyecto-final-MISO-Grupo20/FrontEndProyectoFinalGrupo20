@@ -158,9 +158,8 @@
         }}</label>
 
         <p-dropdown
-          [options]="businessType"
-          optionLabel="name"
-          filterBy="name"
+          [options]="businessTypes"
+          optionLabel="tipo"
           [style]="{ width: '22.5rem' }"
           placeholder="{{
             'register.business-account-step.business-type' | transloco
@@ -173,8 +172,8 @@
         <!--SegmentoEmpresa-->
 
         <p-dropdown
-          [options]="businessSegment"
-          optionLabel="name"
+          [options]="businessSegments"
+          optionLabel="segmento"
           filterBy="name"
           [style]="{ width: '22.5rem' }"
           placeholder="{{

@@ -2,6 +2,15 @@
   <div class="projects-container">
     <h1 class="projects-title">{{ 'projects.title' | transloco }}</h1>
 
+    <p-message
+      *ngIf="successCreate"
+      [style]="{ width: '22.5rem' }"
+      severity="success"
+      text="{{
+        'projects.success-create' | transloco: { project: createdProject }
+      }}"
+    ></p-message>
+
     <app-sort-table
       [header]="'projects.list'"
       [data]="projects"

@@ -19,12 +19,12 @@ export class SessionService {
     }
   }
 
-  setUser(user: any) {
+  setUser(user: User | any) {
     this.userSubject.next(user);
     localStorage.setItem('user', JSON.stringify(user));
   }
 
-  getUser(): any {
+  getUser(): User {
     return this.userSubject.value;
   }
 

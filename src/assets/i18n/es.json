@@ -80,7 +80,8 @@
     "enter-passward": "Ingresar su contraseña",
     "hi": "Hola!",
     "log-in": "Ingresar",
-    "register": "Aún no está registrado?"
+    "register": "Aún no está registrado?",
+    "success-register": "Registro exitoso"
   },
   "projects": {
     "title": "Proyectos",
@@ -95,7 +96,8 @@
     "enter-code": "Ingrese un código",
     "code-required": "El código es requerido",
     "confirm": "Confirmación",
-    "confirm-body": "¿Desea salir de la creación de proyectos?"
+    "confirm-body": "¿Desea salir de la creación de proyectos?",
+    "success-create": "Project {{project}} Created Successfully"
   },
   "home": {
     "title": "Inicio"
