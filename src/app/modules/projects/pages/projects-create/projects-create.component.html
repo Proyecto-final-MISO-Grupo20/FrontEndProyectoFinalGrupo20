@@ -16,7 +16,7 @@
           [style]="{ width: '22.5rem' }"
           pInputText
           id="name"
-          formControlName="name"
+          formControlName="nombre"
           placeholder=" {{ 'projects.enter-name' | transloco }} "
         />
         <p-message
@@ -53,7 +53,7 @@
           cols="30"
           [style]="{ width: '22.5rem' }"
           pInputTextarea
-          formControlName="description"
+          formControlName="descripcion"
           placeholder=" {{ 'projects.enter-description' | transloco }} "
         ></textarea>
       </div>
@@ -67,7 +67,7 @@
           [style]="{ width: '22.5rem' }"
           pInputText
           id="code"
-          formControlName="code"
+          formControlName="codigo"
           placeholder=" {{ 'projects.enter-code' | transloco }} "
         />
         <p-message
@@ -93,6 +93,7 @@
         [style]="{ width: '22.5rem' }"
         type="submit"
         [disabled]="!projectCreateForm.valid"
+        [loading]="loading"
       ></p-button>
 
       <p-button
@@ -130,7 +131,7 @@
 
     <p-button
       severity="danger"
-      icon="pi pi-check"
+      icon="pi pi-times"
       (click)="setShowConfirmDialog(false)"
       label="{{ 'cancel' | transloco }}"
       styleClass="p-button-text"

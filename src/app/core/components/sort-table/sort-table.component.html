@@ -13,12 +13,11 @@
   <ng-template pTemplate="caption" *ngIf="header">
     <div class="header-container">
       <h3>{{ header | transloco }}</h3>
-      <div class="actions__button actions__button--blue">
-        <i
-          [routerLink]="'/projects/create'"
-          class="pi pi-plus"
-          style="color: #fff; font-size: 1.2rem"
-        ></i>
+      <div
+        class="actions__button actions__button--blue"
+        [routerLink]="'/projects/create'"
+      >
+        <i class="pi pi-plus" style="color: #fff; font-size: 1.2rem"></i>
       </div>
     </div>
   </ng-template>

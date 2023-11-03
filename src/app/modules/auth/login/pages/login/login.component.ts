@@ -12,6 +12,7 @@ import { UiModule } from 'ui';
 import { LoginService } from '../../services/login.service';
 import { typeUsersData } from 'src/app/core/utils/type-users';
 import { Router } from '@angular/router';
+import { Keys } from 'src/app/core/utils/keys';
 
 @Component({
   selector: 'app-login',
@@ -52,19 +53,19 @@ export class LoginComponent implements OnInit {
       error: (error) => {
         this.errorMessage = error.error.error;
 
-        setTimeout(() => (this.errorMessage = undefined), 2000);
+        setTimeout(() => (this.errorMessage = undefined), 3000);
       },
     });
   }
 
   setUserName() {
-    this.username = localStorage.getItem('[Register] username');
-    localStorage.removeItem('[Register] username');
+    this.username = localStorage.getItem(Keys.REGISTER_COMPLETE);
 
     if (this.username) {
       this.successRegister = true;
 
-      setTimeout(() => (this.successRegister = false), 2000);
+      setTimeout(() => (this.successRegister = false), 3000);
+      localStorage.removeItem(Keys.REGISTER_COMPLETE);
     }
   }
 

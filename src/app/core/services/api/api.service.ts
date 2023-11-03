@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, first } from 'rxjs';
 import { SessionService } from '../session/session.service';
 
 @Injectable({
@@ -12,15 +12,19 @@ export class ApiService<T> {
   #session = inject(SessionService);
 
   get(uri: string): Observable<T> {
-    return this.#http.get<T>(`${this.#apiUrl}/${uri}`, {
-      headers: this.#makeHttpHeaders(),
-    });
+    return this.#http
+      .get<T>(`${this.#apiUrl}/${uri}`, {
+        headers: this.#makeHttpHeaders(),
+      })
+      .pipe(first());
   }
 
   post(uri: string, body?: T) {
-    return this.#http.post<T>(`${this.#apiUrl}/${uri}`, body, {
-      headers: this.#makeHttpHeaders(),
-    });
+    return this.#http
+      .post<T>(`${this.#apiUrl}/${uri}`, body, {
+        headers: this.#makeHttpHeaders(),
+      })
+      .pipe(first());
   }
 
   #makeHttpHeaders(): HttpHeaders {

@@ -6,7 +6,7 @@
   }
 
   &-container {
-    @include abstracts.flexbox(column, space-evenly, center, 0);
+    @include abstracts.flexbox(column, space-evenly, center, 1rem);
   }
 
   &-title {

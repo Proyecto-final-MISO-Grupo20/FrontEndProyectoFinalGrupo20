@@ -19,6 +19,7 @@ import {
 } from '../../utils/candidate-form-validators';
 import { map } from 'rxjs';
 import { Router } from '@angular/router';
+import { Keys } from '../../../../../core/utils/keys';
 
 @Component({
   selector: 'app-register-candidate-form',
@@ -165,7 +166,7 @@ export class RegisterCandidateFormComponent implements OnInit {
         .subscribe({
           next: ({ username }) => {
             if (username) {
-              localStorage.setItem('[Register] username', username);
+              localStorage.setItem(Keys.REGISTER_COMPLETE, username);
               this.router.navigate(['/auth/login']);
             }
           },

@@ -14,11 +14,11 @@ import { businessIdentificationTypes } from '../../../../../core/utils/identific
 import { RegisterService } from '../../services/register.service';
 import { RegisterBusinessSteps } from '../../utils/register-business-steps';
 import { cities } from '../../utils/cities';
-import { businessType } from '../../utils/businessType';
-import { businessSegment } from '../../utils/businessSegment';
 import { passwordMatchValidator } from '../../utils/candidate-form-validators';
-import { map } from 'rxjs';
+import { map, tap } from 'rxjs';
 import { Router } from '@angular/router';
+import { BusinessType } from '../../models/business-type';
+import { BusinessSegment } from '../../models/business-segments';
 
 @Component({
   selector: 'app-register-business-form',
@@ -40,6 +40,9 @@ export class RegisterBusinessFormComponent implements OnInit {
   router = inject(Router);
   error!: string | null;
 
+  businessTypes!: BusinessType[];
+  businessSegments!: BusinessSegment[];
+
   // Event
   @Output() backToMainForm = new EventEmitter();
 
@@ -52,14 +55,6 @@ export class RegisterBusinessFormComponent implements OnInit {
 
   get cities() {
     return cities;
-  }
-
-  get businessType() {
-    return businessType;
-  }
-
-  get businessSegment() {
-    return businessSegment;
   }
 
   get businessIdentificationTypesData() {
@@ -96,9 +91,13 @@ export class RegisterBusinessFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.currentStep = this.steps.personalInformation;
+
     this.setStepItems();
     this.initializeForm();
     this.listenFormChanges();
+
+    this.getBusinessTypes();
+    this.getBusinessSegments();
   }
 
   initializeForm() {
@@ -192,15 +191,31 @@ export class RegisterBusinessFormComponent implements OnInit {
           }
 
           if (changes.tipoEmpresaId) {
-            changes.tipoEmpresaId = changes.tipoEmpresaId.code;
+            changes.tipoEmpresaId = changes.tipoEmpresaId.id;
           }
 
           if (changes.segmentoId) {
-            changes.segmentoId = changes.segmentoId.code;
+            changes.segmentoId = changes.segmentoId.id;
           }
 
           return changes;
         })
+      )
+      .subscribe();
+  }
+
+  getBusinessTypes() {
+    this.registerBusinessService
+      .getBusinessTypes()
+      .pipe(tap((businessTypes) => (this.businessTypes = businessTypes)))
+      .subscribe();
+  }
+
+  getBusinessSegments() {
+    this.registerBusinessService
+      .getBusinessSegments()
+      .pipe(
+        tap((businessSegments) => (this.businessSegments = businessSegments))
       )
       .subscribe();
   }
