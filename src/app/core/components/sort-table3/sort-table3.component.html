@@ -73,7 +73,7 @@
   position="center"
 >
   <ng-template pTemplate="header">
-    <span class="text-xl font-bold">{{ 'profiles.add-tool' | transloco }}</span>
+    <span style="font-size: large; font-weight: bolder;" class="text-xl font-bold">{{ 'profiles.add-tool' | transloco }}</span>
   </ng-template>
   <form [formGroup]="registerForm"
         class="register__form">
@@ -81,11 +81,11 @@
           optionLabel="Tool"
           [style]="{ width: '22.5rem'}"
           formControlName="toolName"
-          placeholder="{{ 'register.select-tool-name' | transloco }} "
+          placeholder="{{ 'profiles.select-tool-name' | transloco }} "
         ></p-dropdown>
-        <p class="tool-text">
-          Nivel de dominio requerido
-        </p>
+        <p>
+        <span style="font-size: large;" class="text-xl font-bold">{{ 'profiles.tool-domain' | transloco }}</span>
+      </p>
         <div 
         class="action-plus-minus"> 
         <div class="actions__button actions__button--blue"
@@ -110,7 +110,7 @@
   <ng-template pTemplate="footer">
     <p-button
       icon="pi pi-check"
-      label="{{ 'profile.accept' | transloco }}"
+      label="{{ 'profiles.accept' | transloco }}"
       styleClass="p-button-text"
       (onClick)="addData()"
     ></p-button>

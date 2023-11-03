@@ -131,11 +131,26 @@
     "name-required": "El nombre del perfil es requerido",
     "name-min-length": "El nombre debe tener mínimo 3 carácteres",
     "tools": "Manejo de Herramientas requeridas",
+    "tool-domain": "Nivel de dominio requerido",
     "list-tools": "Lista de Herramientas",
     "skills": "Habilidades requeridas",
     "list-skills": "Lista de Habilidades",
+    "skillName": "Nombre de la habilidad",
+    "skill": "Habilidad",
+    "add-skill": "Agregar habilidad requerida",
+    "select-skill-name": "Seleccione una habilidad",
+    "skillType": "Tipo de habilidad",
+    "select-skill-type": "Seleccione el tipo de habilidad",
+    "accept": "Aceptar",
+    "add-tool": "Agregar herramienta requerida",
+    "select-tool-name": "Seleccione el nombre de la habilidad",
     "languages": "Idiomas requeridas",
     "list-languages": "Lista de Idiomas",
+    "add-language": "Agregar idioma requerido",
+    "select-language-name": "Seleccione un idioma",
+    "language-domain": "Nivel de dominio requerido",
+    
+
     
     
     "identification": "Identificación",
