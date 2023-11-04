@@ -118,6 +118,8 @@
     "enter-email": "Ingrese el Correo Electrónico del empleado",
     "email-required": "El correo electrónico es requerido",
     "email-min-length": "El email debe tener mínimo 3 carácteres",
+    "employees-to-project": "Asignar proyecto a empleado",
+    "select-project": "Seleccionar proyecto",
     
     "confirm": "Confirmación",
     "confirm-body": "¿Desea salir de la creación de empleados?"

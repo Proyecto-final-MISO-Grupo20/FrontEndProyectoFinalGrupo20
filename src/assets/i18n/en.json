@@ -118,6 +118,8 @@
     "enter-email": "Enter employee email",
     "email-required": "Email is required",
     "email-min-length": "Minimum email length is 3 characters",
+    "employees-to-project": "Assign project to employee",
+    "select-project": "Select project",
     
     "confirm": "Confirm",
     "confirm-body": "Are you sure you want to exit from the employees creation?"
