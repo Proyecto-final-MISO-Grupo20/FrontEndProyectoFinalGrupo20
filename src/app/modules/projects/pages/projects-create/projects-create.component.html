@@ -88,6 +88,13 @@
         ></p-message>
       </div>
 
+      <p-message
+        [style]="{ width: '22.5rem' }"
+        severity="error"
+        *ngIf="errorMessage"
+        text="{{ errorMessage }}"
+      ></p-message>
+
       <p-button
         label="{{ 'create' | transloco }}"
         [style]="{ width: '22.5rem' }"

@@ -29,6 +29,7 @@ export class LoginComponent implements OnInit {
   successRegister = false;
   router = inject(Router);
   loading = false;
+  sessionError!: string | null;
 
   get typeUsersData() {
     return typeUsersData;
@@ -38,6 +39,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.setUserName();
+    this.setSessionExpiredError();
     this.initializeForm();
   }
 
@@ -76,5 +78,9 @@ export class LoginComponent implements OnInit {
 
   navigateToRegister() {
     this.router.navigateByUrl('auth/register');
+  }
+
+  setSessionExpiredError() {
+    this.sessionError = localStorage.getItem(Keys.TOKEN_EXPIRED);
   }
 }

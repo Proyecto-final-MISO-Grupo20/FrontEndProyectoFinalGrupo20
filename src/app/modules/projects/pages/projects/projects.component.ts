@@ -36,8 +36,6 @@ export class ProjectsComponent implements OnInit {
   setSuccessCreated() {
     this.createdProject = localStorage.getItem(Keys.CREATE_PROJECT_COMPLETE);
 
-    console.log(this.createdProject, 'juj');
-
     if (this.createdProject) {
       this.successCreate = true;
 

@@ -39,6 +39,13 @@
           text="{{ 'login.success-register' | transloco }}"
         ></p-message>
 
+        <p-message
+          *ngIf="sessionError"
+          [style]="{ width: '22.5rem' }"
+          severity="error"
+          text="{{ 'login.session-expired' | transloco }}"
+        ></p-message>
+
         <div class="p-field p-grid">
           <label for="username" class="p-col-12 p-md-3">Username</label>
           <div class="p-col-12 p-md-9">

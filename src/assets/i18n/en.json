@@ -81,7 +81,8 @@
     "hi": "Hi!",
     "log-in": "Log in",
     "register": "Not registered?",
-    "success-register": "Registered Successfully"
+    "success-register": "Registered Successfully",
+    "session-expired": "Session Expired"
   },
   "projects": {
     "title": "Projects",

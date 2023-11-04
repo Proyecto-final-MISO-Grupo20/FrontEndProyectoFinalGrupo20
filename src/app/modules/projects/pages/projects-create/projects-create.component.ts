@@ -56,7 +56,7 @@ export class ProjectsCreateComponent implements OnInit {
       },
       error: (error) => {
         this.loading = false;
-        this.errorMessage = error.error.error;
+        this.errorMessage = error.error.detail.msg;
 
         setTimeout(() => (this.errorMessage = undefined), 3000);
       },
