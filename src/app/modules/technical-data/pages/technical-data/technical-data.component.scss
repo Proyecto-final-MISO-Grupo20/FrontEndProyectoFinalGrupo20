@@ -1,0 +1,15 @@
+@use '/src/styles/abstracts';
+
+.technical-data {
+  &-wrapper {
+    padding-top: 3rem;
+  }
+
+  &-container {
+    @include abstracts.flexbox(column, space-evenly, center, 1rem);
+  }
+
+  &-title {
+    color: abstracts.$primary;
+  }
+}

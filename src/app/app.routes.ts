@@ -28,6 +28,15 @@ export const appRoutes: Route[] = [
       ),
   },
   {
+    path: 'technical-data',
+    title: 'ABC Jobs | Technical Data',
+    canActivate: [authGuard],
+    loadChildren: () =>
+      import('./modules/technical-data/technical-data.routes').then(
+        (routes) => routes.technicalDataRoutes
+      ),
+  },
+  {
     path: '**',
     redirectTo: 'auth',
   },

@@ -111,6 +111,9 @@
   "employees": {
     "title": "Empleados"
   },
+  "technical-data": {
+    "title": "Información Técnica"
+  },
   "next": "Siguiente",
   "cancel": "Cancelar",
   "previous": "Volver",

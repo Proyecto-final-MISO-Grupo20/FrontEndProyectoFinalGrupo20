@@ -21,12 +21,11 @@ export class AppComponent implements OnInit {
 
   urlChange$!: VoidFunction;
   isAuthRoute = false;
-  headerBusinessList!: string[];
 
   get headerList(): string[] {
     return this.session.getUser().rol === Roles.BUSINESS
-      ? this.headerBusinessList
-      : [];
+      ? this.getHeaderBusinessList()
+      : this.getHeaderCandidateList();
   }
 
   ngOnInit(): void {
@@ -38,12 +37,10 @@ export class AppComponent implements OnInit {
   }
 
   getHeaderBusinessList() {
-    this.headerBusinessList = [
-      'home',
-      'projects',
-      'interviews',
-      'tests',
-      'employees',
-    ];
+    return ['home', 'projects', 'interviews', 'tests', 'employees'];
+  }
+
+  getHeaderCandidateList() {
+    return ['home', 'technical-data'];
   }
 }
