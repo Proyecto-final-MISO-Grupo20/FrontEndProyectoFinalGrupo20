@@ -113,7 +113,9 @@
     "title": "Empleados"
   },
   "technical-data": {
-    "title": "Información Técnica"
+    "title": "Información Técnica",
+    "habilities": "Habilidades",
+    "tools": "Herramientas"
   },
   "next": "Siguiente",
   "cancel": "Cancelar",
