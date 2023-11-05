@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { mockData } from '../utils/mock-data';
+import { mockData_project } from '../utils/mock-data';
 import { of } from 'rxjs';
 
 @Injectable({
@@ -7,6 +7,6 @@ import { of } from 'rxjs';
 })
 export class ProjectsService {
   getProjects() {
-    return of(mockData);
+    return of(mockData_project);
   }
 }

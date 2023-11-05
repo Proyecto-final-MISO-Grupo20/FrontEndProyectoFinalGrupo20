@@ -32,7 +32,20 @@
   @include abstracts.flexbox(row, space-evenly, center, 0);
 }
 
+.action-plus-minus {
+  @include abstracts.flexbox(normal, normal, center, 1rem);
+}
+
+.tool-text {
+  padding-top: 2rem;
+}
+
+.header {
+  text-align: center;
+}
+
 .text-xl {
   font-size: medium;
   font-style: bold;
 }
+

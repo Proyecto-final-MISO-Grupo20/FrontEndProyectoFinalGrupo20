@@ -27,8 +27,8 @@
   </ng-template>
   <ng-template pTemplate="header">
     <tr>
-      <th class = "header" *ngFor="let column of columns">{{ column }}</th>
-      <th class = "header">Actions</th>
+      <th class = "header" *ngFor="let column of columns">{{ "profiles."+column | transloco }}</th>
+      <th class = "header">{{ "profiles."+"actions" | transloco }}</th>
     </tr>
   </ng-template>
   <ng-template pTemplate="body" let-data>

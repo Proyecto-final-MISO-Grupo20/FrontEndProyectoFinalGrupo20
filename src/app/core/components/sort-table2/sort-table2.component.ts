@@ -5,6 +5,8 @@ import { RatingModule } from 'primeng/rating';
 import { LanguageModule } from 'language';
 import { IncrementalStateKind } from '@angular/compiler-cli/src/ngtsc/incremental';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+// eslint-disable-next-line @nx/enforce-module-boundaries
+import { mockData_project } from 'src/app/modules/projects/utils/mock-data';
 
 @Component({
   selector: 'app-sort-table2',
@@ -19,6 +21,9 @@ export class SortTable2Component implements OnInit {
   @Input() data!: any[];
   registerForm!: FormGroup;
   formBuilder = inject(FormBuilder);
+  @Input() mockData_project!: any[];
+  currentEmployee: any;
+
 
   columns!: string[];
   showConfirmDialog = false;
@@ -36,6 +41,7 @@ export class SortTable2Component implements OnInit {
     this.setColumns();
     this.checkScreenWidth();
     this.initializeForm();
+    this.mockData_project = mockData_project;
   }
 
   initializeForm() {
@@ -67,13 +73,22 @@ export class SortTable2Component implements OnInit {
     }
   }
 
-  addData() { console.log(this.registerForm.value)
-    this.data = [...this.data, 
-      {
-      Project: this.registerForm.value.toolName.Tool,
-      
-    }]
-    this.setShowConfirmDialog(false)
-    this.registerForm.reset()
+  addData() {
+    // Find the current employee and update the project
+    const foundIndex = this.data.findIndex(employee => employee.email === this.currentEmployee.email);
+    if (foundIndex !== -1) {
+      this.data[foundIndex].project.push(this.registerForm.value.project.name);
+      this.data[foundIndex]={...this.data[foundIndex]}
+      // Assign the updated data back to trigger change detection
+      this.data = [...this.data];
+    }
+    this.registerForm.reset();
+    this.setShowConfirmDialog(false);
+  }
+
+  setCurrentEmployee(employee:any) {
+    this.currentEmployee=employee;
+    console.log(employee, "Hola")
+
   }
 }

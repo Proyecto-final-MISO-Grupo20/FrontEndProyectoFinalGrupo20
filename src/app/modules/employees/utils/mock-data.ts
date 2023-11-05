@@ -27,5 +27,19 @@ export const mockData = [
     rol: ['Ingeniero D'],
     project: [],
   },
+  {
+    name: 'Employee 5',
+    document: '1049786434',
+    email: 'emailprueba4@gmail.com',
+    rol: ['Ingeniero D'],
+    project: [],
+  },
+  {
+    name: 'Employee 6',
+    document: '1049786434',
+    email: 'emailprueba4@gmail.com',
+    rol: ['Ingeniero D'],
+    project: [],
+  },
  
 ];

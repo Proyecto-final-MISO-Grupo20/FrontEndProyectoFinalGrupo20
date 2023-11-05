@@ -26,13 +26,15 @@
   </ng-template>
   <ng-template pTemplate="header">
     <tr>
-      <th class = "header" *ngFor="let column of columns">{{ column }}</th>
-      <th class = "header">Actions</th>
+      <th class = "header" *ngFor="let column of columns">{{ "employees."+column | transloco }}</th>
+      
+      <th class = "header">{{ "employees."+"actions" | transloco }}</th>
     </tr>
   </ng-template>
-  <ng-template pTemplate="body" let-data>
+  <ng-template pTemplate="body" let-data let-index>
     <tr>
-      <td *ngFor="let column of columns">
+      <td *ngFor="let column of columns; let index = index">
+        
         <div *ngIf="column !== 'profiles'">
           {{ data[column] }}
         </div>
@@ -49,20 +51,25 @@
           </div>
         </div>
       </td>
-      <td>
-        <div class="actions-container">
-          <div class="actions__button actions__button--blue">
-            <i
-              class="pi pi-check-circle"
-              style="color: #fff; font-size: 1.2rem"
-              (click)="setShowConfirmDialog(true)"
-            ></i>
+      
+        <td>
+         
+          <div class="actions-container">
+            <div class="actions__button actions__button--blue">
+              <i
+                class="pi pi-check-circle"
+                style="color: #fff; font-size: 1.2rem"
+                (click)="setShowConfirmDialog(true); setCurrentEmployee(index)"
+              ></i>
+            </div>
+            <div class="actions__button actions__button--red">
+              <i class="pi pi-trash" style="color: #fff; font-size: 1.2rem"></i>
+            </div>
           </div>
-          <div class="actions__button actions__button--red">
-            <i class="pi pi-trash" style="color: #fff; font-size: 1.2rem"></i>
-          </div>
-        </div>
-      </td>
+        
+        </td>
+
+      
     </tr>
   </ng-template>
 
@@ -79,7 +86,7 @@
   header="Header"
   [(visible)]="showConfirmDialog"
   [breakpoints]="{ '960px': '75vw' }"
-  [style]="{ width: '50vw' }"
+  [style]="{ width: '50vw', height: '20rem'}"
   [draggable]="false"
   [resizable]="false"
   position="center"
@@ -89,10 +96,10 @@
   </ng-template>
   <form [formGroup]="registerForm"
         class="register__form">
-        <p-dropdown [options]="data"
-          optionLabel="Project"
+        <p-dropdown [options]="mockData_project"
+          optionLabel="name"
           [style]="{ width: '22.5rem'}"
-          formControlName="projectName"
+          formControlName="project"
           placeholder="{{ 'employees.select-project' | transloco }} "
         ></p-dropdown>
       </form>

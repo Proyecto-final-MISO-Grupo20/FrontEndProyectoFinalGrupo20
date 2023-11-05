@@ -102,6 +102,9 @@
     "list": "Employees List",
     "create": "Create Employee",
     "name": "Name",
+    "document": "Document",
+    "project": "Project",
+    "actions": "Actions",
     "enter-name": "Enter employees name",
     "name-required": "Name is required",
     "name-min-length": "Minimum name length is 3 characters",
@@ -110,7 +113,7 @@
     "identification-required": "Identification type is required",
     "identification-min-length": "Minimum identification length is 3 characters",
     "identificationType-required": "Identification type is required",
-    "rol": "Rol",
+    "rol": "Role",
     "enter-rol": "Enter rol",
     "rol-required": "Identification type is required",
     "rol-min-length": "Minimum identification length is 3 characters",
@@ -151,6 +154,12 @@
     "add-language": "Add required language",
     "select-language-name": "Select a language",
     "language-domain": "Required domain level",
+    "Tool": "Tool",
+    "Domain": "Domain",
+    "actions": "Actions",
+    "Skill": "Skill",
+    "Type": "Type",
+    "Language": "Language",
    
     
 
