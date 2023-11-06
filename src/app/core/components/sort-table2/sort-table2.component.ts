@@ -55,6 +55,10 @@ export class SortTable2Component implements OnInit {
     this.mockData_project = mockData_project;
   }
 
+  ngOnChanges() {
+    this.setColumns();
+  }
+
   initializeForm() {
     this.registerForm = this.formBuilder.group({
       project: ['', Validators.required],
@@ -79,7 +83,7 @@ export class SortTable2Component implements OnInit {
   }
 
   setColumns() {
-    if (this.data.length > 0) {
+    if (this.data && this.data.length > 0) {
       this.columns = Object.keys(this.data[0]);
     }
   }

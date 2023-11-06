@@ -105,13 +105,11 @@
     "list": "Lista de Empleados de la Empresa",
     "create": "Crear Empleado",
     "name": "Nombre",
-    "document": "Documento",
-    "project": "Proyecto",
-    "actions": "Acciones",
     "enter-name": "Ingrese el nombre del empleado",
     "name-required": "El nombre es requerido",
     "name-min-length": "El nombre debe tener mínimo 3 carácteres",
     "identification": "Identificación",
+    "identificationType": "Tipo",
     "enter-identification": "Ingrese identificación del empleado",
     "identification-required": "La identification es requerida",
     "identification-min-length": "La identificación debe tener mínimo 3 carácteres",
@@ -124,11 +122,14 @@
     "enter-email": "Ingrese el Correo Electrónico del empleado",
     "email-required": "El correo electrónico es requerido",
     "email-min-length": "El email debe tener mínimo 3 carácteres",
-    "employees-to-project": "Asignar proyecto a empleado",
-    "select-project": "Seleccionar proyecto",
+    "email-format-error": "No es un email válido",
 
     "confirm": "Confirmación",
-    "confirm-body": "¿Desea salir de la creación de empleados?"
+    "confirm-body": "¿Desea salir de la creación de empleados?",
+    "nombre": "Nombre",
+    "cargo": "Cargo",
+    "documento": "Documento",
+    "actions": "Acciones"
   },
   "profiles": {
     "title": "Creación de perfil para el proyecto",

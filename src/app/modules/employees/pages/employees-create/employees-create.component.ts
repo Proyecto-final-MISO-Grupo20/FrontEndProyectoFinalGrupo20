@@ -12,6 +12,7 @@ import { UiModule } from 'ui';
 import { Router } from '@angular/router';
 import { identificationTypes } from 'src/app/core/utils/identification-types';
 import { EmployeesService } from '../../services/employees.service';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-employees-create',
@@ -37,24 +38,24 @@ export class EmployeesCreateComponent implements OnInit {
     return identificationTypes;
   }
 
-  get registerFormValid(): boolean | undefined {
-    const step1Validation =
-      this.employeeCreateForm.get('name')?.valid &&
-      this.employeeCreateForm.get('identificationType')?.valid &&
-      this.employeeCreateForm.get('identification')?.valid &&
-      this.employeeCreateForm.get('rol')?.valid &&
-      this.employeeCreateForm.get('email')?.valid;
-
-    return step1Validation;
-  }
-
   ngOnInit(): void {
     this.initializeForm();
+
+    this.employeeCreateForm.valueChanges
+      .pipe(
+        map((changes) => {
+          if (changes.tipo_documento) {
+            changes.tipo_documento = changes.tipo_documento.code;
+          }
+          return changes;
+        })
+      )
+      .subscribe();
   }
 
   initializeForm() {
     this.employeeCreateForm = this.formBuilder.group({
-      name: [
+      nombre: [
         '',
         [
           Validators.required,
@@ -62,18 +63,22 @@ export class EmployeesCreateComponent implements OnInit {
           Validators.maxLength(50),
         ],
       ],
-      identificationType: [null, Validators.required],
-      identification: [
+      tipo_documento: [null, Validators.required],
+      documento: [
         '',
-        Validators.required,
-        Validators.minLength(3),
-        Validators.maxLength(50),
+        [
+          Validators.required,
+          Validators.minLength(3),
+          Validators.maxLength(50),
+        ],
       ],
-      rol: [
+      cargo: [
         '',
-        Validators.required,
-        Validators.minLength(3),
-        Validators.maxLength(50),
+        [
+          Validators.required,
+          Validators.minLength(3),
+          Validators.maxLength(50),
+        ],
       ],
       email: [
         '',
@@ -81,14 +86,19 @@ export class EmployeesCreateComponent implements OnInit {
           Validators.required,
           Validators.email,
           Validators.minLength(3),
-          Validators.maxLength(50),
+          Validators.maxLength(255),
         ],
       ],
     });
   }
 
   onSubmit() {
-    console.log(this.employeeCreateForm.value);
+    this.registerService
+      .createEmployee(this.employeeCreateForm.value)
+      .subscribe({
+        next: (res) => this.router.navigateByUrl('employees'),
+        error: (err) => console.error(err),
+      });
   }
 
   setShowConfirmDialog(show: boolean) {

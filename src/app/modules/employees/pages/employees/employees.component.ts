@@ -24,7 +24,16 @@ export class EmployeesComponent implements OnInit {
   getEmployees() {
     this.employeesService
       .getEmployees()
-      .pipe(tap((employees) => (this.employees = employees)))
+      .pipe(
+        tap((employees) => {
+          employees.forEach((employee: any) => {
+            delete employee.empresaId;
+            delete employee.id;
+            delete employee.tipo_documento;
+          });
+          this.employees = employees;
+        })
+      )
       .subscribe();
   }
 }
