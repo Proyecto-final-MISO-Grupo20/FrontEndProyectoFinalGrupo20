@@ -44,9 +44,14 @@ export class SortTableComponent implements OnInit {
     }
   }
 
+  ngOnChanges() {
+    this.setColumns();
+  }
+
   setColumns() {
-    if (this.data.length > 0) {
+    if (this.data && this.data.length > 0) {
       this.columns = Object.keys(this.data[0]);
+      console.log(this.columns);
     }
   }
 }

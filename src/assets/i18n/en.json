@@ -115,7 +115,8 @@
   "technical-data": {
     "title": "Technical Information",
     "habilities": "Habilities",
-    "tools": "Tools"
+    "tools": "Tools",
+    "empty": "Not associated skills"
   },
   "next": "Next",
   "cancel": "Cancel",

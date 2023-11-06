@@ -1,12 +1,26 @@
-import { Component, HostListener, Input, OnInit } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  HostListener,
+  Input,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UiModule } from 'ui';
 import { LanguageModule } from 'language';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-technical-data-table',
   standalone: true,
-  imports: [CommonModule, UiModule, LanguageModule],
+  imports: [
+    CommonModule,
+    UiModule,
+    LanguageModule,
+    ReactiveFormsModule,
+    FormsModule,
+  ],
   templateUrl: './technical-data-table.component.html',
   styleUrls: ['./technical-data-table.component.scss'],
 })
@@ -14,6 +28,10 @@ export class TechnicalDataTableComponent implements OnInit {
   // Input data
   @Input() header!: string;
   @Input() data!: any[];
+  @Input() tooltipData!: any[];
+  @Input() emptyMessage = 'technical-data.empty';
+
+  @Output() showConfirmDialog = new EventEmitter<boolean>();
 
   columns!: string[];
 
@@ -31,6 +49,10 @@ export class TechnicalDataTableComponent implements OnInit {
     this.checkScreenWidth();
   }
 
+  ngOnChanges() {
+    this.setColumns();
+  }
+
   checkScreenWidth(): void {
     this.isMobile = window.innerWidth <= 1115;
     this.setTableStyle();
@@ -45,8 +67,12 @@ export class TechnicalDataTableComponent implements OnInit {
   }
 
   setColumns() {
-    if (this.data.length > 0) {
+    if (this.data && this.data.length > 0) {
       this.columns = Object.keys(this.data[0]);
     }
+  }
+
+  setShowConfirmDialog(visible: boolean) {
+    this.showConfirmDialog.emit(visible);
   }
 }

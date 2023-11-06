@@ -11,7 +11,7 @@ export class ProjectsService {
   #api = inject(ApiService);
 
   getProjects() {
-    return of(mockData);
+    return this.#api.get('proyecto/list');
   }
 
   createProject(projectData: Project): Observable<Project> {

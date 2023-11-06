@@ -115,7 +115,8 @@
   "technical-data": {
     "title": "Información Técnica",
     "habilities": "Habilidades",
-    "tools": "Herramientas"
+    "tools": "Herramientas",
+    "empty": "No hay habilidades asociadas"
   },
   "next": "Siguiente",
   "cancel": "Cancelar",

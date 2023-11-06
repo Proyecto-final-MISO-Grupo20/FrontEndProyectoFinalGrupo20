@@ -1,7 +1,6 @@
 <p-table
   responsiveLayout="stack"
   [breakpoint]="'960px'"
-  *ngIf="data && columns"
   [paginator]="true"
   [rows]="5"
   currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
@@ -15,13 +14,13 @@
       <h3>{{ header | transloco }}</h3>
       <div
         class="actions__button actions__button--blue"
-        [routerLink]="'/projects/create'"
+        (click)="setShowConfirmDialog(true)"
       >
         <i class="pi pi-plus" style="color: #fff; font-size: 1.2rem"></i>
       </div>
     </div>
   </ng-template>
-  <ng-template pTemplate="header">
+  <ng-template pTemplate="header" *ngIf="data">
     <tr>
       <th *ngFor="let column of columns">{{ column }}</th>
       <th>Actions</th>
@@ -30,30 +29,22 @@
   <ng-template pTemplate="body" let-data>
     <tr>
       <td *ngFor="let column of columns">
-        <div *ngIf="column !== 'profiles'">
+        <div *ngIf="column !== 'dominio'">
           {{ data[column] }}
         </div>
 
-        <div class="numeric-column" *ngIf="column === 'profiles'">
-          {{ data[column].length }}
-          <div class="actions__button actions__button--blue">
-            <i
-              [class]="
-                data[column].length > 0 ? 'pi pi-eye' : 'pi pi-user-plus'
-              "
-              style="color: #fff; font-size: 1.2rem"
-            ></i>
-          </div>
+        <div class="numeric-column" *ngIf="column === 'dominio'">
+          <p-rating [ngModel]="data[column]" [cancel]="false"></p-rating>
         </div>
       </td>
       <td>
         <div class="actions-container">
-          <div class="actions__button actions__button--blue">
+          <!-- <div class="actions__button actions__button--blue">
             <i
               class="pi pi-arrow-circle-right"
               style="color: #fff; font-size: 1.2rem"
             ></i>
-          </div>
+          </div> -->
           <div class="actions__button actions__button--red">
             <i class="pi pi-trash" style="color: #fff; font-size: 1.2rem"></i>
           </div>
@@ -64,7 +55,9 @@
 
   <ng-template pTemplate="emptymessage">
     <tr>
-      <td>Write-EmptyMessage-Here</td>
+      <td>{{ emptyMessage | transloco }}</td>
     </tr>
   </ng-template>
 </p-table>
+
+<
