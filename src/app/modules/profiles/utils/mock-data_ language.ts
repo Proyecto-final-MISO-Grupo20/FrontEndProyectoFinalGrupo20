@@ -15,8 +15,4 @@ export const mockData_languages = [
     Language: 'Language 4',
     Domain: '3',
   },
-  {
-    Language: 'Language 5',
-    Domain: '4',
-  },
 ];
