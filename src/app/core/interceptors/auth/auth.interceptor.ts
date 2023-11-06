@@ -25,11 +25,13 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
 
   return next(req).pipe(
     catchError((err: HttpErrorResponse) => {
+      console.error(err);
       toastrService.error(
-        'Error',
-        err.error?.detail?.msg ||
+        err.message ||
+          err.error?.detail?.msg ||
           err.error?.error ||
-          'An unexpected error occurred, pleas try again later'
+          'An unexpected error occurred, pleas try again later',
+        'Error'
       );
 
       if (err && err.status === HttpStatusCode.Unauthorized) {
