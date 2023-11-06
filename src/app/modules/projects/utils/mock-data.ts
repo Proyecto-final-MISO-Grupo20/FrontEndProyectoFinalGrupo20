@@ -1,4 +1,4 @@
-export const mockData = [
+export const mockData_project = [
   {
     name: 'Project 1',
     description: 'Description of Project 1',

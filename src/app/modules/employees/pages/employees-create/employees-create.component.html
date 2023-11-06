@@ -1,0 +1,141 @@
+<div class="employees-create-wrapper">
+  <div class="employees-create-container">
+    <h1 class="employees-create-title">{{ 'employees.create' | transloco }}</h1>
+
+    <form class="employees-create__form" [formGroup]="employeeCreateForm" (ngSubmit)="onSubmit()">
+      <div class="form__input--label">
+        <!-- name -->
+        <label htmlFor="name">{{ 'employees.name' | transloco }}</label>
+        <input
+          [maxLength]="25"
+          [minlength]="3"
+          [style]="{ width: '22.5rem' }"
+          pInputText
+          id="name"
+          formControlName="name"
+          placeholder="{{ 'employees.enter-name' | transloco }}"
+        />
+        <p-message *ngIf="employeeCreateForm.get('name')?.hasError('required') && employeeCreateForm.get('name')?.touched"
+          severity="error"
+          text="{{ 'employees.name-required' | transloco }}">
+        </p-message>
+        <p-message *ngIf="employeeCreateForm.get('name')?.hasError('minlength')"
+          severity="error"
+          text="{{ 'employees.name-min-length' | transloco }}">
+        </p-message>
+      </div>
+
+<!-- identification -->
+
+      <div class="form__input--label">
+        <label htmlFor="identification">{{ 'employees.identification' | transloco }}</label>
+        <div class="identification-form">
+          <!-- identificationType -->
+          <p-dropdown 
+          placeholder="{{ 'employees.identification' | transloco }}" 
+          [options]="identificationTypes" 
+          optionLabel="name" 
+          formControlName="identificationType">
+        </p-dropdown>
+          <p-message 
+          *ngIf="employeeCreateForm.get('identificationType')?.hasError('required') && employeeCreateForm.get('identificationType')?.touched"
+          severity="error"
+          text="{{ 'employees.identificationType-required' | transloco }}">
+        </p-message>
+        <!-- identification -->
+          <input 
+          [style]="{ width: '15.5rem' }" 
+          pInputText id="identification" 
+          formControlName="identification" 
+          placeholder="{{ 'employees.enter-identification' | transloco }} ">
+          <p-message 
+          *ngIf="employeeCreateForm.get('identification')?.hasError('required') && employeeCreateForm.get('identification')?.touched"
+          severity="error"
+          text="{{ 'employees.identification-required' | transloco }}">
+        </p-message>
+        <p-message *ngIf="employeeCreateForm.get('identification')?.hasError('minlength')"
+          severity="error"
+          text="{{ 'employees.identification-min-length' | transloco }}">
+        </p-message>
+        </div>
+      </div>
+
+<!-- rol -->
+
+      <div class="form__input--label">
+        <label htmlFor="rol">{{ 'employees.rol' | transloco }}</label>
+        <input
+          id="rol"
+          [style]="{ width: '22.5rem' }"
+          pInputTextarea
+          formControlName="rol"
+          placeholder="{{ 'employees.enter-rol' | transloco }}">
+      </div>
+      <p-message 
+          *ngIf="employeeCreateForm.get('rol')?.hasError('required') && employeeCreateForm.get('rol')?.touched"
+          severity="error"
+          text="{{ 'employees.rol-required' | transloco }}">
+        </p-message>
+        <p-message 
+        *ngIf="employeeCreateForm.get('rol')?.hasError('maxlength') && employeeCreateForm.get('rol')?.touched"
+          severity="error"
+          text="{{ 'employees.rol--min-length' | transloco }}">
+        </p-message>
+
+  <!-- email -->
+
+      <div class="form__input--label">
+        <label htmlFor="email">{{ 'employees.email' | transloco }}</label>
+        <input
+          [maxLength]="25"
+          [minlength]="3"
+          [style]="{ width: '22.5rem' }"
+          pInputText
+          id="email"
+          formControlName="email"
+          placeholder="{{ 'employees.enter-email' | transloco }}">
+
+        <p-message 
+          *ngIf="employeeCreateForm.get('email')?.hasError('required') && employeeCreateForm.get('email')?.touched"
+          severity="error"
+          text="{{ 'employees.email-required' | transloco }}">
+        </p-message>
+        <p-message 
+        *ngIf="employeeCreateForm.get('email')?.hasError('maxlength') && employeeCreateForm.get('email')?.touched"
+          severity="error"
+          text="{{ 'employees.email--min-length' | transloco }}">
+        </p-message>
+      </div>
+
+      <!-- button -->
+
+      <div class="form__buttons">
+        <p-button label="{{ 'create' | transloco }}" [style]="{ width: '22.5rem' }" type="submit" [disabled]="!employeeCreateForm.valid"></p-button>
+      </div>
+
+      
+    </form><div class="form__buttons">
+        <p-button (onClick)="setShowConfirmDialog(true)" label="{{ 'cancel' | transloco }}" [style]="{ width: '22.5rem' }" severity="secondary"></p-button>
+      </div>
+  </div>
+</div>
+
+<p-dialog
+  header="Header"
+  [(visible)]="showConfirmDialog"
+  [breakpoints]="{ '960px': '75vw' }"
+  [style]="{ width: '50vw' }"
+  [draggable]="false"
+  [resizable]="false"
+  position="center"
+>
+  <ng-template pTemplate="header">
+    <span class="text-xl font-bold">{{ 'projects.confirm' | transloco }}</span>
+  </ng-template>
+  <p>
+    {{ 'projects.confirm-body' | transloco }}
+  </p>
+  <ng-template pTemplate="footer">
+    <p-button icon="pi pi-check" (click)="returnToEmployees()" label="{{ 'exit' | transloco }}" styleClass="p-button-text"></p-button>
+  </ng-template>
+</p-dialog>

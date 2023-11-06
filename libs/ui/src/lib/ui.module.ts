@@ -34,6 +34,7 @@ import { TagModule } from 'primeng/tag';
     DataViewModule,
     RatingModule,
     TagModule,
+    RatingModule,
   ],
   exports: [
     DropdownModule,
@@ -51,6 +52,7 @@ import { TagModule } from 'primeng/tag';
     DataViewModule,
     RatingModule,
     TagModule,
+    RatingModule,
   ],
 })
 export class UiModule {}

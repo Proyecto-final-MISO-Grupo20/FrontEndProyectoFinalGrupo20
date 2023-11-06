@@ -1,0 +1,28 @@
+@use '/src/styles/abstracts';
+
+.employees-create {
+  &-wrapper {
+    padding-top: 3rem;
+  }
+
+  &-container {
+    @include abstracts.flexbox(column, normal, center, 0);
+  }
+
+  &-title {
+    color: abstracts.$primary;
+    text-align: center;
+  }
+
+  &__form {
+    @include abstracts.flexbox(column, normal, center, 2rem);
+  }
+}
+
+.form {
+  &__input {
+    &--label {
+      @include abstracts.flexbox(column, normal, normal, 0.5rem);
+    }
+  }
+}
