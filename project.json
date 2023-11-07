@@ -103,6 +103,22 @@
       "options": {
         "buildTarget": "group20-frontend:build"
       }
+    },
+    "e2e": {
+      "executor": "@nx/cypress:cypress",
+      "options": {
+        "cypressConfig": "cypress.config.ts",
+        "testingType": "e2e",
+        "devServerTarget": "group20-frontend:serve"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "group20-frontend:serve:production"
+        },
+        "ci": {
+          "devServerTarget": "group20-frontend:serve-static"
+        }
+      }
     }
   }
 }
