@@ -1,5 +1,5 @@
 /* eslint-disable @nx/enforce-module-boundaries */
-import { Component, EventEmitter, Output, OnInit } from '@angular/core';
+import { Component, EventEmitter, Output, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { tap } from 'rxjs/operators'; // Importa 'operators' para usar tap
 import { LanguageModule } from 'language';
@@ -15,6 +15,7 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UiModule } from 'ui';
+import { PartialSkillsService } from '../../services/partial-skills/partial-skills.service';
 
 @Component({
   selector: 'app-profile',
@@ -32,9 +33,6 @@ import { UiModule } from 'ui';
   ],
 })
 export class ProfileComponent implements OnInit {
-  returnToProfiles() {
-    throw new Error('Method not implemented.');
-  }
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
@@ -47,14 +45,7 @@ export class ProfileComponent implements OnInit {
   skills: any[] = [];
   languages: any[] = [];
   error: string | null = null;
-
-  // Event
-  @Output() backToMainForm = new EventEmitter<void>();
-
-  get profileFormValid(): boolean | undefined {
-    const step1Validation = this.profileForm.get('name')?.valid;
-    return step1Validation;
-  }
+  partialSkillsService = inject(PartialSkillsService);
 
   ngOnInit(): void {
     this.getTools();
@@ -105,5 +96,9 @@ export class ProfileComponent implements OnInit {
       .getLanguages()
       .pipe(tap((languages) => (this.languages = languages)))
       .subscribe();
+  }
+
+  createProfile() {
+    console.log(this.partialSkillsService.getPartialTools(), 'partial tools');
   }
 }

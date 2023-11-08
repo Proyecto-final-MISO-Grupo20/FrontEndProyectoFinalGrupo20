@@ -1,8 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { mockData_tools } from '../utils/mock-data_tools';
-import { mockData_skills } from '../utils/mock-data_skills';
-import { mockData_languages } from '../utils/mock-data_ language';
+import { Observable } from 'rxjs';
 import { ApiService } from 'src/app/core/services/api/api.service';
 import { Skill } from '../../technical-data/models/skills';
 

@@ -1,9 +1,8 @@
 import { Component, HostListener, Input, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UiModule } from 'ui';
-import { RatingModule } from 'primeng/rating';
 import { LanguageModule } from 'language';
-import { IncrementalStateKind } from '@angular/compiler-cli/src/ngtsc/incremental';
+
 import {
   FormBuilder,
   FormGroup,
@@ -12,6 +11,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { AssignSkill } from 'src/app/modules/profiles/dtos/create-offer.dto';
+import { PartialSkillsService } from 'src/app/modules/profiles/services/partial-skills/partial-skills.service';
 
 @Component({
   selector: 'app-sort-table3',
@@ -30,6 +30,9 @@ export class SortTable3Component implements OnInit {
   // Input data
   @Input() header!: string;
   @Input() dialogData!: any[];
+
+  partialSkillsService = inject(PartialSkillsService);
+
   data: AssignSkill[] = [];
   registerForm!: FormGroup;
   formBuilder = inject(FormBuilder);
@@ -90,7 +93,6 @@ export class SortTable3Component implements OnInit {
   }
 
   addData() {
-    console.log(this.registerForm.value, this.toolDomain);
     this.data.push({
       skillName: this.registerForm.value.toolName.nombre,
       skill_id: this.registerForm.value.toolName.id,
@@ -102,6 +104,8 @@ export class SortTable3Component implements OnInit {
     this.setShowConfirmDialog(false);
     this.registerForm.reset();
     this.toolDomain = 1;
+
+    this.partialSkillsService.setPartialTools(this.data);
   }
 
   deleteData(data: any) {
@@ -110,5 +114,7 @@ export class SortTable3Component implements OnInit {
     );
 
     this.data.splice(index, 1);
+
+    this.partialSkillsService.setPartialTools(this.data);
   }
 }
