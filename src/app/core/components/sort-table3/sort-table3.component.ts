@@ -93,11 +93,13 @@ export class SortTable3Component implements OnInit {
   }
 
   addData() {
-    this.data.push({
+    const skill = {
       skillName: this.registerForm.value.toolName.nombre,
       skill_id: this.registerForm.value.toolName.id,
       dominio: this.toolDomain,
-    });
+    };
+
+    this.data.push(skill);
 
     this.setColumns();
 
@@ -105,7 +107,7 @@ export class SortTable3Component implements OnInit {
     this.registerForm.reset();
     this.toolDomain = 1;
 
-    this.partialSkillsService.setPartialTools(this.data);
+    this.partialSkillsService.pushPartialTool(skill);
   }
 
   deleteData(data: any) {
@@ -115,6 +117,6 @@ export class SortTable3Component implements OnInit {
 
     this.data.splice(index, 1);
 
-    this.partialSkillsService.setPartialTools(this.data);
+    this.partialSkillsService.removePartialTool(data);
   }
 }

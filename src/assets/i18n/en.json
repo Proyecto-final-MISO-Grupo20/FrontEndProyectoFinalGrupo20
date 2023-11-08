@@ -98,7 +98,8 @@
     "code-required": "Code is required",
     "confirm": "Confirm",
     "confirm-body": "Are you sure you want to exit from the projects creation?",
-    "success-create": "Proyecto {{project}} Creado Correctamente"
+    "success-create": "Project {{project}} Created Successfully",
+    "success-create-offer": "Profile {{profile}} Created Successfully"
   },
   "employees": {
     "title": "Employees",

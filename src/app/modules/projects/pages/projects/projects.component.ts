@@ -20,10 +20,12 @@ export class ProjectsComponent implements OnInit {
   createdProject!: string | null;
   successCreate = false;
   projects!: any[];
+  successCreateOffer!: string | null;
 
   ngOnInit(): void {
     this.getProjects();
     this.setSuccessCreated();
+    this.setSucessCreatedOffer();
   }
 
   getProjects() {
@@ -50,5 +52,13 @@ export class ProjectsComponent implements OnInit {
       setTimeout(() => (this.successCreate = false), 3000);
       localStorage.removeItem(Keys.CREATE_PROJECT_COMPLETE);
     }
+  }
+
+  setSucessCreatedOffer() {
+    this.successCreateOffer = localStorage.getItem(Keys.CREATE_OFFER_COMPLETE);
+
+    setTimeout(() => (this.successCreateOffer = null), 3000);
+
+    localStorage.removeItem(Keys.CREATE_OFFER_COMPLETE);
   }
 }

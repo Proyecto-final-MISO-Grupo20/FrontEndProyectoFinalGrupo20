@@ -14,6 +14,18 @@ export class PartialSkillsService {
     this.#partialToolsSubject.next(tools);
   }
 
+  pushPartialTool(tool: AssignSkill) {
+    this.#partialToolsSubject.value.push(tool);
+  }
+
+  removePartialTool(toolToRemove: AssignSkill) {
+    const index = this.getPartialTools().findIndex(
+      (tool) => toolToRemove.skill_id === tool.skill_id
+    );
+
+    this.#partialToolsSubject.value.splice(index, 1);
+  }
+
   getPartialTools() {
     return this.#partialToolsSubject.value;
   }

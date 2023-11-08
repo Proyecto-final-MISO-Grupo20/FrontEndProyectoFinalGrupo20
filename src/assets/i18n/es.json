@@ -98,7 +98,8 @@
     "code-required": "El código es requerido",
     "confirm": "Confirmación",
     "confirm-body": "¿Desea salir de la creación de proyectos?",
-    "success-create": "Project {{project}} Created Successfully"
+    "success-create": "Proyecto {{project}} Creado Satisfactoriamente",
+    "success-create-offer": "Perfil {{profile}} Creado Satisfactoriamente"
   },
   "employees": {
     "title": "Empleados",

@@ -2,6 +2,10 @@ import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ApiService } from 'src/app/core/services/api/api.service';
 import { Skill } from '../../technical-data/models/skills';
+import {
+  CreateOfferDto,
+  CreateOfferResponseDto,
+} from '../dtos/create-offer.dto';
 
 @Injectable({
   providedIn: 'root',
@@ -19,5 +23,12 @@ export class ProfilesService {
 
   getLanguages() {
     return this.#api.get('skills/idiomas');
+  }
+
+  createOffer(
+    projectId: number,
+    offerData: CreateOfferDto
+  ): Observable<CreateOfferResponseDto> {
+    return this.#api.post(`offers/${projectId}`, offerData);
   }
 }

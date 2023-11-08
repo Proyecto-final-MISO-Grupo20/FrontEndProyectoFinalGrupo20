@@ -13,9 +13,11 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UiModule } from 'ui';
 import { PartialSkillsService } from '../../services/partial-skills/partial-skills.service';
+import { CreateOfferDto } from '../../dtos/create-offer.dto';
+import { Keys } from 'src/app/core/utils/keys';
 
 @Component({
   selector: 'app-profile',
@@ -46,12 +48,16 @@ export class ProfileComponent implements OnInit {
   languages: any[] = [];
   error: string | null = null;
   partialSkillsService = inject(PartialSkillsService);
+  activatedRoute = inject(ActivatedRoute);
+  projectId!: number;
 
   ngOnInit(): void {
     this.getTools();
     this.initializeForm();
     this.getSkills();
     this.getLanguages();
+
+    this.projectId = this.activatedRoute.snapshot.params['projectId'];
   }
 
   initializeForm() {
@@ -99,6 +105,25 @@ export class ProfileComponent implements OnInit {
   }
 
   createProfile() {
-    console.log(this.partialSkillsService.getPartialTools(), 'partial tools');
+    const createOfferData: CreateOfferDto = {
+      perfil: this.profileForm.value.name,
+      skills: this.partialSkillsService.getPartialTools(),
+    };
+
+    this.profilesService
+      .createOffer(this.projectId, createOfferData)
+      .subscribe({
+        next: (res) => {
+          localStorage.setItem(
+            Keys.CREATE_OFFER_COMPLETE,
+            createOfferData.perfil
+          );
+
+          this.router.navigateByUrl('projects');
+        },
+        error: (err) => {
+          console.error(err);
+        },
+      });
   }
 }
