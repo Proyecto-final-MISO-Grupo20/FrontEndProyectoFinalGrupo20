@@ -12,5 +12,6 @@
 .tag {
   &-button {
     @include abstracts.hoverable();
+    background-color: salmon;
   }
 }

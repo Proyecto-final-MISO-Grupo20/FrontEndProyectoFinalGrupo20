@@ -16,18 +16,23 @@ export class CandidateDataViewComponent {
   @Input() data!: any;
   candidateHomeService = inject(CandidateHomeService);
 
-  ngOnInit() {
-    console.log(this.data, 'jjj');
-  }
-
   assignCandidateToOffer(offer: Offer) {
     this.candidateHomeService
       .assignCandidateToOffer({ ofertaId: offer.id })
       .subscribe({
         next: (res) => {
-          console.log(res);
+          offer.assigned = true;
+          console.log(offer);
         },
         error: (err) => (console.error = err),
       });
+  }
+
+  getAsignTagColor(offer: Offer) {
+    return offer.assigned && 'gray';
+  }
+
+  getAsignTagDetail(offer: Offer) {
+    return offer.assigned ? 'Aplicaste' : 'Aplicar';
   }
 }

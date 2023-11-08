@@ -26,10 +26,10 @@
             >
               <div (click)="assignCandidateToOffer(data)">
                 <p-tag
+                  [style]="{ 'background-color': getAsignTagColor(data) }"
                   class="tag-button"
                   icon="pi pi-check"
-                  severity="success"
-                  value="Aplicar"
+                  [value]="getAsignTagDetail(data)"
                 ></p-tag>
               </div>
 

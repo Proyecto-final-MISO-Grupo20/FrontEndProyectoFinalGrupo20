@@ -3,4 +3,5 @@ export interface Offer {
   estado: string;
   id: number;
   proyecto_id: number;
+  assigned?: boolean;
 }
