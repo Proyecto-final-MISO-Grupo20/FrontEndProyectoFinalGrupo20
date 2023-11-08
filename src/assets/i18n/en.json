@@ -166,7 +166,6 @@
     "Skill": "Skill",
     "Type": "Type",
     "Language": "Language",
-
     "identification": "Identification",
     "enter-identification": "Enter Employee Identification",
     "identification-required": "Identification type is required",
@@ -197,7 +196,10 @@
     "title": "Technical Information",
     "habilities": "Habilities",
     "tools": "Tools",
-    "empty": "Not associated skills"
+    "languages": "Languages",
+    "empty": "Not associated habilities",
+    "empty-tools": "Not associated tools",
+    "empty-languages": "Not associated languages"
   },
   "next": "Next",
   "cancel": "Cancel",
