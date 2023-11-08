@@ -98,7 +98,8 @@
     "code-required": "El código es requerido",
     "confirm": "Confirmación",
     "confirm-body": "¿Desea salir de la creación de proyectos?",
-    "success-create": "Project {{project}} Created Successfully"
+    "success-create": "Proyecto {{project}} Creado Satisfactoriamente",
+    "success-create-offer": "Perfil {{profile}} Creado Satisfactoriamente"
   },
   "employees": {
     "title": "Empleados",
@@ -160,11 +161,11 @@
     "language-domain": "Nivel de dominio requerido",
     "Tool": "Herramienta",
     "Domain": "Dominio",
+    "dominio": "Dominio",
     "actions": "Acciones",
     "Skill": "Habilidad",
     "Type": "Tipo",
     "Language": "Idioma",
-
     "identification": "Identificación",
     "enter-identification": "Ingrese identificación del empleado",
     "identification-required": "La identification es requerida",
@@ -195,7 +196,10 @@
     "title": "Información Técnica",
     "habilities": "Habilidades",
     "tools": "Herramientas",
-    "empty": "No hay habilidades asociadas"
+    "languages": "Idiomas",
+    "empty": "No hay habilidades asociadas",
+    "empty-tools": "No hay herramientas asociadas",
+    "empty-languages": "No hay idiomas asociados"
   },
   "next": "Siguiente",
   "cancel": "Cancelar",

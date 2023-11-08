@@ -51,7 +51,6 @@ export class SortTableComponent implements OnInit {
   setColumns() {
     if (this.data && this.data.length > 0) {
       this.columns = Object.keys(this.data[0]);
-      console.log(this.columns);
     }
   }
 }

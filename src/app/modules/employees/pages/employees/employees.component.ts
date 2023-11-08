@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { LanguageModule } from 'language';
 import { SortTable2Component } from '../../../../core/components/sort-table2/sort-table2.component';
 import { EmployeesService } from '../../services/employees.service';
-import { Observable, tap } from 'rxjs';
+import { Observable, filter, tap } from 'rxjs';
 
 @Component({
   selector: 'app-employees',
@@ -25,6 +25,7 @@ export class EmployeesComponent implements OnInit {
     this.employeesService
       .getEmployees()
       .pipe(
+        filter((employee) => !!employee),
         tap((employees) => {
           employees.forEach((employee: any) => {
             delete employee.empresaId;

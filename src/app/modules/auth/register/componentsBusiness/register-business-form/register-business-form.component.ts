@@ -108,8 +108,14 @@ export class RegisterBusinessFormComponent implements OnInit {
         nombre: ['', [Validators.required, Validators.maxLength(10)]],
         tipo_documento: ['', [Validators.required, Validators.maxLength(10)]],
         documento: ['', [Validators.required, Validators.maxLength(10)]],
-        ciudad: ['', [Validators.required, Validators.maxLength(255)]],
-        pais: ['', [Validators.required, Validators.maxLength(255)]],
+        ciudad: [
+          this.cities[0],
+          [Validators.required, Validators.maxLength(255)],
+        ],
+        pais: [
+          this.countries[0],
+          [Validators.required, Validators.maxLength(255)],
+        ],
         direccion: ['', [Validators.required, Validators.maxLength(10)]],
         tipoEmpresaId: ['', [Validators.required, Validators.maxLength(50)]],
         segmentoId: ['', [Validators.required, Validators.maxLength(255)]],

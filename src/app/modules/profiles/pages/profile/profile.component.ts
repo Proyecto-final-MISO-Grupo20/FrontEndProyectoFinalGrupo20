@@ -1,5 +1,5 @@
 /* eslint-disable @nx/enforce-module-boundaries */
-import { Component, EventEmitter, Output, OnInit } from '@angular/core';
+import { Component, EventEmitter, Output, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { tap } from 'rxjs/operators'; // Importa 'operators' para usar tap
 import { LanguageModule } from 'language';
@@ -13,8 +13,11 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UiModule } from 'ui';
+import { PartialSkillsService } from '../../services/partial-skills/partial-skills.service';
+import { CreateOfferDto } from '../../dtos/create-offer.dto';
+import { Keys } from 'src/app/core/utils/keys';
 
 @Component({
   selector: 'app-profile',
@@ -32,9 +35,6 @@ import { UiModule } from 'ui';
   ],
 })
 export class ProfileComponent implements OnInit {
-  returnToProfiles() {
-    throw new Error('Method not implemented.');
-  }
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
@@ -47,20 +47,17 @@ export class ProfileComponent implements OnInit {
   skills: any[] = [];
   languages: any[] = [];
   error: string | null = null;
-
-  // Event
-  @Output() backToMainForm = new EventEmitter<void>();
-
-  get profileFormValid(): boolean | undefined {
-    const step1Validation = this.profileForm.get('name')?.valid;
-    return step1Validation;
-  }
+  partialSkillsService = inject(PartialSkillsService);
+  activatedRoute = inject(ActivatedRoute);
+  projectId!: number;
 
   ngOnInit(): void {
     this.getTools();
     this.initializeForm();
     this.getSkills();
     this.getLanguages();
+
+    this.projectId = this.activatedRoute.snapshot.params['projectId'];
   }
 
   initializeForm() {
@@ -105,5 +102,28 @@ export class ProfileComponent implements OnInit {
       .getLanguages()
       .pipe(tap((languages) => (this.languages = languages)))
       .subscribe();
+  }
+
+  createProfile() {
+    const createOfferData: CreateOfferDto = {
+      perfil: this.profileForm.value.name,
+      skills: this.partialSkillsService.getPartialTools(),
+    };
+
+    this.profilesService
+      .createOffer(this.projectId, createOfferData)
+      .subscribe({
+        next: (res) => {
+          localStorage.setItem(
+            Keys.CREATE_OFFER_COMPLETE,
+            createOfferData.perfil
+          );
+
+          this.router.navigateByUrl('projects');
+        },
+        error: (err) => {
+          console.error(err);
+        },
+      });
   }
 }
