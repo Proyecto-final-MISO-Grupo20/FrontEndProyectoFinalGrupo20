@@ -4,8 +4,9 @@ const config: CapacitorConfig = {
   appId: 'com.example.app',
   appName: 'group20-frontend',
   webDir: 'dist/group20-frontend',
+  bundledWebRuntime: false, // Modify as needed
   server: {
-    androidScheme: 'https',
+    androidScheme: 'http',
     allowNavigation: [],
   },
   android: {

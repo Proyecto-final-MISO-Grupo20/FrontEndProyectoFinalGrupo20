@@ -1,9 +1,8 @@
 import { Component, HostListener, Input, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UiModule } from 'ui';
-import { RatingModule } from 'primeng/rating';
 import { LanguageModule } from 'language';
-import { IncrementalStateKind } from '@angular/compiler-cli/src/ngtsc/incremental';
+
 import {
   FormBuilder,
   FormGroup,
@@ -11,6 +10,8 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { AssignSkill } from 'src/app/modules/profiles/dtos/create-offer.dto';
+import { PartialSkillsService } from 'src/app/modules/profiles/services/partial-skills/partial-skills.service';
 
 @Component({
   selector: 'app-sort-table3',
@@ -28,7 +29,11 @@ import {
 export class SortTable3Component implements OnInit {
   // Input data
   @Input() header!: string;
-  @Input() data!: any[];
+  @Input() dialogData!: any[];
+
+  partialSkillsService = inject(PartialSkillsService);
+
+  data: AssignSkill[] = [];
   registerForm!: FormGroup;
   formBuilder = inject(FormBuilder);
 
@@ -75,7 +80,7 @@ export class SortTable3Component implements OnInit {
   }
 
   setColumns() {
-    if (this.data.length > 0) {
+    if (this.data && this.data.length > 0) {
       this.columns = Object.keys(this.data[0]);
     }
   }
@@ -88,16 +93,30 @@ export class SortTable3Component implements OnInit {
   }
 
   addData() {
-    console.log(this.registerForm.value);
-    this.data = [
-      ...this.data,
-      {
-        Tool: this.registerForm.value.toolName.Tool,
-        Domain: this.toolDomain,
-      },
-    ];
+    const skill = {
+      skillName: this.registerForm.value.toolName.nombre,
+      skill_id: this.registerForm.value.toolName.id,
+      dominio: this.toolDomain,
+    };
+
+    this.data.push(skill);
+
+    this.setColumns();
+
     this.setShowConfirmDialog(false);
     this.registerForm.reset();
     this.toolDomain = 1;
+
+    this.partialSkillsService.pushPartialTool(skill);
+  }
+
+  deleteData(data: any) {
+    const index = this.data.findIndex(
+      (tool) => data.skill_id === tool.skill_id
+    );
+
+    this.data.splice(index, 1);
+
+    this.partialSkillsService.removePartialTool(data);
   }
 }

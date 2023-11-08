@@ -1,0 +1,14 @@
+<h2>{{ 'technical-data.languages' | transloco }}</h2>
+
+<app-technical-data-table
+  emptyMessage="technical-data.empty-languages"
+  [data]="candidateLanguages"
+  header="technical-data.tools"
+  (showConfirmDialog)="showConfirmDialog($event)"
+></app-technical-data-table>
+
+<app-create-dialog
+  [visible]="show"
+  [data]="languages"
+  (assignTool)="assignLanguage($event)"
+></app-create-dialog>
