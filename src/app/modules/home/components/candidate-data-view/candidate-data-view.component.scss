@@ -1,0 +1,16 @@
+@use '/src/styles/abstracts';
+
+.bg-gray {
+  background-color: abstracts.$gray-4;
+}
+
+.p-component,
+.p-component * {
+  background-color: abstracts.$gray-4 !important;
+}
+
+.tag {
+  &-button {
+    @include abstracts.hoverable();
+  }
+}

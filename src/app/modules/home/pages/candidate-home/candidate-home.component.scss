@@ -1,0 +1,10 @@
+@use '/src/styles/abstracts';
+
+.home {
+  &-view {
+    @include abstracts.flexbox(column, space-evenly, center, 0);
+  }
+  &-title {
+    color: abstracts.$primary;
+  }
+}

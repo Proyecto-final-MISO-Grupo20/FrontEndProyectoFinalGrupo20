@@ -1,7 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BusinessDataViewComponent } from '../../../components/business-data-view/business-data-view/business-data-view.component';
-import { BusinessHomeService } from '../../../services/business-home/business-home.service';
+import { BusinessDataViewComponent } from '../../components/business-data-view/business-data-view/business-data-view.component';
+import { BusinessHomeService } from '../../services/business-home/business-home.service';
 import { tap } from 'rxjs';
 
 @Component({
