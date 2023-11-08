@@ -123,7 +123,7 @@ export class RegisterCandidateFormComponent implements OnInit {
         tipo_documento: [null, Validators.required],
         documento: [null, Validators.required],
         fecha_nacimiento: ['', [Validators.required, ageRangeValidator]],
-        pais: ['', Validators.required],
+        pais: [this.countries[0], Validators.required],
         ciudad: ['', [Validators.required, Validators.maxLength(50)]],
         telefono: [null, Validators.required],
         username: [

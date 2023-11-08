@@ -2,41 +2,78 @@
   <div class="profiles-container">
     <h1 class="profiles-title" transloco="profiles.title"></h1>
 
-    <form class="profiles__form" [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+    <form
+      class="profiles__form"
+      [formGroup]="profileForm"
+      (ngSubmit)="onSubmit()"
+    >
       <div class="form__input--label">
-        <label for="name" transloco="profiles.name" style="margin-bottom: 5px;"></label>
+        <label
+          for="name"
+          transloco="profiles.name"
+          style="margin-bottom: 5px"
+        ></label>
         <input
           maxlength="25"
           minlength="3"
-          [style]="{ 'width': '60rem' }"
           pInputText
           id="name"
           formControlName="name"
           placeholder="{{ 'profiles.enter-name' | transloco }}"
         />
+
+        <p-message
+          *ngIf="
+            profileForm.get('name')?.hasError('required') &&
+            profileForm.get('name')?.touched
+          "
+          severity="error"
+          [text]="'employees.name-required' | transloco"
+        ></p-message>
+        <p-message
+          *ngIf="profileForm.get('name')?.hasError('minlength')"
+          severity="error"
+          [text]="'profiles.name-min-length' | transloco"
+        ></p-message>
       </div>
-      
-      <div style="margin-top: 20px;"></div> <!-- Espacio entre el input y los mensajes de error -->
-      
-      <p-message *ngIf="profileForm.get('name')?.hasError('required') && profileForm.get('name')?.touched" severity="error" [text]="'employees.name-required' | transloco"></p-message>
-      <p-message *ngIf="profileForm.get('name')?.hasError('minlength')" severity="error" [text]="'profiles.name-min-length' | transloco"></p-message>
     </form>
 
     <h3 class="profiles-tools" transloco="profiles.tools"></h3>
-    <app-sort-table3 [header]="'profiles.list-tools' | transloco" [data]="tools"></app-sort-table3>
+    <app-sort-table3
+      [dialogData]="tools"
+      [header]="'profiles.list-tools' | transloco"
+    ></app-sort-table3>
     <h3 class="profiles-skills" transloco="profiles.skills"></h3>
-    <app-sort-table4 [header]="'profiles.list-skills' | transloco" [data]="skills"></app-sort-table4>
+    <app-sort-table4
+      [header]="'profiles.list-skills' | transloco"
+      [data]="skills"
+    ></app-sort-table4>
     <h3 class="profiles-languages" transloco="profiles.languages"></h3>
-    <app-sort-table5 [header]="'profiles.list-languages' | transloco" [data]="languages"></app-sort-table5>
+    <app-sort-table5
+      [header]="'profiles.list-languages' | transloco"
+      [data]="languages"
+    ></app-sort-table5>
   </div>
 
   <!-- botones -->
   <div class="form__buttons-container">
     <div class="form__buttons">
-      <p-button (click)="returnToProjects()" label="{{ 'create' | transloco }}" [style]="{ width: '22.5rem' }" type="submit" [disabled]="!profileForm.valid"></p-button>
+      <p-button
+        (click)="returnToProjects()"
+        label="{{ 'create' | transloco }}"
+        [style]="{ width: '22.5rem' }"
+        type="submit"
+        [disabled]="!profileForm.valid"
+      ></p-button>
     </div>
-  
+
     <div class="form__buttons">
-      <p-button (click)="returnToProjects()" label="{{ 'cancel' | transloco }}" [style]="{ width: '22.5rem' }" severity="secondary"></p-button>
+      <p-button
+        (click)="returnToProjects()"
+        label="{{ 'cancel' | transloco }}"
+        [style]="{ width: '22.5rem' }"
+        severity="secondary"
+      ></p-button>
     </div>
   </div>
+</div>

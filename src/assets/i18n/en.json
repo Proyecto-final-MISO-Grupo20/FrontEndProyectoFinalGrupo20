@@ -160,6 +160,7 @@
     "language-domain": "Required domain level",
     "Tool": "Tool",
     "Domain": "Domain",
+    "dominio": "Domain",
     "actions": "Actions",
     "Skill": "Skill",
     "Type": "Type",
