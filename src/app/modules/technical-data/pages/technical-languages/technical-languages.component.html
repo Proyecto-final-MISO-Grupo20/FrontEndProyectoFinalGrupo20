@@ -1,12 +1,13 @@
-<h2>{{ 'technical-data.habilities' | transloco }}</h2>
+<h2>{{ 'technical-data.tools' | transloco }}</h2>
+
 <app-technical-data-table
-  [data]="candidateHabilities"
+  [data]="candidateLanguages"
   header="technical-data.tools"
   (showConfirmDialog)="showConfirmDialog($event)"
 ></app-technical-data-table>
 
 <app-create-dialog
   [visible]="show"
-  [data]="habilities"
-  (assignTool)="assignHability($event)"
+  [data]="languages"
+  (assignTool)="assignLanguage($event)"
 ></app-create-dialog>
