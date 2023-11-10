@@ -5,14 +5,14 @@ export const appRoutes: Route[] = [
   {
     path: 'auth',
     title: 'ABC Jobs | Auth',
-    canActivate: [authGuard],
+    //canActivate: [authGuard],
     loadChildren: () =>
       import('./modules/auth/auth.routes').then((routes) => routes.authRoutes),
   },
   {
     path: 'home',
     title: 'ABC Jobs | Home',
-    canActivate: [authGuard],
+   // canActivate: [authGuard],
     loadComponent: () =>
       import('./modules/home/pages/home/home.component').then(
         (component) => component.HomeComponent
@@ -21,7 +21,7 @@ export const appRoutes: Route[] = [
   {
     path: 'projects',
     title: 'ABC Jobs | Projects',
-    canActivate: [authGuard],
+    //canActivate: [authGuard],
     loadChildren: () =>
       import('./modules/projects/projects.routes').then(
         (routes) => routes.projectsRoutes
@@ -30,7 +30,7 @@ export const appRoutes: Route[] = [
   {
     path: 'technical-data',
     title: 'ABC Jobs | Technical Data',
-    canActivate: [authGuard],
+    //canActivate: [authGuard],
     loadChildren: () =>
       import('./modules/technical-data/technical-data.routes').then(
         (routes) => routes.technicalDataRoutes
@@ -39,7 +39,7 @@ export const appRoutes: Route[] = [
   {
     path: 'employees',
     title: 'ABC Jobs | Employees',
-    canActivate: [authGuard],
+    //canActivate: [authGuard],
     loadChildren: () =>
       import('./modules/employees/employees.routes').then(
         (routes) => routes.employeesRoutes
@@ -49,7 +49,7 @@ export const appRoutes: Route[] = [
   {
     path: 'profiles',
     title: 'ABC Jobs | Profiles',
-    canActivate: [authGuard],
+    //canActivate: [authGuard],
     loadChildren: () =>
       import('./modules/projects/profiles.routes').then(
         (routes) => routes.profilesRoutes

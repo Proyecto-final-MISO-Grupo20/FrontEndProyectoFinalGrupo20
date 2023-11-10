@@ -1,0 +1,84 @@
+<div class="applications-wrapper">
+  <div class="applications-container">
+    <h1 class="applications-title" transloco="applications.title"></h1>
+
+    <form
+      class="applications__form"
+      [formGroup]="applicationForm"
+      (ngSubmit)="onSubmit()"
+    >
+      <div class="form__input--label">
+        <label
+          for="name"
+          transloco="applications.name"
+          style="margin-bottom: 5px"
+        ></label>
+        <input
+          maxlength="25"
+          minlength="3"
+          pInputText
+          id="name"
+          formControlName="name"
+          placeholder="{{ 'applications.enter-name' | transloco }}"
+        />
+
+        <p-message
+          *ngIf="
+          applicationForm.get('name')?.hasError('required') &&
+          applicationForm.get('name')?.touched
+          "
+          severity="error"
+          [text]="'employees.name-required' | transloco"
+        ></p-message>
+        <p-message
+          *ngIf="applicationForm.get('name')?.hasError('minlength')"
+          severity="error"
+          [text]="'profiles.name-min-length' | transloco"
+        ></p-message>
+      </div>
+    </form>
+
+    <!-- Tools -->
+    <h3 class="applications-tools" transloco="applications.tools"></h3>
+    <app-sort-table3
+      [dialogData]="tools"
+      [header]="'profiles.list-tools' | transloco"
+    ></app-sort-table3>
+
+    <!-- Habilities -->
+    <h3 class="profiles-skills" transloco="profiles.skills"></h3>
+    <app-sort-table3
+      [dialogData]="skills"
+      [header]="'profiles.list-tools' | transloco"
+    ></app-sort-table3>
+
+    <!-- Languages -->
+    <h3 class="profiles-languages" transloco="profiles.languages"></h3>
+    <app-sort-table3
+      [dialogData]="languages"
+      [header]="'profiles.list-tools' | transloco"
+    ></app-sort-table3>
+  </div>
+
+  <!-- botones -->
+  <div class="form__buttons-container">
+    <div class="form__buttons">
+      <p-button
+        [disabled]="!applicationForm.valid"
+        (click)="createProfile()"
+        label="{{ 'create' | transloco }}"
+        [style]="{ width: '22.5rem' }"
+        type="submit"
+      ></p-button>
+    </div>
+
+    <div class="form__buttons">
+      <p-button
+        (click)="returnToProjects()"
+        label="{{ 'cancel' | transloco }}"
+        [style]="{ width: '22.5rem' }"
+        severity="secondary"
+      ></p-button>
+    </div>
+  </div>
+</div>
