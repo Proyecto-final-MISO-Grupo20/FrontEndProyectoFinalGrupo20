@@ -21,8 +21,8 @@ import { Keys } from 'src/app/core/utils/keys';
 
 @Component({
   selector: 'app-profile',
-  templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.scss'],
+  templateUrl: './application.component.html',
+  styleUrls: ['./application.component.scss'],
   standalone: true,
   imports: [
     CommonModule,
