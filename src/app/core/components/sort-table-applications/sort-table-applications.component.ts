@@ -4,13 +4,13 @@ import { UiModule } from 'ui';
 import { LanguageModule } from 'language';
 
 @Component({
-  selector: 'app-sort-table-offers',
+  selector: 'app-sort-table-applications',
   standalone: true,
   imports: [CommonModule, UiModule, LanguageModule],
-  templateUrl: './sort-table-offers.component.html',
-  styleUrls: ['./sort-table-offers.component.scss'],
+  templateUrl: './sort-table-applications.component.html',
+  styleUrls: ['./sort-table-applications.component.scss'],
 })
-export class SortTableOffersComponent implements OnInit {
+export class SortTableapplicationsComponent implements OnInit {
   // Input data
   @Input() header!: string;
   @Input() data!: any[];

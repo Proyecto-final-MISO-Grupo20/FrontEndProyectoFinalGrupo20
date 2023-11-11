@@ -55,7 +55,6 @@ export const appRoutes: Route[] = [
         (routes) => routes.profilesRoutes
       ),
   },
-
   {
     path: 'offers',
     title: 'ABC Jobs | Offers',
@@ -63,6 +62,15 @@ export const appRoutes: Route[] = [
     loadChildren: () =>
       import('./modules/projects/offers.routes').then(
         (routes) => routes.offersRoutes
+      ),
+  },
+  {
+    path: 'applications',
+    title: 'ABC Jobs | Applications',
+    canActivate: [authGuard],
+    loadChildren: () =>
+      import('./modules/projects/applications.routes').then(
+        (routes) => routes.applicationsRoutes
       ),
   },
   {

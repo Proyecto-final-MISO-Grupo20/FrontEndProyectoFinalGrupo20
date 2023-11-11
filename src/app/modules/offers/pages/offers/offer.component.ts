@@ -1,16 +1,17 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LanguageModule } from 'language';
-import { SortTableComponent } from '../../../../core/components/sort-table/sort-table.component';
+// eslint-disable-next-line @nx/enforce-module-boundaries
+import { SortTableOffersComponent } from 'src/app/core/components/sort-table-offers/sort-table-offers.component';
 import { OffersService } from '../../services/offers.service';
 import { tap } from 'rxjs';
 import { Keys } from '../../../../core/utils/keys';
 import { UiModule } from 'ui';
 
 @Component({
-  selector: 'app-projects',
+  selector: 'app-offers',
   standalone: true,
-  imports: [CommonModule, LanguageModule, SortTableComponent, UiModule],
+  imports: [CommonModule, LanguageModule, SortTableOffersComponent, UiModule],
   providers: [OffersService],
   templateUrl: './offer.component.html',
   styleUrls: ['./offer.component.scss'],

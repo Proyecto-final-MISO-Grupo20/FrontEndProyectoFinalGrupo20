@@ -183,6 +183,15 @@
     "confirm": "Confirm",
     "confirm-body": "Are you sure you want to exit from the employees creation?"
   },
+  "offers": {
+    "title": "Offers",
+    "list": "Offers List"
+  },
+  "applications": {
+    "title": "Applications",
+    "list": "Applications List"
+  },
+
   "home": {
     "title": "Home"
   },

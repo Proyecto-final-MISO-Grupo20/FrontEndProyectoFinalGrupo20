@@ -183,6 +183,14 @@
     "confirm": "Confirmación",
     "confirm-body": "¿Desea salir de la creación de empleados?"
   },
+  "offers": {
+    "title": "Ofertas",
+    "list": "Lista de ofertas"
+  },
+  "applications": {
+    "title": "Postulaciones",
+    "list": "Lista de postulaciones"
+  },
   "home": {
     "title": "Inicio"
   },
