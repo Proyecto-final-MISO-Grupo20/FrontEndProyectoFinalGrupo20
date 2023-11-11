@@ -191,6 +191,9 @@
     "title": "Applications",
     "list": "Applications List"
   },
+  "candidates": {
+    "title": "Candidate"
+  },
 
   "home": {
     "title": "Home"
