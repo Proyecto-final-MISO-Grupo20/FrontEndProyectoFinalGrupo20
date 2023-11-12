@@ -82,5 +82,10 @@ export class LoginComponent implements OnInit {
 
   setSessionExpiredError() {
     this.sessionError = localStorage.getItem(Keys.TOKEN_EXPIRED);
+
+    if (this.sessionError) {
+      localStorage.removeItem(Keys.TOKEN_EXPIRED);
+      setTimeout(() => (this.sessionError = null), 3000);
+    }
   }
 }

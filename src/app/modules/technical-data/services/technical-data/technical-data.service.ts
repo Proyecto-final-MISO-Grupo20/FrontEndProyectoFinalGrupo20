@@ -1,5 +1,8 @@
 import { Injectable, inject } from '@angular/core';
-import { ApiService } from 'src/app/core/services/api/api.service';
+import { ApiService } from '../../../../core/services/api/api.service';
+import { Observable, map, shareReplay } from 'rxjs';
+import { SkillsCandidateDto } from '../../dtos/skills-candidate.dto';
+import { SkillType } from '../../models/skills';
 
 @Injectable({
   providedIn: 'root',
@@ -7,7 +10,16 @@ import { ApiService } from 'src/app/core/services/api/api.service';
 export class TechnicalDataService {
   #api = inject(ApiService);
 
-  getTechnicalSkillsByCandidate(userId: number) {
-    return this.#api.get(`usuario/skills/${userId}`);
+  getTechnicalSkillsByCandidate(
+    skillType: SkillType
+  ): Observable<SkillsCandidateDto[]> {
+    return this.#api.get(`usuario/skills/1`).pipe(
+      shareReplay(),
+      map((skills) =>
+        skills.filter(
+          (skill: SkillsCandidateDto) => skill.skill.tipo === skillType
+        )
+      )
+    );
   }
 }
