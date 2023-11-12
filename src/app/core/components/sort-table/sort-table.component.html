@@ -22,8 +22,8 @@
   </ng-template>
   <ng-template pTemplate="header">
     <tr>
-      <th *ngFor="let column of columns">{{ column }}</th>
-      <th>Actions</th>
+      <th *ngFor="let column of columns">{{ "projects." + column | transloco }}</th>
+      <th>{{ "projects.actions" | transloco }}</th>
     </tr>
   </ng-template>
   <ng-template pTemplate="body" let-data>
@@ -76,7 +76,7 @@
 
   <ng-template pTemplate="emptymessage">
     <tr>
-      <td>No existen proyectos</td>
+      <td>{{ "projects.no-exist" | transloco }}</td>
     </tr>
   </ng-template>
 </p-table>

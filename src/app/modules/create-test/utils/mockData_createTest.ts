@@ -1,4 +1,4 @@
-export const mockData_registerTestNote = [
+export const mockData_createTest = [
   {
     ofertaId: '1',
     candidatoId: '1',

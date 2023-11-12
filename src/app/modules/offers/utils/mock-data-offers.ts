@@ -1,18 +1,18 @@
 export const mockData_offers = [
   {
-    Perfil: 'Perfil 1',
-    Estado: 'Activo',
+    profile: 'Perfil 1',
+    state: 'Activo',
   },
   {
-    Perfil: 'Perfil 2',
-    Estado: 'Cerrado',
+    profile: 'Perfil 2',
+    state: 'Cerrado',
   },
   {
-    Perfil: 'Perfil 3',
-    Estado: 'Inhabilitado',
+    profile: 'Perfil 3',
+    state: 'Inhabilitado',
   },
   {
-    Perfil: 'Perfil 4',
-    Estado: 'Activo',
+    profile: 'Perfil 4',
+    state: 'Activo',
   },
 ];
