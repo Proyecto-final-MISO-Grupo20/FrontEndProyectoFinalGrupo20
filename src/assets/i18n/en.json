@@ -194,8 +194,13 @@
   "candidates": {
     "title": "Candidate"
   },
+
   "registerTestNoteService": {
-    "title": "Registrar resultados de pruebas"
+    "title": "Register test results",
+    "select-test-name": "Select a test",
+    "test": "Test",
+    "result": "Result",
+    "enter-calification": "Enter calification"
   },
 
   "home": {
@@ -224,5 +229,6 @@
   "exit": "Exit",
   "candidate": "Candidate",
   "business": "Business",
-  "name": "ohooo<"
+  "name": "ohooo<",
+  "register-button": "Register"
 }

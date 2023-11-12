@@ -12,4 +12,10 @@
   &-title {
     color: abstracts.$primary;
   }
-}
+  .form {
+    &__input {
+      &--label {
+        @include abstracts.flexbox(column, normal, normal, 0.5rem);
+      }
+    }
+  }}

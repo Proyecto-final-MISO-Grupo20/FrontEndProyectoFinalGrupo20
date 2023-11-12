@@ -192,7 +192,11 @@
     "list": "Lista de postulaciones"
   },
   "registerTestNoteService": {
-    "title": "Register test results"
+    "title": "Registrar resultados de pruebas",
+    "select-test-name": "Seleccione una prueba",
+    "test": "Prueba",
+    "result": "Resultado",
+    "enter-calification": "Ingrese la calificación"
   },
   "home": {
     "title": "Inicio"
@@ -220,5 +224,6 @@
   "exit": "Salir",
   "candidate": "Candidato",
   "business": "Empresa",
-  "name": "ohooo<"
+  "name": "ohooo<",
+  "register-button": "Registrar"
 }

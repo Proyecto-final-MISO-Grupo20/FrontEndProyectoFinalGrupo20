@@ -2,7 +2,51 @@
   <div class="projects-container">
     <h1 class="projects-title">{{ 'registerTestNoteService.title' | transloco }}</h1>
 
-    
+    <form [formGroup]="resultsForm"
+        class="register__form">
+        <div class="p-field p-grid">
+          <label for="username" class="p-col-12 p-md-3">{{ 'registerTestNoteService.test' | transloco }}</label>
+          <div class="p-col-12 p-md-9">
+        <p-dropdown [options]="data"
+          optionLabel="Language"
+          [style]="{ width: '22.5rem'}"
+          formControlName="languageName"
+          placeholder="{{ 'registerTestNoteService.select-test-name' | transloco }} "
+        ></p-dropdown>
+      </div>
+    </div>
+        <p>
+          <div class="p-field p-grid">
+            <label for="username" class="p-col-12 p-md-3">{{ 'registerTestNoteService.result' | transloco }}</label>
+            <div class="p-col-12 p-md-9">
+              <input
+                id="username"
+                formControlName="username"
+                [style]="{ width: '22.5rem'}"
+                type="text"
+                pInputText
+                class="custom-width"
+                placeholder="{{ 'registerTestNoteService.enter-calification' | transloco }}"
+              />
+            </div>
+          </div>
 
+          <div style="margin-top: 20px;"> <!-- Ajusta el valor del margen según tus preferencias -->
+            <div style="display: flex; justify-content: space-between;">
+              <p-button
+                label="{{ 'register-button' | transloco }}"
+                [style]="{ width: '150px', margin: '5px' }"
+                type="submit"
+                [disabled]="!resultsForm.valid"
+              ></p-button>
+    
+              <p-button
+                (onClick)="setShowConfirmDialog(true)"
+                label="{{ 'cancel' | transloco }}"
+                [style]="{ width: '150px', margin: '5px' }"
+                severity="secondary"
+                [routerLink]="'/applications'"
+              ></p-button>
    
 </div>
+
