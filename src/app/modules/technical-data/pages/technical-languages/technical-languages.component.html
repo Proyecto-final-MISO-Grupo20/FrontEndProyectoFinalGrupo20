@@ -8,7 +8,7 @@
 ></app-technical-data-table>
 
 <app-create-dialog
-  [visible]="show"
+  [(visible)]="show"
   [data]="languages"
   (assignTool)="assignLanguage($event)"
 ></app-create-dialog>

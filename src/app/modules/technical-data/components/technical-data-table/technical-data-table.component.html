@@ -20,7 +20,7 @@
       </div>
     </div>
   </ng-template>
-  <ng-template pTemplate="header" *ngIf="data">
+  <ng-template pTemplate="header" let-data>
     <tr>
       <th *ngFor="let column of columns">{{ column }}</th>
       <th>Actions</th>

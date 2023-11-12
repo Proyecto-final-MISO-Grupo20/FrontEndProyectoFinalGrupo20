@@ -12,8 +12,4 @@ export class TechnicalToolsService {
   getTools(): Observable<Skill[]> {
     return this.#api.get('skills/herramientas');
   }
-
-  assignTool(skillData: any) {
-    return this.#api.post('usuario/asociarSkill', skillData);
-  }
 }

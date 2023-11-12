@@ -65,7 +65,8 @@
           "browserTarget": "group20-frontend:build:production"
         },
         "development": {
-          "browserTarget": "group20-frontend:build:development"
+          "browserTarget": "group20-frontend:build:development",
+          "proxyConfig": "proxy.conf.json"
         }
       },
       "defaultConfiguration": "development"
