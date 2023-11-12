@@ -7,6 +7,7 @@ import { TechnicalDataTableComponent } from '../../components/technical-data-tab
 import { CreateDialogComponent } from '../../components/create-dialog/create-dialog.component';
 import { Observable, tap } from 'rxjs';
 import { SkillsCandidateDto } from '../../dtos/skills-candidate.dto';
+import { TechnicalDataService } from '../../services/technical-data/technical-data.service';
 
 @Component({
   selector: 'app-technical-habilities',
@@ -26,6 +27,8 @@ export class TechnicalHabilitiesComponent implements OnInit {
 
   habilities!: Skill[];
   technicalHabilitiesService = inject(TechnicalHabilitiesService);
+  technicalDataService = inject(TechnicalDataService);
+
   show = false;
 
   ngOnInit() {
@@ -49,24 +52,27 @@ export class TechnicalHabilitiesComponent implements OnInit {
 
     const dataToSend = {
       skill: data.skill.nombre,
-      dominio: data.dominio,
+      nivel_dominio: data.dominio,
     };
 
-    if (this.candidateHabilities) {
-      this.candidateHabilities = [
-        ...this.candidateHabilities,
-        { ...dataToSend },
-      ];
-    } else {
-      this.candidateHabilities = [{ ...dataToSend }];
-    }
+    this.technicalDataService.assignSkill(dataToSend).subscribe({
+      next: (res) => {
+        const dataToShow = {
+          name: data.skill.nombre,
+          dominio: data.dominio,
+        };
 
-    // this.technicalToolsService.assignTool(dataToSend).subscribe({
-    //   next: (res) => {
-    //     console.log(res);
-    //   },
-    //   error: (err) => console.error(err),
-    // });
+        if (this.candidateHabilities) {
+          this.candidateHabilities = [
+            ...this.candidateHabilities,
+            { ...dataToShow },
+          ];
+        } else {
+          this.candidateHabilities = [{ ...dataToShow }];
+        }
+      },
+      error: (err) => console.error(err),
+    });
   }
 
   getCandidateHabilities() {

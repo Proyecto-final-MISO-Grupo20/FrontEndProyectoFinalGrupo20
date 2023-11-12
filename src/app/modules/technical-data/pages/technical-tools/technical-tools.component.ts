@@ -9,6 +9,7 @@ import { SortTableComponent } from '../../../../core/components/sort-table/sort-
 import { CreateDialogComponent } from '../../components/create-dialog/create-dialog.component';
 import { AssignSkill } from '../../dtos/assign-skill.dto';
 import { SkillsCandidateDto } from '../../dtos/skills-candidate.dto';
+import { TechnicalDataService } from '../../services/technical-data/technical-data.service';
 
 @Component({
   selector: 'app-technical-tools',
@@ -29,6 +30,7 @@ export class TechnicalToolsComponent implements OnInit {
 
   tools!: Skill[];
   technicalToolsService = inject(TechnicalToolsService);
+  technicalDataService = inject(TechnicalDataService);
   show = false;
 
   ngOnInit(): void {
@@ -55,14 +57,17 @@ export class TechnicalToolsComponent implements OnInit {
       nivel_dominio: data.dominio,
     };
 
-    this.technicalToolsService.assignTool(dataToSend).subscribe({
+    this.technicalDataService.assignSkill(dataToSend).subscribe({
       next: (res) => {
-        // if (this.candidateTools) {
-        //   this.candidateTools = [...this.candidateTools, { ...dataToSend }];
-        // } else {
-        //   this.candidateTools = [{ ...dataToSend }];
-        // }
-        console.log(res);
+        const dataToShow = {
+          name: data.skill.nombre,
+          dominio: data.dominio,
+        };
+        if (this.candidateTools) {
+          this.candidateTools = [...this.candidateTools, { ...dataToShow }];
+        } else {
+          this.candidateTools = [{ ...dataToShow }];
+        }
       },
       error: (err) => console.error(err),
     });

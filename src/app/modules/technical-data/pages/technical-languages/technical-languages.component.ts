@@ -8,6 +8,7 @@ import { UiModule } from 'ui';
 import { TechnicalDataTableComponent } from '../../components/technical-data-table/technical-data-table.component';
 import { CreateDialogComponent } from '../../components/create-dialog/create-dialog.component';
 import { SkillsCandidateDto } from '../../dtos/skills-candidate.dto';
+import { TechnicalDataService } from '../../services/technical-data/technical-data.service';
 
 @Component({
   selector: 'app-technical-languages',
@@ -28,6 +29,8 @@ export class TechnicalLanguagesComponent {
 
   languages!: Skill[];
   technicalLanguageService = inject(TechnicalLanguagesService);
+  technicalDataService = inject(TechnicalDataService);
+
   show = false;
 
   ngOnInit(): void {
@@ -50,21 +53,28 @@ export class TechnicalLanguagesComponent {
 
     const dataToSend = {
       skill: data.skill.nombre,
-      dominio: data.dominio,
+      nivel_dominio: data.dominio,
     };
 
-    if (this.candidateLanguages) {
-      this.candidateLanguages = [...this.candidateLanguages, { ...dataToSend }];
-    } else {
-      this.candidateLanguages = [{ ...dataToSend }];
-    }
+    this.technicalDataService.assignSkill(dataToSend).subscribe({
+      next: (res) => {
+        const dataToShow = {
+          name: data.skill.nombre,
+          dominio: data.dominio,
+        };
 
-    // this.technicalToolsService.assignTool(dataToSend).subscribe({
-    //   next: (res) => {
-    //     console.log(res);
-    //   },
-    //   error: (err) => console.error(err),
-    // });
+        if (this.candidateLanguages) {
+          this.candidateLanguages = [
+            ...this.candidateLanguages,
+            { ...dataToShow },
+          ];
+        } else {
+          this.candidateLanguages = [{ ...dataToShow }];
+        }
+        console.log(res);
+      },
+      error: (err) => console.error(err),
+    });
   }
 
   getCandidateLanguages() {

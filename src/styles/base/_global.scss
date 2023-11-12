@@ -30,3 +30,11 @@ input::-webkit-inner-spin-button {
 input[type='number'] {
   -moz-appearance: textfield;
 }
+
+.p-datatable .p-datatable-tbody > tr > td {
+  text-align: center;
+}
+
+.p-datatable .p-datatable-thead > tr > th {
+  text-align: center;
+}
