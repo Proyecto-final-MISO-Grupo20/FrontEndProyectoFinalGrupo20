@@ -194,6 +194,9 @@
   "candidates": {
     "title": "Candidate"
   },
+  "registerTestNoteService": {
+    "title": "Registrar resultados de pruebas"
+  },
 
   "home": {
     "title": "Home"

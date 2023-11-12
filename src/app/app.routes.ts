@@ -74,12 +74,12 @@ export const appRoutes: Route[] = [
       ),
   },
   {
-    path: 'candidate',
-    title: 'ABC Jobs | Candidate',
+    path: 'registerTestNote',
+    title: 'ABC Jobs | RegisterResults',
     canActivate: [authGuard],
     loadChildren: () =>
-      import('./modules/projects/candidate.routes').then(
-        (routes) => routes.candidatesRoutes
+      import('./modules/projects/register-test-note.routes').then(
+        (routes) => routes.registerTestNoteRoutes
       ),
   },
   {

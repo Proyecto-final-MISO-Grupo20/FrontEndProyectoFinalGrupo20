@@ -191,8 +191,8 @@
     "title": "Postulaciones",
     "list": "Lista de postulaciones"
   },
-  "candidates": {
-    "title": "Candidato"
+  "registerTestNoteService": {
+    "title": "Register test results"
   },
   "home": {
     "title": "Inicio"
