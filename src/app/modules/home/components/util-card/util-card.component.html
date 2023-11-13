@@ -1,1 +1,39 @@
-<p>util-card works!</p>
+<p-card [header]="headerTitle" [style]="{ width: '15rem' }">
+  <!-- CheckBox -->
+  <div class="card flex" *ngIf="type === cardType.checkbox">
+    <div class="flex flex-column gap-2">
+      <div *ngFor="let option of options" class="field-checkbox">
+        <p-checkbox
+          name="group"
+          [value]="option"
+          [(ngModel)]="selectedOptions"
+          [inputId]="option.id"
+        ></p-checkbox>
+        <label [for]="option.id">{{ option.nombre }}</label>
+      </div>
+    </div>
+  </div>
+
+  <!--Search-->
+  <div *ngIf="type === cardType.search">
+    <span class="p-input-icon-left">
+      <i class="pi pi-search"></i>
+      <input type="text" pInputText [(ngModel)]="inputSearch" />
+    </span>
+  </div>
+</p-card>
+
+<!-- Rating -->
+<div class="card flex" *ngIf="type === cardType.rating">
+  <div class="flex flex-column gap-2">
+    <div *ngFor="let option of options" class="field-checkbox">
+      <p-checkbox
+        name="group"
+        [value]="option"
+        [(ngModel)]="selectedOptions"
+        [inputId]="option.id"
+      ></p-checkbox>
+      <label [for]="option.id">{{ option.nombre }}</label>
+    </div>
+  </div>
+</div>
