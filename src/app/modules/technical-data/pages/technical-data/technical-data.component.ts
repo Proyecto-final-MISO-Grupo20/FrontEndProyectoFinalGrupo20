@@ -6,7 +6,10 @@ import { TechnicalHabilitiesComponent } from '../technical-habilities/technical-
 import { TechnicalToolsComponent } from '../technical-tools/technical-tools.component';
 import { TechnicalLanguagesComponent } from '../technical-languages/technical-languages.component';
 import { TechnicalDataService } from '../../services/technical-data/technical-data.service';
-import { SessionService } from 'src/app/core/services/session/session.service';
+import { SessionService } from '../../../../core/services/session/session.service';
+import { Observable, filter } from 'rxjs';
+import { Skill, SkillType } from '../../models/skills';
+import { SkillsCandidateDto } from '../../dtos/skills-candidate.dto';
 
 @Component({
   selector: 'app-technical-data',
@@ -26,16 +29,22 @@ export class TechnicalDataComponent implements OnInit {
   technicalDataService = inject(TechnicalDataService);
   session = inject(SessionService);
 
-  ngOnInit() {
-    this.getCandidateSkills();
-  }
+  candidateTools$!: Observable<SkillsCandidateDto[]>;
+  candidateHabilities$!: Observable<SkillsCandidateDto[]>;
+  candidateLanguages$!: Observable<SkillsCandidateDto[]>;
 
-  getCandidateSkills() {
-    this.technicalDataService
-      .getTechnicalSkillsByCandidate(this.session.getUser().id)
-      .subscribe({
-        next: (res) => console.log(res),
-        error: (err) => console.error(err),
-      });
+  ngOnInit() {
+    this.candidateHabilities$ =
+      this.technicalDataService.getTechnicalSkillsByCandidate(
+        SkillType.HABILIDAD
+      );
+
+    this.candidateTools$ =
+      this.technicalDataService.getTechnicalSkillsByCandidate(
+        SkillType.HERRAMIENTA
+      );
+
+    this.candidateLanguages$ =
+      this.technicalDataService.getTechnicalSkillsByCandidate(SkillType.IDIOMA);
   }
 }

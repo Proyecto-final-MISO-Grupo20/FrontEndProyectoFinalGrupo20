@@ -1,12 +1,15 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, Input, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LanguageModule } from 'language';
 import { TechnicalDataTableComponent } from '../../components/technical-data-table/technical-data-table.component';
 import { Skill } from '../../models/skills';
 import { TechnicalToolsService } from '../../services/technical-tools/technical-tools.service';
-import { tap } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { SortTableComponent } from '../../../../core/components/sort-table/sort-table.component';
 import { CreateDialogComponent } from '../../components/create-dialog/create-dialog.component';
+import { AssignSkill } from '../../dtos/assign-skill.dto';
+import { SkillsCandidateDto } from '../../dtos/skills-candidate.dto';
+import { TechnicalDataService } from '../../services/technical-data/technical-data.service';
 
 @Component({
   selector: 'app-technical-tools',
@@ -22,13 +25,17 @@ import { CreateDialogComponent } from '../../components/create-dialog/create-dia
   styleUrls: ['./technical-tools.component.scss'],
 })
 export class TechnicalToolsComponent implements OnInit {
+  @Input() candidateTools$!: Observable<SkillsCandidateDto[]>;
+  candidateTools!: SkillsCandidateDto[];
+
   tools!: Skill[];
   technicalToolsService = inject(TechnicalToolsService);
+  technicalDataService = inject(TechnicalDataService);
   show = false;
-  candidatetools!: any[];
 
   ngOnInit(): void {
     this.getTools();
+    this.getCandidateTools();
   }
 
   getTools() {
@@ -45,22 +52,30 @@ export class TechnicalToolsComponent implements OnInit {
   assignTool(data: any) {
     this.show = false;
 
-    const dataToSend = {
-      skill: data.skill.nombre,
-      dominio: data.dominio,
+    const dataToSend: AssignSkill = {
+      skill: data.skill.id,
+      nivel_dominio: data.dominio,
     };
 
-    if (this.candidatetools) {
-      this.candidatetools = [...this.candidatetools, { ...dataToSend }];
-    } else {
-      this.candidatetools = [{ ...dataToSend }];
-    }
+    this.technicalDataService.assignSkill(dataToSend).subscribe({
+      next: (res) => {
+        const dataToShow = {
+          name: data.skill.nombre,
+          dominio: data.dominio,
+        };
+        if (this.candidateTools) {
+          this.candidateTools = [...this.candidateTools, { ...dataToShow }];
+        } else {
+          this.candidateTools = [{ ...dataToShow }];
+        }
+      },
+      error: (err) => console.error(err),
+    });
+  }
 
-    // this.technicalToolsService.assignTool(dataToSend).subscribe({
-    //   next: (res) => {
-    //     console.log(res);
-    //   },
-    //   error: (err) => console.error(err),
-    // });
+  getCandidateTools() {
+    this.candidateTools$
+      .pipe(tap((tools) => (this.candidateTools = tools)))
+      .subscribe(console.log);
   }
 }

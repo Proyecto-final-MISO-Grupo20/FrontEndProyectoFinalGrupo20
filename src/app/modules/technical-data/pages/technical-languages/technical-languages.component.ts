@@ -1,12 +1,14 @@
-import { Component, inject } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Skill } from '../../models/skills';
 import { TechnicalLanguagesService } from '../../services/technical-languages/technical-languages.service';
-import { tap } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { LanguageModule } from 'language';
 import { UiModule } from 'ui';
 import { TechnicalDataTableComponent } from '../../components/technical-data-table/technical-data-table.component';
 import { CreateDialogComponent } from '../../components/create-dialog/create-dialog.component';
+import { SkillsCandidateDto } from '../../dtos/skills-candidate.dto';
+import { TechnicalDataService } from '../../services/technical-data/technical-data.service';
 
 @Component({
   selector: 'app-technical-languages',
@@ -22,10 +24,14 @@ import { CreateDialogComponent } from '../../components/create-dialog/create-dia
   styleUrls: ['./technical-languages.component.scss'],
 })
 export class TechnicalLanguagesComponent {
+  @Input() candidateLanguages$!: Observable<SkillsCandidateDto[]>;
+  candidateLanguages!: any[];
+
   languages!: Skill[];
   technicalLanguageService = inject(TechnicalLanguagesService);
+  technicalDataService = inject(TechnicalDataService);
+
   show = false;
-  candidateLanguages!: any[];
 
   ngOnInit(): void {
     this.getLanguages();
@@ -47,20 +53,33 @@ export class TechnicalLanguagesComponent {
 
     const dataToSend = {
       skill: data.skill.nombre,
-      dominio: data.dominio,
+      nivel_dominio: data.dominio,
     };
 
-    if (this.candidateLanguages) {
-      this.candidateLanguages = [...this.candidateLanguages, { ...dataToSend }];
-    } else {
-      this.candidateLanguages = [{ ...dataToSend }];
-    }
+    this.technicalDataService.assignSkill(dataToSend).subscribe({
+      next: (res) => {
+        const dataToShow = {
+          name: data.skill.nombre,
+          dominio: data.dominio,
+        };
 
-    // this.technicalToolsService.assignTool(dataToSend).subscribe({
-    //   next: (res) => {
-    //     console.log(res);
-    //   },
-    //   error: (err) => console.error(err),
-    // });
+        if (this.candidateLanguages) {
+          this.candidateLanguages = [
+            ...this.candidateLanguages,
+            { ...dataToShow },
+          ];
+        } else {
+          this.candidateLanguages = [{ ...dataToShow }];
+        }
+        console.log(res);
+      },
+      error: (err) => console.error(err),
+    });
+  }
+
+  getCandidateLanguages() {
+    this.candidateLanguages$
+      .pipe(tap((habilities) => (this.candidateLanguages = habilities)))
+      .subscribe();
   }
 }

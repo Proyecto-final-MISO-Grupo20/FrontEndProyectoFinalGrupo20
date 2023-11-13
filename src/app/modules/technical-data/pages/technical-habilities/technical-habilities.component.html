@@ -7,7 +7,7 @@
 ></app-technical-data-table>
 
 <app-create-dialog
-  [visible]="show"
+  [(visible)]="show"
   [data]="habilities"
   (assignTool)="assignHability($event)"
 ></app-create-dialog>
