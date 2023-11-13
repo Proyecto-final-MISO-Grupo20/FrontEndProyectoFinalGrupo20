@@ -3,7 +3,7 @@ import { OfferComponent } from '../offers/pages/offers/offer.component';
 
 export const offersRoutes: Route[] = [
   {
-    path: '',
+    path: ':projectId',
     title: 'ABC Jobs | Offers',
     component: OfferComponent,
   },

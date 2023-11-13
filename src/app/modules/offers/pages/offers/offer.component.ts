@@ -7,6 +7,7 @@ import { OffersService } from '../../services/offers.service';
 import { tap } from 'rxjs';
 import { Keys } from '../../../../core/utils/keys';
 import { UiModule } from 'ui';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-offers',
@@ -18,12 +19,16 @@ import { UiModule } from 'ui';
 })
 export class OfferComponent implements OnInit {
   offersService = inject(OffersService);
+  activatedRoute = inject(ActivatedRoute);
+
   createdOffer!: string | null;
   successCreate = false;
   offers!: any[];
   successCreateOffer!: string | null;
+  projectId!: number;
 
   ngOnInit(): void {
+    this.projectId = this.activatedRoute.snapshot.params['projectId'];
     this.getOffers();
     this.setSuccessCreated();
     this.setSucessCreatedOffer();
@@ -31,13 +36,9 @@ export class OfferComponent implements OnInit {
 
   getOffers() {
     this.offersService
-      .getOffers()
+      .getOffers(this.projectId)
       .pipe(
         tap((offers) => {
-          offers.forEach((offer: any) => {
-            offer.profiles = [];
-          });
-
           this.offers = offers;
         })
       )

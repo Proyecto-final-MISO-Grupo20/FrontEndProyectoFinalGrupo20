@@ -22,8 +22,10 @@
   </ng-template>
   <ng-template pTemplate="header">
     <tr>
-      <th *ngFor="let column of columns">{{ "projects." + column | transloco }}</th>
-      <th>{{ "projects.actions" | transloco }}</th>
+      <th *ngFor="let column of columns">
+        {{ 'projects.' + column | transloco }}
+      </th>
+      <th>{{ 'projects.actions' | transloco }}</th>
     </tr>
   </ng-template>
   <ng-template pTemplate="body" let-data>
@@ -46,21 +48,20 @@
               style="color: #fff; font-size: 1.2rem"
             ></i>
           </div>
-          <div 
-          class="actions__button actions__button--blue"
-          [routerLink]="'/offers'">
-            <i
-              class="pi pi-eye"
-              style="color: #fff; font-size: 1.2rem"
-            ></i>
+          <div
+            class="actions__button actions__button--blue"
+            [routerLink]="'/offers/' + data.id"
+          >
+            <i class="pi pi-eye" style="color: #fff; font-size: 1.2rem"></i>
           </div>
         </div>
       </td>
       <td>
         <div class="actions-container">
-          <div 
-          class="actions__button actions__button--blue"
-          [routerLink]="'/offers'">
+          <div
+            class="actions__button actions__button--blue"
+            [routerLink]="'/offers'"
+          >
             <i
               class="pi pi-arrow-circle-right"
               style="color: #fff; font-size: 1.2rem"
@@ -76,7 +77,7 @@
 
   <ng-template pTemplate="emptymessage">
     <tr>
-      <td>{{ "projects.no-exist" | transloco }}</td>
+      <td>{{ 'projects.no-exist' | transloco }}</td>
     </tr>
   </ng-template>
 </p-table>

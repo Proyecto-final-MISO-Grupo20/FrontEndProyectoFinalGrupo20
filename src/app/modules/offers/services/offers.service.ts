@@ -4,18 +4,17 @@ import { ApiService } from '../../../core/services/api/api.service';
 import { Offer } from '../models/offer';
 import { mockData_offers } from '../utils/mock-data-offers';
 
-
 @Injectable({
   providedIn: 'root',
 })
 export class OffersService {
   #api = inject(ApiService);
 
-  getOffers() {
-    return of(mockData_offers);
+  getOffers(projectId: number) {
+    return this.#api.get(`offers/${projectId}`);
   }
 
   createOffers(offerData: Offer): Observable<Offer> {
-    return this.#api.post('oferta', offerData);
+    return this.#api.post('offers', offerData);
   }
 }

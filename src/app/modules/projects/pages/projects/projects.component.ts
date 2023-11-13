@@ -30,17 +30,14 @@ export class ProjectsComponent implements OnInit {
 
   getProjects() {
     this.projectsService
-      .getProjects()
+      .getProjects(1)
       .pipe(
         tap((projects) => {
-          projects.forEach((project: any) => {
-            project.profiles = [];
-          });
-
+          console.log(projects);
           this.projects = projects;
         })
       )
-      .subscribe();
+      .subscribe(console.log);
   }
 
   setSuccessCreated() {
