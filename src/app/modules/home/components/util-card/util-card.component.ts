@@ -16,7 +16,13 @@ export class UtilCardComponent {
   @Input() type = CardType.search;
 
   // checkbox
-  @Input() options: any;
+  @Input() options: any = [
+    { id: 'star5', value: 5, label: '5 Stars' },
+    { id: 'star4', value: 4, label: '4 Stars' },
+    { id: 'star3', value: 3, label: '3 Stars' },
+    { id: 'star2', value: 2, label: '2 Stars' },
+    { id: 'star1', value: 1, label: '1 Star' },
+  ];
   selectedOptions: any[] = [];
 
   // search

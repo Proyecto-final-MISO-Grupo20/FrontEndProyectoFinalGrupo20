@@ -6,7 +6,7 @@ class RegisterPage extends Page {
   }
 
   get candidateOption() {
-    return super.get('[aria-label="Candidato"]');
+    return super.get('[aria-label="candidate"]');
   }
 
   get nextRegisterButton() {
