@@ -37,7 +37,7 @@ export class ProjectsComponent implements OnInit {
           this.projects = projects;
         })
       )
-      .subscribe(console.log);
+      .subscribe();
   }
 
   setSuccessCreated() {

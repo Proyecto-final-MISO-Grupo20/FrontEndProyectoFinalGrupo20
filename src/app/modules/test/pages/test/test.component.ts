@@ -7,6 +7,7 @@ import { TestsService } from '../../services/tests.service';
 import { tap } from 'rxjs';
 import { Keys } from '../../../../core/utils/keys';
 import { UiModule } from 'ui';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-test',
@@ -18,12 +19,17 @@ import { UiModule } from 'ui';
 })
 export class TestComponent implements OnInit {
   applicationsService = inject(TestsService);
+  activatedRoute = inject(ActivatedRoute);
+
   createdApplication!: string | null;
   successCreate = false;
   tests!: any[];
   successCreateApplication!: string | null;
+  offerId!: number;
 
   ngOnInit(): void {
+    this.offerId = this.activatedRoute.snapshot.params['offerId'];
+
     this.getApplications();
     this.setSuccessCreated();
     this.setSucessCreatedOffer();
@@ -31,17 +37,13 @@ export class TestComponent implements OnInit {
 
   getApplications() {
     this.applicationsService
-      .getTests()
+      .getTests(this.offerId)
       .pipe(
         tap((tests) => {
-          tests.forEach((test: any) => {
-            test.profiles = [];
-          });
-
           this.tests = tests;
         })
       )
-      .subscribe();
+      .subscribe(console.log);
   }
 
   setSuccessCreated() {
@@ -56,7 +58,9 @@ export class TestComponent implements OnInit {
   }
 
   setSucessCreatedOffer() {
-    this.successCreateApplication = localStorage.getItem(Keys.CREATE_OFFER_COMPLETE);
+    this.successCreateApplication = localStorage.getItem(
+      Keys.CREATE_OFFER_COMPLETE
+    );
 
     setTimeout(() => (this.successCreateApplication = null), 3000);
 

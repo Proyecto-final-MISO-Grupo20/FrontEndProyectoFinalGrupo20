@@ -1,9 +1,7 @@
 import { Injectable, inject } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { ApiService } from '../../../core/services/api/api.service';
-import { Application } from '../models/application';
-import { mockData_applications} from '../utils/mock-data-applications';
-
+import { Tests } from '../models/tests';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +9,7 @@ import { mockData_applications} from '../utils/mock-data-applications';
 export class ApplicationsService {
   #api = inject(ApiService);
 
-  getApplications() {
-    return of(mockData_applications);
+  getApplications(offerId: number): Observable<Tests[]> {
+    return this.#api.get(`pruebas/${offerId}/postulaciones`);
   }
 }

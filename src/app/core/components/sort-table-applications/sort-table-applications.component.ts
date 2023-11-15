@@ -14,8 +14,8 @@ import {
   selector: 'app-sort-table-applications',
   standalone: true,
   imports: [
-    CommonModule, 
-    UiModule, 
+    CommonModule,
+    UiModule,
     LanguageModule,
     FormsModule,
     ReactiveFormsModule,
@@ -37,7 +37,6 @@ export class SortTableapplicationsComponent implements OnInit {
   isMobile!: boolean;
   tableStyle: { [key: string]: string } = {};
   skillType!: string;
-  router: any;
 
   @HostListener('window:resize', ['$event'])
   onResize(event: Event): void {
@@ -75,13 +74,12 @@ export class SortTableapplicationsComponent implements OnInit {
   }
 
   setColumns() {
-    if (this.data.length > 0) {
+    if (this.data && this.data.length > 0) {
       this.columns = Object.keys(this.data[0]);
     }
   }
   returnToApplications() {
     this.showConfirmDialog = false;
-    this.router.navigate(['applications']);
   }
 
   ngOnChanges() {

@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, Input, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LanguageModule } from 'language';
 // eslint-disable-next-line @nx/enforce-module-boundaries
@@ -7,23 +7,34 @@ import { ApplicationsService } from '../../services/applications.service';
 import { tap } from 'rxjs';
 import { Keys } from '../../../../core/utils/keys';
 import { UiModule } from 'ui';
+import { ActivatedRoute } from '@angular/router';
+import { Tests } from '../../models/tests';
 
 @Component({
   selector: 'app-applications',
   standalone: true,
-  imports: [CommonModule, LanguageModule, SortTableapplicationsComponent, UiModule],
+  imports: [
+    CommonModule,
+    LanguageModule,
+    SortTableapplicationsComponent,
+    UiModule,
+  ],
   providers: [ApplicationsService],
   templateUrl: './application.component.html',
   styleUrls: ['./application.component.scss'],
 })
 export class ApplicationComponent implements OnInit {
+  applications!: Tests[];
   applicationsService = inject(ApplicationsService);
+  activatedRoute = inject(ActivatedRoute);
+
   createdApplication!: string | null;
   successCreate = false;
-  applications!: any[];
   successCreateApplication!: string | null;
+  offerId!: number;
 
   ngOnInit(): void {
+    this.offerId = this.activatedRoute.snapshot.params['offerId'];
     this.getApplications();
     this.setSuccessCreated();
     this.setSucessCreatedOffer();
@@ -31,17 +42,13 @@ export class ApplicationComponent implements OnInit {
 
   getApplications() {
     this.applicationsService
-      .getApplications()
+      .getApplications(this.offerId)
       .pipe(
         tap((applications) => {
-          applications.forEach((application: any) => {
-            application.profiles = [];
-          });
-
           this.applications = applications;
         })
       )
-      .subscribe();
+      .subscribe(console.log);
   }
 
   setSuccessCreated() {
@@ -56,7 +63,9 @@ export class ApplicationComponent implements OnInit {
   }
 
   setSucessCreatedOffer() {
-    this.successCreateApplication = localStorage.getItem(Keys.CREATE_OFFER_COMPLETE);
+    this.successCreateApplication = localStorage.getItem(
+      Keys.CREATE_OFFER_COMPLETE
+    );
 
     setTimeout(() => (this.successCreateApplication = null), 3000);
 

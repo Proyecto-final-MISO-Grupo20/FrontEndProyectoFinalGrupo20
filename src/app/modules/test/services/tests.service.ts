@@ -1,9 +1,8 @@
 import { Injectable, inject } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { ApiService } from '../../../core/services/api/api.service';
-import { Test } from '../models/test';
-import { mockData_tests} from '../utils/mock-data-test';
-
+import { Tests } from '../../applications/models/tests';
+import { Application } from '../../applications/models/application';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +10,11 @@ import { mockData_tests} from '../utils/mock-data-test';
 export class TestsService {
   #api = inject(ApiService);
 
-  getTests() {
-    return of(mockData_tests);
+  getTests(offerId: number): Observable<Tests[]> {
+    return this.#api.get(`pruebas/${offerId}/postulaciones`).pipe(
+      map((offers: Application[]) => {
+        return offers.map((offer) => offer.pruebas)[0] || [];
+      })
+    );
   }
 }

@@ -14,9 +14,6 @@ export class ProjectsService {
       mergeMap((projects) => {
         return this.#api.get(`offers/${projectId}`).pipe(
           mergeMap((offers) => {
-            console.log(projects, 'll');
-            console.log(offers, 'll');
-
             if (projects) {
               projects.forEach((project: Project) => {
                 project.profiles = offers.filter(

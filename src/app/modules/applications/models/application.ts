@@ -1,3 +1,5 @@
+import { Tests } from './tests';
+
 export interface Application {
   id?: number;
   ofertaId: number;
@@ -5,5 +7,5 @@ export interface Application {
   nombre: string;
   email: string;
   telefono: number;
-  pruebas: string; 
+  pruebas: Tests[];
 }
