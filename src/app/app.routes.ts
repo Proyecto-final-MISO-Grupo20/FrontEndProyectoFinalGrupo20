@@ -56,6 +56,42 @@ export const appRoutes: Route[] = [
       ),
   },
   {
+    path: 'offers',
+    title: 'ABC Jobs | Offers',
+    canActivate: [authGuard],
+    loadChildren: () =>
+      import('./modules/projects/offers.routes').then(
+        (routes) => routes.offersRoutes
+      ),
+  },
+  {
+    path: 'applications',
+    title: 'ABC Jobs | Applications',
+    canActivate: [authGuard],
+    loadChildren: () =>
+      import('./modules/projects/applications.routes').then(
+        (routes) => routes.applicationsRoutes
+      ),
+  },
+  {
+    path: 'createTest',
+    title: 'ABC Jobs | CreateTest',
+    canActivate: [authGuard],
+    loadChildren: () =>
+      import('./modules/projects/create-test.routes').then(
+        (routes) => routes.CreateTestRoutes
+      ),
+  },
+  {
+    path: 'test',
+    title: 'ABC Jobs | Test',
+    canActivate: [authGuard],
+    loadChildren: () =>
+      import('./modules/projects/test.routes').then(
+        (routes) => routes.testsRoutes
+      ),
+  },
+  {
     path: '**',
     redirectTo: 'auth',
   },

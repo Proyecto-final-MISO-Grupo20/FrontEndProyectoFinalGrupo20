@@ -34,6 +34,7 @@ export class TechnicalLanguagesComponent {
   show = false;
 
   ngOnInit(): void {
+    this.getCandidateLanguages();
     this.getLanguages();
   }
 
@@ -52,7 +53,7 @@ export class TechnicalLanguagesComponent {
     this.show = false;
 
     const dataToSend = {
-      skill: data.skill.nombre,
+      skill: data.skill.id,
       nivel_dominio: data.dominio,
     };
 

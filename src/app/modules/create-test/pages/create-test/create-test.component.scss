@@ -1,0 +1,22 @@
+@use '/src/styles/abstracts';
+
+.projects {
+  &-wrapper {
+    padding-top: 3rem;
+  }
+
+  &-container {
+    @include abstracts.flexbox(column, space-evenly, center, 1rem);
+  }
+
+  &-title {
+    color: abstracts.$primary;
+  }
+  .form {
+    &__input {
+      &--label {
+        @include abstracts.flexbox(column, normal, normal, 0.5rem);
+      }
+    }
+  }
+}

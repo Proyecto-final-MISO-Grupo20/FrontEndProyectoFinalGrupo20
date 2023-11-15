@@ -99,7 +99,15 @@
     "confirm": "Confirmación",
     "confirm-body": "¿Desea salir de la creación de proyectos?",
     "success-create": "Proyecto {{project}} Creado Satisfactoriamente",
-    "success-create-offer": "Perfil {{profile}} Creado Satisfactoriamente"
+    "success-create-offer": "Perfil {{profile}} Creado Satisfactoriamente",
+    "codigo": "Código",
+    "descripcion": "Descripción",
+    "empresaId": "ID Empresa",
+    "nombre": "Nombre",
+    "id": "ID",
+    "profiles": "Perfiles",
+    "actions": "Acciones",
+    "no-exist": "No existen proyectos"
   },
   "employees": {
     "title": "Empleados",
@@ -124,6 +132,7 @@
     "email-required": "El correo electrónico es requerido",
     "email-min-length": "El email debe tener mínimo 3 carácteres",
     "email-format-error": "No es un email válido",
+    "no-exist": "No existen empleados actualmente",
 
     "confirm": "Confirmación",
     "confirm-body": "¿Desea salir de la creación de empleados?",
@@ -179,9 +188,42 @@
     "enter-email": "Ingrese el Correo Electrónico del empleado",
     "email-required": "El correo electrónico es requerido",
     "email-min-length": "El email debe tener mínimo 3 carácteres",
+    "no-exist":"No existen herrameintas actualmente",
+    "candidate": "Perfil del candidato",
+    "candidate-skill": "Habilidades del candidato",
 
     "confirm": "Confirmación",
     "confirm-body": "¿Desea salir de la creación de empleados?"
+  },
+  "offers": {
+    "title": "Ofertas",
+    "list": "Lista de ofertas",
+    "profile": "Perfil",
+    "state": "Estado",
+    "profiles": "Postulaciones"
+  },
+  "applications": {
+    "title": "Postulaciones",
+    "list": "Lista de postulaciones",
+    "not-exist": "No existen ofertas",
+    "ofertaId": "ID Oferta",
+    "candidatoId": "ID Candidato",
+    "nombre": "Nombre",
+    "email": "Email",
+    "telefono": "Teléfono",
+    "actions": "Acciones",
+    "profiles": "Pruebas",
+    "detail": "Detalle"
+  },
+  "createTest": {
+    "title": "Crear Prueba",
+    "select-test-name": "Seleccione una prueba",
+    "test": "Prueba",
+    "result": "Resultado",
+    "enter-calification": "Ingrese la calificación",
+    "name": "Nombre",
+    "enter-name": "Ingrese un nombre",
+    "comment": "Comentario"
   },
   "home": {
     "title": "Inicio"
@@ -190,7 +232,12 @@
     "title": "Entrevistas"
   },
   "tests": {
-    "title": "Pruebas"
+    "title": "Pruebas",
+    "list": "Lista de pruebas",
+    "name": "Nombre",
+    "comment": "Comentario",
+    "score": "Calificación",
+    "no-exist": "No existen pruebas"
   },
   "technical-data": {
     "title": "Información Técnica",
@@ -209,5 +256,6 @@
   "exit": "Salir",
   "candidate": "Candidato",
   "business": "Empresa",
-  "name": "ohooo<"
+  "name": "ohooo<",
+  "register-button": "Registrar"
 }

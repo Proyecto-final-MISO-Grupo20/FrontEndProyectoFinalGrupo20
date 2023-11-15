@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ApiService } from 'src/app/core/services/api/api.service';
+import { ApiService } from '../../../core/services/api/api.service';
 import { Skill } from '../../technical-data/models/skills';
 import {
   CreateOfferDto,
