@@ -4,8 +4,14 @@
       {{ 'technical-data.title' | transloco }}
     </h1>
 
-    <app-technical-habilities></app-technical-habilities>
-    <app-technical-tools></app-technical-tools>
-    <app-technical-languages></app-technical-languages>
+    <app-technical-habilities
+      [candidateHabilities$]="candidateHabilities$"
+    ></app-technical-habilities>
+    <app-technical-tools
+      [candidateTools$]="candidateTools$"
+    ></app-technical-tools>
+    <app-technical-languages
+      [candidateLanguages$]="candidateLanguages$"
+    ></app-technical-languages>
   </div>
 </section>

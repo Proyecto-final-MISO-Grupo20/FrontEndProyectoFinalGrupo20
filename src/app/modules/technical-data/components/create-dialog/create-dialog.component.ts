@@ -25,6 +25,7 @@ import {
 export class CreateDialogComponent implements OnInit {
   @Input() visible = false;
   @Input() data!: any[];
+  @Output() visibleChange = new EventEmitter<boolean>();
 
   @Output() assignTool = new EventEmitter<any>();
 
@@ -49,5 +50,8 @@ export class CreateDialogComponent implements OnInit {
   assign() {
     this.assignTool.emit(this.createForm.value);
     this.createForm.reset();
+  }
+  onDialogHide() {
+    this.visibleChange.emit(false);
   }
 }

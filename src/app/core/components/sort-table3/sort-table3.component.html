@@ -62,7 +62,7 @@
 
   <ng-template pTemplate="emptymessage">
     <tr>
-      <td>No hay herramientas</td>
+      <td>{{ 'profiles.' + 'no-exist' | transloco }}</td>
     </tr>
   </ng-template>
 </p-table>
@@ -91,7 +91,7 @@
       optionLabel="nombre"
       [style]="{ width: '22.5rem' }"
       formControlName="toolName"
-      placeholder="{{ 'Seleccione la habilidad' }} "
+      placeholder="{{ 'profiles.select-skill-name' | transloco }} "
     ></p-dropdown>
     <p>
       <span style="font-size: large" class="text-xl font-bold">{{
