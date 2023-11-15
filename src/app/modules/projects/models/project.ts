@@ -4,4 +4,5 @@ export interface Project {
   descripcion: string;
   codigo: number;
   empresaId: number;
+  profiles?: any;
 }

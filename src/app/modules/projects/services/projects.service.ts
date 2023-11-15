@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable, mergeMap, of } from 'rxjs';
 import { ApiService } from '../../../core/services/api/api.service';
 import { Project } from '../models/project';
 
@@ -9,8 +9,25 @@ import { Project } from '../models/project';
 export class ProjectsService {
   #api = inject(ApiService);
 
-  getProjects() {
-    return this.#api.get('proyecto/list');
+  getProjects(projectId: number) {
+    return this.#api.get('proyecto/list').pipe(
+      mergeMap((projects) => {
+        return this.#api.get(`offers/${projectId}`).pipe(
+          mergeMap((offers) => {
+            if (projects) {
+              projects.forEach((project: Project) => {
+                project.profiles = offers.filter(
+                  (offer: any) => offer.proyecto_id === project.id
+                );
+              });
+            }
+
+            const fullProject = [...projects];
+            return of(fullProject);
+          })
+        );
+      })
+    );
   }
 
   createProject(projectData: Project): Observable<Project> {
