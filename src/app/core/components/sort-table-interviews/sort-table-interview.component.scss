@@ -31,3 +31,25 @@
 .numeric-column {
   @include abstracts.flexbox(row, space-evenly, center, 0);
 }
+
+.table-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* O ajusta la altura según tus necesidades */
+}
+.table-content {
+  max-width: 1200px; /* Ancho máximo de tu tabla */
+  width: 100%;
+}
+.action-plus-minus {
+  @include abstracts.flexbox(normal, normal, center, 1rem);
+}
+
+.tool-text {
+  padding-top: 2rem;
+}
+.skill-text {
+  font-size: medium;
+  font-style: bold;
+}

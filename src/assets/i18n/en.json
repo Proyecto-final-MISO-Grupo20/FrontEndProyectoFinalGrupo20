@@ -187,7 +187,11 @@
     "title": "Home"
   },
   "interviews": {
-    "title": "Interviews"
+    "title": "Interviews",
+    "actions": "Actions",
+    "add-score": "Add score",
+    "select-interview-name": "Select interview name",
+    "score": "Score"
   },
   "tests": {
     "title": "Tests"
