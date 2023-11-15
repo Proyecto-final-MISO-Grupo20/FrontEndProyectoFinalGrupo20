@@ -1,0 +1,72 @@
+<p-table
+  responsiveLayout="stack"
+  [breakpoint]="'960px'"
+  [paginator]="true"
+  [rows]="5"
+  currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+  [rowsPerPageOptions]="[5, 10, 15]"
+  [value]="data"
+  [tableStyle]="tableStyle"
+  [ngClass]="{ 'table-style': true }"
+>
+  <ng-template pTemplate="caption" *ngIf="header">
+    <div class="header-container">
+      <h3>{{ header | transloco }}</h3>
+      <div
+        class="actions__button actions__button--blue"
+        [routerLink]="'/interviews'"
+      >
+        <i class="pi pi-plus" style="color: #fff; font-size: 1.2rem"></i>
+      </div>
+    </div>
+  </ng-template>
+  <ng-template pTemplate="header">
+    <tr>
+      <th *ngFor="let column of columns">{{ column }}</th>
+      <th>Actions</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-data>
+    <tr>
+      <td *ngFor="let column of columns">
+        <div *ngIf="column !== 'profiles'">
+          {{ data[column] }}
+        </div>
+
+        <div class="numeric-column" *ngIf="column === 'profiles'">
+          {{ data[column].length }}
+          <div
+            class="actions__button actions__button--blue"
+            [routerLink]="'/profiles/create/' + data.id"
+          >
+            <i
+              [class]="
+                data[column].length > 0 ? 'pi pi-eye' : 'pi pi-user-plus'
+              "
+              style="color: #fff; font-size: 1.2rem"
+            ></i>
+          </div>
+        </div>
+      </td>
+      <td>
+        <div class="actions-container">
+          <div class="actions__button actions__button--blue">
+            <i
+              class="pi pi-arrow-circle-right"
+              style="color: #fff; font-size: 1.2rem"
+            ></i>
+          </div>
+          <div class="actions__button actions__button--red">
+            <i class="pi pi-trash" style="color: #fff; font-size: 1.2rem"></i>
+          </div>
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+
+  <ng-template pTemplate="emptymessage">
+    <tr>
+      <td>No existen proyectos</td>
+    </tr>
+  </ng-template>
+</p-table>
