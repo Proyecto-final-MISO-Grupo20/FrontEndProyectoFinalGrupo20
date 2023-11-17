@@ -16,15 +16,15 @@
       <h3>{{ header | transloco }}</h3>
       <div
         class="actions__button actions__button--blue"
-        [routerLink]="'/interviews'"
-      >
+        [routerLink]="'/interviews/create'"
+      >   
         <i class="pi pi-plus" style="color: #fff; font-size: 1.2rem"></i>
       </div>
     </div>
   </ng-template>
   <ng-template pTemplate="header">
     <tr>
-      <th *ngFor="let column of columns">{{ column }}</th>
+      <th *ngFor="let column of columns">{{ "interviews."+column | transloco }}</th>
       
     </tr>
   </ng-template>
@@ -76,15 +76,7 @@
   </ng-template>
   <form [formGroup]="registerForm"
         class="register__form">
-      <p style="font-size: large;" class="text-xl font-bold">
-        {{ 'interviews.title' | transloco }}
-       </p>
-        <p-dropdown [options]="data"
-          optionLabel="Skill"
-          [style]="{ width: '22.5rem'}"
-          formControlName="skillName"
-          placeholder="{{ 'interviews.select-interview-name' | transloco }} "
-        ></p-dropdown>
+      
         <p class="skill-text">
         </p>
         <p>
@@ -110,6 +102,11 @@
             ></i>
           </div>
         </div>
+        <p></p>
+         <span class="p-float-label">
+          <textarea id="float-input" rows="5" cols="30" pInputTextarea></textarea>
+          <label for="float-input">{{ 'interviews.comment' | transloco }}</label>
+      </span>
       </form>
   <ng-template pTemplate="footer">
     <p-button

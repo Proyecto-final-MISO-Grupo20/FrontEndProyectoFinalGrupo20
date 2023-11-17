@@ -3,6 +3,7 @@ import { Observable, of } from 'rxjs';
 import { ApiService } from '../../../core/services/api/api.service';
 import { Interview } from '../models/interview';
 import { mockData_interview } from '../utils/mock-data-interviews';
+import { mockData_participants } from '../utils/mock-data-participants';
 
 @Injectable({
   providedIn: 'root',
@@ -14,7 +15,7 @@ export class InterviewsService {
     return of(mockData_interview);
   }
 
-  createInterview(interviewData: Interview): Observable<Interview> {
-    return this.#api.post('entrevista', interviewData);
+  createInterview() {
+    return of(mockData_participants);
   }
 }
