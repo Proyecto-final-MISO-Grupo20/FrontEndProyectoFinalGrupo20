@@ -73,10 +73,6 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-  onSubmit() {
-    console.log(this.profileForm.value);
-  }
-
   setShowConfirmDialog(show: boolean) {
     this.showConfirmDialog = show;
   }

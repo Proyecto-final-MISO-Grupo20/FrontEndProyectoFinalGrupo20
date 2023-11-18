@@ -7,6 +7,7 @@
           name="group"
           [value]="option"
           [(ngModel)]="selectedOptions"
+          (ngModelChange)="onCheckboxChange($event)"
           [inputId]="option.id"
         ></p-checkbox>
         <label [for]="option.id">{{ option.nombre }}</label>
@@ -22,6 +23,7 @@
         type="text"
         pInputText
         [(ngModel)]="inputSearch"
+        (ngModelChange)="onInputChange($event)"
         [style]="{ width: '90%' }"
       />
     </span>

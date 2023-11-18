@@ -88,7 +88,6 @@ export class SortTable5Component implements OnInit {
   }
 
   addData() {
-    console.log(this.registerForm.value);
     this.data = [
       ...this.data,
       {

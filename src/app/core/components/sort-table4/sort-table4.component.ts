@@ -82,7 +82,6 @@ export class SortTable4Component implements OnInit {
   }
 
   addData() {
-    console.log(this.registerForm.value);
     this.data = [
       {
         Skill: this.registerForm.value.skillName.Skill,

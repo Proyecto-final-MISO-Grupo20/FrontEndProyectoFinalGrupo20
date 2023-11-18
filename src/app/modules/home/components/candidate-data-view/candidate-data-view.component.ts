@@ -2,7 +2,7 @@ import { Component, Input, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UiModule } from 'ui';
 import { LanguageModule } from 'language';
-import { Offer } from 'src/app/core/models/offer.model';
+import { Offer } from '../../../../core/models/offer.model';
 import { CandidateHomeService } from '../../services/candidate-home/candidate-home.service';
 
 @Component({
@@ -22,7 +22,6 @@ export class CandidateDataViewComponent {
       .subscribe({
         next: (res) => {
           offer.assigned = true;
-          console.log(offer);
         },
         error: (err) => (console.error = err),
       });
