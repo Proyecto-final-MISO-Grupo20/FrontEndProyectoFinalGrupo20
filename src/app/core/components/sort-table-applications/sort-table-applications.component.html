@@ -17,7 +17,9 @@
   <ng-template pTemplate="header">
     <tr>
       <th *ngFor="let column of columns">
-        {{ 'applications.' + column | transloco }}
+        <ng-container *ngIf="column !== 'skills'">
+          {{ 'applications.' + column | transloco }}
+        </ng-container>
       </th>
       <th>{{ 'applications.detail' | transloco }}</th>
     </tr>
@@ -43,6 +45,7 @@
       <td>
         <div class="actions-container">
           <div
+            *ngIf="data.skills.length > 0"
             class="actions__button actions__button--blue"
             (click)="setShowConfirmDialog(true)"
           >

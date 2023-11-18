@@ -24,7 +24,7 @@ import { Tests } from '../../models/tests';
   styleUrls: ['./application.component.scss'],
 })
 export class ApplicationComponent implements OnInit {
-  applications!: Tests[];
+  applications!: any[];
   applicationsService = inject(ApplicationsService);
   activatedRoute = inject(ActivatedRoute);
 
