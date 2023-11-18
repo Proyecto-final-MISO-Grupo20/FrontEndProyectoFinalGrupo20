@@ -1,8 +1,10 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UiModule } from 'ui';
 import { CardType } from '../../utils/card-type.enum';
 import { FormsModule } from '@angular/forms';
+import { BusinessHomeService } from '../../services/business-home/business-home.service';
+import { SkillType } from '../../../technical-data/models/skills';
 
 @Component({
   selector: 'app-util-card',
@@ -14,6 +16,8 @@ import { FormsModule } from '@angular/forms';
 export class UtilCardComponent {
   @Input() headerTitle = 'Title';
   @Input() type = CardType.search;
+
+  businessHomeService = inject(BusinessHomeService);
 
   // checkbox
   @Input() options: any = [
@@ -30,5 +34,9 @@ export class UtilCardComponent {
 
   get cardType() {
     return CardType;
+  }
+
+  onCheckboxChange(data: any) {
+    this.businessHomeService.setActiveFilters({ [SkillType.IDIOMA]: data });
   }
 }
