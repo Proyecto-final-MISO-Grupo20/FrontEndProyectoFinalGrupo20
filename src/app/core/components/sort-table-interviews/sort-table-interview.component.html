@@ -14,7 +14,7 @@
   <ng-template pTemplate="caption" *ngIf="header">
     <div class="header-container">
       <h3>{{ header | transloco }}</h3>
-      <div
+      <div *ngIf="userType===3"
         class="actions__button actions__button--blue"
         [routerLink]="'/interviews/create'"
       >   
@@ -31,22 +31,36 @@
   <ng-template pTemplate="body" let-data>
     <tr>
       <td *ngFor="let column of columns">
-        <div *ngIf="column !== 'profiles'">
+        <div *ngIf="column !== 'calificacion'">
           {{ data[column] }}
         </div>
 
-        <div class="numeric-column" *ngIf="column === 'profiles'">
-          {{ data[column].length }}
-          <div
+        <div class="numeric-column" *ngIf="column === 'calificacion'">
+          
+          <div *ngIf="userType===3"
             class="actions__button actions__button--blue"
             (click)="setShowConfirmDialog(true)"
           >
             <i
               [class]="
-                data[column].length > 0 ? 'pi pi-eye' : 'pi pi-book'
+                data.calificacion !== '' ? 'pi pi-eye' : 'pi pi-book'
               "
               style="color: #fff; font-size: 1.2rem"
             ></i>
+          </div>
+          <div *ngIf="userType===2&&data.calificacion!== ''"
+            class="actions__button actions__button--blue"
+            (click)="setShowInterviewInformation(true)"
+          >
+            <i
+              [class]="
+                 'pi pi-eye'
+              "
+              style="color: #fff; font-size: 1.2rem"
+            ></i>
+          </div>
+          <div *ngIf="userType===2&&data.calificacion=== ''"
+          > NA
           </div>
         </div>
       </td>
@@ -60,7 +74,7 @@
   </ng-template>
 </p-table>
 
-<!-- Dialogo herramientas -->
+<!-- Dialogo book -->
 
 <p-dialog
   header="Header"
@@ -73,6 +87,64 @@
 >
   <ng-template pTemplate="header">
     <span style="font-size: large; font-weight: bolder;" class="text-xl font-bold">{{ 'interviews.add-score' | transloco }}</span>
+  </ng-template>
+  <form [formGroup]="registerForm"
+        class="register__form">
+      
+        <p class="skill-text">
+        </p>
+        <p>
+          <span style="font-size: large;" class="text-xl font-bold">{{ 'interviews.score' | transloco }}</span>
+        </p>
+          <div 
+          class="action-plus-minus"> 
+          <div class="actions__button actions__button--blue"
+          (click)="score>1 && decrease()">
+            <i
+              [class]="'pi pi-minus'"
+              style="color: #fff; font-size: 1.2rem"
+            ></i>
+          </div>
+          <p>
+            {{score}}
+          </p>
+          <div class="actions__button actions__button--blue" 
+            (click)="score<10 && increase()">
+            <i
+              [class]="'pi pi-plus'"
+              style="color: #fff; font-size: 1.2rem"
+            ></i>
+          </div>
+        </div>
+        <p></p>
+         <span class="p-float-label">
+          <textarea id="float-input" rows="5" cols="30" pInputTextarea></textarea>
+          <label for="float-input">{{ 'interviews.comment' | transloco }}</label>
+      </span>
+      </form>
+  <ng-template pTemplate="footer">
+    <p-button
+      icon="pi pi-check"
+      label="{{ 'profiles.accept' | transloco }}"
+      styleClass="p-button-text"
+      (onClick)="addData()"
+    ></p-button>
+  </ng-template>
+</p-dialog>
+
+<!-- Dialogo eye -->
+
+<p-dialog
+  header="Header"
+  [(visible)]="showInterviewInformation"
+  [breakpoints]="{ '960px': '75vw' }"
+  [style]="{ width: '50vw' }"
+  [draggable]="false"
+  [resizable]="false"
+  position="center"
+>
+  <ng-template pTemplate="header">
+    <span style="font-size: large; font-weight: bolder;" class="text-xl font-bold">{{ 'interviews.information' | transloco }}</span>
   </ng-template>
   <form [formGroup]="registerForm"
         class="register__form">

@@ -89,15 +89,7 @@ export class SortTableParticipantsComponent implements OnInit {
 
   addData() {
     // Find the current employee and update the project
-    const foundIndex = this.data.findIndex(
-      (employee) => employee.email === this.currentParticipant.email
-    );
-    if (foundIndex !== -1) {
-      this.data[foundIndex].project.push(this.registerForm.value.project.name);
-      this.data[foundIndex] = { ...this.data[foundIndex] };
-      // Assign the updated data back to trigger change detection
-      this.data = [...this.data];
-    }
+   
     this.registerForm.reset();
     this.setShowConfirmDialog(false);
   }

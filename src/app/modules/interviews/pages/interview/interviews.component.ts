@@ -33,9 +33,6 @@ export class InterviewsComponent implements OnInit {
       .getInterviews()
       .pipe(
         tap((interviews) => {
-          interviews.forEach((interviews: any) => {
-            interviews.profiles = [];
-          });
 
           this.interviews = interviews;
         })

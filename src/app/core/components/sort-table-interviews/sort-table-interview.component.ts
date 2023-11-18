@@ -11,6 +11,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { SessionService } from '../../services/session/session.service';
 
 @Component({
   selector: 'app-sort-table-interview',
@@ -31,9 +32,11 @@ export class SortTableInterviewComponent implements OnInit {
   @Input() data!: any[];
   registerForm!: FormGroup;
   formBuilder = inject(FormBuilder);
+  session = inject(SessionService);
 
   columns!: string[];
   showConfirmDialog = false;
+  showInterviewInformation = false;
   score = 1;
 
   // Responsive
@@ -44,6 +47,11 @@ export class SortTableInterviewComponent implements OnInit {
   @HostListener('window:resize', ['$event'])
   onResize(event: Event): void {
     this.checkScreenWidth();
+  }
+  
+  get userType(){
+    return this.session.getUser().rol
+    
   }
 
   ngOnInit(): void {
@@ -61,6 +69,10 @@ export class SortTableInterviewComponent implements OnInit {
 
   setShowConfirmDialog(show: boolean) {
     this.showConfirmDialog = show;
+  }
+
+  setShowInterviewInformation(show: boolean) {
+    this.showInterviewInformation = show;
   }
 
   checkScreenWidth(): void {
@@ -90,12 +102,7 @@ export class SortTableInterviewComponent implements OnInit {
 
   addData() {
     console.log(this.registerForm.value);
-    this.data = [
-      {
-        Interview: this.registerForm.value.interview.Interview,
-        Score: this.registerForm.value.score.Score,
-      },
-    ];
+    
     
     this.registerForm.reset();
     this.showConfirmDialog = false;
