@@ -4,7 +4,9 @@ import { UiModule } from 'ui';
 import { LanguageModule } from 'language';
 import { FormsModule } from '@angular/forms';
 import { Subscription, tap } from 'rxjs';
-import { BusinessHomeService } from '../../../services/business-home/business-home.service';
+import { BusinessHomeService } from '../../services/business-home/business-home.service';
+import { CandidatesSkills } from '../../models/candidates-skills';
+import { SkillType } from '../../../technical-data/models/skills';
 
 @Component({
   selector: 'app-business-data-view',
@@ -18,6 +20,7 @@ export class BusinessDataViewComponent implements OnInit {
 
   businessHomeService = inject(BusinessHomeService);
   dataSubsctiption!: Subscription;
+  searcher!: string;
 
   ngOnInit() {
     this.dataSubsctiption = this.businessHomeService.filteredData$
@@ -39,5 +42,24 @@ export class BusinessDataViewComponent implements OnInit {
       default:
         return null;
     }
+  }
+
+  validateLanguages(candidate: CandidatesSkills) {
+    return candidate.skills
+      .filter(({ skill }) => skill?.tipo === SkillType.IDIOMA)
+      .map(({ skill }) => skill?.nombre);
+  }
+
+  getimageUrl(language: string | undefined) {
+    const languageCode = language === 'Español' ? 'es' : 'en';
+
+    return `assets/images/flags/${languageCode}.png`;
+  }
+
+  onSearchChange(search: string) {
+    this.businessHomeService.setActiveFilters({
+      ...this.businessHomeService.getActiveFilters(),
+      search: search,
+    });
   }
 }

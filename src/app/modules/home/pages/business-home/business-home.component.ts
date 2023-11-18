@@ -1,7 +1,6 @@
 import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { BusinessDataViewComponent } from '../../components/business-data-view/business-data-view/business-data-view.component';
 import { BusinessHomeService } from '../../services/business-home/business-home.service';
 import { Observable, Subscription, tap } from 'rxjs';
 import { UtilCardComponent } from '../../components/util-card/util-card.component';
@@ -9,6 +8,7 @@ import { CardType } from '../../utils/card-type.enum';
 import { TechnicalLanguagesService } from '../../../technical-data/services/technical-languages/technical-languages.service';
 import { Skill, SkillType } from '../../../technical-data/models/skills';
 import { CandidatesSkills } from '../../models/candidates-skills';
+import { BusinessDataViewComponent } from '../../components/business-data-view/business-data-view.component';
 
 @Component({
   selector: 'app-business-home',
@@ -77,6 +77,7 @@ export class BusinessHomeComponent implements OnInit, OnDestroy {
     this.activateLanguageFilters(filters[SkillType.IDIOMA]);
     this.activateToolFilters(filters[SkillType.HERRAMIENTA]);
     this.activateHabilityFilters(filters[SkillType.HABILIDAD]);
+    this.searchNameFilter(filters['search']);
 
     // Emit filtered Data
     this.businessHomeService.setFilteredData(this.filteredData);
@@ -125,6 +126,16 @@ export class BusinessHomeComponent implements OnInit, OnDestroy {
             skill?.tipo === SkillType.HABILIDAD &&
             skill?.nombre.toLowerCase().match(filter.toLowerCase())
         );
+      });
+    } else {
+      this.filteredData = [...this.filteredData];
+    }
+  }
+
+  searchNameFilter(filter: string) {
+    if (filter && filter.length && filter.length > 0) {
+      this.filteredData = this.filteredData.filter((candidate) => {
+        return candidate.nombre.toLocaleLowerCase().match(filter.toLowerCase());
       });
     } else {
       this.filteredData = [...this.filteredData];

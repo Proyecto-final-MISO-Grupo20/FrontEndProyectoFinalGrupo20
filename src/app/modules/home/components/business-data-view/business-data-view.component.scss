@@ -1,0 +1,36 @@
+@use '/src/styles/abstracts';
+
+.bg-gray {
+  background-color: abstracts.$gray-4;
+}
+
+.p-component,
+.p-component * {
+  background-color: abstracts.$gray-4 !important;
+}
+
+.actions {
+  &-container {
+    @include abstracts.flexbox(row, space-evenly, center, 0);
+  }
+
+  &__button {
+    @include abstracts.flexbox(row, space-evenly, center, 0);
+    @include abstracts.hoverable();
+    @include abstracts.rounded(2rem);
+    height: 2.5rem;
+    width: 2.5rem;
+
+    &--blue {
+      background-color: abstracts.$primary;
+    }
+
+    &--red {
+      background-color: abstracts.$danger;
+    }
+  }
+}
+
+.searcher {
+  padding-bottom: 2rem;
+}

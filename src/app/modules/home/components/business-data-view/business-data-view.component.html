@@ -1,4 +1,18 @@
 <div class="card">
+  <!-- Searcher -->
+  <div class="searcher">
+    <span class="p-input-icon-left" [style]="{ width: '100%' }">
+      <i class="pi pi-search"></i>
+      <input
+        type="text"
+        pInputText
+        [style]="{ width: '100%' }"
+        [(ngModel)]="searcher"
+        (ngModelChange)="onSearchChange($event)"
+      />
+    </span>
+  </div>
+
   <p-dataView #dv [value]="data" [rows]="5" [paginator]="true">
     <ng-template let-data pTemplate="listItem">
       <div class="col-12 bg-gray">
@@ -18,7 +32,10 @@
                 ngModel="4"
               ></p-rating>
 
-              <div class="flex align-items-center gap-3">
+              <div
+                class="flex align-items-center gap-3"
+                *ngIf="validateLanguages(data).length > 0"
+              >
                 <span class="flex align-items-center gap-2">
                   <i class="pi pi-language"></i>
                   <span class="font-semibold"
@@ -26,28 +43,20 @@
                   >
                 </span>
 
-                <ng-container>
-                  <img
-                    width="20px"
-                    [src]="'assets/images/flags/' + 'es' + '.png'"
-                    class="mr2"
-                  />
+                <ng-container *ngFor="let language of validateLanguages(data)">
+                  <img width="20px" [src]="getimageUrl(language)" class="mr2" />
                 </ng-container>
                 <!-- <p-tag [value]="data.inventoryStatus"></p-tag> -->
               </div>
             </div>
             <div
               class="flex sm:flex-column align-items-center sm:align-items-end gap-3 sm:gap-2"
-            ></div>
-            <div
-              class="flex sm:flex-column align-items-center sm:align-items-end gap-3 sm:gap-2"
             >
-              <span class="text-2xl font-semibold">{{ '$' + 1000 }}</span>
-              <button
-                pButton
-                icon="pi pi-shopping-cart"
-                class="md:align-self-end mb-2 p-button-rounded"
-              ></button>
+              {{ data.email }}
+
+              <div class="actions__button actions__button--blue">
+                <i class="pi pi-eye" style="color: #fff; font-size: 1.2rem"></i>
+              </div>
             </div>
           </div>
         </div>
