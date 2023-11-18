@@ -60,7 +60,8 @@ export class SortTableParticipantsComponent implements OnInit {
 
   initializeForm() {
     this.registerForm = this.formBuilder.group({
-      participant: ['', Validators.required],
+      userType: ['', [Validators.required, Validators.maxLength(255)]],
+      user: ['', [Validators.required, Validators.maxLength(255)]],
     });
   }
 

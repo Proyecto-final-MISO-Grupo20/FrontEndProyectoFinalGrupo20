@@ -33,6 +33,7 @@ export class SortTableInterviewComponent implements OnInit {
   registerForm!: FormGroup;
   formBuilder = inject(FormBuilder);
   session = inject(SessionService);
+  displayDialog = false;
 
   columns!: string[];
   showConfirmDialog = false;
@@ -43,6 +44,8 @@ export class SortTableInterviewComponent implements OnInit {
   isMobile!: boolean;
   tableStyle: { [key: string]: string } = {};
   router: any;
+commentValue: any;
+ratingValue: any;
 
   @HostListener('window:resize', ['$event'])
   onResize(event: Event): void {
@@ -63,13 +66,24 @@ export class SortTableInterviewComponent implements OnInit {
   initializeForm() {
     this.registerForm = this.formBuilder.group({
       interview: ['', Validators.required],
-      score: ['', Validators.required],
+      score: ['', [Validators.required, Validators.maxLength(2)]],
+      comment: ['', [Validators.required, Validators.maxLength(255)]],
     });
   }
 
+  handleClick(event: any) {
+    const iconClass = event.target.classList;
+    if (iconClass.contains('pi-eye')) {
+      this.setShowInterviewInformation(true);
+    } else if (iconClass.contains('pi-book')) {
+      this.setShowConfirmDialog(true);
+    }
+  }
+  
   setShowConfirmDialog(show: boolean) {
     this.showConfirmDialog = show;
   }
+
 
   setShowInterviewInformation(show: boolean) {
     this.showInterviewInformation = show;
@@ -102,9 +116,8 @@ export class SortTableInterviewComponent implements OnInit {
 
   addData() {
     console.log(this.registerForm.value);
-    
-    
     this.registerForm.reset();
+    this.showInterviewInformation = false;
     this.showConfirmDialog = false;
     
   }

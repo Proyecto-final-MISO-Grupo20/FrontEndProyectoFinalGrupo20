@@ -53,3 +53,18 @@
   font-size: medium;
   font-style: bold;
 }
+.comment {
+  margin-bottom: 20px;
+}
+
+.comment strong {
+  display: inline-block;
+  width: 120px; /* Ancho del texto "Comentario:" */
+  /* Otros estilos que desees aplicar */
+}
+
+.comment p {
+  display: inline; /* Hacer que el texto "Lorem ipsum..." sea en la misma línea */
+  margin: 0;
+  /* Otros estilos que desees aplicar */
+}
