@@ -14,6 +14,7 @@ export class SortTableTestComponent implements OnInit {
   // Input data
   @Input() header!: string;
   @Input() data!: any[];
+  @Input() parentId!: number;
 
   columns!: string[];
 

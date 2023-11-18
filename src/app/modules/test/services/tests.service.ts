@@ -3,6 +3,7 @@ import { Observable, map } from 'rxjs';
 import { ApiService } from '../../../core/services/api/api.service';
 import { Tests } from '../../applications/models/tests';
 import { Application } from '../../applications/models/application';
+import { CreateTestDto } from '../dtos/create-test.dto';
 
 @Injectable({
   providedIn: 'root',
@@ -16,5 +17,9 @@ export class TestsService {
         return offers.map((offer) => offer.pruebas)[0] || [];
       })
     );
+  }
+
+  createTest(data: CreateTestDto): Observable<{ message: string }> {
+    return this.#api.post('pruebas', data);
   }
 }

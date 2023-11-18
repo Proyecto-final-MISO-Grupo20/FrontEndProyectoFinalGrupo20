@@ -1,5 +1,5 @@
 import { Route } from '@angular/router';
-import { OfferComponent } from '../offers/pages/offers/offer.component';
+import { OfferComponent } from './pages/offers/offer.component';
 
 export const offersRoutes: Route[] = [
   {

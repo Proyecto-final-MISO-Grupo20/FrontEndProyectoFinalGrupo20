@@ -1,5 +1,5 @@
 import { Route } from '@angular/router';
-import { ApplicationComponent } from '../applications/pages/applications/application.component';
+import { ApplicationComponent } from './pages/applications/application.component';
 
 export const applicationsRoutes: Route[] = [
   {

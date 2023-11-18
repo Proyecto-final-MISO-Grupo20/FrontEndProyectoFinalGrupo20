@@ -21,6 +21,7 @@ export class ProjectsComponent implements OnInit {
   successCreate = false;
   projects!: any[];
   successCreateOffer!: string | null;
+  loading = false;
 
   ngOnInit(): void {
     this.getProjects();
@@ -29,12 +30,14 @@ export class ProjectsComponent implements OnInit {
   }
 
   getProjects() {
+    this.loading = true;
+
     this.projectsService
       .getProjects(1)
       .pipe(
         tap((projects) => {
-          console.log(projects);
           this.projects = projects;
+          this.loading = false;
         })
       )
       .subscribe();

@@ -1,8 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LanguageModule } from 'language';
-// eslint-disable-next-line @nx/enforce-module-boundaries
-import { SortTableTestComponent } from 'src/app/core/components/sort-table-test/sort-table-test.component';
+import { SortTableTestComponent } from '../../../../core/components/sort-table-test/sort-table-test.component';
 import { TestsService } from '../../services/tests.service';
 import { tap } from 'rxjs';
 import { Keys } from '../../../../core/utils/keys';
@@ -43,7 +42,7 @@ export class TestComponent implements OnInit {
           this.tests = tests;
         })
       )
-      .subscribe(console.log);
+      .subscribe();
   }
 
   setSuccessCreated() {

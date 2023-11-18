@@ -76,11 +76,15 @@
       >{{ 'profiles.candidate' | transloco }}</span
     >
   </ng-template>
-  <form [formGroup]="registerForm" class="register__form">
-    <p class="skill-text">
-      {{ 'profiles.candidate-skill' | transloco }}
-    </p>
-  </form>
+  <ng-template pTemplate="body">
+    <!-- <ul *ngFor="let application of data">
+      <p>
+        juju
+        {{ application.pruebas | json }}
+      </p>
+    </ul> -->
+  </ng-template>
+
   <ng-template pTemplate="footer">
     <p-button
       icon="pi pi-check"

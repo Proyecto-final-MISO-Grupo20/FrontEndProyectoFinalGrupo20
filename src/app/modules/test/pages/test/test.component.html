@@ -2,10 +2,10 @@
   <div class="projects-container">
     <h1 class="projects-title">{{ 'tests.title' | transloco }}</h1>
 
-    
     <app-sort-table-test
+      [parentId]="offerId"
       [header]="'tests.list'"
       [data]="tests"
     ></app-sort-table-test>
-   
+  </div>
 </div>

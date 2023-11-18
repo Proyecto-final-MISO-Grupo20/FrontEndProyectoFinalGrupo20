@@ -7,7 +7,7 @@
   [rowsPerPageOptions]="[5, 10, 15]"
   [value]="data"
   [tableStyle]="tableStyle"
-  [tableStyle]="{'width': '80rem'}"
+  [tableStyle]="{ width: '80rem' }"
   [ngClass]="{ 'table-style': true }"
 >
   <ng-template pTemplate="caption" *ngIf="header">
@@ -15,7 +15,7 @@
       <h3>{{ header | transloco }}</h3>
       <div
         class="actions__button actions__button--blue"
-        [routerLink]="'/createTest'"
+        [routerLink]="'/test/create/' + parentId"
       >
         <i class="pi pi-plus" style="color: #fff; font-size: 1.2rem"></i>
       </div>
@@ -23,25 +23,25 @@
   </ng-template>
   <ng-template pTemplate="header">
     <tr>
-      <th *ngFor="let column of columns">{{ "tests."+column | transloco }}</th>
+      <th *ngFor="let column of columns">
+        {{ 'tests.' + column | transloco }}
+      </th>
     </tr>
   </ng-template>
   <ng-template pTemplate="body" let-data>
     <tr>
       <td *ngFor="let column of columns">
-        <div >
+        <div>
           {{ data[column] }}
         </div>
       </td>
-      <td>
-        
-      </td>
+      <td></td>
     </tr>
   </ng-template>
 
   <ng-template pTemplate="emptymessage">
     <tr>
-      <td>{{ "tests.no-exist" | transloco }}</td>
+      <td>{{ 'tests.no-exist' | transloco }}</td>
     </tr>
   </ng-template>
 </p-table>

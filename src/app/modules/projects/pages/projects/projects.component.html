@@ -7,7 +7,7 @@
       [style]="{ width: '22.5rem' }"
       severity="success"
       text="{{
-        'projects.success-create' | transloco : { project: createdProject }
+        'projects.success-create' | transloco: { project: createdProject }
       }}"
     ></p-message>
 
@@ -17,11 +17,12 @@
       severity="success"
       text="{{
         'projects.success-create-offer'
-          | transloco : { profile: successCreateOffer }
+          | transloco: { profile: successCreateOffer }
       }}"
     ></p-message>
 
     <app-sort-table
+      [loading]="loading"
       [header]="'projects.list'"
       [data]="projects"
     ></app-sort-table>

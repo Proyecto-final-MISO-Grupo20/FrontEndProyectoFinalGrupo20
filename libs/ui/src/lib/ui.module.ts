@@ -17,6 +17,7 @@ import { RatingModule } from 'primeng/rating';
 import { TagModule } from 'primeng/tag';
 import { CardModule } from 'primeng/card';
 import { CheckboxModule } from 'primeng/checkbox';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 @NgModule({
   imports: [
@@ -39,6 +40,7 @@ import { CheckboxModule } from 'primeng/checkbox';
     RatingModule,
     CardModule,
     CheckboxModule,
+    ProgressSpinnerModule,
   ],
   exports: [
     DropdownModule,
@@ -59,6 +61,7 @@ import { CheckboxModule } from 'primeng/checkbox';
     RatingModule,
     CardModule,
     CheckboxModule,
+    ProgressSpinnerModule,
   ],
 })
 export class UiModule {}

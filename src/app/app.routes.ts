@@ -51,7 +51,7 @@ export const appRoutes: Route[] = [
     title: 'ABC Jobs | Profiles',
     canActivate: [authGuard],
     loadChildren: () =>
-      import('./modules/projects/profiles.routes').then(
+      import('./modules/profiles/profiles.routes').then(
         (routes) => routes.profilesRoutes
       ),
   },
@@ -60,7 +60,7 @@ export const appRoutes: Route[] = [
     title: 'ABC Jobs | Offers',
     canActivate: [authGuard],
     loadChildren: () =>
-      import('./modules/projects/offers.routes').then(
+      import('./modules/offers/offers.routes').then(
         (routes) => routes.offersRoutes
       ),
   },
@@ -69,17 +69,8 @@ export const appRoutes: Route[] = [
     title: 'ABC Jobs | Applications',
     canActivate: [authGuard],
     loadChildren: () =>
-      import('./modules/projects/applications.routes').then(
+      import('./modules/applications/applications.routes').then(
         (routes) => routes.applicationsRoutes
-      ),
-  },
-  {
-    path: 'createTest',
-    title: 'ABC Jobs | CreateTest',
-    canActivate: [authGuard],
-    loadChildren: () =>
-      import('./modules/projects/create-test.routes').then(
-        (routes) => routes.CreateTestRoutes
       ),
   },
   {
@@ -87,9 +78,7 @@ export const appRoutes: Route[] = [
     title: 'ABC Jobs | Test',
     canActivate: [authGuard],
     loadChildren: () =>
-      import('./modules/projects/test.routes').then(
-        (routes) => routes.testsRoutes
-      ),
+      import('./modules/test/test.routes').then((routes) => routes.testsRoutes),
   },
   {
     path: '**',

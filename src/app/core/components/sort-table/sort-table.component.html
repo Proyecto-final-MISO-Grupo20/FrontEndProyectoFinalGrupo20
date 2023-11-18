@@ -75,7 +75,15 @@
 
   <ng-template pTemplate="emptymessage">
     <tr>
-      <td>{{ 'projects.no-exist' | transloco }}</td>
+      <td *ngIf="!loading">{{ 'projects.no-exist' | transloco }}</td>
+      <td *ngIf="loading">
+        <p-progressSpinner
+          styleClass="w-4rem h-4rem"
+          strokeWidth="8"
+          fill="var(--surface-ground)"
+          animationDuration=".5s"
+        ></p-progressSpinner>
+      </td>
     </tr>
   </ng-template>
 </p-table>
