@@ -27,6 +27,7 @@ export class SortTableapplicationsComponent implements OnInit {
   // Input data
   @Input() header!: string;
   @Input() data!: any[];
+  @Input() loading = false;
   registerForm!: FormGroup;
   formBuilder = inject(FormBuilder);
 

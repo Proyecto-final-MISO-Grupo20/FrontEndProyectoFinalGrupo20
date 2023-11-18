@@ -1,27 +1,32 @@
-<h2 class="business-home-header">Resultados de la Búsqueda</h2>
+<h2 class="business-home-header">
+  {{ 'business-home.search-result' | transloco }}
+</h2>
 <div class="business-home-content">
   <div class="business-home-content-cards">
     <app-util-card
       *ngIf="languages$"
-      headerTitle="Idiomas"
+      headerTitle="business-home.languages"
       [type]="cardType.checkbox"
       [options]="languages$ | async"
     ></app-util-card>
     <app-util-card
-      headerTitle="Herramientas"
+      headerTitle="business-home.tools"
       [type]="cardType.search"
       [searchType]="skillType.HERRAMIENTA"
     ></app-util-card>
     <app-util-card
-      headerTitle="Habilidades"
+      headerTitle="business-home.habilities"
       [type]="cardType.search"
       [searchType]="skillType.HABILIDAD"
     ></app-util-card>
     <app-util-card
-      headerTitle="Calificaciones"
+      headerTitle="business-home.califications"
       [type]="cardType.rating"
     ></app-util-card>
   </div>
 
-  <app-business-data-view [data]="candidatesData"></app-business-data-view>
+  <app-business-data-view
+    [data]="candidatesData"
+    [loading]="loading"
+  ></app-business-data-view>
 </div>

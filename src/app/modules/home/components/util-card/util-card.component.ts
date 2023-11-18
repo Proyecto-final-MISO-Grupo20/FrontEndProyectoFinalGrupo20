@@ -5,11 +5,12 @@ import { CardType } from '../../utils/card-type.enum';
 import { FormsModule } from '@angular/forms';
 import { BusinessHomeService } from '../../services/business-home/business-home.service';
 import { SkillType } from '../../../technical-data/models/skills';
+import { LanguageModule } from 'language';
 
 @Component({
   selector: 'app-util-card',
   standalone: true,
-  imports: [CommonModule, UiModule, FormsModule],
+  imports: [CommonModule, UiModule, FormsModule, LanguageModule],
   templateUrl: './util-card.component.html',
   styleUrls: ['./util-card.component.scss'],
 })
@@ -17,6 +18,7 @@ export class UtilCardComponent {
   @Input() headerTitle = 'Title';
   @Input() type = CardType.search;
   @Input() searchType!: SkillType;
+  @Input() loading = false;
 
   businessHomeService = inject(BusinessHomeService);
 

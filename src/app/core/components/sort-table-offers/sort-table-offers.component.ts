@@ -14,6 +14,7 @@ export class SortTableOffersComponent implements OnInit {
   // Input data
   @Input() header!: string;
   @Input() data!: any[];
+  @Input() loading = false;
 
   columns!: string[];
 

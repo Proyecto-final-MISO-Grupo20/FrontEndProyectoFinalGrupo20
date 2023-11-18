@@ -1,8 +1,15 @@
-<p-card [header]="headerTitle" [style]="{ width: '15rem' }">
+<p-card [header]="headerTitle | transloco" [style]="{ width: '15rem' }">
   <!-- CheckBox -->
+
   <div class="card flex" *ngIf="type === cardType.checkbox">
     <div class="flex flex-column gap-2">
       <div *ngFor="let option of options" class="field-checkbox">
+        <td *ngIf="loading">
+          <p-progressSpinner
+            styleClass="w-4rem h-4rem"
+            animationDuration=".5s"
+          ></p-progressSpinner>
+        </td>
         <p-checkbox
           name="group"
           [value]="option"

@@ -20,6 +20,7 @@ import { ActivatedRoute } from '@angular/router';
 export class OfferComponent implements OnInit {
   offersService = inject(OffersService);
   activatedRoute = inject(ActivatedRoute);
+  loading = false;
 
   createdOffer!: string | null;
   successCreate = false;
@@ -35,6 +36,8 @@ export class OfferComponent implements OnInit {
   }
 
   getOffers() {
+    this.loading = true;
+
     this.offersService
       .getOffers(this.projectId)
       .pipe(
@@ -42,7 +45,7 @@ export class OfferComponent implements OnInit {
           this.offers = offers;
         })
       )
-      .subscribe();
+      .subscribe({ next: (res) => (this.loading = false) });
   }
 
   setSuccessCreated() {

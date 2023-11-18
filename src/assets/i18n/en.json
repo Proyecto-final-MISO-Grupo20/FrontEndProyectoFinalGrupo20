@@ -188,7 +188,7 @@
     "enter-email": "Enter employee email",
     "email-required": "Email is required",
     "email-min-length": "Minimum email length is 3 characters",
-    "no-exist":"There are not tools",
+    "no-exist": "There are not tools",
     "candidate": "Candidate profile",
     "candidate-skill": "Candidate skills",
 
@@ -201,7 +201,6 @@
     "profile": "Profile",
     "state": "State",
     "profiles": "Applications"
-
   },
   "applications": {
     "title": "Applications",
@@ -254,6 +253,13 @@
     "empty-tools": "Not associated tools",
     "empty-languages": "Not associated languages"
   },
+  "business-home": {
+    "search-result": "Search Result",
+    "languages": "Languages",
+    "tools": "Tools",
+    "habilities": "Habilities",
+    "califications": "Califications"
+  },
   "next": "Next",
   "cancel": "Cancel",
   "previous": "Previous",
@@ -263,5 +269,6 @@
   "candidate": "Candidate",
   "business": "Business",
   "name": "ohooo<",
-  "register-button": "Register"
+  "register-button": "Register",
+  "sign-out": "Sign Out"
 }

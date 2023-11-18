@@ -52,8 +52,12 @@
   </ng-template>
 
   <ng-template pTemplate="emptymessage">
-    <tr>
-      <td>{{ 'offers.not-exist' | transloco }}</td>
-    </tr>
+    <td *ngIf="!loading">{{ 'offers.no-exist' | transloco }}</td>
+    <td *ngIf="loading">
+      <p-progressSpinner
+        styleClass="w-4rem h-4rem"
+        animationDuration=".5s"
+      ></p-progressSpinner>
+    </td>
   </ng-template>
 </p-table>

@@ -1,14 +1,41 @@
 <p-table
+  #dt1
   responsiveLayout="stack"
   [breakpoint]="'960px'"
   [paginator]="true"
   [rows]="5"
   currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+  [showCurrentPageReport]="true"
   [rowsPerPageOptions]="[5, 10, 15]"
   [value]="data"
   [tableStyle]="tableStyle"
   [ngClass]="{ 'table-style': true }"
+  [globalFilterFields]="[
+    'descripcion',
+    'country.name',
+    'representative.name',
+    'status'
+  ]"
 >
+  <ng-template pTemplate="caption">
+    <div class="flex">
+      <button
+        pButton
+        label="Clear"
+        class="p-button-outlined"
+        icon="pi pi-filter-slash"
+      ></button>
+      <span class="p-input-icon-left ml-auto">
+        <i class="pi pi-search"></i>
+        <input
+          pInputText
+          type="text"
+          (input)="dt1.filterGlobal($event.target, 'contains')"
+          placeholder="Search keyword"
+        />
+      </span>
+    </div>
+  </ng-template>
   <ng-template pTemplate="caption" *ngIf="header">
     <div class="header-container">
       <h3>{{ header | transloco }}</h3>
@@ -79,8 +106,6 @@
       <td *ngIf="loading">
         <p-progressSpinner
           styleClass="w-4rem h-4rem"
-          strokeWidth="8"
-          fill="var(--surface-ground)"
           animationDuration=".5s"
         ></p-progressSpinner>
       </td>
