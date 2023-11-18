@@ -72,7 +72,6 @@ export class TechnicalLanguagesComponent {
         } else {
           this.candidateLanguages = [{ ...dataToShow }];
         }
-        console.log(res);
       },
       error: (err) => console.error(err),
     });

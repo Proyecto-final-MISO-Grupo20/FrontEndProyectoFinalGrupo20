@@ -48,7 +48,7 @@ export class ApplicationComponent implements OnInit {
           this.applications = applications;
         })
       )
-      .subscribe(console.log);
+      .subscribe();
   }
 
   setSuccessCreated() {

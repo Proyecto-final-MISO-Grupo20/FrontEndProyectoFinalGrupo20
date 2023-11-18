@@ -16,6 +16,7 @@ import { SkillType } from '../../../technical-data/models/skills';
 export class UtilCardComponent {
   @Input() headerTitle = 'Title';
   @Input() type = CardType.search;
+  @Input() searchType!: SkillType;
 
   businessHomeService = inject(BusinessHomeService);
 
@@ -37,6 +38,16 @@ export class UtilCardComponent {
   }
 
   onCheckboxChange(data: any) {
-    this.businessHomeService.setActiveFilters({ [SkillType.IDIOMA]: data });
+    this.businessHomeService.setActiveFilters({
+      ...this.businessHomeService.getActiveFilters(),
+      [SkillType.IDIOMA]: data,
+    });
+  }
+
+  onInputChange(search: string) {
+    this.businessHomeService.setActiveFilters({
+      ...this.businessHomeService.getActiveFilters(),
+      [this.searchType]: search,
+    });
   }
 }

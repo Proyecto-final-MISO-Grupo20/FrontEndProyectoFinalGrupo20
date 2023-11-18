@@ -2,11 +2,7 @@
   <div class="profiles-container">
     <h1 class="profiles-title" transloco="profiles.title"></h1>
 
-    <form
-      class="profiles__form"
-      [formGroup]="profileForm"
-      (ngSubmit)="onSubmit()"
-    >
+    <form class="profiles__form" [formGroup]="profileForm">
       <div class="form__input--label">
         <label
           for="name"

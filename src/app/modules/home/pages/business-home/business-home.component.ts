@@ -33,6 +33,10 @@ export class BusinessHomeComponent implements OnInit, OnDestroy {
     return CardType;
   }
 
+  get skillType() {
+    return SkillType;
+  }
+
   ngOnInit(): void {
     this.getLanguages();
     this.getCandidatesData();
@@ -64,7 +68,6 @@ export class BusinessHomeComponent implements OnInit, OnDestroy {
     this.activeFilterObservable =
       this.businessHomeService.activeFilters$.subscribe({
         next: (filters) => {
-          console.log(filters);
           this.activeFilters(filters);
         },
       });
@@ -72,6 +75,8 @@ export class BusinessHomeComponent implements OnInit, OnDestroy {
 
   activeFilters(filters: any) {
     this.activateLanguageFilters(filters[SkillType.IDIOMA]);
+    this.activateToolFilters(filters[SkillType.HERRAMIENTA]);
+    this.activateHabilityFilters(filters[SkillType.HABILIDAD]);
 
     // Emit filtered Data
     this.businessHomeService.setFilteredData(this.filteredData);
@@ -95,6 +100,34 @@ export class BusinessHomeComponent implements OnInit, OnDestroy {
       });
     } else {
       this.filteredData = this.candidatesData;
+    }
+  }
+
+  activateToolFilters(filter: string) {
+    if (filter && filter.length && filter.length > 0) {
+      this.filteredData = this.filteredData.filter((candidate) => {
+        return candidate.skills.some(
+          ({ skill }) =>
+            skill?.tipo === SkillType.HERRAMIENTA &&
+            skill?.nombre.toLowerCase().match(filter.toLowerCase())
+        );
+      });
+    } else {
+      this.filteredData = [...this.filteredData];
+    }
+  }
+
+  activateHabilityFilters(filter: string) {
+    if (filter && filter.length && filter.length > 0) {
+      this.filteredData = this.filteredData.filter((candidate) => {
+        return candidate.skills.some(
+          ({ skill }) =>
+            skill?.tipo === SkillType.HABILIDAD &&
+            skill?.nombre.toLowerCase().match(filter.toLowerCase())
+        );
+      });
+    } else {
+      this.filteredData = [...this.filteredData];
     }
   }
 }

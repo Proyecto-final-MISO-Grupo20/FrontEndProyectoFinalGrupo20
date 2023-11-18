@@ -23,6 +23,7 @@
         type="text"
         pInputText
         [(ngModel)]="inputSearch"
+        (ngModelChange)="onInputChange($event)"
         [style]="{ width: '90%' }"
       />
     </span>
