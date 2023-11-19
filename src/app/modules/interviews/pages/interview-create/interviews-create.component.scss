@@ -14,11 +14,8 @@
   }
 
   &__form {
-    @include abstracts.flexbox(column, space-evenly, center, 2rem);
-    display: block;
-    margin-bottom: 20px;
+    @include abstracts.flexbox(column, space-evenly, center, 0.5rem);
   }
-  
 }
 
 .form {
@@ -35,5 +32,5 @@
 .button-container {
   display: flex;
   justify-content: center;
-  margin-top: 20px; /* Espacio superior para separar de otros elementos si es necesario */
+  gap: 0.5rem;
 }

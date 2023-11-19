@@ -1,9 +1,14 @@
-import { Component, HostListener, Input, OnInit, inject } from '@angular/core';
+import {
+  Component,
+  HostListener,
+  Input,
+  OnChanges,
+  OnInit,
+  inject,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UiModule } from 'ui';
-import { RatingModule } from 'primeng/rating';
 import { LanguageModule } from 'language';
-import { IncrementalStateKind } from '@angular/compiler-cli/src/ngtsc/incremental';
 import {
   FormBuilder,
   FormGroup,
@@ -12,6 +17,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { SessionService } from '../../services/session/session.service';
+import { Interview } from '../../../modules/interviews/models/interview';
 
 @Component({
   selector: 'app-sort-table-interview',
@@ -26,7 +32,7 @@ import { SessionService } from '../../services/session/session.service';
   templateUrl: './sort-table-interview.component.html',
   styleUrls: ['./sort-table-interview.component.scss'],
 })
-export class SortTableInterviewComponent implements OnInit {
+export class SortTableInterviewComponent implements OnInit, OnChanges {
   // Input data
   @Input() header!: string;
   @Input() data!: any[];
@@ -39,28 +45,32 @@ export class SortTableInterviewComponent implements OnInit {
   showConfirmDialog = false;
   showInterviewInformation = false;
   score = 1;
+  selectedInterview!: Interview;
 
   // Responsive
   isMobile!: boolean;
   tableStyle: { [key: string]: string } = {};
   router: any;
-commentValue: any;
-ratingValue: any;
+  commentValue: any;
+  ratingValue: any;
 
   @HostListener('window:resize', ['$event'])
   onResize(event: Event): void {
     this.checkScreenWidth();
   }
-  
-  get userType(){
-    return this.session.getUser().rol
-    
+
+  get userType() {
+    return this.session.getUser().rol;
   }
 
   ngOnInit(): void {
     this.setColumns();
     this.checkScreenWidth();
     this.initializeForm();
+  }
+
+  ngOnChanges() {
+    this.setColumns();
   }
 
   initializeForm() {
@@ -71,21 +81,21 @@ ratingValue: any;
     });
   }
 
-  handleClick(event: any) {
+  handleClick(event: any, interview: Interview) {
     const iconClass = event.target.classList;
     if (iconClass.contains('pi-eye')) {
-      this.setShowInterviewInformation(true);
+      this.setShowInterviewInformation(true, interview);
     } else if (iconClass.contains('pi-book')) {
       this.setShowConfirmDialog(true);
     }
   }
-  
+
   setShowConfirmDialog(show: boolean) {
     this.showConfirmDialog = show;
   }
 
-
-  setShowInterviewInformation(show: boolean) {
+  setShowInterviewInformation(show: boolean, interview?: any) {
+    this.selectedInterview = interview;
     this.showInterviewInformation = show;
   }
 
@@ -103,7 +113,7 @@ ratingValue: any;
   }
 
   setColumns() {
-    if (this.data.length > 0) {
+    if (this.data && this.data.length > 0) {
       this.columns = Object.keys(this.data[0]);
     }
   }
@@ -115,10 +125,8 @@ ratingValue: any;
   }
 
   addData() {
-    console.log(this.registerForm.value);
     this.registerForm.reset();
     this.showInterviewInformation = false;
     this.showConfirmDialog = false;
-    
   }
 }
