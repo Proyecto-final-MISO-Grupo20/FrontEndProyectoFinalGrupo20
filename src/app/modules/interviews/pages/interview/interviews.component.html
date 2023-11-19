@@ -3,19 +3,15 @@
     <h1 class="projects-title">{{ 'interviews.title' | transloco }}</h1>
 
     @if (successCreate) {
-<p-message
-     
+    <p-message
       [style]="{ width: '22.5rem' }"
       severity="success"
       text="{{
         'interviews.success-create' | transloco: { interview: createdInterview }
       }}"
     ></p-message>
-}
-
-    @if (successCreateInterview) {
-<p-message
-     
+    } @if (successCreateInterview) {
+    <p-message
       [style]="{ width: '22.5rem' }"
       severity="success"
       text="{{
@@ -23,7 +19,7 @@
           | transloco: { profile: successCreateInterview }
       }}"
     ></p-message>
-}
+    }
 
     <app-sort-table-interview
       [header]="'interviews.list'"

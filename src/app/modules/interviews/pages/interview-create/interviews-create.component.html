@@ -19,102 +19,80 @@
           formControlName="name"
           placeholder=" {{ 'interviews.enter-name' | transloco }} "
         />
-        @if (
-            interviewCreateForm.get('name')?.hasError('required') &&
-            interviewCreateForm.get('name')?.touched
-          ) {
-<p-message
+        @if ( interviewCreateForm.get('name')?.hasError('required') &&
+        interviewCreateForm.get('name')?.touched ) {
+        <p-message
           [style]="{ width: '22.5rem' }"
-         
           severity="error"
-          text="{{
-            'interviews.name-required' | transloco
-          }}"
+          text="{{ 'interviews.name-required' | transloco }}"
         ></p-message>
-}
-
-        @if (interviewCreateForm.get('name')?.hasError('minlength')) {
-<p-message
+        } @if (interviewCreateForm.get('name')?.hasError('minlength')) {
+        <p-message
           [style]="{ width: '22.5rem' }"
-         
           severity="error"
-          text="{{
-            'interviews.name-min-length' | transloco
-          }}"
+          text="{{ 'interviews.name-min-length' | transloco }}"
         ></p-message>
-}
+        }
       </div>
 
       <p></p>
 
       <!-- Date-->
-    <div class="form__input--label">
-      <label htmlFor="date">{{
-        'interviews.date' | transloco
-      }}</label>
+      <div class="form__input--label">
+        <label htmlFor="date">{{ 'interviews.date' | transloco }}</label>
 
-      <p-calendar
-        min
-        [style]="{ width: '22.5rem' }"
-        [showIcon]="true"
-        id="date"
-        formControlName="date"
-        placeholder=" {{
-          'interviews.enter-date' | transloco
-        }} "
-        [(ngModel)]="participants" [showTime]="true" [showSeconds]="true"
-      ></p-calendar>
+        <p-calendar
+          min
+          [style]="{ width: '22.5rem' }"
+          [showIcon]="true"
+          id="date"
+          formControlName="date"
+          placeholder=" {{ 'interviews.enter-date' | transloco }} "
+          [(ngModel)]="participants"
+          [showTime]="true"
+          [showSeconds]="true"
+        ></p-calendar>
 
-      @if (
-          interviewCreateForm.get('fecha')?.hasError('required') &&
-          interviewCreateForm.get('fecha')?.touched
-        ) {
-<p-message
-        [style]="{ width: '22.5rem' }"
-       
-        severity="error"
-        text="{{
-          'interviews.date-required' | transloco
-        }}"
-      ></p-message>
-}
+        @if ( interviewCreateForm.get('fecha')?.hasError('required') &&
+        interviewCreateForm.get('fecha')?.touched ) {
+        <p-message
+          [style]="{ width: '22.5rem' }"
+          severity="error"
+          text="{{ 'interviews.date-required' | transloco }}"
+        ></p-message>
+        }
+      </div>
 
-    </div>
-
-    
-
-    <div class="table-spacing">
-
-    <app-sort-table-participants
-      [header]="'participants.list'"
-      [data]="participants"
-    ></app-sort-table-participants>
-    </div>
+      <div class="table-spacing">
+        <app-sort-table-participants
+          [header]="'participants.list'"
+          [data]="participants"
+        ></app-sort-table-participants>
+      </div>
 
       @if (errorMessage) {
-<p-message
+      <p-message
         [style]="{ width: '22.5rem' }"
         severity="error"
-       
         text="{{ errorMessage }}"
       ></p-message>
-}
+      }
       <div class="button-container">
-      <p-button
-        label="{{ 'create' | transloco }}"
-        [style]="{ width: '22.5rem' }"
-        type="submit"
-        [disabled]="!interviewCreateForm.valid"
-        [loading]="loading"
-      ></p-button>
+        <p-button
+          label="{{ 'create' | transloco }}"
+          [style]="{ width: '22.5rem' }"
+          type="submit"
+          [disabled]="!interviewCreateForm.valid"
+          [loading]="loading"
+        ></p-button>
 
-      <p-button
-        (onClick)="setShowConfirmDialog(true)"
-        label="{{ 'cancel' | transloco }}"
-        [style]="{ width: '22.5rem' }"
-        severity="secondary"
-      ></p-button>
-    </div>
+        <p-button
+          (onClick)="setShowConfirmDialog(true)"
+          label="{{ 'cancel' | transloco }}"
+          [style]="{ width: '22.5rem' }"
+          severity="secondary"
+        ></p-button>
+      </div>
     </form>
   </div>
 </div>
@@ -129,7 +107,9 @@
   position="center"
 >
   <ng-template pTemplate="header">
-    <span class="text-xl font-bold">{{ 'interviews.confirm' | transloco }}</span>
+    <span class="text-xl font-bold">{{
+      'interviews.confirm' | transloco
+    }}</span>
   </ng-template>
   <p>
     {{ 'interviews.confirm-body' | transloco }}
