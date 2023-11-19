@@ -9,35 +9,46 @@
   [tableStyle]="tableStyle"
   [ngClass]="{ 'table-style': true }"
 >
-  <ng-template pTemplate="caption" *ngIf="header">
+  @if (header) {
+  <ng-template pTemplate="caption">
     <div class="header-container">
       <h3>{{ header | transloco }}</h3>
-      <div class="actions__button actions__button--blue larger-div" (click)="setShowConfirmDialog(true)"
+      <div
+        class="actions__button actions__button--blue larger-div"
+        (click)="setShowConfirmDialog(true)"
       >
-        <i class="pi pi-plus" style="color: #fff; font-size: 1.2rem; margin-right: 5px;"
+        <i
+          class="pi pi-plus"
+          style="color: #fff; font-size: 1.2rem; margin-right: 5px"
         ></i>
-        <span class="icon-label">{{ 'interviews.add-participant' | transloco }}</span>
-        
+        <span class="icon-label">{{
+          'interviews.add-participant' | transloco
+        }}</span>
       </div>
-  </div>
+    </div>
   </ng-template>
+  }
   <ng-template pTemplate="header">
     <tr>
-      <th class="header" *ngFor="let column of columns">
+      @for (column of columns; track column) {
+      <th class="header">
         {{ 'participants.' + column | transloco }}
       </th>
+      }
 
       <th class="header">{{ 'participants.' + 'actions' | transloco }}</th>
     </tr>
   </ng-template>
   <ng-template pTemplate="body" let-data let-index>
     <tr>
-      <td *ngFor="let column of columns; let index = index">
-        <div *ngIf="column !== 'profiles'">
+      @for (column of columns; track column; let index = $index) {
+      <td>
+        @if (column !== 'profiles') {
+        <div>
           {{ data[column] }}
         </div>
-
-        <div class="numeric-column" *ngIf="column === 'profiles'">
+        } @if (column === 'profiles') {
+        <div class="numeric-column">
           {{ data[column].length }}
           <div class="actions__button actions__button--blue">
             <i
@@ -48,7 +59,9 @@
             ></i>
           </div>
         </div>
+        }
       </td>
+      }
 
       <td>
         <div class="actions-container">
@@ -84,32 +97,36 @@
   [draggable]="false"
   [resizable]="false"
   position="center"
-
 >
   <ng-template pTemplate="header">
-    <span style="font-size: large; font-weight: bolder;" class="text-xl font-bold">{{ 'participants.add-participant' | transloco }}</span>
+    <span
+      style="font-size: large; font-weight: bolder"
+      class="text-xl font-bold"
+      >{{ 'participants.add-participant' | transloco }}</span
+    >
   </ng-template>
-  <form [formGroup]="registerForm"
-        class="register__form">
-      <p class="participant-text">
-        {{ 'participants.user-type' | transloco }}
-       </p>
-        <p-dropdown [options]="data"
-          optionLabel="user-type"
-          [style]="{ width: '22.5rem'}"
-          formControlName="userType"
-          placeholder="{{ 'participants.select-user-type' | transloco }} "
-        ></p-dropdown>
-        <p class="participant-text">
-          {{ 'participants.user' | transloco }}
-        </p>
-        <p-dropdown [options]="data"
-          optionLabel="User"
-          [style]="{ width: '22.5rem'}"
-          formControlName="user"
-          placeholder="{{ 'participants.select-user' | transloco }} "
-        ></p-dropdown>
-      </form>
+  <form [formGroup]="registerForm" class="register__form">
+    <p class="participant-text">
+      {{ 'participants.user-type' | transloco }}
+    </p>
+    <p-dropdown
+      [options]="data"
+      optionLabel="user-type"
+      [style]="{ width: '22.5rem' }"
+      formControlName="userType"
+      placeholder="{{ 'participants.select-user-type' | transloco }} "
+    ></p-dropdown>
+    <p class="participant-text">
+      {{ 'participants.user' | transloco }}
+    </p>
+    <p-dropdown
+      [options]="data"
+      optionLabel="User"
+      [style]="{ width: '22.5rem' }"
+      formControlName="user"
+      placeholder="{{ 'participants.select-user' | transloco }} "
+    ></p-dropdown>
+  </form>
   <ng-template pTemplate="footer">
     <p-button
       icon="pi pi-check"
@@ -119,4 +136,3 @@
     ></p-button>
   </ng-template>
 </p-dialog>
-

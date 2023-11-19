@@ -1,15 +1,19 @@
 <p-card [header]="headerTitle | transloco" [style]="{ width: '15rem' }">
   <!-- CheckBox -->
 
-  <div class="card flex" *ngIf="type === cardType.checkbox">
+  @if (type === cardType.checkbox) {
+<div class="card flex">
     <div class="flex flex-column gap-2">
-      <div *ngFor="let option of options" class="field-checkbox">
-        <td *ngIf="loading">
+      @for (option of options; track option) {
+  <div class="field-checkbox">
+        @if (loading) {
+<td>
           <p-progressSpinner
             styleClass="w-4rem h-4rem"
             animationDuration=".5s"
           ></p-progressSpinner>
         </td>
+}
         <p-checkbox
           name="group"
           [value]="option"
@@ -19,11 +23,14 @@
         ></p-checkbox>
         <label [for]="option.id">{{ option.nombre }}</label>
       </div>
+}
     </div>
   </div>
+}
 
   <!--Search-->
-  <div *ngIf="type === cardType.search">
+  @if (type === cardType.search) {
+<div>
     <span class="p-input-icon-left">
       <i class="pi pi-search"></i>
       <input
@@ -35,11 +42,14 @@
       />
     </span>
   </div>
+}
 
   <!-- Rating -->
-  <div class="card flex" *ngIf="type === cardType.rating">
+  @if (type === cardType.rating) {
+<div class="card flex">
     <div class="flex flex-column gap-2">
-      <div *ngFor="let option of options" class="field-checkbox">
+      @for (option of options; track option) {
+  <div class="field-checkbox">
         <p-checkbox
           name="group"
           [value]="option.value"
@@ -63,6 +73,8 @@
           ></p-rating
         >
       </div>
+}
     </div>
   </div>
+}
 </p-card>

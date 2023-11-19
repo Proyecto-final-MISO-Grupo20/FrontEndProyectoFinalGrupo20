@@ -11,40 +11,51 @@
       [tableStyle]="tableStyle"
       [ngClass]="{ 'table-style': true }"
     >
-      <ng-template pTemplate="caption" *ngIf="header">
+      @if (header) {
+      <ng-template pTemplate="caption">
         <div class="header-container">
           <h3>{{ header | transloco }}</h3>
+          @if (userType === 3) {
           <div
-            *ngIf="userType === 3"
             class="actions__button actions__button--blue"
             [routerLink]="'/interviews/create'"
           >
             <i class="pi pi-plus" style="color: #fff; font-size: 1.2rem"></i>
           </div>
+          }
         </div>
       </ng-template>
+      }
       <ng-template pTemplate="header">
         <tr>
-          <th *ngFor="let column of columns">
-            <ng-container *ngIf="column !== 'id' && column !== 'calificacion'">
-              {{ 'interviews.' + column | transloco }}
-            </ng-container>
+          @for (column of columns; track column) {
+          <th>
+            @if (column !== 'id' && column !== 'calificacion') {
+
+            {{ 'interviews.' + column | transloco }}
+
+            }
           </th>
+          }
           <th>{{ 'interviews.calificacion' | transloco }}</th>
         </tr>
       </ng-template>
       <ng-template pTemplate="body" let-data>
         <tr>
-          <td *ngFor="let column of columns; let index = index">
-            <ng-container *ngIf="column !== 'calificacion' && column !== 'id'">
-              {{ data[column] }}
-            </ng-container>
+          @for (column of columns; track column; let index = $index) {
+          <td>
+            @if (column !== 'calificacion' && column !== 'id') {
+
+            {{ data[column] }}
+
+            }
           </td>
+          }
 
           <td>
             <div class="numeric-column">
+              @if (userType === 3) {
               <div
-                *ngIf="userType === 3"
                 class="actions__button actions__button--blue"
                 (click)="handleClick($event, data)"
               >
@@ -55,8 +66,8 @@
                   style="color: #fff; font-size: 1.2rem"
                 ></i>
               </div>
+              } @if (userType === 2 && data.calificacion !== '') {
               <div
-                *ngIf="userType === 2 && data.calificacion !== ''"
                 class="actions__button actions__button--blue"
                 (click)="setShowInterviewInformation(true, 'llll')"
               >
@@ -65,7 +76,9 @@
                   style="color: #fff; font-size: 1.2rem"
                 ></i>
               </div>
-              <div *ngIf="userType === 2 && data.calificacion === ''">NA</div>
+              } @if (userType === 2 && data.calificacion === '') {
+              <div>NA</div>
+              }
             </div>
           </td>
         </tr>
@@ -164,7 +177,8 @@
         <title>Resultados entrevista</title>
       </head>
 
-      <body *ngIf="selectedInterview">
+      @if (selectedInterview) {
+      <body>
         <div class="container" style="font-size: large">
           <h2>Resultados entrevista</h2>
           <p></p>
@@ -182,6 +196,7 @@
           </div>
         </div>
       </body>
+      }
       <ng-template pTemplate="footer">
         <p-button
           icon="pi pi-check"

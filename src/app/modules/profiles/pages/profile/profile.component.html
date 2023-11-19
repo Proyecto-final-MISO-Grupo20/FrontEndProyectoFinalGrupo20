@@ -18,19 +18,23 @@
           placeholder="{{ 'profiles.enter-name' | transloco }}"
         />
 
-        <p-message
-          *ngIf="
+        @if (
             profileForm.get('name')?.hasError('required') &&
             profileForm.get('name')?.touched
-          "
+          ) {
+<p-message
+         
           severity="error"
           [text]="'employees.name-required' | transloco"
         ></p-message>
-        <p-message
-          *ngIf="profileForm.get('name')?.hasError('minlength')"
+}
+        @if (profileForm.get('name')?.hasError('minlength')) {
+<p-message
+         
           severity="error"
           [text]="'profiles.name-min-length' | transloco"
         ></p-message>
+}
       </div>
     </form>
 

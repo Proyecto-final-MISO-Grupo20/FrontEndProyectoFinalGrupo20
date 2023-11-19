@@ -1,8 +1,12 @@
 <section class="home-wrapper">
   <div class="home-container">
-    <app-business-home *ngIf="userRole === roles.BUSINESS"></app-business-home>
-    <app-candidate-home
-      *ngIf="userRole === roles.CANDIDATE"
+    @if (userRole === roles.BUSINESS) {
+<app-business-home></app-business-home>
+}
+    @if (userRole === roles.CANDIDATE) {
+<app-candidate-home
+     
     ></app-candidate-home>
+}
   </div>
 </section>

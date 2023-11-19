@@ -2,17 +2,16 @@
   <div class="projects-container">
     <h1 class="projects-title">{{ 'interviews.title' | transloco }}</h1>
 
+    @if (successCreate) {
     <p-message
-      *ngIf="successCreate"
       [style]="{ width: '22.5rem' }"
       severity="success"
       text="{{
         'interviews.success-create' | transloco: { interview: createdInterview }
       }}"
     ></p-message>
-
+    } @if (successCreateInterview) {
     <p-message
-      *ngIf="successCreateInterview"
       [style]="{ width: '22.5rem' }"
       severity="success"
       text="{{
@@ -20,6 +19,7 @@
           | transloco: { profile: successCreateInterview }
       }}"
     ></p-message>
+    }
 
     <app-sort-table-interview
       [header]="'interviews.list'"

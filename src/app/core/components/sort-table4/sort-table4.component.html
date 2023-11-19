@@ -1,7 +1,8 @@
+@if (data && columns) {
 <p-table
   responsiveLayout="stack"
   [breakpoint]="'960px'"
-  *ngIf="data && columns"
+ 
   [paginator]="true"
   [rows]="5"
   currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
@@ -27,23 +28,31 @@
   </ng-template>
   <ng-template pTemplate="header">
     <tr>
-      <th class = "header" *ngFor="let column of columns">{{ "profiles."+column | transloco }}</th>
+      @for (column of columns; track column) {
+  <th class = "header">{{ "profiles."+column | transloco }}</th>
+}
       <th class = "header">{{ "profiles."+"actions" | transloco }}</th>
     </tr>
   </ng-template>
   <ng-template pTemplate="body" let-data>
     <tr>
-      <td *ngFor="let column of columns">
-        <div *ngIf="column !== 'skills'">
+      @for (column of columns; track column) {
+  <td>
+        @if (column !== 'skills') {
+<div>
           {{ data[column] }}
         </div>
+}
 
-        <div class="numeric-column" *ngIf="column === 'Skills'">
+        @if (column === 'Skills') {
+<div class="numeric-column">
       
           <p-rating [(ngModel)]="data[column]" [readonly]="true" [cancel]="false"></p-rating>
           
         </div>
+}
       </td>
+}
       <td>
         <div class="actions-container">
           <div class="actions__button actions__button--red">
@@ -60,6 +69,7 @@
     </tr>
   </ng-template>
 </p-table>
+}
 
 <!-- Dialogo herramientas -->
 

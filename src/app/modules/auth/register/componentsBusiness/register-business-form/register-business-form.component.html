@@ -6,7 +6,8 @@
   <lib-steps [items]="stepsData" [activeIndex]="currentStep"> </lib-steps>
 
   <!-- STEP 1-->
-  <ng-container *ngIf="currentStep === steps.personalInformation">
+  @if (currentStep === steps.personalInformation) {
+
     <!-- Name-->
     <div class="form__input--label">
       <label htmlFor="name">{{
@@ -64,9 +65,10 @@
         class="countries-dropdown"
       >
         <ng-template pTemplate="selectedItem">
-          <div
+          @if (registerBusinessForm.get('pais')) {
+<div
             class="flex align-items-center gap-2"
-            *ngIf="registerBusinessForm.get('pais')"
+           
             class="countries-dropdown--item"
           >
             <img
@@ -79,6 +81,7 @@
             />
             <div>{{ registerBusinessForm.get('pais')?.value.name }}</div>
           </div>
+}
         </ng-template>
         <ng-template let-country pTemplate="item">
           <div
@@ -107,9 +110,10 @@
         class="countries-dropdown"
       >
         <ng-template pTemplate="selectedItem">
-          <div
+          @if (registerBusinessForm.get('ciudad')) {
+<div
             class="flex align-items-center gap-2"
-            *ngIf="registerBusinessForm.get('ciudad')"
+           
             class="countries-dropdown--item"
           >
             <img
@@ -122,6 +126,7 @@
             />
             <div>{{ registerBusinessForm.get('ciudad')?.value.name }}</div>
           </div>
+}
         </ng-template>
         <ng-template let-city pTemplate="item">
           <div
@@ -185,10 +190,12 @@
         </p-dropdown>
       </div>
     </div>
-  </ng-container>
+  
+}
 
   <!-- STEP 2-->
-  <ng-container *ngIf="currentStep === steps.createBusinessAccount">
+  @if (currentStep === steps.createBusinessAccount) {
+
     <!-- Username-->
     <div class="form__input--label">
       <label htmlFor="username">{{
@@ -255,8 +262,9 @@
           'register.business-account-step.enter-password-confirm' | transloco
         }} "
       />
-      <p-message
-        *ngIf="registerBusinessForm.hasError('passwordMismatch')"
+      @if (registerBusinessForm.hasError('passwordMismatch')) {
+<p-message
+       
         [style]="{ width: '22.5rem' }"
         severity="error"
         text="{{
@@ -264,15 +272,19 @@
             | transloco
         }}"
       ></p-message>
+}
     </div>
-  </ng-container>
+  
+}
 
-  <p-message
+  @if (error) {
+<p-message
     [style]="{ width: '22.5rem' }"
     severity="error"
-    *ngIf="error"
+   
     text="{{ error }}"
   ></p-message>
+}
 
   <p-button
     label="{{ nextText | transloco }}"
@@ -282,12 +294,14 @@
     [loading]="loading"
   ></p-button>
 
-  <p-button
+  @if (currentStep === steps.createBusinessAccount) {
+<p-button
     label="{{ 'previous' | transloco }}"
     [style]="{ width: '22.5rem' }"
     (onClick)="backToPreviousStep()"
-    *ngIf="currentStep === steps.createBusinessAccount"
+   
   ></p-button>
+}
 
   <p-button
     (onClick)="goToMainRegister()"

@@ -10,7 +10,8 @@
   [tableStyle]="{ width: '80rem' }"
   [ngClass]="{ 'table-style': true }"
 >
-  <ng-template pTemplate="caption" *ngIf="header">
+  @if (header) {
+<ng-template pTemplate="caption">
     <div class="header-container">
       <h3>{{ header | transloco }}</h3>
       <div
@@ -21,20 +22,25 @@
       </div>
     </div>
   </ng-template>
+}
   <ng-template pTemplate="header">
     <tr>
-      <th *ngFor="let column of columns">
+      @for (column of columns; track column) {
+  <th>
         {{ 'tests.' + column | transloco }}
       </th>
+}
     </tr>
   </ng-template>
   <ng-template pTemplate="body" let-data>
     <tr>
-      <td *ngFor="let column of columns">
+      @for (column of columns; track column) {
+  <td>
         <div>
           {{ data[column] }}
         </div>
       </td>
+}
       <td></td>
     </tr>
   </ng-template>

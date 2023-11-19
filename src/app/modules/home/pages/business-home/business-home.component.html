@@ -3,12 +3,14 @@
 </h2>
 <div class="business-home-content">
   <div class="business-home-content-cards">
-    <app-util-card
-      *ngIf="languages$"
+    @if (languages$) {
+<app-util-card
+     
       headerTitle="business-home.languages"
       [type]="cardType.checkbox"
       [options]="languages$ | async"
     ></app-util-card>
+}
     <app-util-card
       headerTitle="business-home.tools"
       [type]="cardType.search"
