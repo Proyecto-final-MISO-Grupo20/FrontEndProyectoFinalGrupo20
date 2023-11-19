@@ -1,0 +1,69 @@
+@use '/src/styles/abstracts';
+
+.actions {
+  &-container {
+    @include abstracts.flexbox(row, space-evenly, center, 0);
+  }
+
+  &__button {
+    @include abstracts.flexbox(row, space-evenly, center, 0);
+    @include abstracts.hoverable();
+    @include abstracts.rounded(0.5rem);
+    height: 2.5rem;
+    width: 2.5rem;
+
+    &--blue {
+      background-color: abstracts.$primary;
+    }
+
+    &--red {
+      background-color: abstracts.$danger;
+    }
+  }
+}
+
+.header {
+  &-container {
+    @include abstracts.flexbox(row, space-between, center, 0);
+  }
+}
+
+.numeric-column {
+  @include abstracts.flexbox(row, space-evenly, center, 0);
+}
+
+.table-container {
+  display: flex;
+  justify-content: center;
+  height: 100vh; /* O ajusta la altura según tus necesidades */
+}
+.table-content {
+  max-width: 1200px; /* Ancho máximo de tu tabla */
+  width: 100%;
+}
+.action-plus-minus {
+  @include abstracts.flexbox(normal, normal, center, 1rem);
+}
+
+.tool-text {
+  padding-top: 2rem;
+}
+.skill-text {
+  font-size: medium;
+  font-style: bold;
+}
+.comment {
+  margin-bottom: 20px;
+}
+
+.comment strong {
+  display: inline-block;
+  width: 120px; /* Ancho del texto "Comentario:" */
+  /* Otros estilos que desees aplicar */
+}
+
+.comment p {
+  display: inline; /* Hacer que el texto "Lorem ipsum..." sea en la misma línea */
+  margin: 0;
+  /* Otros estilos que desees aplicar */
+}

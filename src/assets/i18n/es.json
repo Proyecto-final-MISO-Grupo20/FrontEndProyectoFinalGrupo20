@@ -229,7 +229,41 @@
     "title": "Inicio"
   },
   "interviews": {
-    "title": "Entrevistas"
+    "title": "Entrevistas",
+    "actions": "Acciones",
+    "add-score": "Adicionar calificación",
+    "select-interview-name": "Seleccione una entrevista",
+    "score": "Calificación",
+    "list": "Lista de entrevistas",
+    "titulo": "Título",
+    "fecha": "Fecha",
+    "comentario": "Comentario",
+    "calificacion": "Calificación",
+    "profiles": "Calificar",
+    "name": "Nombre",
+    "create": "Crear entrevista",
+    "enter-name": "Ingrese el nombre",
+    "name-required": "El nombre es requerido",
+    "name-min-length": "El nombre debe tener mínimo 3 carácteres",
+    "participants": "Participantes",
+    "select-participants": "Seleccionar participantes",
+    "date": "Fecha",
+    "enter-date": "Ingrese la fecha",
+    "add-participant": "Participante",
+    "date-required": "Fecha requerida",
+    "confirm": "Confirmar",
+    "confirm-body": "¿Desea salir de la creación de entrevistas?",
+    "comment": "Comentario"
+  },
+  "participants": {
+    "list": "Lista de participantes",
+    "add-participant": "Agregar participante a la entrevista",
+    "user-type": "Tipo de usuario",
+    "select-user-type": "Seleccione el tipo de usuario",
+    "select-user": "Seleccionar usuario",
+    "user": "Usuario",
+    "no-participant": "No hay participantes actualmente",
+    "actions": "Acciones"
   },
   "tests": {
     "title": "Pruebas",
@@ -252,7 +286,7 @@
     "search-result": "Resultados de la Búsqueda",
     "languages": "Idiomas",
     "tools": "Herramientas",
-    "habilities": "Habilidadtes",
+    "habilities": "Habilidades",
     "califications": "Calificaciones"
   },
   "next": "Siguiente",

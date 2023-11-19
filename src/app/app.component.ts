@@ -41,6 +41,6 @@ export class AppComponent implements OnInit {
   }
 
   getHeaderCandidateList() {
-    return ['home', 'technical-data'];
+    return ['home', 'technical-data', 'interviews'];
   }
 }

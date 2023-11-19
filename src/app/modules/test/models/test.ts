@@ -5,5 +5,5 @@ export interface Test {
   nombre: string;
   email: string;
   telefono: number;
-  pruebas: string; 
+  pruebas: string;
 }

@@ -234,7 +234,41 @@
     "title": "Home"
   },
   "interviews": {
-    "title": "Interviews"
+    "title": "Interviews",
+    "actions": "Actions",
+    "add-score": "Add score",
+    "select-interview-name": "Select interview name",
+    "score": "Score",
+    "list": "Enterview list",
+    "titulo": "Title",
+    "fecha": "Date",
+    "comentario": "Comment",
+    "calificacion": "Score",
+    "profiles": "Qualify",
+    "name": "Name",
+    "create": "Create interview",
+    "enter-name": "Enter a name",
+    "name-required": "Name is required",
+    "name-min-length": "Minimum name length is 3 characters",
+    "participants": "Participants",
+    "select-participants": "Select participants",
+    "date": "Date",
+    "enter-date": "Enter date",
+    "add-participant": "Participant",
+    "date-required": "Date required",
+    "confirm": "Confirm",
+    "confirm-body": "Are you sure you want to exit from the interview creation?",
+    "comment": "Comment"
+  },
+  "participants": {
+    "list": "List of participants",
+    "add-participant": "Add participant to interview",
+    "user-type": "User Type",
+    "select-user-type": "Select the user type",
+    "select-user": "Select user",
+    "user": "User",
+    "no-participant": "There are currently no participants",
+    "actions": "Actions"
   },
   "tests": {
     "title": "Tests",

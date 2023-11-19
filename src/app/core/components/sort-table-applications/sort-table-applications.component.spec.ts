@@ -1,7 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { SortTableapplicationsComponent } from './sort-table-applications.component';
 
-
 describe('SortTableComponent', () => {
   let component: SortTableapplicationsComponent;
   let fixture: ComponentFixture<SortTableapplicationsComponent>;

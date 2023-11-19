@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { SortTableapplicationsComponent } from './sort-table-test.component';
+import { SortTableInterviewComponent } from './sort-table-interview.component';
 
 describe('SortTableComponent', () => {
-  let component: SortTableapplicationsComponent;
-  let fixture: ComponentFixture<SortTableapplicationsComponent>;
+  let component: SortTableInterviewComponent;
+  let fixture: ComponentFixture<SortTableInterviewComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SortTableapplicationsComponent],
+      imports: [SortTableInterviewComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(SortTableapplicationsComponent);
+    fixture = TestBed.createComponent(SortTableInterviewComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

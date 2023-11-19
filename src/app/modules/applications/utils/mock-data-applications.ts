@@ -27,5 +27,4 @@ export const mockData_applications = [
     email: 'email4@prueba.com',
     telefono: '3112345098',
   },
-  
 ];

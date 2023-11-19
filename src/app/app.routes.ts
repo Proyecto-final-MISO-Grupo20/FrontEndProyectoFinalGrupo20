@@ -56,6 +56,15 @@ export const appRoutes: Route[] = [
       ),
   },
   {
+    path: 'interviews',
+    title: 'ABC Jobs | Interviews',
+    canActivate: [authGuard],
+    loadChildren: () =>
+      import('./modules/interviews/interviews.routes').then(
+        (routes) => routes.interviewsRoutes
+      ),
+  },
+  {
     path: 'offers',
     title: 'ABC Jobs | Offers',
     canActivate: [authGuard],

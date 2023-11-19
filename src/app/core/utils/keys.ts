@@ -4,4 +4,5 @@ export enum Keys {
   TOKEN_EXPIRED = '[Auth] Token Expired',
   USER = '[Auth] User',
   CREATE_OFFER_COMPLETE = '[Create] Offer',
+  CREATE_INTERVIEW_COMPLETE = '[Create] Interview',
 }

@@ -1,0 +1,41 @@
+@use '/src/styles/abstracts';
+
+.actions {
+  &-container {
+    @include abstracts.flexbox(row, space-evenly, center, 0);
+  }
+
+  &__button {
+    @include abstracts.flexbox(row, space-evenly, center, 0);
+    @include abstracts.hoverable();
+    @include abstracts.rounded(0.5rem);
+    height: 2.5rem;
+    width: 2.5rem;
+
+    &--blue {
+      background-color: abstracts.$primary;
+    }
+
+    &--red {
+      background-color: abstracts.$danger;
+    }
+  }
+}
+
+.header {
+  &-container {
+    @include abstracts.flexbox(row, space-between, center, 0);
+  }
+}
+
+.numeric-column {
+  @include abstracts.flexbox(row, space-evenly, center, 0);
+}
+.actions__button--blue.larger-div {
+  padding: 8px 80px; /* Ajusta el relleno para que quepa el texto */
+  display: inline-flex; /* Asegura que el div solo tenga el ancho necesario */
+  align-items: center; /* Centra verticalmente el contenido */
+}
+.icon-label {
+  color: white; /* Cambia el color del texto a blanco */
+}
