@@ -18,6 +18,7 @@ import { TagModule } from 'primeng/tag';
 import { CardModule } from 'primeng/card';
 import { CheckboxModule } from 'primeng/checkbox';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { TooltipModule } from 'primeng/tooltip';
 
 @NgModule({
   imports: [
@@ -41,6 +42,7 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
     CardModule,
     CheckboxModule,
     ProgressSpinnerModule,
+    TooltipModule,
   ],
   exports: [
     DropdownModule,
@@ -62,6 +64,7 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
     CardModule,
     CheckboxModule,
     ProgressSpinnerModule,
+    TooltipModule,
   ],
 })
 export class UiModule {}

@@ -188,7 +188,7 @@
     "enter-email": "Ingrese el Correo Electrónico del empleado",
     "email-required": "El correo electrónico es requerido",
     "email-min-length": "El email debe tener mínimo 3 carácteres",
-    "no-exist":"No existen herrameintas actualmente",
+    "no-exist": "No existen herrameintas actualmente",
     "candidate": "Perfil del candidato",
     "candidate-skill": "Habilidades del candidato",
 
@@ -248,6 +248,13 @@
     "empty-tools": "No hay herramientas asociadas",
     "empty-languages": "No hay idiomas asociados"
   },
+  "business-home": {
+    "search-result": "Resultados de la Búsqueda",
+    "languages": "Idiomas",
+    "tools": "Herramientas",
+    "habilities": "Habilidadtes",
+    "califications": "Calificaciones"
+  },
   "next": "Siguiente",
   "cancel": "Cancelar",
   "previous": "Volver",
@@ -257,5 +264,6 @@
   "candidate": "Candidato",
   "business": "Empresa",
   "name": "ohooo<",
-  "register-button": "Registrar"
+  "register-button": "Registrar",
+  "sign-out": "Cerrar Sesión"
 }

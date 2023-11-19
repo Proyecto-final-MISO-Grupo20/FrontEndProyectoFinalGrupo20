@@ -17,6 +17,7 @@ import { SkillType } from '../../../technical-data/models/skills';
 })
 export class BusinessDataViewComponent implements OnInit {
   @Input() data!: any;
+  @Input() loading = false;
 
   businessHomeService = inject(BusinessHomeService);
   dataSubsctiption!: Subscription;

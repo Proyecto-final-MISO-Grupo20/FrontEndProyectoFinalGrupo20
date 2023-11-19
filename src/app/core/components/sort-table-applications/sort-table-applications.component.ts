@@ -9,6 +9,8 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { CandidatesSkills } from './../../../modules/home/models/candidates-skills';
+import { SkillType } from '../../../modules/technical-data/models/skills';
 
 @Component({
   selector: 'app-sort-table-applications',
@@ -27,11 +29,15 @@ export class SortTableapplicationsComponent implements OnInit {
   // Input data
   @Input() header!: string;
   @Input() data!: any[];
+  @Input() loading = false;
+  @Input() urlId!: number;
+
   registerForm!: FormGroup;
   formBuilder = inject(FormBuilder);
 
   columns!: string[];
   showConfirmDialog = false;
+  currentCandidateTools!: any;
 
   // Responsive
   isMobile!: boolean;
@@ -41,6 +47,10 @@ export class SortTableapplicationsComponent implements OnInit {
   @HostListener('window:resize', ['$event'])
   onResize(event: Event): void {
     this.checkScreenWidth();
+  }
+
+  get skillTypeEnum() {
+    return SkillType;
   }
 
   ngOnInit(): void {
@@ -56,8 +66,10 @@ export class SortTableapplicationsComponent implements OnInit {
     });
   }
 
-  setShowConfirmDialog(show: boolean) {
+  setShowConfirmDialog(show: boolean, candidate: CandidatesSkills) {
     this.showConfirmDialog = show;
+
+    this.currentCandidateTools = this.getSkills(candidate);
   }
 
   checkScreenWidth(): void {
@@ -84,5 +96,22 @@ export class SortTableapplicationsComponent implements OnInit {
 
   ngOnChanges() {
     this.setColumns();
+  }
+
+  getSkills(candidate: CandidatesSkills) {
+    const result = {
+      [SkillType.HABILIDAD]: candidate.skills.filter(
+        ({ skill }) => skill?.tipo === SkillType.HABILIDAD
+      ),
+      [SkillType.HERRAMIENTA]: candidate.skills.filter(
+        ({ skill }) => skill?.tipo === SkillType.HERRAMIENTA
+      ),
+      [SkillType.IDIOMA]: candidate.skills.filter(
+        ({ skill }) => skill?.tipo === SkillType.IDIOMA
+      ),
+    };
+
+    console.log(result);
+    return result;
   }
 }

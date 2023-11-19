@@ -9,17 +9,26 @@ import { TechnicalLanguagesService } from '../../../technical-data/services/tech
 import { Skill, SkillType } from '../../../technical-data/models/skills';
 import { CandidatesSkills } from '../../models/candidates-skills';
 import { BusinessDataViewComponent } from '../../components/business-data-view/business-data-view.component';
+import { LanguageModule } from 'language';
+import { UiModule } from 'ui';
 
 @Component({
   selector: 'app-business-home',
   standalone: true,
-  imports: [CommonModule, BusinessDataViewComponent, UtilCardComponent],
+  imports: [
+    CommonModule,
+    BusinessDataViewComponent,
+    UtilCardComponent,
+    LanguageModule,
+    UiModule,
+  ],
   templateUrl: './business-home.component.html',
   styleUrls: ['./business-home.component.scss'],
 })
 export class BusinessHomeComponent implements OnInit, OnDestroy {
   businessHomeService = inject(BusinessHomeService);
   technicalLanguagesService = inject(TechnicalLanguagesService);
+  loading = false;
 
   languages$!: Observable<Skill[]>;
 
@@ -47,6 +56,8 @@ export class BusinessHomeComponent implements OnInit, OnDestroy {
   }
 
   getCandidatesData() {
+    this.loading = true;
+
     this.businessHomeService
       .getCandidates()
       .pipe(
@@ -57,11 +68,13 @@ export class BusinessHomeComponent implements OnInit, OnDestroy {
           this.observeActiveFilters();
         })
       )
-      .subscribe();
+      .subscribe({ next: (res) => (this.loading = false) });
   }
 
   getLanguages() {
-    this.languages$ = this.technicalLanguagesService.getLanguages();
+    this.languages$ = this.technicalLanguagesService
+      .getLanguages()
+      .pipe(tap(() => (this.loading = false)));
   }
 
   observeActiveFilters() {

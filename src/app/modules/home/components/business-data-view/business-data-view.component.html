@@ -13,7 +13,13 @@
     </span>
   </div>
 
-  <p-dataView #dv [value]="data" [rows]="5" [paginator]="true">
+  <p-progressSpinner
+    *ngIf="loading"
+    styleClass="w-4rem h-4rem"
+    animationDuration=".5s"
+  ></p-progressSpinner>
+
+  <p-dataView #dv [value]="data" [rows]="5" [paginator]="true" *ngIf="!loading">
     <ng-template let-data pTemplate="listItem">
       <div class="col-12 bg-gray">
         <div
@@ -39,7 +45,7 @@
                 <span class="flex align-items-center gap-2">
                   <i class="pi pi-language"></i>
                   <span class="font-semibold"
-                    >{{ 'Idiomas' | transloco }}:</span
+                    >{{ 'business-home.languages' | transloco }}:</span
                   >
                 </span>
 

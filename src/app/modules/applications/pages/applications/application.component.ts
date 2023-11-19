@@ -27,6 +27,7 @@ export class ApplicationComponent implements OnInit {
   applications!: any[];
   applicationsService = inject(ApplicationsService);
   activatedRoute = inject(ActivatedRoute);
+  loading = false;
 
   createdApplication!: string | null;
   successCreate = false;
@@ -41,11 +42,14 @@ export class ApplicationComponent implements OnInit {
   }
 
   getApplications() {
+    this.loading = true;
+
     this.applicationsService
       .getApplications(this.offerId)
       .pipe(
         tap((applications) => {
           this.applications = applications;
+          this.loading = false;
         })
       )
       .subscribe();
