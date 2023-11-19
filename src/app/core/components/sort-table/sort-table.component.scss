@@ -29,5 +29,5 @@
 }
 
 .numeric-column {
-  @include abstracts.flexbox(row, space-evenly, center, 0);
+  @include abstracts.flexbox(row, space-evenly, center, 1rem);
 }

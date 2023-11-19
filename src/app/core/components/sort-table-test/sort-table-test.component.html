@@ -23,25 +23,35 @@
     </div>
   </ng-template>
   }
+
   <ng-template pTemplate="header">
     <tr>
-      @for (column of columns; track column) {
-      <th>
+      @for (column of columns; track column) { @if(column !== 'tipo') {
+      <th [pSortableColumn]="column">
         {{ 'tests.' + column | transloco }}
+        <p-sortIcon [field]="column"></p-sortIcon>
       </th>
-      }
+      } }
+    </tr>
+
+    <tr>
+      @for (column of columns; track column) { @if(column !== 'tipo') {
+      <th>
+        <p-columnFilter type="text" [field]="column"></p-columnFilter>
+      </th>
+      } }
     </tr>
   </ng-template>
+
   <ng-template pTemplate="body" let-data>
     <tr>
-      @for (column of columns; track column) {
+      @for (column of columns; track column) { @if(column !== 'tipo') {
       <td>
         <div>
           {{ data[column] }}
         </div>
       </td>
-      }
-      <td></td>
+      } }
     </tr>
   </ng-template>
 

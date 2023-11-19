@@ -18,46 +18,47 @@
           placeholder="{{ 'profiles.enter-name' | transloco }}"
         />
 
-        @if (
-            profileForm.get('name')?.hasError('required') &&
-            profileForm.get('name')?.touched
-          ) {
-<p-message
-         
+        @if ( profileForm.get('name')?.hasError('required') &&
+        profileForm.get('name')?.touched ) {
+        <p-message
           severity="error"
           [text]="'employees.name-required' | transloco"
         ></p-message>
-}
-        @if (profileForm.get('name')?.hasError('minlength')) {
-<p-message
-         
+        } @if (profileForm.get('name')?.hasError('minlength')) {
+        <p-message
           severity="error"
           [text]="'profiles.name-min-length' | transloco"
         ></p-message>
-}
+        }
       </div>
     </form>
 
     <!-- Tools -->
-    <h3 class="profiles-tools" transloco="profiles.tools"></h3>
-    <app-sort-table3
-      [dialogData]="tools"
-      [header]="'profiles.list-tools' | transloco"
-    ></app-sort-table3>
+    <div class="skill-container">
+      <h3 class="profiles-tools" transloco="profiles.tools"></h3>
+      <app-sort-table3
+        [dialogData]="tools"
+        [header]="'profiles.list-tools' | transloco"
+      ></app-sort-table3>
+    </div>
 
     <!-- Habilities -->
-    <h3 class="profiles-skills" transloco="profiles.skills"></h3>
-    <app-sort-table3
-      [dialogData]="skills"
-      [header]="'profiles.list-tools' | transloco"
-    ></app-sort-table3>
+    <div class="skill-container">
+      <h3 class="profiles-tools" transloco="profiles.skills"></h3>
+      <app-sort-table3
+        [dialogData]="skills"
+        [header]="'profiles.list-skills' | transloco"
+      ></app-sort-table3>
+    </div>
 
     <!-- Languages -->
-    <h3 class="profiles-languages" transloco="profiles.languages"></h3>
-    <app-sort-table3
-      [dialogData]="languages"
-      [header]="'profiles.list-tools' | transloco"
-    ></app-sort-table3>
+    <div class="skill-container">
+      <h3 class="profiles-tools" transloco="profiles.languages"></h3>
+      <app-sort-table3
+        [dialogData]="languages"
+        [header]="'profiles.list-languages' | transloco"
+      ></app-sort-table3>
+    </div>
   </div>
 
   <!-- botones -->

@@ -68,4 +68,8 @@ export class CreateTestComponent implements OnInit {
       error: (err) => console.error(err),
     });
   }
+
+  return() {
+    this.router.navigateByUrl(`test/${this.offerId}`);
+  }
 }

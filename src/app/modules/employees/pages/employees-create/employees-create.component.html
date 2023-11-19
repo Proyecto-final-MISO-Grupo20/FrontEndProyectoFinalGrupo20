@@ -19,25 +19,20 @@
           formControlName="nombre"
           placeholder="{{ 'employees.enter-name' | transloco }}"
         />
-        @if (
-            employeeCreateForm.get('nombre')?.hasError('required') &&
-            employeeCreateForm.get('nombre')?.touched
-          ) {
-<p-message
-         
+        @if ( employeeCreateForm.get('nombre')?.hasError('required') &&
+        employeeCreateForm.get('nombre')?.touched ) {
+        <p-message
           severity="error"
           text="{{ 'employees.name-required' | transloco }}"
         >
         </p-message>
-}
-        @if (employeeCreateForm.get('nombre')?.hasError('minlength')) {
-<p-message
-         
+        } @if (employeeCreateForm.get('nombre')?.hasError('minlength')) {
+        <p-message
           severity="error"
           text="{{ 'employees.name-min-length' | transloco }}"
         >
         </p-message>
-}
+        }
       </div>
 
       <!-- identification -->
@@ -67,36 +62,27 @@
             placeholder="{{ 'employees.enter-identification' | transloco }} "
           />
         </div>
-        @if (
-            employeeCreateForm.get('tipo_documento')?.hasError('required') &&
-            employeeCreateForm.get('documento')?.touched
-          ) {
-<p-message
-         
+        @if ( employeeCreateForm.get('tipo_documento')?.hasError('required') &&
+        employeeCreateForm.get('documento')?.touched ) {
+        <p-message
           severity="error"
           text="{{ 'employees.identificationType-required' | transloco }}"
         >
         </p-message>
-}
-        @if (
-            employeeCreateForm.get('documento')?.hasError('required') &&
-            employeeCreateForm.get('documento')?.touched
-          ) {
-<p-message
-         
+        } @if ( employeeCreateForm.get('documento')?.hasError('required') &&
+        employeeCreateForm.get('documento')?.touched ) {
+        <p-message
           severity="error"
           text="{{ 'employees.identification-required' | transloco }}"
         >
         </p-message>
-}
-        @if (employeeCreateForm.get('documento')?.hasError('minlength')) {
-<p-message
-         
+        } @if (employeeCreateForm.get('documento')?.hasError('minlength')) {
+        <p-message
           severity="error"
           text="{{ 'employees.identification-min-length' | transloco }}"
         >
         </p-message>
-}
+        }
       </div>
 
       <!-- rol -->
@@ -113,25 +99,20 @@
           placeholder="{{ 'employees.enter-rol' | transloco }}"
         />
 
-        @if (
-            employeeCreateForm.get('cargo')?.hasError('required') &&
-            employeeCreateForm.get('cargo')?.touched
-          ) {
-<p-message
-         
+        @if ( employeeCreateForm.get('cargo')?.hasError('required') &&
+        employeeCreateForm.get('cargo')?.touched ) {
+        <p-message
           severity="error"
           text="{{ 'employees.rol-required' | transloco }}"
         >
         </p-message>
-}
-        @if (employeeCreateForm.get('cargo')?.hasError('minlength')) {
-<p-message
-         
+        } @if (employeeCreateForm.get('cargo')?.hasError('minlength')) {
+        <p-message
           severity="error"
           text="{{ 'employees.rol-min-length' | transloco }}"
         >
         </p-message>
-}
+        }
       </div>
 
       <!-- email -->
@@ -148,43 +129,34 @@
           placeholder="{{ 'employees.enter-email' | transloco }}"
         />
 
-        @if (
-            employeeCreateForm.get('email')?.hasError('required') &&
-            employeeCreateForm.get('email')?.touched
-          ) {
-<p-message
-         
+        @if ( employeeCreateForm.get('email')?.hasError('required') &&
+        employeeCreateForm.get('email')?.touched ) {
+        <p-message
           severity="error"
           text="{{ 'employees.email-required' | transloco }}"
         >
         </p-message>
-}
-        @if (employeeCreateForm.get('email')?.hasError('minlength')) {
-<p-message
-         
+        } @if (employeeCreateForm.get('email')?.hasError('minlength')) {
+        <p-message
           severity="error"
           text="{{ 'employees.email--min-length' | transloco }}"
         >
         </p-message>
-}
-        @if (
-            employeeCreateForm.get('email')?.hasError('email') &&
-            employeeCreateForm.get('email')?.touched
-          ) {
-<p-message
-         
+        } @if ( employeeCreateForm.get('email')?.hasError('email') &&
+        employeeCreateForm.get('email')?.touched ) {
+        <p-message
           severity="error"
           text="{{ 'employees.email-format-error' | transloco }}"
         >
         </p-message>
-}
+        }
       </div>
 
       <!-- button -->
       <div class="form__buttons">
         <p-button
           label="{{ 'create' | transloco }}"
-          [style]="{ width: '22.5rem' }"
+          [style]="{ width: '30rem' }"
           type="submit"
           [disabled]="!employeeCreateForm.valid"
         ></p-button>
@@ -194,7 +166,7 @@
         <p-button
           (onClick)="setShowConfirmDialog(true)"
           label="{{ 'cancel' | transloco }}"
-          [style]="{ width: '22.5rem' }"
+          [style]="{ width: '30rem' }"
           severity="secondary"
         ></p-button>
       </div>

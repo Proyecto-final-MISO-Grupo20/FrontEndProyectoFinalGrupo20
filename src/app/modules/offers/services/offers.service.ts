@@ -10,7 +10,6 @@ import {
 } from 'rxjs';
 import { ApiService } from '../../../core/services/api/api.service';
 import { Offer } from '../models/offer';
-import { mockData_offers } from '../utils/mock-data-offers';
 
 @Injectable({
   providedIn: 'root',

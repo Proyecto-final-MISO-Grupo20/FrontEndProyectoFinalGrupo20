@@ -4,6 +4,7 @@
     <span class="p-input-icon-left" [style]="{ width: '100%' }">
       <i class="pi pi-search"></i>
       <input
+        [placeholder]="'business-home.search-candidates' | transloco"
         type="text"
         pInputText
         [style]="{ width: '100%' }"
@@ -53,7 +54,6 @@
                 <img width="20px" [src]="getimageUrl(language)" class="mr2" />
 
                 }
-                <!-- <p-tag [value]="data.inventoryStatus"></p-tag> -->
               </div>
               }
             </div>
@@ -62,7 +62,10 @@
             >
               {{ data.email }}
 
-              <div class="actions__button actions__button--blue">
+              <div
+                class="actions__button actions__button--blue"
+                [pTooltip]="'business-home.view-candidate' | transloco"
+              >
                 <i class="pi pi-eye" style="color: #fff; font-size: 1.2rem"></i>
               </div>
             </div>

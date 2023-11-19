@@ -26,12 +26,22 @@
   <ng-template pTemplate="header">
     <tr>
       @for (column of columns; track column) {
-      <th class="header">
+      <th class="header" [pSortableColumn]="column">
         {{ 'employees.' + column | transloco }}
+        <p-sortIcon [field]="column"></p-sortIcon>
       </th>
       }
 
       <th class="header">{{ 'employees.' + 'actions' | transloco }}</th>
+    </tr>
+
+    <tr>
+      @for (column of columns; track column) {
+      <th>
+        <p-columnFilter type="text" [field]="column"></p-columnFilter>
+      </th>
+      }
+      <th></th>
     </tr>
   </ng-template>
   <ng-template pTemplate="body" let-data let-index>
@@ -60,7 +70,10 @@
 
       <td>
         <div class="actions-container">
-          <div class="actions__button actions__button--blue">
+          <div
+            class="actions__button actions__button--blue"
+            [pTooltip]="'employees.assign' | transloco"
+          >
             <i
               class="pi pi-check-circle"
               style="color: #fff; font-size: 1.2rem"

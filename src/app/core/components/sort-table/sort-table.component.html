@@ -1,4 +1,5 @@
 <p-table
+  #dt
   styleClass="p-datatable-striped"
   responsiveLayout="stack"
   [breakpoint]="'960px'"
@@ -22,6 +23,7 @@
     <div class="header-container">
       <h3>{{ header | transloco }}</h3>
       <div
+        [pTooltip]="'projects.create' | transloco"
         class="actions__button actions__button--blue"
         [routerLink]="'/projects/create'"
       >
@@ -30,6 +32,7 @@
     </div>
   </ng-template>
   }
+
   <ng-template pTemplate="header">
     <tr>
       @for (column of columns; track column) {
@@ -44,20 +47,38 @@
       }
       <th>{{ 'projects.actions' | transloco }}</th>
     </tr>
+
+    <tr>
+      @for (column of columns; track column) {
+      <th>
+        @if (column !== 'empresaId' && column !== 'id' && column !== 'profiles')
+        {
+
+        <p-columnFilter type="text" [field]="column"></p-columnFilter>
+
+        }
+      </th>
+      }
+      <th></th>
+    </tr>
   </ng-template>
+
   <ng-template pTemplate="body" let-data>
     <tr>
       @for (column of columns; track column) {
       <td>
-        @if (column !== 'profiles' && column !== 'empresaId' && column !== 'id')
-        {
+        @if (column !== 'profiles' && column !== 'empresaId' && column !== 'id'
+        && column !== 'codigo') {
         <div>
           {{ data[column] }}
         </div>
+        } @if(column === 'codigo') {
+        <p-tag [value]="data[column]" [style]="{ 'font-size': '1rem' }"></p-tag>
         } @if (column === 'profiles') {
         <div class="numeric-column">
           {{ data[column].length }}
           <div
+            [pTooltip]="'projects.create-profile' | transloco"
             class="actions__button actions__button--blue"
             [routerLink]="'/profiles/create/' + data.id"
           >
@@ -68,6 +89,7 @@
           </div>
           @if(data[column].length > 0 ) {
           <div
+            [pTooltip]="'projects.view-profiles' | transloco"
             class="actions__button actions__button--blue"
             [routerLink]="'/offers/' + data.id"
           >

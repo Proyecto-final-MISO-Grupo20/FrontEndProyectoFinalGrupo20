@@ -1,4 +1,5 @@
 <p-table
+  #dt
   styleClass="p-datatable-striped"
   responsiveLayout="stack"
   [breakpoint]="'960px'"
@@ -10,6 +11,19 @@
   [tableStyle]="tableStyle"
   [ngClass]="{ 'table-style': true }"
 >
+  <ng-template pTemplate="caption">
+    <div class="flex">
+      <span class="p-input-icon-left ml-auto">
+        <i class="pi pi-search"></i>
+        <input
+          pInputText
+          type="text"
+          (input)="dt.filterGlobal($event.target, 'contains')"
+          placeholder="Search keyword"
+        />
+      </span>
+    </div>
+  </ng-template>
   @if (header) {
   <ng-template pTemplate="caption">
     <div class="header-container">
@@ -19,23 +33,48 @@
   }
   <ng-template pTemplate="header">
     <tr>
-      @for (column of columns; track column) {
-      <th>
+      @for (column of columns; track column) { @if(!column.includes('id')) {
+      <th [pSortableColumn]="column">
         {{ 'offers.' + column | transloco }}
+        <p-sortIcon [field]="column"></p-sortIcon>
       </th>
-      }
+      } }
       <th>{{ 'profiles.actions' | transloco }}</th>
     </tr>
+
+    <tr>
+      @for (column of columns; track column) { @if (!column.includes('id') &&
+      column !== 'postulations' ) {
+      <th>
+        <p-columnFilter type="text" [field]="column"></p-columnFilter>
+      </th>
+      } }
+      <th></th>
+      <th></th>
+    </tr>
   </ng-template>
+
   <ng-template pTemplate="body" let-data>
     <tr>
-      @for (column of columns; track column) {
+      @for (column of columns; track column) { @if (column !== 'postulations' &&
+      column !== 'estado' && !column.includes('id')) {
       <td>
-        @if (column !== 'postulations') {
         <div>
           {{ data[column] }}
         </div>
-        } @if (column === 'postulations') {
+      </td>
+
+      } @if(column === 'estado') {
+      <td>
+        <p-tag
+          [value]="data[column]"
+          [style]="{ 'font-size': '1rem' }"
+          severity="success"
+        ></p-tag>
+      </td>
+
+      } @if (column === 'postulations') {
+      <td>
         <div class="numeric-column">
           {{ data[column].length }}
 
@@ -48,9 +87,9 @@
           </div>
           }
         </div>
-        }
       </td>
-      }
+
+      } }
       <td>
         <div class="actions-container">
           <div class="actions__button actions__button--red">
