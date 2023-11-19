@@ -105,6 +105,5 @@ export class SortTable2Component implements OnInit {
 
   setCurrentEmployee(employee: any) {
     this.currentEmployee = employee;
-    console.log(employee, 'Hola');
   }
 }

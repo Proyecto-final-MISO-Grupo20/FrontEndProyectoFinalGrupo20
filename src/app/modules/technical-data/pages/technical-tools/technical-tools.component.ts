@@ -76,6 +76,6 @@ export class TechnicalToolsComponent implements OnInit {
   getCandidateTools() {
     this.candidateTools$
       .pipe(tap((tools) => (this.candidateTools = tools)))
-      .subscribe(console.log);
+      .subscribe();
   }
 }

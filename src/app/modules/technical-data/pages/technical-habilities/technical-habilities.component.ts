@@ -51,7 +51,7 @@ export class TechnicalHabilitiesComponent implements OnInit {
     this.show = false;
 
     const dataToSend = {
-      skill: data.skill.nombre,
+      skill: data.skill.id,
       nivel_dominio: data.dominio,
     };
 

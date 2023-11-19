@@ -1,0 +1,18 @@
+@use '/src/styles/abstracts';
+
+.business {
+  &-home {
+    &-header {
+      text-align: center;
+      color: abstracts.$primary;
+    }
+
+    &-content {
+      @include abstracts.flexbox(inherit, normal, normal, 10rem);
+
+      &-cards {
+        @include abstracts.flexbox(column, normal, normal, 2rem);
+      }
+    }
+  }
+}

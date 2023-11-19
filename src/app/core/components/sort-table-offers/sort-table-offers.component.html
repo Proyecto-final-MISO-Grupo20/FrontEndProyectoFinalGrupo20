@@ -1,0 +1,63 @@
+<p-table
+  responsiveLayout="stack"
+  [breakpoint]="'960px'"
+  [paginator]="true"
+  [rows]="5"
+  currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+  [rowsPerPageOptions]="[5, 10, 15]"
+  [value]="data"
+  [tableStyle]="tableStyle"
+  [ngClass]="{ 'table-style': true }"
+>
+  <ng-template pTemplate="caption" *ngIf="header">
+    <div class="header-container">
+      <h3>{{ header | transloco }}</h3>
+    </div>
+  </ng-template>
+  <ng-template pTemplate="header">
+    <tr>
+      <th *ngFor="let column of columns">
+        {{ 'offers.' + column | transloco }}
+      </th>
+      <th>{{ 'profiles.actions' | transloco }}</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-data>
+    <tr>
+      <td *ngFor="let column of columns">
+        <div *ngIf="column !== 'postulations'">
+          {{ data[column] }}
+        </div>
+
+        <div class="numeric-column" *ngIf="column === 'postulations'">
+          {{ data[column].length }}
+
+          <div
+            *ngIf="data[column].length > 0"
+            class="actions__button actions__button--blue"
+            [routerLink]="'/applications/' + data.id"
+          >
+            <i class="pi pi-eye" style="color: #fff; font-size: 1.2rem"></i>
+          </div>
+        </div>
+      </td>
+      <td>
+        <div class="actions-container">
+          <div class="actions__button actions__button--red">
+            <i class="pi pi-trash" style="color: #fff; font-size: 1.2rem"></i>
+          </div>
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+
+  <ng-template pTemplate="emptymessage">
+    <td *ngIf="!loading">{{ 'offers.no-exist' | transloco }}</td>
+    <td *ngIf="loading">
+      <p-progressSpinner
+        styleClass="w-4rem h-4rem"
+        animationDuration=".5s"
+      ></p-progressSpinner>
+    </td>
+  </ng-template>
+</p-table>

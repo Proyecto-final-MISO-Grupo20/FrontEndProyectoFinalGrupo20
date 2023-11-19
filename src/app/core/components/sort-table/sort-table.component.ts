@@ -16,6 +16,7 @@ export class SortTableComponent implements OnInit {
   @Input() data!: any[];
 
   columns!: string[];
+  @Input() loading = false;
 
   // Responsive
   isMobile!: boolean;

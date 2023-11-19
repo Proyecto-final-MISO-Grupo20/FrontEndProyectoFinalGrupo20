@@ -99,7 +99,15 @@
     "confirm": "Confirm",
     "confirm-body": "Are you sure you want to exit from the projects creation?",
     "success-create": "Project {{project}} Created Successfully",
-    "success-create-offer": "Profile {{profile}} Created Successfully"
+    "success-create-offer": "Profile {{profile}} Created Successfully",
+    "codigo": "Code",
+    "descripcion": "Description",
+    "empresaId": "Bussines ID",
+    "nombre": "Name",
+    "id": "ID",
+    "profiles": "Profiles",
+    "actions": "Actions",
+    "no-exist": "There are not projects"
   },
   "employees": {
     "title": "Employees",
@@ -130,7 +138,8 @@
     "nombre": "Name",
     "cargo": "Role",
     "documento": "Document",
-    "actions": "Actions"
+    "actions": "Actions",
+    "no-exist": "There are not employees"
   },
   "profiles": {
     "title": "Profile creation for the project",
@@ -179,10 +188,48 @@
     "enter-email": "Enter employee email",
     "email-required": "Email is required",
     "email-min-length": "Minimum email length is 3 characters",
+    "no-exist": "There are not tools",
+    "candidate": "Candidate profile",
+    "candidate-skill": "Candidate skills",
 
     "confirm": "Confirm",
     "confirm-body": "Are you sure you want to exit from the employees creation?"
   },
+  "offers": {
+    "title": "Offers",
+    "list": "Offers List",
+    "profile": "Profile",
+    "state": "State",
+    "profiles": "Applications"
+  },
+  "applications": {
+    "title": "Applications",
+    "list": "Applications List",
+    "not-exist": "There are not offers",
+    "ofertaId": "Offer ID",
+    "candidatoId": "Candidate ID",
+    "nombre": "Name",
+    "email": "Email",
+    "telefono": "Telephone",
+    "actions": "Actions",
+    "profiles": "Tests",
+    "detail": "Detail"
+  },
+  "candidates": {
+    "title": "Candidate"
+  },
+
+  "createTest": {
+    "title": "Create test",
+    "select-test-name": "Select a test",
+    "test": "Test",
+    "result": "Result",
+    "enter-calification": "Enter calification",
+    "name": "Name",
+    "enter-name": "Enter a name",
+    "comment": "Comment"
+  },
+
   "home": {
     "title": "Home"
   },
@@ -224,7 +271,12 @@
     "actions": "Actions"
   },
   "tests": {
-    "title": "Tests"
+    "title": "Tests",
+    "list": "Tests list",
+    "name": "Name",
+    "comment": "Comment",
+    "score": "Score",
+    "no-exist": "There are not tests"
   },
   "technical-data": {
     "title": "Technical Information",
@@ -235,6 +287,13 @@
     "empty-tools": "Not associated tools",
     "empty-languages": "Not associated languages"
   },
+  "business-home": {
+    "search-result": "Search Result",
+    "languages": "Languages",
+    "tools": "Tools",
+    "habilities": "Habilities",
+    "califications": "Califications"
+  },
   "next": "Next",
   "cancel": "Cancel",
   "previous": "Previous",
@@ -243,5 +302,7 @@
   "exit": "Exit",
   "candidate": "Candidate",
   "business": "Business",
-  "name": "ohooo<"
+  "name": "ohooo<",
+  "register-button": "Register",
+  "sign-out": "Sign Out"
 }

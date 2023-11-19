@@ -43,6 +43,10 @@
 
     <lib-language-picker></lib-language-picker>
 
-    <i (click)="logout()" class="pi pi-sign-out logout"></i>
+    <i
+      (click)="logout()"
+      class="pi pi-sign-out logout"
+      [pTooltip]="'sign-out' | transloco"
+    ></i>
   </div>
 </section>

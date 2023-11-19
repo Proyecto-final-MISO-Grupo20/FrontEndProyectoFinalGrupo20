@@ -1,14 +1,41 @@
 <p-table
+  #dt1
   responsiveLayout="stack"
   [breakpoint]="'960px'"
   [paginator]="true"
   [rows]="5"
   currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+  [showCurrentPageReport]="true"
   [rowsPerPageOptions]="[5, 10, 15]"
   [value]="data"
   [tableStyle]="tableStyle"
   [ngClass]="{ 'table-style': true }"
+  [globalFilterFields]="[
+    'descripcion',
+    'country.name',
+    'representative.name',
+    'status'
+  ]"
 >
+  <ng-template pTemplate="caption">
+    <div class="flex">
+      <button
+        pButton
+        label="Clear"
+        class="p-button-outlined"
+        icon="pi pi-filter-slash"
+      ></button>
+      <span class="p-input-icon-left ml-auto">
+        <i class="pi pi-search"></i>
+        <input
+          pInputText
+          type="text"
+          (input)="dt1.filterGlobal($event.target, 'contains')"
+          placeholder="Search keyword"
+        />
+      </span>
+    </div>
+  </ng-template>
   <ng-template pTemplate="caption" *ngIf="header">
     <div class="header-container">
       <h3>{{ header | transloco }}</h3>
@@ -22,8 +49,10 @@
   </ng-template>
   <ng-template pTemplate="header">
     <tr>
-      <th *ngFor="let column of columns">{{ column }}</th>
-      <th>Actions</th>
+      <th *ngFor="let column of columns">
+        {{ 'projects.' + column | transloco }}
+      </th>
+      <th>{{ 'projects.actions' | transloco }}</th>
     </tr>
   </ng-template>
   <ng-template pTemplate="body" let-data>
@@ -40,17 +69,24 @@
             [routerLink]="'/profiles/create/' + data.id"
           >
             <i
-              [class]="
-                data[column].length > 0 ? 'pi pi-eye' : 'pi pi-user-plus'
-              "
+              class="pi pi-user-plus"
               style="color: #fff; font-size: 1.2rem"
             ></i>
+          </div>
+          <div
+            class="actions__button actions__button--blue"
+            [routerLink]="'/offers/' + data.id"
+          >
+            <i class="pi pi-eye" style="color: #fff; font-size: 1.2rem"></i>
           </div>
         </div>
       </td>
       <td>
         <div class="actions-container">
-          <div class="actions__button actions__button--blue">
+          <div
+            class="actions__button actions__button--blue"
+            [routerLink]="'/offers'"
+          >
             <i
               class="pi pi-arrow-circle-right"
               style="color: #fff; font-size: 1.2rem"
@@ -66,7 +102,13 @@
 
   <ng-template pTemplate="emptymessage">
     <tr>
-      <td>No existen proyectos</td>
+      <td *ngIf="!loading">{{ 'projects.no-exist' | transloco }}</td>
+      <td *ngIf="loading">
+        <p-progressSpinner
+          styleClass="w-4rem h-4rem"
+          animationDuration=".5s"
+        ></p-progressSpinner>
+      </td>
     </tr>
   </ng-template>
 </p-table>
