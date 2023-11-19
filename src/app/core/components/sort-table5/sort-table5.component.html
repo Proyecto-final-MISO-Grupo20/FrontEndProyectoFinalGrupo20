@@ -1,8 +1,8 @@
 @if (data && columns) {
 <p-table
+  styleClass="p-datatable-striped"
   responsiveLayout="stack"
   [breakpoint]="'960px'"
- 
   [paginator]="true"
   [rows]="5"
   currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
@@ -15,7 +15,6 @@
     <div class="header-container">
       <h3>{{ header | transloco }}</h3>
       <div class="actions__button actions__button--blue">
-  
         <i
           [routerLink]="'/profiles/create'"
           class="pi pi-plus"
@@ -24,36 +23,34 @@
         ></i>
       </div>
     </div>
-  
   </ng-template>
   <ng-template pTemplate="header">
     <tr>
       @for (column of columns; track column) {
-  <th class = "header">{{ "profiles."+column | transloco }}</th>
-}
-      <th class = "header">{{ "profiles."+"actions" | transloco }}</th>
+      <th class="header">{{ 'profiles.' + column | transloco }}</th>
+      }
+      <th class="header">{{ 'profiles.' + 'actions' | transloco }}</th>
     </tr>
   </ng-template>
   <ng-template pTemplate="body" let-data>
     <tr>
       @for (column of columns; track column) {
-  <td>
+      <td>
         @if (column !== 'Domain') {
-<div>
+        <div>
           {{ data[column] }}
         </div>
-}
-
-        @if (column === 'Domain') {
-<div class="numeric-column">
-         
-          
-          <p-rating [(ngModel)]="data[column]" [readonly]="true" [cancel]="false"></p-rating>
-          
+        } @if (column === 'Domain') {
+        <div class="numeric-column">
+          <p-rating
+            [(ngModel)]="data[column]"
+            [readonly]="true"
+            [cancel]="false"
+          ></p-rating>
         </div>
-}
+        }
       </td>
-}
+      }
       <td>
         <div class="actions-container">
           <div class="actions__button actions__button--red">
@@ -84,40 +81,43 @@
   position="center"
 >
   <ng-template pTemplate="header">
-    <span style="font-size: large; font-weight: bolder;" class="text-xl font-bold">{{ 'profiles.add-language' | transloco }}</span>
+    <span
+      style="font-size: large; font-weight: bolder"
+      class="text-xl font-bold"
+      >{{ 'profiles.add-language' | transloco }}</span
+    >
   </ng-template>
-  <form [formGroup]="registerForm"
-        class="register__form">
-        <p-dropdown [options]="data"
-          optionLabel="Language"
-          [style]="{ width: '22.5rem'}"
-          formControlName="languageName"
-          placeholder="{{ 'profiles.select-language-name' | transloco }} "
-        ></p-dropdown>
-        <p>
-        <span style="font-size: large;" class="text-xl font-bold">{{ 'profiles.language-domain' | transloco }}</span>
-      </p>
-        <div 
-        class="action-plus-minus"> 
-        <div class="actions__button actions__button--blue"
-        (click)="languageDomain>1 && decrease()">
-          <i
-            [class]="'pi pi-minus'"
-            style="color: #fff; font-size: 1.2rem"
-          ></i>
-        </div>
-        <p>
-          {{languageDomain}}
-        </p>
-        <div class="actions__button actions__button--blue" 
-          (click)="languageDomain<5 && increase()">
-          <i
-            [class]="'pi pi-plus'"
-            style="color: #fff; font-size: 1.2rem"
-          ></i>
-        </div>
+  <form [formGroup]="registerForm" class="register__form">
+    <p-dropdown
+      [options]="data"
+      optionLabel="Language"
+      [style]="{ width: '22.5rem' }"
+      formControlName="languageName"
+      placeholder="{{ 'profiles.select-language-name' | transloco }} "
+    ></p-dropdown>
+    <p>
+      <span style="font-size: large" class="text-xl font-bold">{{
+        'profiles.language-domain' | transloco
+      }}</span>
+    </p>
+    <div class="action-plus-minus">
+      <div
+        class="actions__button actions__button--blue"
+        (click)="languageDomain > 1 && decrease()"
+      >
+        <i [class]="'pi pi-minus'" style="color: #fff; font-size: 1.2rem"></i>
       </div>
-      </form>
+      <p>
+        {{ languageDomain }}
+      </p>
+      <div
+        class="actions__button actions__button--blue"
+        (click)="languageDomain < 5 && increase()"
+      >
+        <i [class]="'pi pi-plus'" style="color: #fff; font-size: 1.2rem"></i>
+      </div>
+    </div>
+  </form>
   <ng-template pTemplate="footer">
     <p-button
       icon="pi pi-check"

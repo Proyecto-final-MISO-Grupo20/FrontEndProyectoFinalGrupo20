@@ -36,6 +36,7 @@ export class SortTableInterviewComponent implements OnInit, OnChanges {
   // Input data
   @Input() header!: string;
   @Input() data!: any[];
+  @Input() loading = false;
   registerForm!: FormGroup;
   formBuilder = inject(FormBuilder);
   session = inject(SessionService);

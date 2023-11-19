@@ -253,7 +253,8 @@
     "date-required": "Fecha requerida",
     "confirm": "Confirmar",
     "confirm-body": "¿Desea salir de la creación de entrevistas?",
-    "comment": "Comentario"
+    "comment": "Comentario",
+    "no-exists": "No Se Encontraron Entrevistas"
   },
   "participants": {
     "list": "Lista de participantes",

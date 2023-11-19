@@ -1,4 +1,5 @@
 <p-table
+  styleClass="p-datatable-striped"
   responsiveLayout="stack"
   [breakpoint]="'960px'"
   [paginator]="true"
@@ -25,38 +26,36 @@
   <ng-template pTemplate="header">
     <tr>
       @for (column of columns; track column) {
-  <th class="header">
+      <th class="header">
         @if (column !== 'skill_id') {
-<div>
+        <div>
           {{ 'profiles.' + column | transloco }}
         </div>
-}
+        }
       </th>
-}
+      }
       <th class="header">{{ 'profiles.' + 'actions' | transloco }}</th>
     </tr>
   </ng-template>
   <ng-template pTemplate="body" let-data>
     <tr>
       @for (column of columns; track column) {
-  <td>
+      <td>
         @if (column !== 'skill_id' && column !== 'dominio') {
-<div>
+        <div>
           {{ data[column] }}
         </div>
-}
-
-        @if (column === 'dominio') {
-<div class="numeric-column">
+        } @if (column === 'dominio') {
+        <div class="numeric-column">
           <p-rating
             [(ngModel)]="data[column]"
             [readonly]="true"
             [cancel]="false"
           ></p-rating>
         </div>
-}
+        }
       </td>
-}
+      }
       <td>
         <div class="actions-container">
           <div

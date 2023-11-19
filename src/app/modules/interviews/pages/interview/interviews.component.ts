@@ -29,6 +29,7 @@ export class InterviewsComponent implements OnInit {
   successCreate = false;
   interviews!: Interview[];
   successCreateInterview!: string | null;
+  loading = false;
 
   ngOnInit(): void {
     this.getInterviews();
@@ -36,11 +37,14 @@ export class InterviewsComponent implements OnInit {
   }
 
   getInterviews() {
+    this.loading = true;
+
     this.interviewsService
       .getInterviews()
       .pipe(
         tap((interviews) => {
           this.interviews = interviews;
+          this.loading = false;
         })
       )
       .subscribe();

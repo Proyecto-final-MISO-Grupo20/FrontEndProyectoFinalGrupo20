@@ -258,7 +258,8 @@
     "date-required": "Date required",
     "confirm": "Confirm",
     "confirm-body": "Are you sure you want to exit from the interview creation?",
-    "comment": "Comment"
+    "comment": "Comment",
+    "no-exists": "Not Interviews Found"
   },
   "participants": {
     "list": "List of participants",
