@@ -37,11 +37,12 @@
         </p>
       </div>
 
-      <form
+      @if (step === steps.initialStep) {
+<form
         class="register__form"
         [formGroup]="registerForm"
         (ngSubmit)="onSubmit()"
-        *ngIf="step === steps.initialStep"
+       
       >
         <p-dropdown
           [style]="{ width: '22.5rem' }"
@@ -50,14 +51,16 @@
           optionLabel="name"
         >
           <ng-template pTemplate="selectedItem">
-            <div
+            @if (registerForm.value.user.name) {
+<div
               class="flex align-items-center gap-3"
-              *ngIf="registerForm.value.user.name"
+             
             >
               <div class="language-item">
                 {{ registerForm.value.user.name | transloco }}
               </div>
             </div>
+}
           </ng-template>
 
           <ng-template let-user pTemplate="item">
@@ -77,16 +80,21 @@
           [disabled]="!registerForm.valid"
         ></p-button>
       </form>
+}
 
-      <app-register-candidate-form
+      @if (step === steps.createCandidateAccount) {
+<app-register-candidate-form
         (backToMainForm)="step = steps.initialStep"
-        *ngIf="step === steps.createCandidateAccount"
+       
       ></app-register-candidate-form>
+}
 
-      <app-register-business-form
+      @if (step === steps.createBusinessAccount) {
+<app-register-business-form
         (backToMainForm)="step = steps.initialStep"
-        *ngIf="step === steps.createBusinessAccount"
+       
       ></app-register-business-form>
+}
     </div>
   </div>
 </section>

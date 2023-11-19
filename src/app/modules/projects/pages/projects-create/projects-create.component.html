@@ -19,26 +19,30 @@
           formControlName="nombre"
           placeholder=" {{ 'projects.enter-name' | transloco }} "
         />
-        <p-message
-          [style]="{ width: '22.5rem' }"
-          *ngIf="
+        @if (
             projectCreateForm.get('name')?.hasError('required') &&
             projectCreateForm.get('name')?.touched
-          "
+          ) {
+<p-message
+          [style]="{ width: '22.5rem' }"
+         
           severity="error"
           text="{{
             'register.candidate-account-step.name-required' | transloco
           }}"
         ></p-message>
+}
 
-        <p-message
+        @if (projectCreateForm.get('name')?.hasError('minlength')) {
+<p-message
           [style]="{ width: '22.5rem' }"
-          *ngIf="projectCreateForm.get('name')?.hasError('minlength')"
+         
           severity="error"
           text="{{
             'register.candidate-account-step.name-min-length' | transloco
           }}"
         ></p-message>
+}
       </div>
 
       <!-- Description -->
@@ -70,30 +74,36 @@
           formControlName="codigo"
           placeholder=" {{ 'projects.enter-code' | transloco }} "
         />
-        <p-message
-          [style]="{ width: '22.5rem' }"
-          *ngIf="
+        @if (
             projectCreateForm.get('code')?.hasError('required') &&
             projectCreateForm.get('code')?.touched
-          "
+          ) {
+<p-message
+          [style]="{ width: '22.5rem' }"
+         
           severity="error"
           text="{{ 'projects.code-required' | transloco }}"
         ></p-message>
+}
 
-        <p-message
+        @if (projectCreateForm.get('code')?.hasError('maxlength')) {
+<p-message
           [style]="{ width: '22.5rem' }"
-          *ngIf="projectCreateForm.get('code')?.hasError('maxlength')"
+         
           severity="error"
           text="{{ 'projects.code-max-length' | transloco }}"
         ></p-message>
+}
       </div>
 
-      <p-message
+      @if (errorMessage) {
+<p-message
         [style]="{ width: '22.5rem' }"
         severity="error"
-        *ngIf="errorMessage"
+       
         text="{{ errorMessage }}"
       ></p-message>
+}
 
       <p-button
         label="{{ 'create' | transloco }}"

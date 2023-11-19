@@ -19,26 +19,30 @@
           formControlName="name"
           placeholder=" {{ 'interviews.enter-name' | transloco }} "
         />
-        <p-message
-          [style]="{ width: '22.5rem' }"
-          *ngIf="
+        @if (
             interviewCreateForm.get('name')?.hasError('required') &&
             interviewCreateForm.get('name')?.touched
-          "
+          ) {
+<p-message
+          [style]="{ width: '22.5rem' }"
+         
           severity="error"
           text="{{
             'interviews.name-required' | transloco
           }}"
         ></p-message>
+}
 
-        <p-message
+        @if (interviewCreateForm.get('name')?.hasError('minlength')) {
+<p-message
           [style]="{ width: '22.5rem' }"
-          *ngIf="interviewCreateForm.get('name')?.hasError('minlength')"
+         
           severity="error"
           text="{{
             'interviews.name-min-length' | transloco
           }}"
         ></p-message>
+}
       </div>
 
       <p></p>
@@ -61,17 +65,19 @@
         [(ngModel)]="participants" [showTime]="true" [showSeconds]="true"
       ></p-calendar>
 
-      <p-message
-        [style]="{ width: '22.5rem' }"
-        *ngIf="
+      @if (
           interviewCreateForm.get('fecha')?.hasError('required') &&
           interviewCreateForm.get('fecha')?.touched
-        "
+        ) {
+<p-message
+        [style]="{ width: '22.5rem' }"
+       
         severity="error"
         text="{{
           'interviews.date-required' | transloco
         }}"
       ></p-message>
+}
 
     </div>
 
@@ -85,12 +91,14 @@
     ></app-sort-table-participants>
     </div>
 
-      <p-message
+      @if (errorMessage) {
+<p-message
         [style]="{ width: '22.5rem' }"
         severity="error"
-        *ngIf="errorMessage"
+       
         text="{{ errorMessage }}"
       ></p-message>
+}
       <div class="button-container">
       <p-button
         label="{{ 'create' | transloco }}"

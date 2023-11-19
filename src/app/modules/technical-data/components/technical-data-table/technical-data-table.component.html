@@ -9,7 +9,8 @@
   [tableStyle]="tableStyle"
   [ngClass]="{ 'table-style': true }"
 >
-  <ng-template pTemplate="caption" *ngIf="header">
+  @if (header) {
+<ng-template pTemplate="caption">
     <div class="header-container">
       <h3></h3>
       <div
@@ -20,23 +21,32 @@
       </div>
     </div>
   </ng-template>
+}
   <ng-template pTemplate="header" let-data>
     <tr>
-      <th *ngFor="let column of columns">{{ column }}</th>
+      @for (column of columns; track column) {
+  <th>{{ column }}</th>
+}
       <th>Actions</th>
     </tr>
   </ng-template>
   <ng-template pTemplate="body" let-data>
     <tr>
-      <td *ngFor="let column of columns">
-        <div *ngIf="column !== 'dominio'">
+      @for (column of columns; track column) {
+  <td>
+        @if (column !== 'dominio') {
+<div>
           {{ data[column] }}
         </div>
+}
 
-        <div class="numeric-column" *ngIf="column === 'dominio'">
+        @if (column === 'dominio') {
+<div class="numeric-column">
           <p-rating [ngModel]="data[column]" [cancel]="false"></p-rating>
         </div>
+}
       </td>
+}
       <td>
         <div class="actions-container">
           <!-- <div class="actions__button actions__button--blue">

@@ -9,38 +9,50 @@
   [tableStyle]="tableStyle"
   [ngClass]="{ 'table-style': true }"
 >
-  <ng-template pTemplate="caption" *ngIf="header">
+  @if (header) {
+<ng-template pTemplate="caption">
     <div class="header-container">
       <h3>{{ header | transloco }}</h3>
     </div>
   </ng-template>
+}
   <ng-template pTemplate="header">
     <tr>
-      <th *ngFor="let column of columns">
+      @for (column of columns; track column) {
+  <th>
         {{ 'offers.' + column | transloco }}
       </th>
+}
       <th>{{ 'profiles.actions' | transloco }}</th>
     </tr>
   </ng-template>
   <ng-template pTemplate="body" let-data>
     <tr>
-      <td *ngFor="let column of columns">
-        <div *ngIf="column !== 'postulations'">
+      @for (column of columns; track column) {
+  <td>
+        @if (column !== 'postulations') {
+<div>
           {{ data[column] }}
         </div>
+}
 
-        <div class="numeric-column" *ngIf="column === 'postulations'">
+        @if (column === 'postulations') {
+<div class="numeric-column">
           {{ data[column].length }}
 
-          <div
-            *ngIf="data[column].length > 0"
+          @if (data[column].length > 0) {
+<div
+           
             class="actions__button actions__button--blue"
             [routerLink]="'/applications/' + data.id"
           >
             <i class="pi pi-eye" style="color: #fff; font-size: 1.2rem"></i>
           </div>
+}
         </div>
+}
       </td>
+}
       <td>
         <div class="actions-container">
           <div class="actions__button actions__button--red">
@@ -52,12 +64,16 @@
   </ng-template>
 
   <ng-template pTemplate="emptymessage">
-    <td *ngIf="!loading">{{ 'offers.no-exist' | transloco }}</td>
-    <td *ngIf="loading">
+    @if (!loading) {
+<td>{{ 'offers.no-exist' | transloco }}</td>
+}
+    @if (loading) {
+<td>
       <p-progressSpinner
         styleClass="w-4rem h-4rem"
         animationDuration=".5s"
       ></p-progressSpinner>
     </td>
+}
   </ng-template>
 </p-table>

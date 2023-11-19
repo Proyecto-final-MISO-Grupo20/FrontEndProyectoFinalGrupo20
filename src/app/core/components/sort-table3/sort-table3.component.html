@@ -24,29 +24,39 @@
   </ng-template>
   <ng-template pTemplate="header">
     <tr>
-      <th class="header" *ngFor="let column of columns">
-        <div *ngIf="column !== 'skill_id'">
+      @for (column of columns; track column) {
+  <th class="header">
+        @if (column !== 'skill_id') {
+<div>
           {{ 'profiles.' + column | transloco }}
         </div>
+}
       </th>
+}
       <th class="header">{{ 'profiles.' + 'actions' | transloco }}</th>
     </tr>
   </ng-template>
   <ng-template pTemplate="body" let-data>
     <tr>
-      <td *ngFor="let column of columns">
-        <div *ngIf="column !== 'skill_id' && column !== 'dominio'">
+      @for (column of columns; track column) {
+  <td>
+        @if (column !== 'skill_id' && column !== 'dominio') {
+<div>
           {{ data[column] }}
         </div>
+}
 
-        <div class="numeric-column" *ngIf="column === 'dominio'">
+        @if (column === 'dominio') {
+<div class="numeric-column">
           <p-rating
             [(ngModel)]="data[column]"
             [readonly]="true"
             [cancel]="false"
           ></p-rating>
         </div>
+}
       </td>
+}
       <td>
         <div class="actions-container">
           <div

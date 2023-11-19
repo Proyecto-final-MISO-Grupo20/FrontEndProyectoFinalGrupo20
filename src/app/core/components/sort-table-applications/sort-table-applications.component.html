@@ -9,29 +9,39 @@
   [tableStyle]="tableStyle"
   [ngClass]="{ 'table-style': true }"
 >
-  <ng-template pTemplate="caption" *ngIf="header">
+  @if (header) {
+<ng-template pTemplate="caption">
     <div class="header-container">
       <h3>{{ header | transloco }}</h3>
     </div>
   </ng-template>
+}
   <ng-template pTemplate="header">
     <tr>
-      <th *ngFor="let column of columns">
-        <ng-container *ngIf="column !== 'skills'">
+      @for (column of columns; track column) {
+  <th>
+        @if (column !== 'skills') {
+
           {{ 'applications.' + column | transloco }}
-        </ng-container>
+        
+}
       </th>
+}
       <th>{{ 'applications.detail' | transloco }}</th>
     </tr>
   </ng-template>
   <ng-template pTemplate="body" let-data let-index>
     <tr>
-      <td *ngFor="let column of columns; let index = index">
-        <div *ngIf="column !== 'pruebas' && column !== 'skills'">
+      @for (column of columns; track column; let index = $index) {
+  <td>
+        @if (column !== 'pruebas' && column !== 'skills') {
+<div>
           {{ data[column] }}
         </div>
+}
 
-        <div class="numeric-column" *ngIf="column === 'pruebas'">
+        @if (column === 'pruebas') {
+<div class="numeric-column">
           {{ data[column].length }}
 
           <div
@@ -41,16 +51,20 @@
             <i class="pi pi-book" style="color: #fff; font-size: 1.2rem"></i>
           </div>
         </div>
+}
       </td>
+}
       <td>
         <div class="actions-container">
-          <div
-            *ngIf="data.skills.length > 0"
+          @if (data.skills.length > 0) {
+<div
+           
             class="actions__button actions__button--blue"
             (click)="setShowConfirmDialog(true, index)"
           >
             <i class="pi pi-eye" style="color: #fff; font-size: 1.2rem"></i>
           </div>
+}
         </div>
       </td>
     </tr>
@@ -58,13 +72,17 @@
 
   <ng-template pTemplate="emptymessage">
     <tr>
-      <td *ngIf="!loading">{{ 'applications.no-exist' | transloco }}</td>
-      <td *ngIf="loading">
+      @if (!loading) {
+<td>{{ 'applications.no-exist' | transloco }}</td>
+}
+      @if (loading) {
+<td>
         <p-progressSpinner
           styleClass="w-4rem h-4rem"
           animationDuration=".5s"
         ></p-progressSpinner>
       </td>
+}
     </tr>
   </ng-template>
 </p-table>
@@ -92,10 +110,12 @@
         <div class="languages-list">
           <h3>Languages</h3>
           <ul>
-            <li
-              *ngFor="
-                let language of currentCandidateTools[skillTypeEnum.IDIOMA]
-              "
+            @for (
+                language of currentCandidateTools[skillTypeEnum.IDIOMA]
+              ; track 
+                language) {
+  <li
+             
             >
               {{ language.skill.nombre }} -
               <p-rating
@@ -104,6 +124,7 @@
                 [ngModel]="language.dominio"
               ></p-rating>
             </li>
+}
           </ul>
         </div>
       </div>

@@ -13,13 +13,16 @@
     </span>
   </div>
 
-  <p-progressSpinner
-    *ngIf="loading"
+  @if (loading) {
+<p-progressSpinner
+   
     styleClass="w-4rem h-4rem"
     animationDuration=".5s"
   ></p-progressSpinner>
+}
 
-  <p-dataView #dv [value]="data" [rows]="5" [paginator]="true" *ngIf="!loading">
+  @if (!loading) {
+<p-dataView #dv [value]="data" [rows]="5" [paginator]="true">
     <ng-template let-data pTemplate="listItem">
       <div class="col-12 bg-gray">
         <div
@@ -38,9 +41,10 @@
                 ngModel="4"
               ></p-rating>
 
-              <div
+              @if (validateLanguages(data).length > 0) {
+<div
                 class="flex align-items-center gap-3"
-                *ngIf="validateLanguages(data).length > 0"
+               
               >
                 <span class="flex align-items-center gap-2">
                   <i class="pi pi-language"></i>
@@ -49,11 +53,14 @@
                   >
                 </span>
 
-                <ng-container *ngFor="let language of validateLanguages(data)">
+                @for (language of validateLanguages(data); track language) {
+  
                   <img width="20px" [src]="getimageUrl(language)" class="mr2" />
-                </ng-container>
+                
+}
                 <!-- <p-tag [value]="data.inventoryStatus"></p-tag> -->
               </div>
+}
             </div>
             <div
               class="flex sm:flex-column align-items-center sm:align-items-end gap-3 sm:gap-2"
@@ -69,4 +76,5 @@
       </div>
     </ng-template>
   </p-dataView>
+}
 </div>
