@@ -1,0 +1,8 @@
+{
+  "name": "E2E Test",
+  "document": "56789",
+  "address": "Street 1",
+  "username": "e2e_test",
+  "email": "e2e@e2e.com",
+  "password": "12345678"
+}

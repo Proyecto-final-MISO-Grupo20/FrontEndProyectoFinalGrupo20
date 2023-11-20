@@ -59,7 +59,7 @@ class RegisterCandidatePage extends Page {
   }
 
   get nextButton() {
-    return super.getDataCyElement('register-candidate-next-button');
+    return super.getDataCyElement('register-user-next-button');
   }
 
   selectTodayDate() {

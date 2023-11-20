@@ -67,7 +67,8 @@
       "business-type": "Tipo de empresa",
       "enter-business-type": "Ingrese Tipo de empresa",
       "business-segment": "Segmento de empresa",
-      "segment": "Segmento"
+      "segment": "Segmento",
+      "address-required": "La dirección es requerida"
     }
   },
   "login": {

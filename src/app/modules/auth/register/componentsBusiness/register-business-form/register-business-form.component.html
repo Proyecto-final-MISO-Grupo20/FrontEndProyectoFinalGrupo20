@@ -8,285 +8,383 @@
   <!-- STEP 1-->
   @if (currentStep === steps.personalInformation) {
 
-    <!-- Name-->
-    <div class="form__input--label">
-      <label htmlFor="name">{{
-        'register.business-account-step.names' | transloco
-      }}</label>
+  <!-- Name-->
+  <div class="form__input--label">
+    <label htmlFor="name">{{
+      'register.business-account-step.names' | transloco
+    }}</label>
+    <input
+      [style]="{ width: '22.5rem' }"
+      pInputText
+      id="name"
+      formControlName="nombre"
+      placeholder=" {{
+        'register.business-account-step.enter-names' | transloco
+      }} "
+    />
+    @if ( registerBusinessForm.get('nombre')?.hasError('required') &&
+    registerBusinessForm.get('nombre')?.touched ) {
+    <p-message
+      [style]="{ width: '22.5rem' }"
+      data-cy="error-name-required"
+      severity="error"
+      text="{{ 'register.candidate-account-step.name-required' | transloco }}"
+    ></p-message>
+    } @if (registerBusinessForm.get('nombre')?.hasError('minlength')) {
+    <p-message
+      [style]="{ width: '22.5rem' }"
+      data-cy="error-name-min-length"
+      severity="error"
+      text="{{ 'register.candidate-account-step.name-min-length' | transloco }}"
+    ></p-message>
+    }
+  </div>
+
+  <div class="form__input--label">
+    <label htmlFor="identification">{{
+      'register.business-account-step.identification' | transloco
+    }}</label>
+    <div class="identification-form">
+      <p-dropdown
+        placeholder="{{ 'register.candidate-account-step.type' | transloco }}"
+        [options]="businessIdentificationTypesData"
+        optionLabel="name"
+        formControlName="tipo_documento"
+      ></p-dropdown>
       <input
-        [style]="{ width: '22.5rem' }"
+        [style]="{ width: '15.5rem' }"
         pInputText
-        id="name"
-        formControlName="nombre"
+        id="identification"
+        formControlName="documento"
         placeholder=" {{
-          'register.business-account-step.enter-names' | transloco
+          'register.business-account-step.enter-identification' | transloco
         }} "
       />
     </div>
+    @if ( registerBusinessForm.get('documento')?.hasError('required') &&
+    registerBusinessForm.get('documento')?.touched ) {
+    <p-message
+      data-cy="error-document-required"
+      [style]="{ width: '22.5rem' }"
+      severity="error"
+      text="{{
+        'register.candidate-account-step.identification-required' | transloco
+      }}"
+    ></p-message>
+    }
+  </div>
 
+  <!--Country-->
+  <div class="form__input--label">
+    <label htmlFor="birthday">{{
+      'register.business-account-step.residence-country' | transloco
+    }}</label>
+
+    <p-dropdown
+      [options]="countries"
+      optionLabel="name"
+      filterBy="name"
+      [style]="{ width: '22.5rem' }"
+      placeholder="{{
+        'register.business-account-step.enter-residence-country' | transloco
+      }} "
+      formControlName="pais"
+      class="countries-dropdown"
+    >
+      <ng-template pTemplate="selectedItem">
+        @if (registerBusinessForm.get('pais')) {
+        <div
+          class="flex align-items-center gap-2"
+          class="countries-dropdown--item"
+        >
+          <img
+            [src]="
+              'assets/images/flags/' +
+              registerBusinessForm.get('pais')?.value.code +
+              '.png'
+            "
+            style="width: 18px"
+          />
+          <div>{{ registerBusinessForm.get('pais')?.value.name }}</div>
+        </div>
+        }
+      </ng-template>
+      <ng-template let-country pTemplate="item">
+        <div
+          class="flex align-items-center gap-2"
+          class="countries-dropdown--item"
+        >
+          <img
+            class="countries-dropdown--item"
+            [src]="'assets/images/flags/' + country.code + '.png'"
+            style="width: 18px"
+          />
+          <div>{{ country.name }}</div>
+        </div>
+      </ng-template>
+    </p-dropdown>
+
+    <!--City-->
+
+    <p-dropdown
+      [options]="cities"
+      optionLabel="name"
+      filterBy="name"
+      [style]="{ width: '22.5rem' }"
+      placeholder="{{ 'register.business-account-step.city' | transloco }} "
+      formControlName="ciudad"
+      class="countries-dropdown"
+    >
+      <ng-template pTemplate="selectedItem">
+        @if (registerBusinessForm.get('ciudad')) {
+        <div
+          class="flex align-items-center gap-2"
+          class="countries-dropdown--item"
+        >
+          <img
+            [src]="
+              'assets/images/flags/' +
+              registerBusinessForm.get('ciudad')?.value.code +
+              '.png'
+            "
+            style="width: 18px"
+          />
+          <div>{{ registerBusinessForm.get('ciudad')?.value.name }}</div>
+        </div>
+        }
+      </ng-template>
+      <ng-template let-city pTemplate="item">
+        <div
+          class="flex align-items-center gap-2"
+          class="countries-dropdown--item"
+        >
+          <img
+            class="cities-dropdown--item"
+            [src]="'assets/images/flags/' + city.code + '.png'"
+            style="width: 18px"
+          />
+          <div>{{ city.name }}</div>
+        </div>
+      </ng-template>
+    </p-dropdown>
+
+    <!-- Address-->
     <div class="form__input--label">
-      <label htmlFor="identification">{{
-        'register.business-account-step.identification' | transloco
-      }}</label>
-      <div class="identification-form">
-        <p-dropdown
-          placeholder="{{ 'register.candidate-account-step.type' | transloco }}"
-          [options]="businessIdentificationTypesData"
-          optionLabel="name"
-          formControlName="tipo_documento"
-        ></p-dropdown>
-        <input
-          [style]="{ width: '15.5rem' }"
-          pInputText
-          id="identification"
-          formControlName="documento"
-          placeholder=" {{
-            'register.business-account-step.enter-identification' | transloco
-          }} "
-        />
-      </div>
+      <input
+        [style]="{ width: '22.5rem' }"
+        pInputText
+        id="direccion"
+        formControlName="direccion"
+        placeholder=" {{
+          'register.business-account-step.address' | transloco
+        }} "
+      />
+      @if ( registerBusinessForm.get('direccion')?.hasError('required') &&
+      registerBusinessForm.get('direccion')?.touched ) {
+      <p-message
+        data-cy="error-address-required"
+        [style]="{ width: '22.5rem' }"
+        severity="error"
+        text="{{
+          'register.business-account-step.address-required' | transloco
+        }}"
+      ></p-message>
+      }
     </div>
 
-    <!--Country-->
+    <!--TipoEmpresa-->
     <div class="form__input--label">
-      <label htmlFor="birthday">{{
-        'register.business-account-step.residence-country' | transloco
+      <label htmlFor="businessType">{{
+        'register.business-account-step.business' | transloco
       }}</label>
 
       <p-dropdown
-        [options]="countries"
-        optionLabel="name"
+        [options]="businessTypes"
+        optionLabel="tipo"
+        [style]="{ width: '22.5rem' }"
+        placeholder="{{
+          'register.business-account-step.business-type' | transloco
+        }} "
+        formControlName="tipoEmpresaId"
+        class="businessType-dropdown"
+      >
+      </p-dropdown>
+
+      <!--SegmentoEmpresa-->
+
+      <p-dropdown
+        [options]="businessSegments"
+        optionLabel="segmento"
         filterBy="name"
         [style]="{ width: '22.5rem' }"
         placeholder="{{
-          'register.business-account-step.enter-residence-country' | transloco
+          'register.business-account-step.business-segment' | transloco
         }} "
-        formControlName="pais"
-        class="countries-dropdown"
+        formControlName="segmentoId"
+        class="businessSegment-dropdown"
       >
-        <ng-template pTemplate="selectedItem">
-          @if (registerBusinessForm.get('pais')) {
-<div
-            class="flex align-items-center gap-2"
-           
-            class="countries-dropdown--item"
-          >
-            <img
-              [src]="
-                'assets/images/flags/' +
-                registerBusinessForm.get('pais')?.value.code +
-                '.png'
-              "
-              style="width: 18px"
-            />
-            <div>{{ registerBusinessForm.get('pais')?.value.name }}</div>
-          </div>
-}
-        </ng-template>
-        <ng-template let-country pTemplate="item">
-          <div
-            class="flex align-items-center gap-2"
-            class="countries-dropdown--item"
-          >
-            <img
-              class="countries-dropdown--item"
-              [src]="'assets/images/flags/' + country.code + '.png'"
-              style="width: 18px"
-            />
-            <div>{{ country.name }}</div>
-          </div>
-        </ng-template>
       </p-dropdown>
-
-      <!--City-->
-
-      <p-dropdown
-        [options]="cities"
-        optionLabel="name"
-        filterBy="name"
-        [style]="{ width: '22.5rem' }"
-        placeholder="{{ 'register.business-account-step.city' | transloco }} "
-        formControlName="ciudad"
-        class="countries-dropdown"
-      >
-        <ng-template pTemplate="selectedItem">
-          @if (registerBusinessForm.get('ciudad')) {
-<div
-            class="flex align-items-center gap-2"
-           
-            class="countries-dropdown--item"
-          >
-            <img
-              [src]="
-                'assets/images/flags/' +
-                registerBusinessForm.get('ciudad')?.value.code +
-                '.png'
-              "
-              style="width: 18px"
-            />
-            <div>{{ registerBusinessForm.get('ciudad')?.value.name }}</div>
-          </div>
-}
-        </ng-template>
-        <ng-template let-city pTemplate="item">
-          <div
-            class="flex align-items-center gap-2"
-            class="countries-dropdown--item"
-          >
-            <img
-              class="cities-dropdown--item"
-              [src]="'assets/images/flags/' + city.code + '.png'"
-              style="width: 18px"
-            />
-            <div>{{ city.name }}</div>
-          </div>
-        </ng-template>
-      </p-dropdown>
-
-      <!-- Address-->
-      <div class="form__input--label">
-        <input
-          [style]="{ width: '22.5rem' }"
-          pInputText
-          id="direccion"
-          formControlName="direccion"
-          placeholder=" {{
-            'register.business-account-step.address' | transloco
-          }} "
-        />
-      </div>
-
-      <!--TipoEmpresa-->
-      <div class="form__input--label">
-        <label htmlFor="businessType">{{
-          'register.business-account-step.business' | transloco
-        }}</label>
-
-        <p-dropdown
-          [options]="businessTypes"
-          optionLabel="tipo"
-          [style]="{ width: '22.5rem' }"
-          placeholder="{{
-            'register.business-account-step.business-type' | transloco
-          }} "
-          formControlName="tipoEmpresaId"
-          class="businessType-dropdown"
-        >
-        </p-dropdown>
-
-        <!--SegmentoEmpresa-->
-
-        <p-dropdown
-          [options]="businessSegments"
-          optionLabel="segmento"
-          filterBy="name"
-          [style]="{ width: '22.5rem' }"
-          placeholder="{{
-            'register.business-account-step.business-segment' | transloco
-          }} "
-          formControlName="segmentoId"
-          class="businessSegment-dropdown"
-        >
-        </p-dropdown>
-      </div>
     </div>
-  
-}
+  </div>
+
+  }
 
   <!-- STEP 2-->
   @if (currentStep === steps.createBusinessAccount) {
 
-    <!-- Username-->
-    <div class="form__input--label">
-      <label htmlFor="username">{{
-        'register.business-account-step.username' | transloco
-      }}</label>
-      <input
-        type="username"
-        [style]="{ width: '22.5rem' }"
-        pInputText
-        id="username"
-        formControlName="username"
-        placeholder=" {{
-          'register.business-account-step.enter-username' | transloco
-        }} "
-      />
-    </div>
+  <!-- Username-->
+  <div class="form__input--label">
+    <label htmlFor="username">{{
+      'register.business-account-step.username' | transloco
+    }}</label>
+    <input
+      [minlength]="3"
+      [maxlength]="50"
+      type="username"
+      [style]="{ width: '22.5rem' }"
+      pInputText
+      id="username"
+      formControlName="username"
+      placeholder=" {{
+        'register.business-account-step.enter-username' | transloco
+      }} "
+    />
+    @if ( registerBusinessForm.get('username')?.hasError('required') &&
+    registerBusinessForm.get('username')?.touched ) {
+    <p-message
+      data-cy="username-required-error"
+      [style]="{ width: '22.5rem' }"
+      severity="error"
+      text="{{
+        'register.candidate-account-step.username-required' | transloco
+      }}"
+    ></p-message>
+    } @if (registerBusinessForm.get('username')?.hasError('minlength')) {
+    <p-message
+      data-cy="username-min-length-error"
+      [style]="{ width: '22.5rem' }"
+      severity="error"
+      text="{{
+        'register.candidate-account-step.username-min-length' | transloco
+      }}"
+    ></p-message>
+    }
+  </div>
 
-    <!-- Email-->
-    <div class="form__input--label">
-      <label htmlFor="email">{{
-        'register.business-account-step.email' | transloco
-      }}</label>
-      <input
-        type="email"
-        [style]="{ width: '22.5rem' }"
-        pInputText
-        id="email"
-        formControlName="email"
-        placeholder=" {{
-          'register.business-account-step.enter-email' | transloco
-        }} "
-      />
-    </div>
+  <!-- Email-->
+  <div class="form__input--label">
+    <label htmlFor="email">{{
+      'register.business-account-step.email' | transloco
+    }}</label>
+    <input
+      type="email"
+      [style]="{ width: '22.5rem' }"
+      pInputText
+      id="email"
+      formControlName="email"
+      placeholder=" {{
+        'register.business-account-step.enter-email' | transloco
+      }} "
+    />
 
-    <!-- Password-->
-    <div class="form__input--label">
-      <label htmlFor="password">{{
-        'register.business-account-step.password' | transloco
-      }}</label>
-      <input
-        type="password"
-        [style]="{ width: '22.5rem' }"
-        pInputText
-        id="password"
-        formControlName="password"
-        placeholder=" {{
-          'register.business-account-step.enter-password' | transloco
-        }} "
-      />
-    </div>
+    @if ( registerBusinessForm.get('email')?.hasError('required') &&
+    registerBusinessForm.get('email')?.touched ) {
+    <p-message
+      data-cy="email-required-error"
+      [style]="{ width: '22.5rem' }"
+      severity="error"
+      text="{{ 'register.candidate-account-step.email-required' | transloco }}"
+    ></p-message>
 
-    <!-- Password Confirm-->
-    <div class="form__input--label">
-      <label htmlFor="passwordConfirm">{{
-        'register.business-account-step.password-confirm' | transloco
-      }}</label>
-      <input
-        type="password"
-        [style]="{ width: '22.5rem' }"
-        pInputText
-        id="passwordConfirm"
-        formControlName="passwordConfirm"
-        placeholder=" {{
-          'register.business-account-step.enter-password-confirm' | transloco
-        }} "
-      />
-      @if (registerBusinessForm.hasError('passwordMismatch')) {
-<p-message
-       
-        [style]="{ width: '22.5rem' }"
-        severity="error"
-        text="{{
-          'register.candidate-account-step.password-confirm-mismatch'
-            | transloco
-        }}"
-      ></p-message>
-}
-    </div>
-  
-}
+    } @if (registerBusinessForm.get('email')?.hasError('email') ||
+    registerBusinessForm.get('email')?.hasError('pattern')) {
+    <p-message
+      data-cy="email-invalid-error"
+      [style]="{ width: '22.5rem' }"
+      severity="error"
+      text="{{
+        'register.candidate-account-step.email-format-error' | transloco
+      }}"
+    ></p-message>
+    }
+  </div>
 
-  @if (error) {
-<p-message
+  <!-- Password-->
+  <div class="form__input--label">
+    <label htmlFor="password">{{
+      'register.business-account-step.password' | transloco
+    }}</label>
+    <input
+      type="password"
+      [style]="{ width: '22.5rem' }"
+      pInputText
+      id="password"
+      formControlName="password"
+      placeholder=" {{
+        'register.business-account-step.enter-password' | transloco
+      }} "
+    />
+
+    @if ( registerBusinessForm.get('password')?.hasError('required') &&
+    registerBusinessForm.get('password')?.touched ) {
+    <p-message
+      data-cy="password-required-error"
+      [style]="{ width: '22.5rem' }"
+      severity="error"
+      text="{{
+        'register.candidate-account-step.password-required' | transloco
+      }}"
+    ></p-message>
+    } @if (registerBusinessForm.get('password')?.hasError('minlength')) {
+    <p-message
+      data-cy="password-min-length-error"
+      [style]="{ width: '22.5rem' }"
+      severity="error"
+      text="{{
+        'register.candidate-account-step.password-min-length' | transloco
+      }}"
+    ></p-message>
+    }
+  </div>
+
+  <!-- Password Confirm-->
+  <div class="form__input--label">
+    <label htmlFor="passwordConfirm">{{
+      'register.business-account-step.password-confirm' | transloco
+    }}</label>
+    <input
+      type="password"
+      [style]="{ width: '22.5rem' }"
+      pInputText
+      id="passwordConfirm"
+      formControlName="passwordConfirm"
+      placeholder=" {{
+        'register.business-account-step.enter-password-confirm' | transloco
+      }} "
+    />
+    @if (registerBusinessForm.hasError('passwordMismatch')) {
+    <p-message
+      data-cy="password-mismatch-error"
+      [style]="{ width: '22.5rem' }"
+      severity="error"
+      text="{{
+        'register.candidate-account-step.password-confirm-mismatch' | transloco
+      }}"
+    ></p-message>
+    }
+  </div>
+
+  } @if (error) {
+  <p-message
+    data-cy="register-user-error"
     [style]="{ width: '22.5rem' }"
     severity="error"
-   
     text="{{ error }}"
   ></p-message>
-}
+  }
 
   <p-button
+    data-cy="register-user-next-button"
     label="{{ nextText | transloco }}"
     [style]="{ width: '22.5rem' }"
     type="submit"
@@ -295,13 +393,12 @@
   ></p-button>
 
   @if (currentStep === steps.createBusinessAccount) {
-<p-button
+  <p-button
     label="{{ 'previous' | transloco }}"
     [style]="{ width: '22.5rem' }"
     (onClick)="backToPreviousStep()"
-   
   ></p-button>
-}
+  }
 
   <p-button
     (onClick)="goToMainRegister()"
