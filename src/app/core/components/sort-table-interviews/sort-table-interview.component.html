@@ -60,9 +60,7 @@
                 (click)="handleClick($event, data)"
               >
                 <i
-                  [class]="
-                    data.calificacion !== '' ? 'pi pi-eye' : 'pi pi-book'
-                  "
+                  [class]="data.calificacion > 0 ? 'pi pi-eye' : 'pi pi-book'"
                   style="color: #fff; font-size: 1.2rem"
                 ></i>
               </div>
@@ -151,6 +149,7 @@
         <p></p>
         <span class="p-float-label">
           <textarea
+            formControlName="comentario"
             id="float-input"
             rows="5"
             cols="30"
@@ -166,6 +165,7 @@
           icon="pi pi-check"
           label="{{ 'profiles.accept' | transloco }}"
           styleClass="p-button-text"
+          [disabled]="!validForm()"
           (onClick)="addData()"
         ></p-button>
       </ng-template>
@@ -211,7 +211,7 @@
           icon="pi pi-check"
           label="{{ 'profiles.accept' | transloco }}"
           styleClass="p-button-text"
-          (onClick)="addData()"
+          (onClick)="showInterviewInformation = false"
         ></p-button>
       </ng-template>
     </p-dialog>

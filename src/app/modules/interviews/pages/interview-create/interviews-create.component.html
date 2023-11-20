@@ -2,11 +2,7 @@
   <div class="projects-create-container">
     <h1 class="projects-create-title">{{ 'interviews.create' | transloco }}</h1>
 
-    <form
-      class="projects-create__form"
-      [formGroup]="interviewCreateForm"
-      (ngSubmit)="onSubmit()"
-    >
+    <form class="projects-create__form" [formGroup]="interviewCreateForm">
       <!-- Name-->
       <div class="form__input--label">
         <label htmlFor="name">{{ 'interviews.name' | transloco }}</label>
@@ -16,7 +12,7 @@
           [style]="{ width: '22.5rem' }"
           pInputText
           id="name"
-          formControlName="name"
+          formControlName="titulo"
           placeholder=" {{ 'interviews.enter-name' | transloco }} "
         />
         @if ( interviewCreateForm.get('name')?.hasError('required') &&
@@ -46,9 +42,8 @@
           [style]="{ width: '22.5rem' }"
           [showIcon]="true"
           id="date"
-          formControlName="date"
+          formControlName="fecha"
           placeholder=" {{ 'interviews.enter-date' | transloco }} "
-          [(ngModel)]="participants"
           [showTime]="true"
           [showSeconds]="true"
         ></p-calendar>
@@ -65,8 +60,9 @@
 
       <div class="table-spacing">
         <app-sort-table-participants
+          [dataDropdown]="candidatesData"
           [header]="'participants.list'"
-          [data]="participants"
+          [(data)]="participants"
         ></app-sort-table-participants>
       </div>
 
@@ -79,10 +75,11 @@
       }
       <div class="button-container">
         <p-button
+          (onClick)="createInterview()"
           label="{{ 'create' | transloco }}"
           [style]="{ width: '22.5rem' }"
           type="submit"
-          [disabled]="!interviewCreateForm.valid"
+          [disabled]="!formValid()"
           [loading]="loading"
         ></p-button>
 

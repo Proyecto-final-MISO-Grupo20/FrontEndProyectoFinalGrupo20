@@ -62,4 +62,8 @@ export class InterviewsComponent implements OnInit {
       localStorage.removeItem(Keys.CREATE_INTERVIEW_COMPLETE);
     }
   }
+
+  qualifiedInterview(updated: boolean) {
+    this.getInterviews();
+  }
 }

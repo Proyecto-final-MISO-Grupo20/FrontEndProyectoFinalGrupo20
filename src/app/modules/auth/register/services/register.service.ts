@@ -20,10 +20,10 @@ export class RegisterService {
   }
 
   getBusinessTypes(): Observable<BusinessType[]> {
-    return this.#api.get('usuario/tipoEmpresa');
+    return this.#api.get('empresa/tipos');
   }
 
   getBusinessSegments(): Observable<BusinessSegment[]> {
-    return this.#api.get('usuario/segmentos');
+    return this.#api.get('empresa/segmentos');
   }
 }

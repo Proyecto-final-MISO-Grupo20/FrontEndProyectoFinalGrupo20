@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LanguageModule } from 'language';
 import { SortTable2Component } from '../../../../core/components/sort-table2/sort-table2.component';
@@ -16,12 +16,15 @@ import { Observable, filter, tap } from 'rxjs';
 export class EmployeesComponent implements OnInit {
   employees!: any[];
   employeesService = inject(EmployeesService);
+  loading = false;
 
   ngOnInit(): void {
     this.getEmployees();
   }
 
   getEmployees() {
+    this.loading = true;
+
     this.employeesService
       .getEmployees()
       .pipe(
@@ -33,6 +36,8 @@ export class EmployeesComponent implements OnInit {
             delete employee.tipo_documento;
           });
           this.employees = employees;
+
+          this.loading = false;
         })
       )
       .subscribe();

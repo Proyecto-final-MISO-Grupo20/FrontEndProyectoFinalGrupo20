@@ -34,6 +34,7 @@ export class SortTable2Component implements OnInit {
   registerForm!: FormGroup;
   formBuilder = inject(FormBuilder);
   @Input() mockData_project!: any[];
+  @Input() loading = false;
   currentEmployee: any;
 
   columns!: string[];

@@ -1,8 +1,9 @@
 import { Injectable, inject } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { ApiService } from '../../../core/services/api/api.service';
 import { Interview } from '../models/interview';
-import { mockData_participants } from '../utils/mock-data-participants';
+import { CreateInterviewDto } from '../dto/create-interview.dto';
+import { qualifyInterviewDto } from '../dto/qualify-interview.dto';
 
 @Injectable({
   providedIn: 'root',
@@ -14,7 +15,11 @@ export class InterviewsService {
     return this.#api.get('entrevistas');
   }
 
-  createInterview() {
-    return of(mockData_participants);
+  createInterview(interviewData: CreateInterviewDto) {
+    return this.#api.post('entrevistas', interviewData);
+  }
+
+  qualifyInterview(interviewData: qualifyInterviewDto) {
+    return this.#api.post('entrevistas/qualify', interviewData);
   }
 }
