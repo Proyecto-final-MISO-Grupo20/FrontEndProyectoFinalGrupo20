@@ -400,6 +400,7 @@
 
   } @if (error) {
   <p-message
+    data-cy="register-user-error"
     [style]="{ width: '22.5rem' }"
     severity="error"
     text="{{ error }}"

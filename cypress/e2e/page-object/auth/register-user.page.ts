@@ -50,6 +50,10 @@ class RegisterUserPage extends Page {
     return super.getDataCyElement('register-candidate-next-button');
   }
 
+  get registerUserError() {
+    return super.getDataCyElement('register-user-error');
+  }
+
   completeUserRegister(data: registerUser) {
     this.usernameInput.type(data.username);
     this.emailInput.type(data.email);

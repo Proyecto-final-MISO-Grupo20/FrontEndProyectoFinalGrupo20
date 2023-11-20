@@ -2,6 +2,7 @@ import { registerCandidate } from '../../utils/interfaces/register-candidate.int
 import registerCandidatePage from '../../page-object/auth/register-candidate.page';
 import registerUserPage from '../../page-object/auth/register-user.page';
 import registerPage from '../../page-object/auth/register.page';
+import { faker } from '@faker-js/faker';
 
 describe('Candidate Register', () => {
   beforeEach(() => {
@@ -123,12 +124,29 @@ describe('Candidate Register', () => {
     });
   });
 
-  it('Should create candidate account successfully', () => {
-    cy.fixture('auth/register-candidate').then((data: registerCandidate) => {
-      registerCandidatePage.completeFirsStep(data);
-      registerUserPage.completeUserRegister(data);
+  describe('Create candidate', () => {
+    const username = faker.internet.userName();
 
-      cy.url().should('include', 'login');
+    it('Should create candidate account successfully', () => {
+      cy.fixture('auth/register-candidate').then((data: registerCandidate) => {
+        data.username = username;
+
+        registerCandidatePage.completeFirsStep(data);
+        registerUserPage.completeUserRegister(data);
+
+        cy.url().should('include', 'login');
+      });
+    });
+
+    it('Should show create candidate account username alrady exists validation', () => {
+      cy.fixture('auth/register-candidate').then((data: registerCandidate) => {
+        data.username = username;
+
+        registerCandidatePage.completeFirsStep(data);
+        registerUserPage.completeUserRegister(data);
+
+        registerUserPage.registerUserError.should('be.visible');
+      });
     });
   });
 });
