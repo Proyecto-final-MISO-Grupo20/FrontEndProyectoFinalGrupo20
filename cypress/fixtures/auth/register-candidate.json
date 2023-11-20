@@ -1,1 +1,10 @@
-{}
+{
+  "name": "E2E Test",
+  "birthday": "",
+  "city": "Bogota",
+  "phone": "12345",
+  "document": "56789",
+  "username": "e2e_test",
+  "email": "e2e@e2e.com",
+  "password": "12345678"
+}
