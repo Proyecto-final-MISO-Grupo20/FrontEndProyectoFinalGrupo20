@@ -16,8 +16,16 @@ describe('Login', () => {
     loginPage.loginError.should('be.visible');
   });
 
-  it('Should authenticate successfully', () => {
-    cy.fixture('auth/login').then((credentials: Login) => {
+  it('Should authenticate successfully with candidate', () => {
+    cy.fixture('auth/login-candidate').then((credentials: Login) => {
+      loginPage.login(credentials);
+    });
+
+    cy.url().should('include', 'home');
+  });
+
+  it('Should authenticate successfully with business', () => {
+    cy.fixture('auth/login-business').then((credentials: Login) => {
       loginPage.login(credentials);
     });
 
