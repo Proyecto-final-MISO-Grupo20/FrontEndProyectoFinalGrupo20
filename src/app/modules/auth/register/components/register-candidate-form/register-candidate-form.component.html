@@ -235,6 +235,7 @@
     @if ( registerForm.get('documento')?.hasError('required') &&
     registerForm.get('documento')?.touched ) {
     <p-message
+      data-cy="error-document-required"
       [style]="{ width: '22.5rem' }"
       severity="error"
       text="{{
@@ -270,6 +271,7 @@
     @if ( registerForm.get('username')?.hasError('required') &&
     registerForm.get('username')?.touched ) {
     <p-message
+      data-cy="username-required-error"
       [style]="{ width: '22.5rem' }"
       severity="error"
       text="{{
@@ -278,6 +280,7 @@
     ></p-message>
     } @if (registerForm.get('username')?.hasError('minlength')) {
     <p-message
+      data-cy="username-min-length-error"
       [style]="{ width: '22.5rem' }"
       severity="error"
       text="{{
@@ -306,12 +309,16 @@
     @if ( registerForm.get('email')?.hasError('required') &&
     registerForm.get('email')?.touched ) {
     <p-message
+      data-cy="email-required-error"
       [style]="{ width: '22.5rem' }"
       severity="error"
       text="{{ 'register.candidate-account-step.email-required' | transloco }}"
     ></p-message>
-    } @if (registerForm.get('email')?.hasError('email')) {
+
+    } @if (registerForm.get('email')?.hasError('email') ||
+    registerForm.get('email')?.hasError('pattern')) {
     <p-message
+      data-cy="email-invalid-error"
       [style]="{ width: '22.5rem' }"
       severity="error"
       text="{{
@@ -342,6 +349,7 @@
     @if ( registerForm.get('password')?.hasError('required') &&
     registerForm.get('password')?.touched ) {
     <p-message
+      data-cy="password-required-error"
       [style]="{ width: '22.5rem' }"
       severity="error"
       text="{{
@@ -350,6 +358,7 @@
     ></p-message>
     } @if (registerForm.get('password')?.hasError('minlength')) {
     <p-message
+      data-cy="password-min-length-error"
       [style]="{ width: '22.5rem' }"
       severity="error"
       text="{{
@@ -379,6 +388,7 @@
 
     @if (registerForm.hasError('passwordMismatch')) {
     <p-message
+      data-cy="password-mismatch-error"
       [style]="{ width: '22.5rem' }"
       severity="error"
       text="{{
@@ -390,6 +400,7 @@
 
   } @if (error) {
   <p-message
+    data-cy="register-user-error"
     [style]="{ width: '22.5rem' }"
     severity="error"
     text="{{ error }}"
@@ -397,6 +408,7 @@
   }
 
   <p-button
+    data-cy="register-user-next-button"
     label="{{ nextText | transloco }}"
     [style]="{ width: '22.5rem' }"
     type="submit"

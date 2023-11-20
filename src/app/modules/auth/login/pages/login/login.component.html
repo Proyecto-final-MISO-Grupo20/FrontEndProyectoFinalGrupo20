@@ -31,22 +31,18 @@
 
       <form class="login__form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
         @if (successRegister) {
-<p-message
-         
+        <p-message
           [style]="{ width: '22.5rem' }"
           severity="success"
           text="{{ 'login.success-register' | transloco }}"
         ></p-message>
-}
-
-        @if (sessionError) {
-<p-message
-         
+        } @if (sessionError) {
+        <p-message
           [style]="{ width: '22.5rem' }"
           severity="error"
           text="{{ 'login.session-expired' | transloco }}"
         ></p-message>
-}
+        }
 
         <div class="p-field p-grid">
           <label for="username" class="p-col-12 p-md-3">Username</label>
@@ -77,15 +73,16 @@
         </div>
 
         @if (errorMessage) {
-<p-message
+        <p-message
+          data-cy="login-error-message"
           [style]="{ width: '22.5rem' }"
           severity="error"
-         
           text="{{ errorMessage }}"
         ></p-message>
-}
+        }
 
         <p-button
+          data-cy="login-button"
           label="{{ 'login.log-in' | transloco }}"
           [style]="{ width: '22.5rem' }"
           type="submit"

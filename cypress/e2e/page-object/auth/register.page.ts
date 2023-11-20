@@ -9,6 +9,10 @@ class RegisterPage extends Page {
     return super.get('[aria-label="candidate"]');
   }
 
+  get businessOption() {
+    return super.get('[aria-label="business"]');
+  }
+
   get nextRegisterButton() {
     return super.get('[data-cy="next-register-button"]');
   }
@@ -16,6 +20,12 @@ class RegisterPage extends Page {
   goToCandidateRegister() {
     this.typeUserDropdown.click();
     this.candidateOption.click();
+    this.nextRegisterButton.click();
+  }
+
+  goToBusinessRegister() {
+    this.typeUserDropdown.click();
+    this.businessOption.click();
     this.nextRegisterButton.click();
   }
 

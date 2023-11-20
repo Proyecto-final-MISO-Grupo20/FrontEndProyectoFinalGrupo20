@@ -67,7 +67,8 @@
       "business-type": "Business Type",
       "enter-business-type": "Enter business type",
       "business-segment": "Busines Segment",
-      "segment": "Segment"
+      "segment": "Segment",
+      "address-required": "Address is required"
     }
   },
   "login": {

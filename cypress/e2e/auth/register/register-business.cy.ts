@@ -1,77 +1,54 @@
-import { registerCandidate } from '../../utils/interfaces/register-candidate.interface';
-import registerCandidatePage from '../../page-object/auth/register-candidate.page';
-import registerUserPage from '../../page-object/auth/register-user.page';
-import registerPage from '../../page-object/auth/register.page';
 import { faker } from '@faker-js/faker';
+import { registerBusiness } from '../../utils/interfaces/register-business.interface';
+import registerBusinessPage from '../../page-object/auth/register-business.page';
+import registerPage from '../../page-object/auth/register.page';
+import registerUserPage from '../../page-object/auth/register-user.page';
 
-describe('Candidate Register', () => {
+describe('Business Register', () => {
   beforeEach(() => {
     registerPage.open();
-    registerPage.goToCandidateRegister();
+    registerPage.goToBusinessRegister();
   });
 
-  describe('Personal Information Validation', () => {
+  describe('Business Information Validation', () => {
     it('Should show name required validation', () => {
-      registerCandidatePage.nameInput.click();
+      registerBusinessPage.nameInput.click();
 
-      registerCandidatePage.nameInput.blur();
+      registerBusinessPage.nameInput.blur();
 
-      registerCandidatePage.nameInputRequiredError.should('be.visible');
+      registerBusinessPage.nameInputRequiredError.should('be.visible');
     });
 
     it('Should show name min length validation', () => {
-      registerCandidatePage.nameInput.click();
+      registerBusinessPage.nameInput.type('12');
 
-      registerCandidatePage.nameInput.type('12');
+      registerBusinessPage.nameInput.blur();
 
-      registerCandidatePage.nameInput.blur();
-
-      registerCandidatePage.nameInputMinLengthError.should('be.visible');
-    });
-
-    it('Should show min age validation', () => {
-      registerCandidatePage.selectTodayDate();
-
-      registerCandidatePage.birthdayInputAgeError.should('be.visible');
-    });
-
-    it('Should show age required validation', () => {
-      registerCandidatePage.birthdayInput.click();
-
-      registerCandidatePage.nameInput.click();
-
-      registerCandidatePage.birthdayInputAgeRequiredError.should('be.visible');
-    });
-
-    it('Should show residence city required validation', () => {
-      registerCandidatePage.residenceCityInput.click();
-
-      registerCandidatePage.residenceCityInput.blur();
-
-      registerCandidatePage.residenceCityRequiredError.should('be.visible');
-    });
-
-    it('Should show phone required validation', () => {
-      registerCandidatePage.phoneInput.click();
-
-      registerCandidatePage.phoneInput.blur();
-
-      registerCandidatePage.phoneRequiredError.should('be.visible');
+      registerBusinessPage.nameInputMinLengthError.should('be.visible');
     });
 
     it('Should show document required validation', () => {
-      registerCandidatePage.documentInput.click();
+      registerBusinessPage.documentInput.click();
 
-      registerCandidatePage.documentInput.blur();
+      registerBusinessPage.documentInput.blur();
 
-      registerCandidatePage.documentRequiredError.should('be.visible');
+      registerBusinessPage.documentRequiredError.should('be.visible');
+    });
+
+    it('Should show address required validation', () => {
+      registerBusinessPage.addressInput.click();
+
+      registerBusinessPage.addressInput.blur();
+
+      registerBusinessPage.addressRequiredError.should('be.visible');
     });
   });
 
   describe('User Account Validation', () => {
     beforeEach(() => {
-      cy.fixture('auth/register-candidate').then((data: registerCandidate) => {
-        registerCandidatePage.completeFirsStep(data);
+      cy.fixture('auth/register-business').then((data: registerBusiness) => {
+        data.address = faker.location.streetAddress();
+        registerBusinessPage.completeFirstStep(data);
       });
     });
 
@@ -124,14 +101,15 @@ describe('Candidate Register', () => {
     });
   });
 
-  describe('Create candidate', () => {
+  describe('Create Business', () => {
     const username = faker.internet.userName();
 
     it('Should create candidate account successfully', () => {
-      cy.fixture('auth/register-candidate').then((data: registerCandidate) => {
+      cy.fixture('auth/register-business').then((data: registerBusiness) => {
         data.username = username;
+        data.address = faker.location.streetAddress();
 
-        registerCandidatePage.completeFirsStep(data);
+        registerBusinessPage.completeFirstStep(data);
         registerUserPage.completeUserRegister(data);
 
         cy.url().should('include', 'login');
@@ -139,10 +117,11 @@ describe('Candidate Register', () => {
     });
 
     it('Should show create candidate account username alrady exists validation', () => {
-      cy.fixture('auth/register-candidate').then((data: registerCandidate) => {
+      cy.fixture('auth/register-business').then((data: registerBusiness) => {
         data.username = username;
+        data.address = faker.location.streetAddress();
 
-        registerCandidatePage.completeFirsStep(data);
+        registerBusinessPage.completeFirstStep(data);
         registerUserPage.completeUserRegister(data);
 
         registerUserPage.registerUserError.should('be.visible');

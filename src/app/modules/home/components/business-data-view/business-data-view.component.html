@@ -4,6 +4,7 @@
     <span class="p-input-icon-left" [style]="{ width: '100%' }">
       <i class="pi pi-search"></i>
       <input
+        data-cy="candidates-filter"
         [placeholder]="'business-home.search-candidates' | transloco"
         type="text"
         pInputText
@@ -21,7 +22,13 @@
     animationDuration=".5s"
   ></p-progressSpinner>
   } @if (!loading) {
-  <p-dataView #dv [value]="data" [rows]="5" [paginator]="true">
+  <p-dataView
+    #dv
+    [value]="data"
+    [rows]="5"
+    [paginator]="true"
+    data-cy="candidates-data-view"
+  >
     <ng-template let-data pTemplate="listItem">
       <div class="col-12 bg-gray">
         <div

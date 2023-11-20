@@ -105,7 +105,14 @@ export class RegisterBusinessFormComponent implements OnInit {
   initializeForm() {
     this.registerBusinessForm = this.formBuilder.group(
       {
-        nombre: ['', [Validators.required, Validators.maxLength(10)]],
+        nombre: [
+          '',
+          [
+            Validators.required,
+            Validators.maxLength(50),
+            Validators.minLength(3),
+          ],
+        ],
         tipo_documento: ['', [Validators.required, Validators.maxLength(10)]],
         documento: ['', [Validators.required, Validators.maxLength(10)]],
         ciudad: [
@@ -116,12 +123,26 @@ export class RegisterBusinessFormComponent implements OnInit {
           this.countries[0],
           [Validators.required, Validators.maxLength(255)],
         ],
-        direccion: ['', [Validators.required, Validators.maxLength(10)]],
+        direccion: ['', [Validators.required]],
         tipoEmpresaId: ['', [Validators.required, Validators.maxLength(50)]],
         segmentoId: ['', [Validators.required, Validators.maxLength(255)]],
-        username: ['', [Validators.required, Validators.maxLength(10)]],
-        email: ['', [Validators.required, Validators.maxLength(255)]],
-        password: ['', [Validators.required, Validators.maxLength(10)]],
+        username: ['', [Validators.required, Validators.maxLength(50)]],
+        email: [
+          '',
+          [
+            Validators.required,
+            Validators.email,
+            Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
+          ],
+        ],
+        password: [
+          '',
+          [
+            Validators.required,
+            Validators.minLength(8),
+            Validators.maxLength(50),
+          ],
+        ],
         passwordConfirm: ['', [Validators.required, Validators.maxLength(10)]],
       },
       { validator: passwordMatchValidator }
