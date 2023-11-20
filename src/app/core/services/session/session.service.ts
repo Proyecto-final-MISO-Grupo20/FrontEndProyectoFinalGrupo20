@@ -2,6 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { User } from '../../models/user.model';
+import { Keys } from '../../utils/keys';
 
 @Injectable({
   providedIn: 'root',
@@ -12,26 +13,25 @@ export class SessionService {
   router = inject(Router);
 
   constructor() {
-    const user = localStorage.getItem('user');
+    const user = localStorage.getItem(Keys.USER);
 
     if (user) {
       this.userSubject.next(JSON.parse(user));
     }
   }
 
-  setUser(user: any) {
+  setUser(user: User | any) {
     this.userSubject.next(user);
-    localStorage.setItem('user', JSON.stringify(user));
+    localStorage.setItem(Keys.USER, JSON.stringify(user));
   }
 
-  getUser(): any {
+  getUser(): User {
     return this.userSubject.value;
   }
 
   logout() {
     this.userSubject.next({});
-    console.log(this.userSubject.value);
-    localStorage.removeItem('user');
+    localStorage.removeItem(Keys.USER);
     this.router.navigateByUrl('/auth');
   }
 }

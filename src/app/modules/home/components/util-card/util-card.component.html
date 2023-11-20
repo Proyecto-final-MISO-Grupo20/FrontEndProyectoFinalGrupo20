@@ -1,0 +1,80 @@
+<p-card [header]="headerTitle | transloco" [style]="{ width: '15rem' }">
+  <!-- CheckBox -->
+
+  @if (type === cardType.checkbox) {
+<div class="card flex">
+    <div class="flex flex-column gap-2">
+      @for (option of options; track option) {
+  <div class="field-checkbox">
+        @if (loading) {
+<td>
+          <p-progressSpinner
+            styleClass="w-4rem h-4rem"
+            animationDuration=".5s"
+          ></p-progressSpinner>
+        </td>
+}
+        <p-checkbox
+          name="group"
+          [value]="option"
+          [(ngModel)]="selectedOptions"
+          (ngModelChange)="onCheckboxChange($event)"
+          [inputId]="option.id"
+        ></p-checkbox>
+        <label [for]="option.id">{{ option.nombre }}</label>
+      </div>
+}
+    </div>
+  </div>
+}
+
+  <!--Search-->
+  @if (type === cardType.search) {
+<div>
+    <span class="p-input-icon-left">
+      <i class="pi pi-search"></i>
+      <input
+        type="text"
+        pInputText
+        [(ngModel)]="inputSearch"
+        (ngModelChange)="onInputChange($event)"
+        [style]="{ width: '90%' }"
+      />
+    </span>
+  </div>
+}
+
+  <!-- Rating -->
+  @if (type === cardType.rating) {
+<div class="card flex">
+    <div class="flex flex-column gap-2">
+      @for (option of options; track option) {
+  <div class="field-checkbox">
+        <p-checkbox
+          name="group"
+          [value]="option.value"
+          [(ngModel)]="selectedOptions"
+          [inputId]="option.id"
+        >
+        </p-checkbox>
+        <p-rating
+          [style]="{ color: 'salmon' }"
+          [(ngModel)]="option.value"
+          [readonly]="true"
+          [cancel]="false"
+          style="color: #ffcc00"
+          Change
+          this
+          to
+          your
+          desired
+          color
+        >
+          ></p-rating
+        >
+      </div>
+}
+    </div>
+  </div>
+}
+</p-card>

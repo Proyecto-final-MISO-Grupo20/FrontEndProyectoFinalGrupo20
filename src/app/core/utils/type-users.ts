@@ -9,6 +9,6 @@ export const enum typeUsers {
 }
 
 export const typeUsersData: typeUser[] = [
-  { name: 'Candidato', code: typeUsers.candidate },
-  { name: 'Empresa', code: typeUsers.business },
+  { name: 'candidate', code: typeUsers.candidate },
+  { name: 'business', code: typeUsers.business },
 ];

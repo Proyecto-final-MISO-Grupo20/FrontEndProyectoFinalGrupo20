@@ -30,7 +30,17 @@
       "files": ["*.html"],
       "extends": ["plugin:@nx/angular-template"],
       "rules": {}
+    },
+    {
+      "files": ["*.cy.{ts,js,tsx,jsx}", "cypress/**/*.{ts,js,tsx,jsx}"],
+      "rules": {}
+    },
+    {
+      "files": ["*.js", "*.jsx"],
+      "extends": ["plugin:@nx/javascript"],
+      "rules": {}
     }
   ],
-  "extends": ["./.eslintrc.base.json"]
+  "extends": ["plugin:cypress/recommended", "./.eslintrc.base.json"],
+  "plugins": ["@nx"]
 }

@@ -50,7 +50,7 @@ export class RegisterComponent implements OnInit {
 
   initializeForm() {
     this.registerForm = this.formBuilder.group({
-      user: ['', Validators.required],
+      user: [this.typeUsersData[0], Validators.required],
     });
   }
 

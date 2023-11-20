@@ -1,9 +1,11 @@
-import { Component, OnDestroy, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { TranslocoService } from '@ngneat/transloco';
 import { LanguageModule } from 'language';
 import { HeaderComponent } from './core/components/header/header/header.component';
 import { CommonModule, Location } from '@angular/common';
+import { SessionService } from './core/services/session/session.service';
+import { Roles } from './core/utils/roles.enum';
 
 @Component({
   standalone: true,
@@ -15,9 +17,16 @@ import { CommonModule, Location } from '@angular/common';
 })
 export class AppComponent implements OnInit {
   location = inject(Location);
+  session = inject(SessionService);
+
   urlChange$!: VoidFunction;
   isAuthRoute = false;
-  headerBusinessList!: string[];
+
+  get headerList(): string[] {
+    return this.session.getUser().rol === Roles.BUSINESS
+      ? this.getHeaderBusinessList()
+      : this.getHeaderCandidateList();
+  }
 
   ngOnInit(): void {
     this.urlChange$ = this.location.onUrlChange(
@@ -28,12 +37,10 @@ export class AppComponent implements OnInit {
   }
 
   getHeaderBusinessList() {
-    this.headerBusinessList = [
-      'home',
-      'projects',
-      'interviews',
-      'tests',
-      'employees',
-    ];
+    return ['home', 'projects', 'interviews', 'tests', 'employees'];
+  }
+
+  getHeaderCandidateList() {
+    return ['home', 'technical-data', 'interviews'];
   }
 }

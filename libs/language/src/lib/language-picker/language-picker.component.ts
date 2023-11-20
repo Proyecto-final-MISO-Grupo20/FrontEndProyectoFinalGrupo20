@@ -39,8 +39,14 @@ export class LanguagePickerComponent implements OnInit {
     });
   }
 
-  changeSiteLanguage(languageEvent: any) {
-    this.translocoService.setActiveLang(languageEvent.value.code);
-    this.languageService.setActiveLanguage(languageEvent.value.code);
+  changeSiteLanguage(languageEvent: { value: { code: string; name: string } }) {
+    if (languageEvent.value) {
+      this.translocoService.setActiveLang(languageEvent.value.code);
+      this.languageService.setActiveLanguage(languageEvent.value.code);
+    } else {
+      this.translocoService.setActiveLang(
+        this.languageService.getDefaultLanguage().code
+      );
+    }
   }
 }

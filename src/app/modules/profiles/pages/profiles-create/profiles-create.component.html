@@ -1,0 +1,135 @@
+<div class="profiles-create-wrapper">
+  <div class="profiles-create-container">
+    <h1 class="profiles-create-title">{{ 'profiles.create' | transloco }}</h1>
+
+    <form
+      class="profiles-create__form"
+      [formGroup]="profilesCreateForm"
+      (ngSubmit)="onSubmit()"
+    >
+      <!-- Name-->
+      <div class="form__input--label">
+        <label htmlFor="name">{{ 'profiles.name' | transloco }}</label>
+        <input
+          [maxLength]="25"
+          [minlength]="3"
+          [style]="{ width: '22.5rem' }"
+          pInputText
+          id="name"
+          formControlName="name"
+          placeholder=" {{ 'profiles.enter-name' | transloco }} "
+        />
+        @if ( profilesCreateForm.get('name')?.hasError('required') &&
+        profilesCreateForm.get('name')?.touched ) {
+        <p-message
+          [style]="{ width: '22.5rem' }"
+          severity="error"
+          text="{{
+            'register.candidate-account-step.name-required' | transloco
+          }}"
+        ></p-message>
+        } @if (profilesCreateForm.get('name')?.hasError('minlength')) {
+        <p-message
+          [style]="{ width: '22.5rem' }"
+          severity="error"
+          text="{{
+            'register.candidate-account-step.name-min-length' | transloco
+          }}"
+        ></p-message>
+        }
+      </div>
+
+      <!-- Description -->
+      <div class="form__input--label">
+        <label htmlFor="description">{{
+          'profiles.description' | transloco
+        }}</label>
+
+        <textarea
+          id="description"
+          rows="5"
+          cols="30"
+          [style]="{ width: '22.5rem' }"
+          pInputTextarea
+          formControlName="description"
+          placeholder=" {{ 'profiles.enter-description' | transloco }} "
+        ></textarea>
+      </div>
+
+      <!-- Code-->
+      <div class="form__input--label">
+        <label htmlFor="code">{{ 'profiles.code' | transloco }}</label>
+        <input
+          [maxLength]="25"
+          [minlength]="3"
+          [style]="{ width: '22.5rem' }"
+          pInputText
+          id="code"
+          formControlName="code"
+          placeholder=" {{ 'profiles.enter-code' | transloco }} "
+        />
+        @if ( profilesCreateForm.get('code')?.hasError('required') &&
+        profilesCreateForm.get('code')?.touched ) {
+        <p-message
+          [style]="{ width: '22.5rem' }"
+          severity="error"
+          text="{{ 'profiles.code-required' | transloco }}"
+        ></p-message>
+        } @if (profilesCreateForm.get('code')?.hasError('maxlength')) {
+        <p-message
+          [style]="{ width: '22.5rem' }"
+          severity="error"
+          text="{{ 'profiles.code-max-length' | transloco }}"
+        ></p-message>
+        }
+      </div>
+
+      <p-button
+        label="{{ 'create' | transloco }}"
+        [style]="{ width: '22.5rem' }"
+        type="submit"
+        [disabled]="!profilesCreateForm.valid"
+      ></p-button>
+
+      <p-button
+        (onClick)="setShowConfirmDialog(true)"
+        label="{{ 'cancel' | transloco }}"
+        [style]="{ width: '22.5rem' }"
+        severity="secondary"
+      ></p-button>
+    </form>
+  </div>
+</div>
+
+<p-dialog
+  header="Header"
+  [(visible)]="showConfirmDialog"
+  [breakpoints]="{ '960px': '75vw' }"
+  [style]="{ width: '50vw' }"
+  [draggable]="false"
+  [resizable]="false"
+  position="center"
+>
+  <ng-template pTemplate="header">
+    <span class="text-xl font-bold">{{ 'profiles.confirm' | transloco }}</span>
+  </ng-template>
+  <p>
+    {{ 'profiles.confirm-body' | transloco }}
+  </p>
+  <ng-template pTemplate="footer">
+    <p-button
+      icon="pi pi-check"
+      (click)="returnToProjects()"
+      label="{{ 'exit' | transloco }}"
+      styleClass="p-button-text"
+    ></p-button>
+
+    <p-button
+      severity="danger"
+      icon="pi pi-check"
+      (click)="setShowConfirmDialog(false)"
+      label="{{ 'cancel' | transloco }}"
+      styleClass="p-button-text"
+    ></p-button>
+  </ng-template>
+</p-dialog>

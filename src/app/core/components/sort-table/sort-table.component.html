@@ -1,60 +1,107 @@
 <p-table
+  #dt
+  styleClass="p-datatable-striped"
   responsiveLayout="stack"
   [breakpoint]="'960px'"
-  *ngIf="data && columns"
   [paginator]="true"
   [rows]="5"
   currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+  [showCurrentPageReport]="true"
   [rowsPerPageOptions]="[5, 10, 15]"
   [value]="data"
   [tableStyle]="tableStyle"
   [ngClass]="{ 'table-style': true }"
+  [globalFilterFields]="[
+    'descripcion',
+    'country.name',
+    'representative.name',
+    'status'
+  ]"
 >
-  <ng-template pTemplate="caption" *ngIf="header">
+  @if (header) {
+  <ng-template pTemplate="caption">
     <div class="header-container">
       <h3>{{ header | transloco }}</h3>
-      <div class="actions__button actions__button--blue">
-        <i
-          [routerLink]="'/projects/create'"
-          class="pi pi-plus"
-          style="color: #fff; font-size: 1.2rem"
-        ></i>
+      <div
+        [pTooltip]="'projects.create' | transloco"
+        class="actions__button actions__button--blue"
+        [routerLink]="'/projects/create'"
+      >
+        <i class="pi pi-plus" style="color: #fff; font-size: 1.2rem"></i>
       </div>
     </div>
   </ng-template>
+  }
+
   <ng-template pTemplate="header">
     <tr>
-      <th *ngFor="let column of columns">{{ column }}</th>
-      <th>Actions</th>
+      @for (column of columns; track column) {
+      <th [pSortableColumn]="column">
+        @if (column !== 'empresaId' && column !== 'id') {
+
+        {{ 'projects.' + column | transloco }}
+        <p-sortIcon [field]="column"></p-sortIcon>
+
+        }
+      </th>
+      }
+      <th>{{ 'projects.actions' | transloco }}</th>
+    </tr>
+
+    <tr>
+      @for (column of columns; track column) {
+      <th>
+        @if (column !== 'empresaId' && column !== 'id' && column !== 'profiles')
+        {
+
+        <p-columnFilter type="text" [field]="column"></p-columnFilter>
+
+        }
+      </th>
+      }
+      <th></th>
     </tr>
   </ng-template>
+
   <ng-template pTemplate="body" let-data>
     <tr>
-      <td *ngFor="let column of columns">
-        <div *ngIf="column !== 'profiles'">
+      @for (column of columns; track column) {
+      <td>
+        @if (column !== 'profiles' && column !== 'empresaId' && column !== 'id'
+        && column !== 'codigo') {
+        <div>
           {{ data[column] }}
         </div>
-
-        <div class="numeric-column" *ngIf="column === 'profiles'">
+        } @if(column === 'codigo') {
+        <p-tag [value]="data[column]" [style]="{ 'font-size': '1rem' }"></p-tag>
+        } @if (column === 'profiles') {
+        <div class="numeric-column">
           {{ data[column].length }}
-          <div class="actions__button actions__button--blue">
+          <div
+            [pTooltip]="'projects.create-profile' | transloco"
+            class="actions__button actions__button--blue"
+            [routerLink]="'/profiles/create/' + data.id"
+          >
             <i
-              [class]="
-                data[column].length > 0 ? 'pi pi-eye' : 'pi pi-user-plus'
-              "
+              class="pi pi-user-plus"
               style="color: #fff; font-size: 1.2rem"
             ></i>
           </div>
+          @if(data[column].length > 0 ) {
+          <div
+            [pTooltip]="'projects.view-profiles' | transloco"
+            class="actions__button actions__button--blue"
+            [routerLink]="'/offers/' + data.id"
+          >
+            <i class="pi pi-eye" style="color: #fff; font-size: 1.2rem"></i>
+          </div>
+          }
         </div>
+        }
       </td>
+      }
       <td>
         <div class="actions-container">
-          <div class="actions__button actions__button--blue">
-            <i
-              class="pi pi-arrow-circle-right"
-              style="color: #fff; font-size: 1.2rem"
-            ></i>
-          </div>
           <div class="actions__button actions__button--red">
             <i class="pi pi-trash" style="color: #fff; font-size: 1.2rem"></i>
           </div>
@@ -65,7 +112,16 @@
 
   <ng-template pTemplate="emptymessage">
     <tr>
-      <td>Write-EmptyMessage-Here</td>
+      @if (!loading) {
+      <td>{{ 'projects.no-exist' | transloco }}</td>
+      } @if (loading) {
+      <td>
+        <p-progressSpinner
+          styleClass="w-4rem h-4rem"
+          animationDuration=".5s"
+        ></p-progressSpinner>
+      </td>
+      }
     </tr>
   </ng-template>
 </p-table>

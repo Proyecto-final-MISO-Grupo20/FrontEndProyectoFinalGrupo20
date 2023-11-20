@@ -37,43 +37,64 @@
         </p>
       </div>
 
-      <form
+      @if (step === steps.initialStep) {
+<form
         class="register__form"
         [formGroup]="registerForm"
         (ngSubmit)="onSubmit()"
-        *ngIf="step === steps.initialStep"
+       
       >
         <p-dropdown
           [style]="{ width: '22.5rem' }"
           formControlName="user"
-          placeholder="{{ 'register.select-user-type' | transloco }} "
           [options]="typeUsersData"
           optionLabel="name"
-        ></p-dropdown>
+        >
+          <ng-template pTemplate="selectedItem">
+            @if (registerForm.value.user.name) {
+<div
+              class="flex align-items-center gap-3"
+             
+            >
+              <div class="language-item">
+                {{ registerForm.value.user.name | transloco }}
+              </div>
+            </div>
+}
+          </ng-template>
+
+          <ng-template let-user pTemplate="item">
+            <div class="flex align-items-center gap-2">
+              <div class="language-item">
+                {{ user.name | transloco }}
+              </div>
+            </div>
+          </ng-template>
+        </p-dropdown>
 
         <p-button
+          data-cy="next-register-button"
           label="{{ 'next' | transloco }}"
           [style]="{ width: '22.5rem' }"
           type="submit"
           [disabled]="!registerForm.valid"
         ></p-button>
-
-        <p-button
-          label="{{ 'cancel' | transloco }}"
-          [style]="{ width: '22.5rem' }"
-          severity="secondary"
-        ></p-button>
       </form>
+}
 
-      <app-register-candidate-form
+      @if (step === steps.createCandidateAccount) {
+<app-register-candidate-form
         (backToMainForm)="step = steps.initialStep"
-        *ngIf="step === steps.createCandidateAccount"
+       
       ></app-register-candidate-form>
+}
 
-      <app-register-business-form
+      @if (step === steps.createBusinessAccount) {
+<app-register-business-form
         (backToMainForm)="step = steps.initialStep"
-        *ngIf="step === steps.createBusinessAccount"
+       
       ></app-register-business-form>
+}
     </div>
   </div>
 </section>

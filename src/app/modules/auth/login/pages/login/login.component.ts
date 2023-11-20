@@ -12,6 +12,7 @@ import { UiModule } from 'ui';
 import { LoginService } from '../../services/login.service';
 import { typeUsersData } from 'src/app/core/utils/type-users';
 import { Router } from '@angular/router';
+import { Keys } from 'src/app/core/utils/keys';
 
 @Component({
   selector: 'app-login',
@@ -27,6 +28,8 @@ export class LoginComponent implements OnInit {
   username!: string | null;
   successRegister = false;
   router = inject(Router);
+  loading = false;
+  sessionError!: string | null;
 
   get typeUsersData() {
     return typeUsersData;
@@ -36,6 +39,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.setUserName();
+    this.setSessionExpiredError();
     this.initializeForm();
   }
 
@@ -47,28 +51,41 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
+    this.loading = true;
+
     this.loginService.loginUser(this.loginForm.value).subscribe({
       next: () => this.router.navigateByUrl('home'),
       error: (error) => {
         this.errorMessage = error.error.error;
+        this.loading = false;
 
-        setTimeout(() => (this.errorMessage = undefined), 2000);
+        setTimeout(() => (this.errorMessage = undefined), 3000);
       },
+      complete: () => (this.loading = false),
     });
   }
 
   setUserName() {
-    this.username = localStorage.getItem('[Register] username');
-    localStorage.removeItem('[Register] username');
+    this.username = localStorage.getItem(Keys.REGISTER_COMPLETE);
 
     if (this.username) {
       this.successRegister = true;
 
-      setTimeout(() => (this.successRegister = false), 2000);
+      setTimeout(() => (this.successRegister = false), 3000);
+      localStorage.removeItem(Keys.REGISTER_COMPLETE);
     }
   }
 
   navigateToRegister() {
     this.router.navigateByUrl('auth/register');
+  }
+
+  setSessionExpiredError() {
+    this.sessionError = localStorage.getItem(Keys.TOKEN_EXPIRED);
+
+    if (this.sessionError) {
+      localStorage.removeItem(Keys.TOKEN_EXPIRED);
+      setTimeout(() => (this.sessionError = null), 3000);
+    }
   }
 }

@@ -1,0 +1,36 @@
+@use '/src/styles/abstracts';
+
+.projects-create {
+  &-wrapper {
+    padding-top: 3rem;
+  }
+
+  &-container {
+    @include abstracts.flexbox(column, space-evenly, center, 0);
+  }
+
+  &-title {
+    color: abstracts.$primary;
+  }
+
+  &__form {
+    @include abstracts.flexbox(column, space-evenly, center, 0.5rem);
+  }
+}
+
+.form {
+  &__input {
+    &--label {
+      @include abstracts.flexbox(column, normal, normal, 0.5rem);
+    }
+  }
+}
+
+.table-spacing {
+  margin-top: 20px; /* Agrega un margen superior a la tabla */
+}
+.button-container {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+}

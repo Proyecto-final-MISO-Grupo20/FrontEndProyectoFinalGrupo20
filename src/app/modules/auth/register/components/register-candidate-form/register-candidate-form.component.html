@@ -2,7 +2,8 @@
   <lib-steps [items]="stepsData" [activeIndex]="currentStep"> </lib-steps>
 
   <!-- STEP 1-->
-  <ng-container *ngIf="currentStep === steps.personalInformation">
+  @if (currentStep === steps.personalInformation) {
+
     <!-- Name-->
     <div class="form__input--label">
       <label htmlFor="name">{{
@@ -19,24 +20,28 @@
           'register.candidate-account-step.enter-names' | transloco
         }} "
       />
-      <p-message
-        [style]="{ width: '22.5rem' }"
-        *ngIf="
+      @if (
           registerForm.get('nombre')?.hasError('required') &&
           registerForm.get('nombre')?.touched
-        "
+        ) {
+<p-message
+        [style]="{ width: '22.5rem' }"
+       
         severity="error"
         text="{{ 'register.candidate-account-step.name-required' | transloco }}"
       ></p-message>
+}
 
-      <p-message
+      @if (registerForm.get('nombre')?.hasError('minlength')) {
+<p-message
         [style]="{ width: '22.5rem' }"
-        *ngIf="registerForm.get('nombre')?.hasError('minlength')"
+       
         severity="error"
         text="{{
           'register.candidate-account-step.name-min-length' | transloco
         }}"
       ></p-message>
+}
     </div>
 
     <!-- BirthDay-->
@@ -56,26 +61,30 @@
         }} "
       ></p-calendar>
 
-      <p-message
-        [style]="{ width: '22.5rem' }"
-        *ngIf="
+      @if (
           registerForm.get('fecha_nacimiento')?.hasError('required') &&
           registerForm.get('fecha_nacimiento')?.touched
-        "
+        ) {
+<p-message
+        [style]="{ width: '22.5rem' }"
+       
         severity="error"
         text="{{
           'register.candidate-account-step.birthday-required' | transloco
         }}"
       ></p-message>
+}
 
-      <p-message
+      @if (registerForm.get('fecha_nacimiento')?.hasError('invalidAge')) {
+<p-message
         [style]="{ width: '22.5rem' }"
-        *ngIf="registerForm.get('fechaNacimiento')?.hasError('invalidAge')"
+       
         severity="error"
         text="{{
           'register.candidate-account-step.birthday-invalid-age' | transloco
         }}"
       ></p-message>
+}
     </div>
 
     <!-- Birth Place-->
@@ -96,9 +105,10 @@
         class="countries-dropdown"
       >
         <ng-template pTemplate="selectedItem">
-          <div
+          @if (registerForm.get('pais')) {
+<div
             class="flex align-items-center gap-2"
-            *ngIf="registerForm.get('pais')"
+           
             class="countries-dropdown--item"
           >
             <img
@@ -111,6 +121,7 @@
             />
             <div>{{ registerForm.get('pais')?.value.name }}</div>
           </div>
+}
         </ng-template>
         <ng-template let-country pTemplate="item">
           <div
@@ -127,18 +138,31 @@
         </ng-template>
       </p-dropdown>
 
-      <p-message
-        [style]="{ width: '22.5rem' }"
-        *ngIf="
+      @if (
           registerForm.get('pais')?.hasError('required') &&
           registerForm.get('pais')?.touched
-        "
+        ) {
+<p-message
+        [style]="{ width: '22.5rem' }"
+       
         severity="error"
         text="{{
           'register.candidate-account-step.residence-country-required'
             | transloco
         }}"
       ></p-message>
+}
+
+      @if (registerForm.get('fechaNacimiento')?.hasError('invalidAge')) {
+<p-message
+        [style]="{ width: '22.5rem' }"
+       
+        severity="error"
+        text="{{
+          'register.candidate-account-step.birthday-invalid-age' | transloco
+        }}"
+      ></p-message>
+}
     </div>
 
     <!-- City -->
@@ -156,17 +180,19 @@
           'register.candidate-account-step.enter-residence-city' | transloco
         }} "
       />
-      <p-message
-        [style]="{ width: '22.5rem' }"
-        *ngIf="
+      @if (
           registerForm.get('ciudad')?.hasError('required') &&
           registerForm.get('ciudad')?.touched
-        "
+        ) {
+<p-message
+        [style]="{ width: '22.5rem' }"
+       
         severity="error"
         text="{{
           'register.candidate-account-step.residence-city-required' | transloco
         }}"
       ></p-message>
+}
     </div>
 
     <!-- Phone -->
@@ -185,17 +211,19 @@
           'register.candidate-account-step.enter-phone' | transloco
         }} "
       />
-      <p-message
-        [style]="{ width: '22.5rem' }"
-        *ngIf="
+      @if (
           registerForm.get('telefono')?.hasError('required') &&
           registerForm.get('telefono')?.touched
-        "
+        ) {
+<p-message
+        [style]="{ width: '22.5rem' }"
+       
         severity="error"
         text="{{
           'register.candidate-account-step.phone-required' | transloco
         }}"
       ></p-message>
+}
     </div>
 
     <!-- Identification-->
@@ -204,13 +232,15 @@
         'register.candidate-account-step.identification' | transloco
       }}</label>
       <div class="identification-form">
-        <p-dropdown
+        @if (registerForm.get('pais')?.value.code === 'co') {
+<p-dropdown
           placeholder="{{ 'register.candidate-account-step.type' | transloco }}"
-          *ngIf="registerForm.get('pais')?.value.code === 'co'"
+         
           [options]="identificationTypesData"
           optionLabel="name"
           formControlName="tipo_documento"
         ></p-dropdown>
+}
         <input
           [maxlength]="50"
           [style]="{
@@ -227,22 +257,26 @@
           }} "
         />
       </div>
-      <p-message
-        [style]="{ width: '22.5rem' }"
-        *ngIf="
+      @if (
           registerForm.get('documento')?.hasError('required') &&
           registerForm.get('documento')?.touched
-        "
+        ) {
+<p-message
+        [style]="{ width: '22.5rem' }"
+       
         severity="error"
         text="{{
           'register.candidate-account-step.identification-required' | transloco
         }}"
       ></p-message>
+}
     </div>
-  </ng-container>
+  
+}
 
   <!-- STEP 2-->
-  <ng-container *ngIf="currentStep === steps.createAccount">
+  @if (currentStep === steps.createAccount) {
+
     <!-- Username-->
     <div class="form__input--label">
       <label htmlFor="username">{{
@@ -261,26 +295,30 @@
         }} "
       />
 
-      <p-message
-        [style]="{ width: '22.5rem' }"
-        *ngIf="
+      @if (
           registerForm.get('username')?.hasError('required') &&
           registerForm.get('username')?.touched
-        "
+        ) {
+<p-message
+        [style]="{ width: '22.5rem' }"
+       
         severity="error"
         text="{{
           'register.candidate-account-step.username-required' | transloco
         }}"
       ></p-message>
+}
 
-      <p-message
+      @if (registerForm.get('username')?.hasError('minlength')) {
+<p-message
         [style]="{ width: '22.5rem' }"
-        *ngIf="registerForm.get('username')?.hasError('minlength')"
+       
         severity="error"
         text="{{
           'register.candidate-account-step.username-min-length' | transloco
         }}"
       ></p-message>
+}
     </div>
 
     <!-- Email-->
@@ -299,26 +337,30 @@
         }} "
       />
 
-      <p-message
-        [style]="{ width: '22.5rem' }"
-        *ngIf="
+      @if (
           registerForm.get('email')?.hasError('required') &&
           registerForm.get('email')?.touched
-        "
+        ) {
+<p-message
+        [style]="{ width: '22.5rem' }"
+       
         severity="error"
         text="{{
           'register.candidate-account-step.email-required' | transloco
         }}"
       ></p-message>
+}
 
-      <p-message
+      @if (registerForm.get('email')?.hasError('email')) {
+<p-message
         [style]="{ width: '22.5rem' }"
-        *ngIf="registerForm.get('email')?.hasError('email')"
+       
         severity="error"
         text="{{
           'register.candidate-account-step.email-format-error' | transloco
         }}"
       ></p-message>
+}
     </div>
 
     <!-- Password-->
@@ -339,26 +381,30 @@
         }} "
       />
 
-      <p-message
-        [style]="{ width: '22.5rem' }"
-        *ngIf="
+      @if (
           registerForm.get('password')?.hasError('required') &&
           registerForm.get('password')?.touched
-        "
+        ) {
+<p-message
+        [style]="{ width: '22.5rem' }"
+       
         severity="error"
         text="{{
           'register.candidate-account-step.password-required' | transloco
         }}"
       ></p-message>
+}
 
-      <p-message
+      @if (registerForm.get('password')?.hasError('minlength')) {
+<p-message
         [style]="{ width: '22.5rem' }"
-        *ngIf="registerForm.get('password')?.hasError('minlength')"
+       
         severity="error"
         text="{{
           'register.candidate-account-step.password-min-length' | transloco
         }}"
       ></p-message>
+}
     </div>
 
     <!-- Password Confirm-->
@@ -379,8 +425,9 @@
         }} "
       />
 
-      <p-message
-        *ngIf="registerForm.hasError('passwordMismatch')"
+      @if (registerForm.hasError('passwordMismatch')) {
+<p-message
+       
         [style]="{ width: '22.5rem' }"
         severity="error"
         text="{{
@@ -388,29 +435,36 @@
             | transloco
         }}"
       ></p-message>
+}
     </div>
-  </ng-container>
+  
+}
 
-  <p-message
+  @if (error) {
+<p-message
     [style]="{ width: '22.5rem' }"
     severity="error"
-    *ngIf="error"
+   
     text="{{ error }}"
   ></p-message>
+}
 
   <p-button
     label="{{ nextText | transloco }}"
     [style]="{ width: '22.5rem' }"
     type="submit"
     [disabled]="!registerFormValid"
+    [loading]="loading"
   ></p-button>
 
-  <p-button
+  @if (currentStep === steps.createAccount) {
+<p-button
     label="{{ 'previous' | transloco }}"
     [style]="{ width: '22.5rem' }"
     (onClick)="backToPreviousStep()"
-    *ngIf="currentStep === steps.createAccount"
+   
   ></p-button>
+}
 
   <p-button
     (onClick)="goToMainRegister()"

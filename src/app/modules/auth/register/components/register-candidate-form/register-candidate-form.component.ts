@@ -19,6 +19,7 @@ import {
 } from '../../utils/candidate-form-validators';
 import { map } from 'rxjs';
 import { Router } from '@angular/router';
+import { Keys } from '../../../../../core/utils/keys';
 
 @Component({
   selector: 'app-register-candidate-form',
@@ -36,6 +37,7 @@ export class RegisterCandidateFormComponent implements OnInit {
   stepsData: MenuItem[] | undefined;
   currentStep!: RegisterCandidateSteps;
   steps = RegisterCandidateSteps;
+  loading = false;
 
   // Event
   @Output() backToMainForm = new EventEmitter();
@@ -121,7 +123,7 @@ export class RegisterCandidateFormComponent implements OnInit {
         tipo_documento: [null, Validators.required],
         documento: [null, Validators.required],
         fecha_nacimiento: ['', [Validators.required, ageRangeValidator]],
-        pais: ['', Validators.required],
+        pais: [this.countries[0], Validators.required],
         ciudad: ['', [Validators.required, Validators.maxLength(50)]],
         telefono: [null, Validators.required],
         username: [
@@ -160,20 +162,24 @@ export class RegisterCandidateFormComponent implements OnInit {
 
   onSubmit() {
     if (this.currentStep === this.steps.createAccount) {
+      this.loading = true;
+
       this.registerService
         .createCandidateAccount(this.registerForm.value)
         .subscribe({
           next: ({ username }) => {
             if (username) {
-              localStorage.setItem('[Register] username', username);
+              localStorage.setItem(Keys.REGISTER_COMPLETE, username);
               this.router.navigate(['/auth/login']);
             }
           },
           error: (err) => {
             this.error = err.error.detail;
+            this.loading = false;
 
             setTimeout(() => (this.error = null), 2000);
           },
+          complete: () => (this.loading = false),
         });
     }
 

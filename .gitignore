@@ -40,3 +40,7 @@ Thumbs.db
 
 .angular
 pnpm-lock.yaml
+.nx
+.gradle
+.vscode
+gradle

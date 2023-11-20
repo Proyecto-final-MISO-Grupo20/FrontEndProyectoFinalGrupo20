@@ -12,6 +12,13 @@ import { TableModule } from 'primeng/table';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { DialogModule } from 'primeng/dialog';
 import { AccordionModule } from 'primeng/accordion';
+import { DataViewModule } from 'primeng/dataview';
+import { RatingModule } from 'primeng/rating';
+import { TagModule } from 'primeng/tag';
+import { CardModule } from 'primeng/card';
+import { CheckboxModule } from 'primeng/checkbox';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { TooltipModule } from 'primeng/tooltip';
 
 @NgModule({
   imports: [
@@ -28,6 +35,14 @@ import { AccordionModule } from 'primeng/accordion';
     InputTextareaModule,
     DialogModule,
     AccordionModule,
+    DataViewModule,
+    RatingModule,
+    TagModule,
+    RatingModule,
+    CardModule,
+    CheckboxModule,
+    ProgressSpinnerModule,
+    TooltipModule,
   ],
   exports: [
     DropdownModule,
@@ -42,6 +57,14 @@ import { AccordionModule } from 'primeng/accordion';
     InputTextareaModule,
     DialogModule,
     AccordionModule,
+    DataViewModule,
+    RatingModule,
+    TagModule,
+    RatingModule,
+    CardModule,
+    CheckboxModule,
+    ProgressSpinnerModule,
+    TooltipModule,
   ],
 })
 export class UiModule {}

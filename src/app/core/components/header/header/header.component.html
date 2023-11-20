@@ -1,48 +1,62 @@
+@if (isMobile) {
 <p-accordion
   class="w-full"
-  *ngIf="isMobile"
-  expandIcon="pi pi-plus"
+ 
+  expandIcon="pi pi-bars"
   collapseIcon="pi pi-minus"
 >
   <p-accordionTab>
     <ng-template pTemplate="header"> </ng-template>
     <ng-template pTemplate="content">
       <ul class="items-list list-responsive">
-        <li
-          *ngFor="let item of itemList"
+        @for (item of itemList; track item) {
+  <li
+         
           [routerLink]="item"
           routerLinkActive="link-active"
         >
           {{ item + '.title' | transloco }}
         </li>
+}
         <lib-language-picker></lib-language-picker>
         <i (click)="logout()" class="pi pi-sign-out logout"></i>
       </ul>
     </ng-template>
   </p-accordionTab>
 </p-accordion>
+}
 
-<section class="header-wrapper" *ngIf="!isMobile">
+@if (!isMobile) {
+<section class="header-wrapper">
   <div class="header-container">
     <img
       src="assets/images/logo.png"
       alt="ABC Jobs Logo"
       class="header__image"
     />
-    <div class="items-section" *ngIf="itemList">
+    @if (itemList) {
+<div class="items-section">
       <ul class="items-list">
-        <li
-          *ngFor="let item of itemList"
+        @for (item of itemList; track item) {
+  <li
+         
           [routerLink]="item"
           routerLinkActive="link-active"
         >
           {{ item + '.title' | transloco }}
         </li>
+}
       </ul>
     </div>
+}
 
     <lib-language-picker></lib-language-picker>
 
-    <i (click)="logout()" class="pi pi-sign-out logout"></i>
+    <i
+      (click)="logout()"
+      class="pi pi-sign-out logout"
+      [pTooltip]="'sign-out' | transloco"
+    ></i>
   </div>
 </section>
+}

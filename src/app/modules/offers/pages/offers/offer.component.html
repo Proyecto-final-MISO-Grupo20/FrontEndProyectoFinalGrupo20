@@ -1,0 +1,33 @@
+<div class="projects-wrapper">
+  <div class="projects-container">
+    <h1 class="projects-title">{{ 'offers.title' | transloco }}</h1>
+
+    @if (successCreate) {
+<p-message
+     
+      [style]="{ width: '22.5rem' }"
+      severity="success"
+      text="{{
+        'projects.success-create' | transloco: { project: createdOffer }
+      }}"
+    ></p-message>
+}
+
+    @if (successCreateOffer) {
+<p-message
+     
+      [style]="{ width: '22.5rem' }"
+      severity="success"
+      text="{{
+        'projects.success-create-offer'
+          | transloco: { profile: successCreateOffer }
+      }}"
+    ></p-message>
+}
+    <app-sort-table-offers
+      [loading]="loading"
+      [header]="'offers.list'"
+      [data]="offers"
+    ></app-sort-table-offers>
+  </div>
+</div>

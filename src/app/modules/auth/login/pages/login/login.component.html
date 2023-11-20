@@ -2,9 +2,7 @@
   <div class="login-container">
     <div class="login__welcome">
       <div class="welcome-container">
-        <h1 class="welcome__title">
-          {{ 'login.welcome' | transloco }}
-        </h1>
+        <h1 class="welcome__title">{{ 'login.welcome' | transloco }}</h1>
 
         <span class="welcome__description">
           {{ 'login.description' | transloco }}
@@ -32,12 +30,23 @@
       </div>
 
       <form class="login__form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-        <p-message
-          *ngIf="successRegister"
+        @if (successRegister) {
+<p-message
+         
           [style]="{ width: '22.5rem' }"
           severity="success"
-          text="{{ 'Registro exitoso' }}"
+          text="{{ 'login.success-register' | transloco }}"
         ></p-message>
+}
+
+        @if (sessionError) {
+<p-message
+         
+          [style]="{ width: '22.5rem' }"
+          severity="error"
+          text="{{ 'login.session-expired' | transloco }}"
+        ></p-message>
+}
 
         <div class="p-field p-grid">
           <label for="username" class="p-col-12 p-md-3">Username</label>
@@ -47,7 +56,6 @@
               formControlName="username"
               type="text"
               pInputText
-              placeholder="Enter username"
               class="custom-width"
               placeholder="{{ 'login.enter-username' | transloco }}"
             />
@@ -62,31 +70,27 @@
               formControlName="password"
               type="password"
               pInputText
-              placeholder="Enter password"
               class="custom-width"
               placeholder="{{ 'login.enter-passward' | transloco }} "
             />
           </div>
         </div>
 
-        <p-message
+        @if (errorMessage) {
+<p-message
           [style]="{ width: '22.5rem' }"
           severity="error"
-          *ngIf="errorMessage"
+         
           text="{{ errorMessage }}"
         ></p-message>
+}
 
         <p-button
           label="{{ 'login.log-in' | transloco }}"
           [style]="{ width: '22.5rem' }"
           type="submit"
           [disabled]="!loginForm.valid"
-        ></p-button>
-
-        <p-button
-          label="{{ 'cancel' | transloco }}"
-          [style]="{ width: '22.5rem' }"
-          severity="secondary"
+          [loading]="loading"
         ></p-button>
       </form>
 

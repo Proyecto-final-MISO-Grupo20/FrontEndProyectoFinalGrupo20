@@ -9,6 +9,9 @@ import {
 } from '@angular/forms';
 import { UiModule } from 'ui';
 import { Router } from '@angular/router';
+import { ProjectsService } from '../../services/projects.service';
+import { SessionService } from '../../../../core/services/session/session.service';
+import { Keys } from '../../../../core/utils/keys';
 
 @Component({
   selector: 'app-projects-create',
@@ -20,8 +23,13 @@ import { Router } from '@angular/router';
 export class ProjectsCreateComponent implements OnInit {
   formBuilder = inject(FormBuilder);
   router = inject(Router);
+  projectsService = inject(ProjectsService);
+  session = inject(SessionService);
+
   projectCreateForm!: FormGroup;
   showConfirmDialog = false;
+  loading = false;
+  errorMessage!: string | undefined;
 
   ngOnInit(): void {
     this.initializeForm();
@@ -29,14 +37,31 @@ export class ProjectsCreateComponent implements OnInit {
 
   initializeForm() {
     this.projectCreateForm = this.formBuilder.group({
-      name: ['', [Validators.required, Validators.maxLength(25)]],
-      description: ['', Validators.maxLength(200)],
-      code: ['', [Validators.required, Validators.maxLength(10)]],
+      nombre: ['', [Validators.required, Validators.maxLength(25)]],
+      descripcion: ['', Validators.maxLength(200)],
+      codigo: ['', [Validators.required, Validators.maxLength(10)]],
     });
   }
 
   onSubmit() {
-    console.log(this.projectCreateForm.value);
+    this.loading = true;
+
+    this.projectsService.createProject(this.projectCreateForm.value).subscribe({
+      next: (res) => {
+        localStorage.setItem(
+          Keys.CREATE_PROJECT_COMPLETE,
+          this.projectCreateForm.value.nombre
+        );
+        this.router.navigateByUrl('/projects');
+      },
+      error: (error) => {
+        this.loading = false;
+        this.errorMessage = error.error.detail.msg;
+
+        setTimeout(() => (this.errorMessage = undefined), 3000);
+      },
+      complete: () => (this.loading = false),
+    });
   }
 
   setShowConfirmDialog(show: boolean) {

@@ -1,0 +1,13 @@
+<h2>{{ 'technical-data.habilities' | transloco }}</h2>
+<app-technical-data-table
+  emptyMessage="technical-data.empty"
+  [data]="candidateHabilities"
+  header="technical-data.tools"
+  (showConfirmDialog)="showConfirmDialog($event)"
+></app-technical-data-table>
+
+<app-create-dialog
+  [(visible)]="show"
+  [data]="habilities"
+  (assignTool)="assignHability($event)"
+></app-create-dialog>

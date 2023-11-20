@@ -14,11 +14,12 @@ import { businessIdentificationTypes } from '../../../../../core/utils/identific
 import { RegisterService } from '../../services/register.service';
 import { RegisterBusinessSteps } from '../../utils/register-business-steps';
 import { cities } from '../../utils/cities';
-import { businessType } from '../../utils/businessType';
-import { businessSegment } from '../../utils/businessSegment';
 import { passwordMatchValidator } from '../../utils/candidate-form-validators';
-import { map } from 'rxjs';
+import { map, tap } from 'rxjs';
 import { Router } from '@angular/router';
+import { BusinessType } from '../../models/business-type';
+import { BusinessSegment } from '../../models/business-segments';
+import { Keys } from '../../../../../core/utils/keys';
 
 @Component({
   selector: 'app-register-business-form',
@@ -36,9 +37,13 @@ export class RegisterBusinessFormComponent implements OnInit {
   stepsData: MenuItem[] | undefined;
   currentStep!: RegisterBusinessSteps;
   steps = RegisterBusinessSteps;
+  loading = false;
 
   router = inject(Router);
   error!: string | null;
+
+  businessTypes!: BusinessType[];
+  businessSegments!: BusinessSegment[];
 
   // Event
   @Output() backToMainForm = new EventEmitter();
@@ -52,14 +57,6 @@ export class RegisterBusinessFormComponent implements OnInit {
 
   get cities() {
     return cities;
-  }
-
-  get businessType() {
-    return businessType;
-  }
-
-  get businessSegment() {
-    return businessSegment;
   }
 
   get businessIdentificationTypesData() {
@@ -96,9 +93,13 @@ export class RegisterBusinessFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.currentStep = this.steps.personalInformation;
+
     this.setStepItems();
     this.initializeForm();
     this.listenFormChanges();
+
+    this.getBusinessTypes();
+    this.getBusinessSegments();
   }
 
   initializeForm() {
@@ -107,8 +108,14 @@ export class RegisterBusinessFormComponent implements OnInit {
         nombre: ['', [Validators.required, Validators.maxLength(10)]],
         tipo_documento: ['', [Validators.required, Validators.maxLength(10)]],
         documento: ['', [Validators.required, Validators.maxLength(10)]],
-        ciudad: ['', [Validators.required, Validators.maxLength(255)]],
-        pais: ['', [Validators.required, Validators.maxLength(255)]],
+        ciudad: [
+          this.cities[0],
+          [Validators.required, Validators.maxLength(255)],
+        ],
+        pais: [
+          this.countries[0],
+          [Validators.required, Validators.maxLength(255)],
+        ],
         direccion: ['', [Validators.required, Validators.maxLength(10)]],
         tipoEmpresaId: ['', [Validators.required, Validators.maxLength(50)]],
         segmentoId: ['', [Validators.required, Validators.maxLength(255)]],
@@ -134,20 +141,24 @@ export class RegisterBusinessFormComponent implements OnInit {
 
   onSubmit() {
     if (this.currentStep === this.steps.createBusinessAccount) {
+      this.loading = true;
+
       this.registerBusinessService
         .createBusinessAccount(this.registerBusinessForm.value)
         .subscribe({
           next: ({ username }) => {
             if (username) {
-              localStorage.setItem('[Register] username', username);
+              localStorage.setItem(Keys.REGISTER_COMPLETE, username);
               this.router.navigate(['/auth/login']);
             }
           },
           error: (err) => {
             this.error = err.error.detail;
+            this.loading = false;
 
             setTimeout(() => (this.error = null), 2000);
           },
+          complete: () => (this.loading = false),
         });
     }
 
@@ -192,15 +203,31 @@ export class RegisterBusinessFormComponent implements OnInit {
           }
 
           if (changes.tipoEmpresaId) {
-            changes.tipoEmpresaId = changes.tipoEmpresaId.code;
+            changes.tipoEmpresaId = changes.tipoEmpresaId.id;
           }
 
           if (changes.segmentoId) {
-            changes.segmentoId = changes.segmentoId.code;
+            changes.segmentoId = changes.segmentoId.id;
           }
 
           return changes;
         })
+      )
+      .subscribe();
+  }
+
+  getBusinessTypes() {
+    this.registerBusinessService
+      .getBusinessTypes()
+      .pipe(tap((businessTypes) => (this.businessTypes = businessTypes)))
+      .subscribe();
+  }
+
+  getBusinessSegments() {
+    this.registerBusinessService
+      .getBusinessSegments()
+      .pipe(
+        tap((businessSegments) => (this.businessSegments = businessSegments))
       )
       .subscribe();
   }
