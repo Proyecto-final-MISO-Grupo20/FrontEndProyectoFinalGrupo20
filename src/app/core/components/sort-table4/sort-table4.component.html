@@ -1,8 +1,8 @@
 @if (data && columns) {
 <p-table
+  styleClass="p-datatable-striped"
   responsiveLayout="stack"
   [breakpoint]="'960px'"
- 
   [paginator]="true"
   [rows]="5"
   currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
@@ -15,44 +15,44 @@
     <div class="header-container">
       <h3>{{ header | transloco }}</h3>
       <div class="actions__button actions__button--blue">
-        <div class="actions__button actions__button--blue"> 
-        <i
-          [routerLink]="'/profiles/create'"
-          class="pi pi-plus"
-          (click)="setShowConfirmDialog(true)"
-          style="color: #fff; font-size: 1.2rem"
-        ></i>
+        <div class="actions__button actions__button--blue">
+          <i
+            [routerLink]="'/profiles/create'"
+            class="pi pi-plus"
+            (click)="setShowConfirmDialog(true)"
+            style="color: #fff; font-size: 1.2rem"
+          ></i>
+        </div>
       </div>
-    </div>
     </div>
   </ng-template>
   <ng-template pTemplate="header">
     <tr>
       @for (column of columns; track column) {
-  <th class = "header">{{ "profiles."+column | transloco }}</th>
-}
-      <th class = "header">{{ "profiles."+"actions" | transloco }}</th>
+      <th class="header">{{ 'profiles.' + column | transloco }}</th>
+      }
+      <th class="header">{{ 'profiles.' + 'actions' | transloco }}</th>
     </tr>
   </ng-template>
   <ng-template pTemplate="body" let-data>
     <tr>
       @for (column of columns; track column) {
-  <td>
+      <td>
         @if (column !== 'skills') {
-<div>
+        <div>
           {{ data[column] }}
         </div>
-}
-
-        @if (column === 'Skills') {
-<div class="numeric-column">
-      
-          <p-rating [(ngModel)]="data[column]" [readonly]="true" [cancel]="false"></p-rating>
-          
+        } @if (column === 'Skills') {
+        <div class="numeric-column">
+          <p-rating
+            [(ngModel)]="data[column]"
+            [readonly]="true"
+            [cancel]="false"
+          ></p-rating>
         </div>
-}
+        }
       </td>
-}
+      }
       <td>
         <div class="actions-container">
           <div class="actions__button actions__button--red">
@@ -83,29 +83,30 @@
   position="center"
 >
   <ng-template pTemplate="header">
-    <span style="font-size: large; font-weight: bolder;" class="text-xl font-bold">{{ 'profiles.add-skill' | transloco }}</span>
+    <span
+      style="font-size: large; font-weight: bolder"
+      class="text-xl font-bold"
+      >{{ 'profiles.add-skill' | transloco }}</span
+    >
   </ng-template>
-  <form [formGroup]="registerForm"
-        class="register__form">
-      <p class="skill-text">
-        Habilidad
-       </p>
-        <p-dropdown [options]="data"
-          optionLabel="Skill"
-          [style]="{ width: '22.5rem'}"
-          formControlName="skillName"
-          placeholder="{{ 'profiles.select-skill-name' | transloco }} "
-        ></p-dropdown>
-        <p class="skill-text">
-         Tipo de habilidad
-        </p>
-        <p-dropdown [options]="data"
-          optionLabel="Type"
-          [style]="{ width: '22.5rem'}"
-          formControlName="skillType"
-          placeholder="{{ 'profiles.select-skill-type' | transloco }} "
-        ></p-dropdown>
-      </form>
+  <form [formGroup]="registerForm" class="register__form">
+    <p class="skill-text">Habilidad</p>
+    <p-dropdown
+      [options]="data"
+      optionLabel="Skill"
+      [style]="{ width: '22.5rem' }"
+      formControlName="skillName"
+      placeholder="{{ 'profiles.select-skill-name' | transloco }} "
+    ></p-dropdown>
+    <p class="skill-text">Tipo de habilidad</p>
+    <p-dropdown
+      [options]="data"
+      optionLabel="Type"
+      [style]="{ width: '22.5rem' }"
+      formControlName="skillType"
+      placeholder="{{ 'profiles.select-skill-type' | transloco }} "
+    ></p-dropdown>
+  </form>
   <ng-template pTemplate="footer">
     <p-button
       icon="pi pi-check"

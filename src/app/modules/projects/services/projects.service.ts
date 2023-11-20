@@ -1,7 +1,15 @@
 import { Injectable, inject } from '@angular/core';
-import { Observable, mergeMap, of } from 'rxjs';
+import {
+  Observable,
+  catchError,
+  concatMap,
+  forkJoin,
+  mergeMap,
+  of,
+} from 'rxjs';
 import { ApiService } from '../../../core/services/api/api.service';
 import { Project } from '../models/project';
+import { Offer } from '../../../core/models/offer.model';
 
 @Injectable({
   providedIn: 'root',
@@ -9,21 +17,29 @@ import { Project } from '../models/project';
 export class ProjectsService {
   #api = inject(ApiService);
 
-  getProjects(projectId: number) {
+  getProjects() {
     return this.#api.get('proyecto/list').pipe(
-      mergeMap((projects) => {
-        return this.#api.get(`offers/${projectId}`).pipe(
-          mergeMap((offers) => {
-            if (projects) {
-              projects.forEach((project: Project) => {
-                project.profiles = offers.filter(
-                  (offer: any) => offer.proyecto_id === project.id
-                );
-              });
-            }
+      concatMap((projects: Project[]) => {
+        const offersData = projects.map((project: Project) =>
+          this.#api.get(`offers/${project.id}`).pipe(
+            catchError((error: any) => {
+              console.error(
+                `Error fetching offers for project ${project.id}`,
+                error
+              );
+              return of([]);
+            })
+          )
+        );
 
-            const fullProject = [...projects];
-            return of(fullProject);
+        return forkJoin(offersData).pipe(
+          mergeMap((offers: Offer[]) => {
+            const mergedProjects = projects.map((project, index) => ({
+              ...project,
+              profiles: offers[index],
+            }));
+            // Assuming you want to return the merged projects here
+            return of(mergedProjects);
           })
         );
       })

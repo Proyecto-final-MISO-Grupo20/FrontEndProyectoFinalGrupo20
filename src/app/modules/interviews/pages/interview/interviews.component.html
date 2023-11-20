@@ -22,6 +22,8 @@
     }
 
     <app-sort-table-interview
+      (qualifiedInterview)="qualifiedInterview($event)"
+      [loading]="loading"
       [header]="'interviews.list'"
       [data]="interviews"
     ></app-sort-table-interview>

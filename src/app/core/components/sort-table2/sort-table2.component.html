@@ -1,4 +1,5 @@
 <p-table
+  styleClass="p-datatable-striped"
   responsiveLayout="stack"
   [breakpoint]="'960px'"
   [paginator]="true"
@@ -10,7 +11,7 @@
   [ngClass]="{ 'table-style': true }"
 >
   @if (header) {
-<ng-template pTemplate="caption">
+  <ng-template pTemplate="caption">
     <div class="header-container">
       <h3>{{ header | transloco }}</h3>
       <div
@@ -21,30 +22,38 @@
       </div>
     </div>
   </ng-template>
-}
+  }
   <ng-template pTemplate="header">
     <tr>
       @for (column of columns; track column) {
-  <th class="header">
+      <th class="header" [pSortableColumn]="column">
         {{ 'employees.' + column | transloco }}
+        <p-sortIcon [field]="column"></p-sortIcon>
       </th>
-}
+      }
 
       <th class="header">{{ 'employees.' + 'actions' | transloco }}</th>
+    </tr>
+
+    <tr>
+      @for (column of columns; track column) {
+      <th>
+        <p-columnFilter type="text" [field]="column"></p-columnFilter>
+      </th>
+      }
+      <th></th>
     </tr>
   </ng-template>
   <ng-template pTemplate="body" let-data let-index>
     <tr>
       @for (column of columns; track column; let index = $index) {
-  <td>
+      <td>
         @if (column !== 'profiles') {
-<div>
+        <div>
           {{ data[column] }}
         </div>
-}
-
-        @if (column === 'profiles') {
-<div class="numeric-column">
+        } @if (column === 'profiles') {
+        <div class="numeric-column">
           {{ data[column].length }}
           <div class="actions__button actions__button--blue">
             <i
@@ -55,13 +64,16 @@
             ></i>
           </div>
         </div>
-}
+        }
       </td>
-}
+      }
 
       <td>
         <div class="actions-container">
-          <div class="actions__button actions__button--blue">
+          <div
+            class="actions__button actions__button--blue"
+            [pTooltip]="'employees.assign' | transloco"
+          >
             <i
               class="pi pi-check-circle"
               style="color: #fff; font-size: 1.2rem"
@@ -78,7 +90,16 @@
 
   <ng-template pTemplate="emptymessage">
     <tr>
-      <td>{{ 'employees.' + 'no-exist' | transloco }}</td>
+      @if (!loading) {
+      <td>{{ 'employees.no-exist' | transloco }}</td>
+      } @if (loading) {
+      <td>
+        <p-progressSpinner
+          styleClass="w-4rem h-4rem"
+          animationDuration=".5s"
+        ></p-progressSpinner>
+      </td>
+      }
     </tr>
   </ng-template>
 </p-table>

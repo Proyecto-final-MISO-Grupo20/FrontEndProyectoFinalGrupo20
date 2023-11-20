@@ -30,53 +30,24 @@
   }
   <ng-template pTemplate="header">
     <tr>
-      @for (column of columns; track column) {
+      @for (column of columns; track column) { @if(column === 'nombre' || column
+      === 'email') {
       <th class="header">
         {{ 'participants.' + column | transloco }}
       </th>
-      }
-
-      <th class="header">{{ 'participants.' + 'actions' | transloco }}</th>
+      } }
     </tr>
   </ng-template>
   <ng-template pTemplate="body" let-data let-index>
     <tr>
-      @for (column of columns; track column; let index = $index) {
+      @for (column of columns; track column; let index = $index) { @if (column
+      === 'nombre' || column === 'email') {
       <td>
-        @if (column !== 'profiles') {
         <div>
           {{ data[column] }}
         </div>
-        } @if (column === 'profiles') {
-        <div class="numeric-column">
-          {{ data[column].length }}
-          <div class="actions__button actions__button--blue">
-            <i
-              [class]="
-                data[column].length > 0 ? 'pi pi-eye' : 'pi pi-user-plus'
-              "
-              style="color: #fff; font-size: 1.2rem"
-            ></i>
-          </div>
-        </div>
-        }
       </td>
-      }
-
-      <td>
-        <div class="actions-container">
-          <div class="actions__button actions__button--blue">
-            <i
-              class="pi pi-check-circle"
-              style="color: #fff; font-size: 1.2rem"
-              (click)="setShowConfirmDialog(true); setCurrentEmployee(index)"
-            ></i>
-          </div>
-          <div class="actions__button actions__button--red">
-            <i class="pi pi-trash" style="color: #fff; font-size: 1.2rem"></i>
-          </div>
-        </div>
-      </td>
+      } }
     </tr>
   </ng-template>
 
@@ -93,7 +64,7 @@
   header="Header"
   [(visible)]="showConfirmDialog"
   [breakpoints]="{ '960px': '75vw' }"
-  [style]="{ width: '50vw', height: '80vh' }"
+  [style]="{ width: '30vw', height: '50vh' }"
   [draggable]="false"
   [resizable]="false"
   position="center"
@@ -105,28 +76,16 @@
       >{{ 'participants.add-participant' | transloco }}</span
     >
   </ng-template>
-  <form [formGroup]="registerForm" class="register__form">
-    <p class="participant-text">
-      {{ 'participants.user-type' | transloco }}
-    </p>
-    <p-dropdown
-      [options]="data"
-      optionLabel="user-type"
-      [style]="{ width: '22.5rem' }"
-      formControlName="userType"
-      placeholder="{{ 'participants.select-user-type' | transloco }} "
-    ></p-dropdown>
-    <p class="participant-text">
-      {{ 'participants.user' | transloco }}
-    </p>
-    <p-dropdown
-      [options]="data"
-      optionLabel="User"
-      [style]="{ width: '22.5rem' }"
-      formControlName="user"
-      placeholder="{{ 'participants.select-user' | transloco }} "
-    ></p-dropdown>
-  </form>
+  <p class="participant-text">
+    {{ 'participants.user' | transloco }}
+  </p>
+  <p-dropdown
+    [(ngModel)]="candidates"
+    [options]="dataDropdown"
+    optionLabel="nombre"
+    [style]="{ width: '22.5rem' }"
+    placeholder="{{ 'participants.select-user' | transloco }} "
+  ></p-dropdown>
   <ng-template pTemplate="footer">
     <p-button
       icon="pi pi-check"

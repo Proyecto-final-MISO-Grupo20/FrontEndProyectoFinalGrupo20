@@ -33,7 +33,7 @@ export class ProjectsComponent implements OnInit {
     this.loading = true;
 
     this.projectsService
-      .getProjects(1)
+      .getProjects()
       .pipe(
         tap((projects) => {
           this.projects = projects;

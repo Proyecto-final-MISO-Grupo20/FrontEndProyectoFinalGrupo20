@@ -107,7 +107,9 @@
     "id": "ID",
     "profiles": "Profiles",
     "actions": "Actions",
-    "no-exist": "There are not projects"
+    "no-exist": "There are not projects",
+    "create-profile": "Create Profile",
+    "view-profiles": "Visualize Profiles"
   },
   "employees": {
     "title": "Employees",
@@ -132,14 +134,14 @@
     "email-required": "Email is required",
     "email-min-length": "Minimum email length is 3 characters",
     "email-format-error": "No es un email válido",
-
     "confirm": "Confirm",
     "confirm-body": "Are you sure you want to exit from the employees creation?",
     "nombre": "Name",
     "cargo": "Role",
     "documento": "Document",
     "actions": "Actions",
-    "no-exist": "There are not employees"
+    "no-exist": "There are not employees",
+    "assign": "Assign To a Project"
   },
   "profiles": {
     "title": "Profile creation for the project",
@@ -151,7 +153,7 @@
     "name-min-length": "Minimum name length is 3 characters",
     "tools": "Handling of Required Tools",
     "tool-domain": "Required domain level",
-    "list-tools": "List of Tools",
+    "list-tools": "Tools List",
     "skills": "Required skills",
     "list-skills": "Skills list",
     "skillName": "Nombre de la habilidad",
@@ -191,7 +193,6 @@
     "no-exist": "There are not tools",
     "candidate": "Candidate profile",
     "candidate-skill": "Candidate skills",
-
     "confirm": "Confirm",
     "confirm-body": "Are you sure you want to exit from the employees creation?"
   },
@@ -200,7 +201,10 @@
     "list": "Offers List",
     "profile": "Profile",
     "state": "State",
-    "profiles": "Applications"
+    "profiles": "Profiles",
+    "estado": "Status",
+    "perfil": "Profile",
+    "postulations": "Postulations"
   },
   "applications": {
     "title": "Applications",
@@ -213,12 +217,12 @@
     "telefono": "Telephone",
     "actions": "Actions",
     "profiles": "Tests",
-    "detail": "Detail"
+    "detail": "Detail",
+    "pruebas": "Tests"
   },
   "candidates": {
     "title": "Candidate"
   },
-
   "createTest": {
     "title": "Create test",
     "select-test-name": "Select a test",
@@ -258,7 +262,8 @@
     "date-required": "Date required",
     "confirm": "Confirm",
     "confirm-body": "Are you sure you want to exit from the interview creation?",
-    "comment": "Comment"
+    "comment": "Comment",
+    "no-exists": "Not Interviews Found"
   },
   "participants": {
     "list": "List of participants",
@@ -276,7 +281,10 @@
     "name": "Name",
     "comment": "Comment",
     "score": "Score",
-    "no-exist": "There are not tests"
+    "no-exist": "There are not tests",
+    "nombre": "Name",
+    "calificacion": "Calification",
+    "comentario": "Comment"
   },
   "technical-data": {
     "title": "Technical Information",
@@ -292,7 +300,9 @@
     "languages": "Languages",
     "tools": "Tools",
     "habilities": "Habilities",
-    "califications": "Califications"
+    "califications": "Califications",
+    "search-candidates": "Search Candidates",
+    "view-candidate": "View Candidate Data"
   },
   "next": "Next",
   "cancel": "Cancel",

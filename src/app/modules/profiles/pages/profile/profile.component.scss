@@ -26,19 +26,23 @@
     @include abstracts.flexbox(column, space-evenly, center, 2rem);
   }
   &-tools {
-    $textColor: #495057;
-    $text-align: left;
+    color: abstracts.$primary;
   }
 }
 .form {
   &__input {
     &--label {
       @include abstracts.flexbox(column, flex-start, normal, 0.5rem);
+      padding-bottom: 3rem;
       input {
         width: 40rem;
       }
     }
   }
+}
+
+.skill-container {
+  padding-bottom: 5rem;
 }
 
 @media (max-width: 768px) {

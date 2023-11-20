@@ -1,4 +1,6 @@
 <p-table
+  #dt
+  styleClass="p-datatable-striped"
   responsiveLayout="stack"
   [breakpoint]="'960px'"
   [paginator]="true"
@@ -9,50 +11,85 @@
   [tableStyle]="tableStyle"
   [ngClass]="{ 'table-style': true }"
 >
+  <ng-template pTemplate="caption">
+    <div class="flex">
+      <span class="p-input-icon-left ml-auto">
+        <i class="pi pi-search"></i>
+        <input
+          pInputText
+          type="text"
+          (input)="dt.filterGlobal($event.target, 'contains')"
+          placeholder="Search keyword"
+        />
+      </span>
+    </div>
+  </ng-template>
   @if (header) {
-<ng-template pTemplate="caption">
+  <ng-template pTemplate="caption">
     <div class="header-container">
       <h3>{{ header | transloco }}</h3>
     </div>
   </ng-template>
-}
+  }
   <ng-template pTemplate="header">
     <tr>
-      @for (column of columns; track column) {
-  <th>
+      @for (column of columns; track column) { @if(!column.includes('id')) {
+      <th [pSortableColumn]="column">
         {{ 'offers.' + column | transloco }}
+        <p-sortIcon [field]="column"></p-sortIcon>
       </th>
-}
+      } }
       <th>{{ 'profiles.actions' | transloco }}</th>
     </tr>
+
+    <tr>
+      @for (column of columns; track column) { @if (!column.includes('id') &&
+      column !== 'postulations' ) {
+      <th>
+        <p-columnFilter type="text" [field]="column"></p-columnFilter>
+      </th>
+      } }
+      <th></th>
+      <th></th>
+    </tr>
   </ng-template>
+
   <ng-template pTemplate="body" let-data>
     <tr>
-      @for (column of columns; track column) {
-  <td>
-        @if (column !== 'postulations') {
-<div>
+      @for (column of columns; track column) { @if (column !== 'postulations' &&
+      column !== 'estado' && !column.includes('id')) {
+      <td>
+        <div>
           {{ data[column] }}
         </div>
-}
+      </td>
 
-        @if (column === 'postulations') {
-<div class="numeric-column">
+      } @if(column === 'estado') {
+      <td>
+        <p-tag
+          [value]="data[column]"
+          [style]="{ 'font-size': '1rem' }"
+          severity="success"
+        ></p-tag>
+      </td>
+
+      } @if (column === 'postulations') {
+      <td>
+        <div class="numeric-column">
           {{ data[column].length }}
 
           @if (data[column].length > 0) {
-<div
-           
+          <div
             class="actions__button actions__button--blue"
             [routerLink]="'/applications/' + data.id"
           >
             <i class="pi pi-eye" style="color: #fff; font-size: 1.2rem"></i>
           </div>
-}
+          }
         </div>
-}
       </td>
-}
+
+      } }
       <td>
         <div class="actions-container">
           <div class="actions__button actions__button--red">
@@ -64,16 +101,17 @@
   </ng-template>
 
   <ng-template pTemplate="emptymessage">
-    @if (!loading) {
-<td>{{ 'offers.no-exist' | transloco }}</td>
-}
-    @if (loading) {
-<td>
-      <p-progressSpinner
-        styleClass="w-4rem h-4rem"
-        animationDuration=".5s"
-      ></p-progressSpinner>
-    </td>
-}
+    <tr>
+      @if (!loading) {
+      <td>{{ 'offers.no-exist' | transloco }}</td>
+      } @if (loading) {
+      <td>
+        <p-progressSpinner
+          styleClass="w-4rem h-4rem"
+          animationDuration=".5s"
+        ></p-progressSpinner>
+      </td>
+      }
+    </tr>
   </ng-template>
 </p-table>

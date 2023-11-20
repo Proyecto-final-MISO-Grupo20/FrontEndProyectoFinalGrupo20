@@ -25,6 +25,7 @@ export class TestComponent implements OnInit {
   tests!: any[];
   successCreateApplication!: string | null;
   offerId!: number;
+  loading = false;
 
   ngOnInit(): void {
     this.offerId = this.activatedRoute.snapshot.params['offerId'];
@@ -35,11 +36,14 @@ export class TestComponent implements OnInit {
   }
 
   getApplications() {
+    this.loading = true;
+
     this.applicationsService
       .getTests(this.offerId)
       .pipe(
         tap((tests) => {
           this.tests = tests;
+          this.loading = false;
         })
       )
       .subscribe();

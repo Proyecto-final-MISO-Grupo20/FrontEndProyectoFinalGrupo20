@@ -1,4 +1,12 @@
-import { Component, HostListener, Input, OnInit, inject } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  HostListener,
+  Input,
+  OnInit,
+  Output,
+  inject,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UiModule } from 'ui';
 import { RatingModule } from 'primeng/rating';
@@ -12,6 +20,7 @@ import {
 } from '@angular/forms';
 // eslint-disable-next-line @nx/enforce-module-boundaries
 import { mockData_participants } from 'src/app/modules/interviews/utils/mock-data-participants';
+import { Candidate } from '../../../modules/auth/register/models/candidate';
 
 @Component({
   selector: 'app-sort-table-participants',
@@ -29,11 +38,15 @@ import { mockData_participants } from 'src/app/modules/interviews/utils/mock-dat
 export class SortTableParticipantsComponent implements OnInit {
   // Input data
   @Input() header!: string;
-  @Input() data!: any[];
+  @Input() data: any[] = [];
+  @Output() dataChange = new EventEmitter<any>();
+
+  @Input() dataDropdown!: any[];
   registerForm!: FormGroup;
   formBuilder = inject(FormBuilder);
   @Input() mockData_participants!: any[];
   currentParticipant: any;
+  candidates!: Candidate[];
 
   columns!: string[];
   showConfirmDialog = false;
@@ -50,19 +63,11 @@ export class SortTableParticipantsComponent implements OnInit {
   ngOnInit(): void {
     this.setColumns();
     this.checkScreenWidth();
-    this.initializeForm();
     this.mockData_participants = mockData_participants;
   }
 
   ngOnChanges() {
     this.setColumns();
-  }
-
-  initializeForm() {
-    this.registerForm = this.formBuilder.group({
-      userType: ['', [Validators.required, Validators.maxLength(255)]],
-      user: ['', [Validators.required, Validators.maxLength(255)]],
-    });
   }
 
   setShowConfirmDialog(show: boolean) {
@@ -89,14 +94,19 @@ export class SortTableParticipantsComponent implements OnInit {
   }
 
   addData() {
-    // Find the current employee and update the project
-   
-    this.registerForm.reset();
+    if (this.data) {
+      this.data = [...this.data, this.candidates];
+    } else {
+      this.data = [this.candidates];
+    }
+
+    this.dataChange.emit(this.data);
+
+    this.setColumns();
     this.setShowConfirmDialog(false);
   }
 
   setCurrentEmployee(employee: any) {
     this.currentParticipant = employee;
-    console.log(employee, 'Hola');
   }
 }

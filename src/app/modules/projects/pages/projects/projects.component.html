@@ -2,28 +2,24 @@
   <div class="projects-container">
     <h1 class="projects-title">{{ 'projects.title' | transloco }}</h1>
 
-    @if (successCreate) {
-<p-message
-     
-      [style]="{ width: '22.5rem' }"
+    @if (successCreate) {z
+    <p-message
+      [style]="{ width: '40vw', }"
       severity="success"
       text="{{
         'projects.success-create' | transloco: { project: createdProject }
       }}"
     ></p-message>
-}
-
-    @if (successCreateOffer) {
-<p-message
-     
-      [style]="{ width: '22.5rem' }"
+    } @if (successCreateOffer) {
+    <p-message
+      [style]="{ width: '40vw', }"
       severity="success"
       text="{{
         'projects.success-create-offer'
           | transloco: { profile: successCreateOffer }
       }}"
     ></p-message>
-}
+    }
 
     <app-sort-table
       [loading]="loading"

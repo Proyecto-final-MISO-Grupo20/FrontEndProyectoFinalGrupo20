@@ -11,7 +11,7 @@
   [ngClass]="{ 'table-style': true }"
 >
   @if (header) {
-<ng-template pTemplate="caption">
+  <ng-template pTemplate="caption">
     <div class="header-container">
       <h3>{{ header | transloco }}</h3>
       <div
@@ -22,32 +22,51 @@
       </div>
     </div>
   </ng-template>
-}
+  }
+
   <ng-template pTemplate="header">
     <tr>
-      @for (column of columns; track column) {
-  <th>
+      @for (column of columns; track column) { @if(column !== 'tipo') {
+      <th [pSortableColumn]="column">
         {{ 'tests.' + column | transloco }}
+        <p-sortIcon [field]="column"></p-sortIcon>
       </th>
-}
+      } }
+    </tr>
+
+    <tr>
+      @for (column of columns; track column) { @if(column !== 'tipo') {
+      <th>
+        <p-columnFilter type="text" [field]="column"></p-columnFilter>
+      </th>
+      } }
     </tr>
   </ng-template>
+
   <ng-template pTemplate="body" let-data>
     <tr>
-      @for (column of columns; track column) {
-  <td>
+      @for (column of columns; track column) { @if(column !== 'tipo') {
+      <td>
         <div>
           {{ data[column] }}
         </div>
       </td>
-}
-      <td></td>
+      } }
     </tr>
   </ng-template>
 
   <ng-template pTemplate="emptymessage">
     <tr>
+      @if (!loading) {
       <td>{{ 'tests.no-exist' | transloco }}</td>
+      } @if (loading) {
+      <td>
+        <p-progressSpinner
+          styleClass="w-4rem h-4rem"
+          animationDuration=".5s"
+        ></p-progressSpinner>
+      </td>
+      }
     </tr>
   </ng-template>
 </p-table>

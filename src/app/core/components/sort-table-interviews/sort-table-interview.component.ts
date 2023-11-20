@@ -1,9 +1,11 @@
 import {
   Component,
+  EventEmitter,
   HostListener,
   Input,
   OnChanges,
   OnInit,
+  Output,
   inject,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -18,6 +20,8 @@ import {
 } from '@angular/forms';
 import { SessionService } from '../../services/session/session.service';
 import { Interview } from '../../../modules/interviews/models/interview';
+import { InterviewsService } from 'src/app/modules/interviews/services/interviews.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sort-table-interview',
@@ -36,11 +40,17 @@ export class SortTableInterviewComponent implements OnInit, OnChanges {
   // Input data
   @Input() header!: string;
   @Input() data!: any[];
+  @Input() loading = false;
+  @Output() qualifiedInterview = new EventEmitter();
+
   registerForm!: FormGroup;
   formBuilder = inject(FormBuilder);
   session = inject(SessionService);
+  interviewService = inject(InterviewsService);
+  router = inject(Router);
   displayDialog = false;
-
+  currentInterview!: Interview;
+  comment!: string;
   columns!: string[];
   showConfirmDialog = false;
   showInterviewInformation = false;
@@ -50,7 +60,6 @@ export class SortTableInterviewComponent implements OnInit, OnChanges {
   // Responsive
   isMobile!: boolean;
   tableStyle: { [key: string]: string } = {};
-  router: any;
   commentValue: any;
   ratingValue: any;
 
@@ -75,13 +84,13 @@ export class SortTableInterviewComponent implements OnInit, OnChanges {
 
   initializeForm() {
     this.registerForm = this.formBuilder.group({
-      interview: ['', Validators.required],
-      score: ['', [Validators.required, Validators.maxLength(2)]],
-      comment: ['', [Validators.required, Validators.maxLength(255)]],
+      calificacion: ['', [Validators.required, Validators.maxLength(2)]],
+      comentario: ['', [Validators.required, Validators.maxLength(255)]],
     });
   }
 
   handleClick(event: any, interview: Interview) {
+    this.currentInterview = interview;
     const iconClass = event.target.classList;
     if (iconClass.contains('pi-eye')) {
       this.setShowInterviewInformation(true, interview);
@@ -124,9 +133,24 @@ export class SortTableInterviewComponent implements OnInit, OnChanges {
     this.score = this.score - 1;
   }
 
+  validForm() {
+    return this.registerForm.value['comentario'].length > 0 && this.score > 0;
+  }
+
   addData() {
-    this.registerForm.reset();
-    this.showInterviewInformation = false;
-    this.showConfirmDialog = false;
+    this.interviewService
+      .qualifyInterview({
+        calificacion: this.score,
+        comentario: this.registerForm.value['comentario'],
+        id: this.currentInterview.id,
+      })
+      .subscribe({
+        next: (res) => {
+          this.registerForm.reset();
+          this.showInterviewInformation = false;
+          this.showConfirmDialog = false;
+          this.qualifiedInterview.emit(true);
+        },
+      });
   }
 }

@@ -3,6 +3,7 @@
     <h1 class="projects-title">{{ 'tests.title' | transloco }}</h1>
 
     <app-sort-table-test
+      [loading]="loading"
       [parentId]="offerId"
       [header]="'tests.list'"
       [data]="tests"
