@@ -38,6 +38,8 @@ export class SortTableapplicationsComponent implements OnInit {
   columns!: string[];
   showConfirmDialog = false;
   currentCandidateTools!: any;
+  showHireDialog = false;
+  date: Date[] | undefined;
 
   // Responsive
   isMobile!: boolean;
@@ -63,6 +65,9 @@ export class SortTableapplicationsComponent implements OnInit {
     this.registerForm = this.formBuilder.group({
       skillName: ['', Validators.required],
       skillType: ['', Validators.required],
+      fecha: ['', Validators.required],
+      tiempoMeses: ['',Validators.required],
+      valorDinero: ['',[Validators.required, Validators.maxLength(10)]],
     });
   }
 
@@ -70,6 +75,11 @@ export class SortTableapplicationsComponent implements OnInit {
     this.showConfirmDialog = show;
 
     this.currentCandidateTools = this.getSkills(candidate);
+  }
+
+  setShowHireDialog(show: boolean) {
+    this.showHireDialog = show;
+
   }
 
   checkScreenWidth(): void {
@@ -92,6 +102,7 @@ export class SortTableapplicationsComponent implements OnInit {
   }
   returnToApplications() {
     this.showConfirmDialog = false;
+    this.showHireDialog = false;
   }
 
   ngOnChanges() {

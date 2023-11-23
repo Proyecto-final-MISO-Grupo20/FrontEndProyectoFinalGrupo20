@@ -17,8 +17,20 @@
     }
 
     &--red {
-      background-color: abstracts.$danger;
+      background-color: abstracts.$danger; 
     }
+  }
+  .currency-symbol {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    font-size: 14px;
+    color: #495057;
+  }
+  .p-inputtext {
+    padding-left: 25px; /* Ajusta el espacio para que el símbolo no se solape con el texto */
   }
 }
 

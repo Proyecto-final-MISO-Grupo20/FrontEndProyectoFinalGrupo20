@@ -219,7 +219,12 @@
     "actions": "Actions",
     "profiles": "Tests",
     "detail": "Detail",
-    "pruebas": "Tests"
+    "pruebas": "Tests",
+    "hire": "Hire",
+    "hire-candidate": "Hire candidate",
+    "date": "Admission date",
+    "enter-months": "Number of months",
+    "money-value": "Contract value"
   },
   "candidates": {
     "title": "Candidate"
