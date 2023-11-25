@@ -139,7 +139,7 @@
         } @if (employeeCreateForm.get('email')?.hasError('minlength')) {
         <p-message
           severity="error"
-          text="{{ 'employees.email--min-length' | transloco }}"
+          text="{{ 'employees.email-min-length' | transloco }}"
         >
         </p-message>
         } @if ( employeeCreateForm.get('email')?.hasError('email') &&

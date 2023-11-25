@@ -134,7 +134,7 @@
     "enter-email": "Enter employee email",
     "email-required": "Email is required",
     "email-min-length": "Minimum email length is 3 characters",
-    "email-format-error": "No es un email válido",
+    "email-format-error": "It is not a valid email",
     "confirm": "Confirm",
     "confirm-body": "Are you sure you want to exit from the employees creation?",
     "nombre": "Name",
@@ -248,7 +248,7 @@
     "actions": "Actions",
     "add-score": "Add score",
     "select-interview-name": "Select interview name",
-    "score": "Score",
+    "score": "Score: ",
     "list": "Enterview list",
     "titulo": "Title",
     "fecha": "Date",
@@ -268,8 +268,15 @@
     "date-required": "Date required",
     "confirm": "Confirm",
     "confirm-body": "Are you sure you want to exit from the interview creation?",
-    "comment": "Comment",
-    "no-exists": "Not Interviews Found"
+    "comment": "Comment:",
+    "no-exists": "Not Interviews Found",
+    "create-interview": "Create interview",
+    "view-results": "View results",
+    "record-results": "Record results",
+    "results": "Results",
+    "comment-required": "Comment required",
+    "comment-min-length": "Minimum comment length is 3 characters",
+    "comment-max-length": "Maximum comment length is 255 characters"
   },
   "participants": {
     "list": "List of participants",
@@ -279,7 +286,9 @@
     "select-user": "Select user",
     "user": "User",
     "no-participant": "There are currently no participants",
-    "actions": "Actions"
+    "actions": "Actions",
+    "nombre": "Participant name",
+    "email": "Email"
   },
   "tests": {
     "title": "Tests",
@@ -294,12 +303,17 @@
   },
   "technical-data": {
     "title": "Technical Information",
-    "habilities": "Habilities",
+    "habilities": "Skills",
     "tools": "Tools",
     "languages": "Languages",
     "empty": "Not associated habilities",
     "empty-tools": "Not associated tools",
-    "empty-languages": "Not associated languages"
+    "empty-languages": "Not associated languages",
+    "select": "Select",
+    "assign": "Assign",
+    "assessment": "Assessment",
+    "create-new": "Create new",
+    "delete": "Delete"
   },
   "business-home": {
     "search-result": "Search Result",

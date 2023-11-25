@@ -244,7 +244,7 @@
     "actions": "Acciones",
     "add-score": "Adicionar calificación",
     "select-interview-name": "Seleccione una entrevista",
-    "score": "Calificación",
+    "score": "Calificación: ",
     "list": "Lista de entrevistas",
     "titulo": "Título",
     "fecha": "Fecha",
@@ -264,8 +264,16 @@
     "date-required": "Fecha requerida",
     "confirm": "Confirmar",
     "confirm-body": "¿Desea salir de la creación de entrevistas?",
-    "comment": "Comentario",
-    "no-exists": "No Se Encontraron Entrevistas"
+    "comment": "Comentario:",
+    "no-exists": "No Se Encontraron Entrevistas",
+    "create-interview": "Crear entrevista",
+    "view-results": "Ver resultados",
+    "record-results": "Registrar resultados",
+    "results": "Resultados",
+    "comment-required": "Comentario requerido",
+    "comment-min-length": "El comentario debe tener mínimo 3 carácteres",
+    "comment-max-length": "El comentario debe tener máximo 255 carácteres"
+
   },
   "participants": {
     "list": "Lista de participantes",
@@ -275,7 +283,9 @@
     "select-user": "Seleccionar usuario",
     "user": "Usuario",
     "no-participant": "No hay participantes actualmente",
-    "actions": "Acciones"
+    "actions": "Acciones",
+    "nombre": "Nombre del participante",
+    "email": "Correo electrónico"
   },
   "tests": {
     "title": "Pruebas",
@@ -295,7 +305,12 @@
     "languages": "Idiomas",
     "empty": "No hay habilidades asociadas",
     "empty-tools": "No hay herramientas asociadas",
-    "empty-languages": "No hay idiomas asociados"
+    "empty-languages": "No hay idiomas asociados",
+    "select": "Seleccionar",
+    "assign": "Asignar",
+    "assessment": "Valoración",
+    "create-new": "Crear nuevo",
+    "delete": "Eliminar"
   },
   "business-home": {
     "search-result": "Resultados de la Búsqueda",
