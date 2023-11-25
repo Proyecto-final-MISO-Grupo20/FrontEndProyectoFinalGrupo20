@@ -219,7 +219,12 @@
     "actions": "Acciones",
     "profiles": "Pruebas",
     "detail": "Detalle",
-    "pruebas": "Pruebas"
+    "pruebas": "Pruebas",
+    "hire": "Contratar",
+    "hire-candidate": "Contratar candidato",
+    "date": "Fecha de ingreso",
+    "enter-months": "Número de meses",
+    "money-value": "Valor del contrato"
   },
   "createTest": {
     "title": "Crear Prueba",
