@@ -66,8 +66,8 @@ export class SortTableapplicationsComponent implements OnInit {
       skillName: ['', Validators.required],
       skillType: ['', Validators.required],
       fecha: ['', Validators.required],
-      tiempoMeses: ['',Validators.required],
-      valorDinero: ['',[Validators.required, Validators.maxLength(10)]],
+      tiempoMeses: ['', Validators.required],
+      valorDinero: ['', [Validators.required, Validators.maxLength(10)]],
     });
   }
 
@@ -79,7 +79,6 @@ export class SortTableapplicationsComponent implements OnInit {
 
   setShowHireDialog(show: boolean) {
     this.showHireDialog = show;
-
   }
 
   checkScreenWidth(): void {

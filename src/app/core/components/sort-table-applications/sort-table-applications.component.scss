@@ -17,7 +17,7 @@
     }
 
     &--red {
-      background-color: abstracts.$danger; 
+      background-color: abstracts.$danger;
     }
   }
   .currency-symbol {
@@ -38,8 +38,22 @@
   &-container {
     @include abstracts.flexbox(row, space-between, center, 0);
   }
+  &-text {
+    margin: 0 auto;
+  }
 }
 
 .numeric-column {
   @include abstracts.flexbox(row, space-evenly, center, 0);
+}
+
+.register {
+  &__form {
+    @include abstracts.flexbox(column, center, center, 0);
+  }
+}
+
+.buttons-container {
+  display: flex;
+  justify-content: center;
 }

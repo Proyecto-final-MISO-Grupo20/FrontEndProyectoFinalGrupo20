@@ -18,7 +18,7 @@ export class ProjectsService {
   #api = inject(ApiService);
 
   getProjects() {
-    return this.#api.get('proyecto/list').pipe(
+    return this.#api.get('proyecto').pipe(
       concatMap((projects: Project[]) => {
         const offersData = projects.map((project: Project) =>
           this.#api.get(`offers/${project.id}`).pipe(
