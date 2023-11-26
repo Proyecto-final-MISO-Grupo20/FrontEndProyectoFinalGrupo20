@@ -338,6 +338,10 @@
     "search-candidates": "Buscar Candidatos",
     "view-candidate": "Visualizar Datos Del Candidato"
   },
+  "candidate-home": {
+    "apply-offer": "Aplicar a la oferta",
+    "search-offers": "Buscar Ofertas"
+  },
   "next": "Siguiente",
   "accept": "Aceptar",
   "cancel": "Cancelar",

@@ -1,4 +1,37 @@
-<div class="home-view">
-  <h2 class="home-title">Perfiles Solicitados</h2>
-  <app-candidate-data-view [data]="offersData"></app-candidate-data-view>
+<h2 class="business-home-header">
+  {{ 'business-home.search-result' | transloco }}
+</h2>
+<div class="business-home-content">
+  <div class="business-home-content-cards">
+    <!-- @if (languages$) {
+    <app-util-card
+      headerTitle="business-home.languages"
+      [type]="cardType.checkbox"
+      [options]="languages$ | async"
+    ></app-util-card>
+    }
+    <app-util-card
+      headerTitle="business-home.tools"
+      [type]="cardType.search"
+      [searchType]="skillType.HERRAMIENTA"
+    ></app-util-card>
+    <app-util-card
+      headerTitle="business-home.habilities"
+      [type]="cardType.search"
+      [searchType]="skillType.HABILIDAD"
+    ></app-util-card>
+    <app-util-card
+      headerTitle="business-home.califications"
+      [type]="cardType.rating"
+    ></app-util-card> -->
+  </div>
+
+  <app-candidate-data-view
+    [data]="filteredData"
+    [loading]="loading"
+    (searchFilter)="onSearchChange($event)"
+    (apply)="apply($event)"
+  ></app-candidate-data-view>
+
+  <p-toast></p-toast>
 </div>

@@ -342,6 +342,10 @@
     "search-candidates": "Search Candidates",
     "view-candidate": "View Candidate Data"
   },
+  "candidate-home": {
+    "apply-offer": "Apply To The Offer",
+    "search-offers": "Search Offers"
+  },
   "next": "Next",
   "cancel": "Cancel",
   "accept": "Accept",
