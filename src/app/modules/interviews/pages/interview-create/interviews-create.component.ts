@@ -65,6 +65,14 @@ export class InterviewsCreateComponent implements OnInit {
     this.interviewCreateForm = this.formBuilder.group({
       titulo: ['', [Validators.required, Validators.maxLength(255)]],
       fecha: ['', Validators.required],
+      name: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(3),
+          Validators.maxLength(50),
+        ],
+      ],
     });
   }
 

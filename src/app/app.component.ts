@@ -37,7 +37,7 @@ export class AppComponent implements OnInit {
   }
 
   getHeaderBusinessList() {
-    return ['home', 'projects', 'interviews', 'tests', 'employees'];
+    return ['home', 'projects', 'interviews', 'employees'];
   }
 
   getHeaderCandidateList() {

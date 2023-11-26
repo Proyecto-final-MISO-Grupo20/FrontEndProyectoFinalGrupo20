@@ -23,6 +23,24 @@
                 class="custom-width"
                 placeholder="{{ 'createTest.enter-name' | transloco }}"
               />
+              <p></p>
+              <ng-container *ngIf="resultsForm.get('nombre')?.errors">
+                <p-message
+                  *ngIf="resultsForm.get('nombre')?.hasError('required') && resultsForm.get('nombre')?.touched"
+                  severity="error"
+                  text="{{ 'createTest.nombre-required' | transloco }}"
+                ></p-message>
+                <p-message
+                  *ngIf="resultsForm.get('nombre')?.hasError('minlength')"
+                  severity="error"
+                  text="{{ 'createTest.nombre-min-length' | transloco }}"
+                ></p-message>
+                <p-message
+                  *ngIf="resultsForm.get('nombre')?.hasError('maxlength')"
+                  severity="error"
+                  text="{{ 'createTest.nombre-max-length' | transloco }}"
+                ></p-message>
+              </ng-container>
             </div>
           </div>
         </div>
@@ -40,6 +58,24 @@
             cols="30"
             pInputTextarea
           ></textarea>
+          <p></p>
+              <ng-container *ngIf="resultsForm.get('comentario')?.errors">
+                <p-message
+                  *ngIf="resultsForm.get('comentario')?.hasError('required') && resultsForm.get('comentario')?.touched"
+                  severity="error"
+                  text="{{ 'createTest.comentario-required' | transloco }}"
+                ></p-message>
+                <p-message
+                  *ngIf="resultsForm.get('comentario')?.hasError('minlength')"
+                  severity="error"
+                  text="{{ 'createTest.comentario-min-length' | transloco }}"
+                ></p-message>
+                <p-message
+                  *ngIf="resultsForm.get('comentario')?.hasError('maxlength')"
+                  severity="error"
+                  text="{{ 'createTest.comentario-max-length' | transloco }}"
+                ></p-message>
+              </ng-container>
         </span>
       </div>
       <p></p>
@@ -57,6 +93,24 @@
             class="custom-width"
             placeholder="{{ 'createTest.enter-calification' | transloco }}"
           />
+          <p></p>
+              <ng-container *ngIf="resultsForm.get('calificacion')?.errors">
+                <p-message
+                  *ngIf="resultsForm.get('calificacion')?.hasError('required') && resultsForm.get('calificacion')?.touched"
+                  severity="error"
+                  text="{{ 'createTest.calificacion-required' | transloco }}"
+                ></p-message>
+                <p-message
+                  *ngIf="resultsForm.get('calificacion')?.hasError('minlength')"
+                  severity="error"
+                  text="{{ 'createTest.calificacion-min-length' | transloco }}"
+                ></p-message>
+                <p-message
+                  *ngIf="resultsForm.get('calificacion')?.hasError('maxlength')"
+                  severity="error"
+                  text="{{ 'createTest.calificacion-max-length' | transloco }}"
+                ></p-message>
+              </ng-container>
         </div>
       </div>
 
