@@ -49,7 +49,7 @@
 
 .register {
   &__form {
-    @include abstracts.flexbox(column, center, center, 0);
+    @include abstracts.flexbox(column, center, center, 2rem);
   }
 }
 

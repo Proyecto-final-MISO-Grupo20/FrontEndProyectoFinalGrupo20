@@ -56,21 +56,25 @@
           <td>
             <div class="numeric-column">
               @if (userType === 3) {
-                <div
+              <div
                 class="actions__button actions__button--blue"
                 (click)="handleClick($event, data)"
-                [pTooltip]="data.calificacion > 0 ? ('interviews.view-results' | transloco) : ('interviews.record-results' | transloco)"
+                [pTooltip]="
+                  data.calificacion > 0
+                    ? ('interviews.view-results' | transloco)
+                    : ('interviews.record-results' | transloco)
+                "
               >
                 <i
                   [class]="data.calificacion > 0 ? 'pi pi-eye' : 'pi pi-book'"
                   style="color: #fff; font-size: 1.2rem"
                 ></i>
               </div>
-              
+
               } @if (userType === 2 && data.calificacion !== '') {
               <div
                 class="actions__button actions__button--blue"
-                (click)="setShowInterviewInformation(true, 'llll')"
+                (click)="setShowInterviewInformation(true, data)"
                 [pTooltip]="'interviews.view-results' | transloco"
               >
                 <i
@@ -177,12 +181,12 @@
         >
         </p-message>
         } @if (registerForm.get('comentario')?.hasError('maxlength')) {
-          <p-message
-            severity="error"
-            text="{{ 'interviews.comment-max-length' | transloco }}"
-          >
-          </p-message>
-          }
+        <p-message
+          severity="error"
+          text="{{ 'interviews.comment-max-length' | transloco }}"
+        >
+        </p-message>
+        }
       </form>
       <ng-template pTemplate="footer">
         <p-button

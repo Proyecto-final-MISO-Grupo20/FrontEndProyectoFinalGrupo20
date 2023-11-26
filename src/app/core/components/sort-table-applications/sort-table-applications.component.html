@@ -229,7 +229,6 @@
             </ng-container>
           </div>
         </div>
-        <p></p>
 
         <!-- Campo para agregar el valor en dinero -->
         <div class="p-field">
@@ -285,45 +284,13 @@
                   placeholder="{{ 'Enter date' | transloco }}"
                   class="p-inputwrapper"
                   [style]="{ width: '20rem' }"
+                  appendTo="body"
                 ></p-calendar>
-                <label for="float-input"></label>
               </div>
-              <ng-container *ngIf="registerForm.get('fecha')?.errors">
-                <p-message
-                  *ngIf="
-                    registerForm.get('fecha')?.hasError('required') &&
-                    registerForm.get('fecha')?.touched
-                  "
-                  severity="error"
-                  text="{{ 'applications.fecha-required' | transloco }}"
-                ></p-message>
-              </ng-container>
+              <label class="p-placeholder" for="date">
+                {{ 'Enter date' | transloco }}
+              </label>
             </span>
-          </div>
-          <p></p>
-
-          <!-- Calendario para seleccionar la fecha -->
-          <div class="p-field">
-            <label for="date">{{ 'applications.date' | transloco }}</label>
-            <div class="p-input-container">
-              <span class="p-float-label">
-                <div class="card flex justify-content-start">
-                  <p-calendar
-                    [(ngModel)]="date"
-                    [showIcon]="true"
-                    id="date"
-                    formControlName="fecha"
-                    placeholder="{{ 'Enter date' | transloco }}"
-                    class="p-inputwrapper"
-                    [style]="{ width: '20rem' }"
-                    appendTo="body"
-                  ></p-calendar>
-                </div>
-                <label class="p-placeholder" for="date">
-                  {{ 'Enter date' | transloco }}
-                </label>
-              </span>
-            </div>
           </div>
 
           <p></p>

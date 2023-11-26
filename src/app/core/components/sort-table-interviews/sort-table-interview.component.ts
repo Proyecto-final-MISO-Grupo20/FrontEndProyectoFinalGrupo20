@@ -111,6 +111,7 @@ export class SortTableInterviewComponent implements OnInit, OnChanges {
   }
 
   setShowInterviewInformation(show: boolean, interview?: any) {
+    console.log(interview, 'kk');
     this.selectedInterview = interview;
     this.showInterviewInformation = show;
   }
