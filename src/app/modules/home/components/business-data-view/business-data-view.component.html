@@ -72,6 +72,7 @@
               <div
                 class="actions__button actions__button--blue"
                 [pTooltip]="'business-home.view-candidate' | transloco"
+                (click)="showDialog(data)"
               >
                 <i class="pi pi-eye" style="color: #fff; font-size: 1.2rem"></i>
               </div>
@@ -83,3 +84,11 @@
   </p-dataView>
   }
 </div>
+
+@if(data && data[0]) {
+<app-business-data-dialog
+  [data]="selectedCandidate"
+  [(visible)]="dialogVisible"
+>
+</app-business-data-dialog>
+}

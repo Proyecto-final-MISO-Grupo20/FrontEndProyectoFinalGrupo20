@@ -1,0 +1,96 @@
+<p-dialog
+  (onHide)="onDialogHide()"
+  header="Header"
+  [(visible)]="visible"
+  [breakpoints]="{ '960px': '75vw' }"
+  [style]="{ width: '30vw' }"
+  [draggable]="false"
+  [resizable]="false"
+  position="center"
+>
+  <ng-template pTemplate="header">
+    <span
+      style="font-size: large; font-weight: bolder"
+      class="text-xl font-bold header-text"
+    >
+      {{ data.nombre }}
+    </span>
+  </ng-template>
+
+  <ng-template pTemplate="body">
+    <p class="candidate-data">
+      {{ 'register.candidate-account-step.residence-country' | transloco }}:
+      <span class="candidate-value"> {{ data.pais }} </span>
+    </p>
+    <p class="candidate-data">
+      {{ 'register.candidate-account-step.residence-city' | transloco }}:
+      <span class="candidate-value"> {{ data.ciudad }} </span>
+    </p>
+    <p class="candidate-data">
+      {{ 'register.candidate-account-step.identification' | transloco }}:
+      <span class="candidate-value"> {{ data.documento }} </span>
+    </p>
+    <p class="candidate-data">
+      {{ 'register.candidate-account-step.residence-country' | transloco }}:
+      <span class="candidate-value"> {{ data.telefono }} </span>
+    </p>
+    <p class="candidate-data">
+      {{ 'register.candidate-account-step.email' | transloco }}:
+      <span class="candidate-value"> {{ data.email }} </span>
+    </p>
+
+    @if(data.skills && data.skills.length > 0) {
+    <!--Habilities-->
+    <div class="candidate-skills">
+      <h3>{{ 'technical-data.habilities' | transloco }}</h3>
+
+      @for (skill of data.skills; track $index) { @if(skill.skill?.tipo ===
+      skillType.HABILIDAD) {
+      <div class="skill-container">
+        {{ skill.skill?.nombre }} :
+        <p-rating
+          [ngModel]="skill.dominio"
+          [cancel]="false"
+          [readonly]="true"
+        ></p-rating>
+      </div>
+      } }
+    </div>
+
+    <!--Tools-->
+    <div class="candidate-skills">
+      <h3>{{ 'technical-data.tools' | transloco }}</h3>
+
+      @for (skill of data.skills; track $index) { @if(skill.skill?.tipo ===
+      skillType.HERRAMIENTA) {
+      <div class="skill-container">
+        {{ skill.skill?.nombre }} :
+        <p-rating
+          [ngModel]="skill.dominio"
+          [cancel]="false"
+          [readonly]="true"
+        ></p-rating>
+      </div>
+      } }
+    </div>
+
+    <!--Languages-->
+    <div class="candidate-skills">
+      <h3>{{ 'technical-data.languages' | transloco }}</h3>
+
+      @for (skill of data.skills; track $index) { @if(skill.skill?.tipo ===
+      skillType.IDIOMA) {
+      <div class="skill-container">
+        {{ skill.skill?.nombre }} :
+        <p-rating
+          [ngModel]="skill.dominio"
+          [cancel]="false"
+          [readonly]="true"
+        ></p-rating>
+      </div>
+      } }
+    </div>
+
+    }
+  </ng-template>
+</p-dialog>
