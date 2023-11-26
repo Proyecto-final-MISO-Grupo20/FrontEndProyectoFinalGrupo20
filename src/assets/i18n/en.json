@@ -142,7 +142,9 @@
     "documento": "Document",
     "actions": "Actions",
     "no-exist": "There are not employees",
-    "assign": "Assign To a Project"
+    "assign": "Assign To a Project",
+    "employees-to-project": "Assign employee to project",
+    "select-project": "Select project"
   },
   "profiles": {
     "title": "Profile creation for the project",
@@ -164,8 +166,8 @@
     "skillType": "Skill type",
     "select-skill-type": "Select skill type",
     "accept": "Accept",
-    "add-tool": "Add required tool",
-    "select-tool-name": "Select a tool name",
+    "add": "Add",
+    "select": "Select",
     "languages": "Required languages",
     "list-languages": "Languages list",
     "add-language": "Add required language",
@@ -224,7 +226,15 @@
     "hire-candidate": "Hire candidate",
     "date": "Admission date",
     "enter-months": "Number of months",
-    "money-value": "Contract value"
+    "money-value": "Contract value",
+    "tiempoMeses-required": "Number of months required",
+    "tiempoMeses-max-length": "Maximum number of months length is 2 characters",
+    "tiempoMeses-min-length": "Minimum number of months length is 2 characters",
+    "valorDinero-required": "Money value required ",
+    "valorDinero-max-length": "Maximum money value length is 2 characters",
+    "valorDinero-min-length": "Minimum money value length is 2 characters",
+    "fecha-required": "Date required"
+
   },
   "candidates": {
     "title": "Candidate"
@@ -237,7 +247,16 @@
     "enter-calification": "Enter calification",
     "name": "Name",
     "enter-name": "Enter a name",
-    "comment": "Comment"
+    "comment": "Comment",
+    "nombre-required": "Name required",
+    "nombre-min-length": "Minimum name length is 2 characters",
+    "nombre-max-length": "Maximum name length is 2 characters",
+    "comentario-required": "Comment required",
+    "comentario-min-length": "Minimum comment length is 2 characters",
+    "comentario-max-length": "Maximum comment length is 255 characters",
+    "calificacion-required": "Result required",
+    "calificacion-min-length": "Minimum result length is 1 characters",
+    "calificacion-max-length": "Maximum reesult length is 3 characters"
   },
 
   "home": {

@@ -142,7 +142,9 @@
     "cargo": "Cargo",
     "documento": "Documento",
     "actions": "Acciones",
-    "assign": "Asignar a Proyecto"
+    "assign": "Asignar a Proyecto",
+    "employees-to-project": "Asignar empleado a proyecto",
+    "select-project": "Seleccionar proyecto"
   },
   "profiles": {
     "title": "Creación de perfil para el proyecto",
@@ -224,7 +226,14 @@
     "hire-candidate": "Contratar candidato",
     "date": "Fecha de ingreso",
     "enter-months": "Número de meses",
-    "money-value": "Valor del contrato"
+    "money-value": "Valor del contrato",
+    "tiempoMeses-required": "Número de meses requerido",
+    "tiempoMeses-max-length": "Máximo número de meses es 2 caracteres",
+    "tiempoMeses-min-length": "Mínimo número de meses es 1 caracteres",
+    "valorDinero-required": "Valor en dinero requerido ",
+    "valorDinero-max-length": "Máximo número de caracteres para valor en dinero es 10",
+    "valorDinero-min-length": "Mínimo número de caracteres para valor en dinero es 1",
+    "fecha-required": "Fecha requerida"
   },
   "createTest": {
     "title": "Crear Prueba",
@@ -234,7 +243,16 @@
     "enter-calification": "Ingrese la calificación",
     "name": "Nombre",
     "enter-name": "Ingrese un nombre",
-    "comment": "Comentario"
+    "comment": "Comentario",
+    "nombre-required": "Nombre requerido",
+    "nombre-min-length": "Mínimo número de caracteres para nombre es 3",
+    "nombre-max-length": "Máximo número de caracteres para nombre es 50",
+    "comentario-required": "Comentario requerido",
+    "comentario-min-length": "Mínimo número de caracteres para comentario es 3",
+    "comentario-max-length": "Mínimo número de caracteres para comentario es 255",
+    "calificacion-required": "Resultados requeridos",
+    "calificacion-min-length": "Mínimo número de caracteres para resultados es 1",
+    "calificacion-max-length": "Mínimo número de caracteres para resultados es 3"
   },
   "home": {
     "title": "Inicio"
