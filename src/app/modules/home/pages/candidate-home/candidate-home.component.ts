@@ -49,12 +49,15 @@ export class CandidateHomeComponent implements OnInit {
   }
 
   getOffersData() {
+    this.loading = true;
+
     this.candidateHomeService
       .getOffers()
       .pipe(
         tap((offers) => {
           this.offersData = offers;
           this.filteredData = offers;
+          this.loading = false;
         })
       )
       .subscribe();

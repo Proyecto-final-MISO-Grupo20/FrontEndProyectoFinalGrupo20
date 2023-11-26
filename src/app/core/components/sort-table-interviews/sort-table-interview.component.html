@@ -30,15 +30,29 @@
       <ng-template pTemplate="header">
         <tr>
           @for (column of columns; track column) {
-          <th>
+          <th [pSortableColumn]="column">
             @if (column !== 'id' && column !== 'calificacion') {
 
             {{ 'interviews.' + column | transloco }}
+            <p-sortIcon [field]="column"></p-sortIcon>
 
             }
           </th>
           }
           <th>{{ 'interviews.calificacion' | transloco }}</th>
+        </tr>
+
+        <tr>
+          @for (column of columns; track column) {
+          <th>
+            @if (column !== 'id' && column !== 'calificacion') {
+
+            <p-columnFilter type="text" [field]="column"></p-columnFilter>
+
+            }
+          </th>
+          }
+          <th></th>
         </tr>
       </ng-template>
       <ng-template pTemplate="body" let-data>

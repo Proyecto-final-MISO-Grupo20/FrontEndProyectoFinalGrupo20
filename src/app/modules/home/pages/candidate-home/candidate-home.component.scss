@@ -8,7 +8,7 @@
     }
 
     &-content {
-      @include abstracts.flexbox(inherit, normal, normal, 10rem);
+      @include abstracts.flexbox(inherit, normal, normal, 0);
 
       &-cards {
         @include abstracts.flexbox(column, normal, normal, 2rem);

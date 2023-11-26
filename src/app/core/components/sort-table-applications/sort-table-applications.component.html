@@ -15,6 +15,16 @@
   <ng-template pTemplate="caption">
     <div class="header-container">
       <h3>{{ header | transloco }}</h3>
+
+      <div
+        class="actions__button actions__button--red"
+        [routerLink]="'/offers/' + urlId"
+      >
+        <i
+          class="pi pi-arrow-circle-left"
+          style="color: #fff; font-size: 1.2rem"
+        ></i>
+      </div>
     </div>
   </ng-template>
   }

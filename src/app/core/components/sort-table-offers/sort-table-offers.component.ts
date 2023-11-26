@@ -2,6 +2,8 @@ import { Component, HostListener, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UiModule } from 'ui';
 import { LanguageModule } from 'language';
+import { Offer } from '../../models/offer.model';
+import { OfferState } from 'src/app/modules/offers/utils/offer-state.enum';
 
 @Component({
   selector: 'app-sort-table-offers',
@@ -53,5 +55,17 @@ export class SortTableOffersComponent implements OnInit {
     if (this.data && this.data.length > 0) {
       this.columns = Object.keys(this.data[0]);
     }
+  }
+
+  getSeverity(offer: Offer) {
+    const offerSeverity: any = {
+      [OfferState.DISPONIBLE]: 'success',
+      [OfferState.ASIGNADO]: 'primary',
+      [OfferState.CONTRATADO]: 'warning',
+      [OfferState.EVALUANDO]: 'info',
+      [OfferState.FINALIZADO]: 'danger',
+    };
+
+    return offerSeverity[offer.estado];
   }
 }

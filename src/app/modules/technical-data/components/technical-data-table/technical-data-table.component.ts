@@ -30,6 +30,7 @@ export class TechnicalDataTableComponent implements OnInit {
   @Input() data!: any[];
   @Input() tooltipData!: any[];
   @Input() emptyMessage = 'technical-data.empty';
+  @Input() loading = false;
 
   @Output() showConfirmDialog = new EventEmitter<boolean>();
 

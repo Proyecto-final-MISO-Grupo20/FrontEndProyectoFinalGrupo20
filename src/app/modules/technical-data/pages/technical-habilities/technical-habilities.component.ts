@@ -24,6 +24,7 @@ import { TechnicalDataService } from '../../services/technical-data/technical-da
 export class TechnicalHabilitiesComponent implements OnInit {
   @Input() candidateHabilities$!: Observable<SkillsCandidateDto[]>;
   candidateHabilities!: any[];
+  loading: boolean = false;
 
   habilities!: Skill[];
   technicalHabilitiesService = inject(TechnicalHabilitiesService);
@@ -37,9 +38,15 @@ export class TechnicalHabilitiesComponent implements OnInit {
   }
 
   getHabilities() {
+    this.loading = true;
     this.technicalHabilitiesService
       .getHabilities()
-      .pipe(tap((habilities) => (this.habilities = habilities)))
+      .pipe(
+        tap((habilities) => {
+          this.habilities = habilities;
+          this.loading = false;
+        })
+      )
       .subscribe();
   }
 
