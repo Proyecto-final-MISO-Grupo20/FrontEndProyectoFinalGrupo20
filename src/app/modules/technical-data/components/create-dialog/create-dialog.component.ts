@@ -14,11 +14,12 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { LanguageModule } from 'language';
 
 @Component({
   selector: 'app-create-dialog',
   standalone: true,
-  imports: [CommonModule, UiModule, ReactiveFormsModule],
+  imports: [CommonModule, UiModule, ReactiveFormsModule, LanguageModule],
   templateUrl: './create-dialog.component.html',
   styleUrls: ['./create-dialog.component.scss'],
 })

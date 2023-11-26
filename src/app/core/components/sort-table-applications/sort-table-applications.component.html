@@ -205,10 +205,28 @@
                 class="p-inputtext p-inputwrapper"
                 style="width: 20rem"
               />
-              <label class="p-placeholder" for="tiempo-meses">
-                {{ 'applications.enter-months' | transloco }}
-              </label>
+              <label for="float-input"></label>
             </span>
+            <ng-container *ngIf="registerForm.get('tiempoMeses')?.errors">
+              <p-message
+                *ngIf="
+                  registerForm.get('tiempoMeses')?.hasError('required') &&
+                  registerForm.get('tiempoMeses')?.touched
+                "
+                severity="error"
+                text="{{ 'applications.tiempoMeses-required' | transloco }}"
+              ></p-message>
+              <p-message
+                *ngIf="registerForm.get('tiempoMeses')?.hasError('minlength')"
+                severity="error"
+                text="{{ 'applications.tiempoMeses-min-length' | transloco }}"
+              ></p-message>
+              <p-message
+                *ngIf="registerForm.get('tiempoMeses')?.hasError('maxlength')"
+                severity="error"
+                text="{{ 'applications.tiempoMeses-max-length' | transloco }}"
+              ></p-message>
+            </ng-container>
           </div>
         </div>
         <p></p>
@@ -228,9 +246,58 @@
                 class="p-inputtext p-inputwrapper"
                 style="width: 19.5rem"
               />
-              <label class="p-placeholder" for="valor-dinero">
-                {{ 'applications-money-value' | transloco }}
-              </label>
+              <label for="float-input"></label>
+            </span>
+            <ng-container *ngIf="registerForm.get('valorDinero')?.errors">
+              <p-message
+                *ngIf="
+                  registerForm.get('valorDinero')?.hasError('required') &&
+                  registerForm.get('valorDinero')?.touched
+                "
+                severity="error"
+                text="{{ 'applications.valorDinero-required' | transloco }}"
+              ></p-message>
+              <p-message
+                *ngIf="registerForm.get('valorDinero')?.hasError('minlength')"
+                severity="error"
+                text="{{ 'applications.valorDinero-min-length' | transloco }}"
+              ></p-message>
+              <p-message
+                *ngIf="registerForm.get('valorDinero')?.hasError('maxlength')"
+                severity="error"
+                text="{{ 'applications.valorDinero-max-length' | transloco }}"
+              ></p-message>
+            </ng-container>
+          </div>
+        </div>
+
+        <!-- Calendario para seleccionar la fecha -->
+        <div class="p-field">
+          <label for="date">{{ 'applications.date' | transloco }}</label>
+          <div class="p-input-container">
+            <span class="p-float-label">
+              <div class="card flex justify-content-start">
+                <p-calendar
+                  [(ngModel)]="date"
+                  [showIcon]="true"
+                  id="date"
+                  formControlName="fecha"
+                  placeholder="{{ 'Enter date' | transloco }}"
+                  class="p-inputwrapper"
+                  [style]="{ width: '20rem' }"
+                ></p-calendar>
+                <label for="float-input"></label>
+              </div>
+              <ng-container *ngIf="registerForm.get('fecha')?.errors">
+                <p-message
+                  *ngIf="
+                    registerForm.get('fecha')?.hasError('required') &&
+                    registerForm.get('fecha')?.touched
+                  "
+                  severity="error"
+                  text="{{ 'applications.fecha-required' | transloco }}"
+                ></p-message>
+              </ng-container>
             </span>
           </div>
           <p></p>
@@ -262,6 +329,8 @@
           <p></p>
         </div>
       </form>
+
+      <p></p>
     </div>
   </ng-template>
   <ng-template pTemplate="footer">

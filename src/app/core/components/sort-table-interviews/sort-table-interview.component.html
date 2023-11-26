@@ -19,6 +19,7 @@
           <div
             class="actions__button actions__button--blue"
             [routerLink]="'/interviews/create'"
+            [pTooltip]="'interviews.create-interview' | transloco"
           >
             <i class="pi pi-plus" style="color: #fff; font-size: 1.2rem"></i>
           </div>
@@ -55,19 +56,22 @@
           <td>
             <div class="numeric-column">
               @if (userType === 3) {
-              <div
+                <div
                 class="actions__button actions__button--blue"
                 (click)="handleClick($event, data)"
+                [pTooltip]="data.calificacion > 0 ? ('interviews.view-results' | transloco) : ('interviews.record-results' | transloco)"
               >
                 <i
                   [class]="data.calificacion > 0 ? 'pi pi-eye' : 'pi pi-book'"
                   style="color: #fff; font-size: 1.2rem"
                 ></i>
               </div>
+              
               } @if (userType === 2 && data.calificacion !== '') {
               <div
                 class="actions__button actions__button--blue"
                 (click)="setShowInterviewInformation(true, 'llll')"
+                [pTooltip]="'interviews.view-results' | transloco"
               >
                 <i
                   [class]="'pi pi-eye'"
@@ -159,6 +163,26 @@
             'interviews.comment' | transloco
           }}</label>
         </span>
+        @if ( registerForm.get('comentario')?.hasError('required') &&
+        registerForm.get('comentario')?.touched ) {
+        <p-message
+          severity="error"
+          text="{{ 'interviews.comment-required' | transloco }}"
+        >
+        </p-message>
+        } @if (registerForm.get('comentario')?.hasError('minlength')) {
+        <p-message
+          severity="error"
+          text="{{ 'interviews.comment-min-length' | transloco }}"
+        >
+        </p-message>
+        } @if (registerForm.get('comentario')?.hasError('maxlength')) {
+          <p-message
+            severity="error"
+            text="{{ 'interviews.comment-max-length' | transloco }}"
+          >
+          </p-message>
+          }
       </form>
       <ng-template pTemplate="footer">
         <p-button
@@ -189,16 +213,16 @@
       @if (selectedInterview) {
       <body>
         <div class="container" style="font-size: large">
-          <h2>Resultados entrevista</h2>
+          <h2>{{ 'interviews.results' | transloco }}</h2>
           <p></p>
           <div class="rating">
-            <strong>Calificación:</strong>
+            <strong>{{ 'interviews.score' | transloco }}</strong>
             <span> {{ selectedInterview.calificacion }}</span>
           </div>
           <p></p>
 
           <div class="comment">
-            <strong>Comentario:</strong>
+            <strong>{{ 'interviews.comment' | transloco }}</strong>
             <p>
               {{ selectedInterview.comentario }}
             </p>

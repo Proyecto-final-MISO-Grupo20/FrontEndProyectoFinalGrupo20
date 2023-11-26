@@ -134,7 +134,7 @@
     "enter-email": "Enter employee email",
     "email-required": "Email is required",
     "email-min-length": "Minimum email length is 3 characters",
-    "email-format-error": "No es un email válido",
+    "email-format-error": "It is not a valid email",
     "confirm": "Confirm",
     "confirm-body": "Are you sure you want to exit from the employees creation?",
     "nombre": "Name",
@@ -142,7 +142,9 @@
     "documento": "Document",
     "actions": "Actions",
     "no-exist": "There are not employees",
-    "assign": "Assign To a Project"
+    "assign": "Assign To a Project",
+    "employees-to-project": "Assign employee to project",
+    "select-project": "Select project"
   },
   "profiles": {
     "title": "Profile creation for the project",
@@ -164,8 +166,8 @@
     "skillType": "Skill type",
     "select-skill-type": "Select skill type",
     "accept": "Accept",
-    "add-tool": "Add required tool",
-    "select-tool-name": "Select a tool name",
+    "add": "Add",
+    "select": "Select",
     "languages": "Required languages",
     "list-languages": "Languages list",
     "add-language": "Add required language",
@@ -224,7 +226,14 @@
     "hire-candidate": "Hire candidate",
     "date": "Admission date",
     "enter-months": "Number of months",
-    "money-value": "Contract value"
+    "money-value": "Contract value",
+    "tiempoMeses-required": "Number of months required",
+    "tiempoMeses-max-length": "Maximum number of months length is 2 characters",
+    "tiempoMeses-min-length": "Minimum number of months length is 2 characters",
+    "valorDinero-required": "Money value required ",
+    "valorDinero-max-length": "Maximum money value length is 2 characters",
+    "valorDinero-min-length": "Minimum money value length is 2 characters",
+    "fecha-required": "Date required"
   },
   "candidates": {
     "title": "Candidate"
@@ -237,7 +246,16 @@
     "enter-calification": "Enter calification",
     "name": "Name",
     "enter-name": "Enter a name",
-    "comment": "Comment"
+    "comment": "Comment",
+    "nombre-required": "Name required",
+    "nombre-min-length": "Minimum name length is 2 characters",
+    "nombre-max-length": "Maximum name length is 2 characters",
+    "comentario-required": "Comment required",
+    "comentario-min-length": "Minimum comment length is 2 characters",
+    "comentario-max-length": "Maximum comment length is 255 characters",
+    "calificacion-required": "Result required",
+    "calificacion-min-length": "Minimum result length is 1 characters",
+    "calificacion-max-length": "Maximum reesult length is 3 characters"
   },
 
   "home": {
@@ -248,7 +266,7 @@
     "actions": "Actions",
     "add-score": "Add score",
     "select-interview-name": "Select interview name",
-    "score": "Score",
+    "score": "Score: ",
     "list": "Enterview list",
     "titulo": "Title",
     "fecha": "Date",
@@ -268,8 +286,15 @@
     "date-required": "Date required",
     "confirm": "Confirm",
     "confirm-body": "Are you sure you want to exit from the interview creation?",
-    "comment": "Comment",
-    "no-exists": "Not Interviews Found"
+    "comment": "Comment:",
+    "no-exists": "Not Interviews Found",
+    "create-interview": "Create interview",
+    "view-results": "View results",
+    "record-results": "Record results",
+    "results": "Results",
+    "comment-required": "Comment required",
+    "comment-min-length": "Minimum comment length is 3 characters",
+    "comment-max-length": "Maximum comment length is 255 characters"
   },
   "participants": {
     "list": "List of participants",
@@ -279,7 +304,9 @@
     "select-user": "Select user",
     "user": "User",
     "no-participant": "There are currently no participants",
-    "actions": "Actions"
+    "actions": "Actions",
+    "nombre": "Participant name",
+    "email": "Email"
   },
   "tests": {
     "title": "Tests",
@@ -294,12 +321,17 @@
   },
   "technical-data": {
     "title": "Technical Information",
-    "habilities": "Habilities",
+    "habilities": "Skills",
     "tools": "Tools",
     "languages": "Languages",
     "empty": "Not associated habilities",
     "empty-tools": "Not associated tools",
-    "empty-languages": "Not associated languages"
+    "empty-languages": "Not associated languages",
+    "select": "Select",
+    "assign": "Assign",
+    "assessment": "Assessment",
+    "create-new": "Create new",
+    "delete": "Delete"
   },
   "business-home": {
     "search-result": "Search Result",

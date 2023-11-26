@@ -16,6 +16,7 @@
       <div
         class="actions__button actions__button--blue"
         (click)="setShowConfirmDialog(true)"
+        [pTooltip]="'technical-data.create-new' | transloco"
       >
         <i class="pi pi-plus" style="color: #fff; font-size: 1.2rem"></i>
       </div>
@@ -55,7 +56,8 @@
               style="color: #fff; font-size: 1.2rem"
             ></i>
           </div> -->
-          <div class="actions__button actions__button--red">
+          <div class="actions__button actions__button--red"
+          [pTooltip]="'technical-data.delete' | transloco">
             <i class="pi pi-trash" style="color: #fff; font-size: 1.2rem"></i>
           </div>
         </div>

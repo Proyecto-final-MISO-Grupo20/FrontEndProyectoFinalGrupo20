@@ -152,10 +152,10 @@ export class RegisterBusinessFormComponent implements OnInit {
   setStepItems() {
     this.stepsData = [
       {
-        label: 'Información General',
+        label: 'General Information',
       },
       {
-        label: 'Cuenta',
+        label: 'Account',
       },
     ];
   }

@@ -66,8 +66,22 @@ export class SortTableapplicationsComponent implements OnInit {
       skillName: ['', Validators.required],
       skillType: ['', Validators.required],
       fecha: ['', Validators.required],
-      tiempoMeses: ['', Validators.required],
-      valorDinero: ['', [Validators.required, Validators.maxLength(10)]],
+      tiempoMeses: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(3),
+          Validators.maxLength(50),
+        ],
+      ],
+      valorDinero: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(1),
+          Validators.maxLength(10),
+        ],
+      ],
     });
   }
 

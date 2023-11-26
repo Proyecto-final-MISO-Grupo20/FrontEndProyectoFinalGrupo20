@@ -85,7 +85,14 @@ export class SortTableInterviewComponent implements OnInit, OnChanges {
   initializeForm() {
     this.registerForm = this.formBuilder.group({
       calificacion: ['', [Validators.required, Validators.maxLength(2)]],
-      comentario: ['', [Validators.required, Validators.maxLength(255)]],
+      comentario: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(3),
+          Validators.maxLength(255),
+        ],
+      ],
     });
   }
 
