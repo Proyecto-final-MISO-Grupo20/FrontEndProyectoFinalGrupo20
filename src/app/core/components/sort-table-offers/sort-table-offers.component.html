@@ -90,7 +90,8 @@
         <div class="numeric-column">
           {{ data[column].length }}
 
-          @if (data[column].length > 0) {
+          @if (data[column].length > 0 && data.estado ===
+          offersState.DISPONIBLE) {
           <div
             class="actions__button actions__button--blue"
             [routerLink]="'/applications/' + data.id"
@@ -105,6 +106,7 @@
 
       <!-- Candidate Grade-->
       <td>
+        @if(data.estado === offersState.CONTRATADO) {
         <div class="actions-container">
           <div
             (click)="showAssignPerformanceDialog()"
@@ -117,6 +119,7 @@
             ></i>
           </div>
         </div>
+        }
       </td>
 
       <td>

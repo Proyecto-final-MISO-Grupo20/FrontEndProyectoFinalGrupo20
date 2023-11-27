@@ -41,6 +41,10 @@ export class SortTableOffersComponent implements OnInit {
   gradeForm!: FormGroup;
   formBuilder = inject(FormBuilder);
 
+  get offersState() {
+    return OfferState;
+  }
+
   @HostListener('window:resize', ['$event'])
   onResize(event: Event): void {
     this.checkScreenWidth();

@@ -14,6 +14,7 @@ import { SkillType } from '../../../modules/technical-data/models/skills';
 import { ApplicationsService } from '../../../modules/applications/services/applications.service';
 import { MessageService } from 'primeng/api';
 import { Router } from '@angular/router';
+import { OfferState } from 'src/app/modules/offers/utils/offer-state.enum';
 
 @Component({
   selector: 'app-sort-table-applications',
@@ -62,6 +63,10 @@ export class SortTableapplicationsComponent implements OnInit {
 
   get skillTypeEnum() {
     return SkillType;
+  }
+
+  get offersState() {
+    return OfferState;
   }
 
   ngOnInit(): void {
@@ -143,7 +148,6 @@ export class SortTableapplicationsComponent implements OnInit {
       ),
     };
 
-    console.log(result);
     return result;
   }
 
@@ -152,7 +156,9 @@ export class SortTableapplicationsComponent implements OnInit {
 
     this.applicationsService
       .createContract(this.urlId, {
-        ...this.registerForm.value,
+        meses: this.registerForm.value.meses,
+        valor: this.registerForm.value.valor,
+        fecha_inicio: this.setDateStructure(),
         candidato_id: this.selectedCandidate.id,
       })
       .subscribe({
@@ -178,5 +184,22 @@ export class SortTableapplicationsComponent implements OnInit {
 
   show(severity: string, summary: string, detail: string) {
     this.messageService.add({ severity, summary, detail });
+  }
+
+  setDateStructure() {
+    const originalTimestamp = this.registerForm.value.fecha_inicio;
+
+    // Parse the original timestamp
+    const parsedDate = new Date(originalTimestamp);
+
+    // Extract year, month, and day
+    const year = parsedDate.getUTCFullYear();
+    const month = (parsedDate.getUTCMonth() + 1).toString().padStart(2, '0'); // Months are zero-based
+    const day = parsedDate.getUTCDate().toString().padStart(2, '0');
+
+    // Create the desired structure
+    const convertedStructure = `${year}${month}${day}`;
+
+    return convertedStructure;
   }
 }
