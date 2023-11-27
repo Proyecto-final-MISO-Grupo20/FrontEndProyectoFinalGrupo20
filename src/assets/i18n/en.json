@@ -197,7 +197,9 @@
     "candidate": "Candidate profile",
     "candidate-skill": "Candidate skills",
     "confirm": "Confirm",
-    "confirm-body": "Are you sure you want to exit from the employees creation?"
+    "confirm-body": "Are you sure you want to exit from the employees creation?",
+    "performance": "Performance",
+    "assign-performance": "Assign Performance"
   },
   "offers": {
     "title": "Offers",
@@ -207,7 +209,11 @@
     "profiles": "Profiles",
     "estado": "Status",
     "perfil": "Profile",
-    "postulations": "Postulations"
+    "postulations": "Postulations",
+    "comment": "Comment",
+    "grade": "Grade",
+    "save-grade": "Save Grade",
+    "grade-candidate": "Performance Review"
   },
   "applications": {
     "title": "Applications",

@@ -166,6 +166,7 @@
     "skillType": "Tipo de habilidad",
     "select-skill-type": "Seleccione el tipo de habilidad",
     "accept": "Aceptar",
+    "add": "Agregar",
     "add-tool": "Agregar herramienta requerida",
     "select-tool-name": "Seleccione el nombre de la habilidad",
     "languages": "Idiomas requeridas",
@@ -197,7 +198,9 @@
     "candidate": "Perfil del candidato",
     "candidate-skill": "Habilidades del candidato",
     "confirm": "Confirmación",
-    "confirm-body": "¿Desea salir de la creación de empleados?"
+    "confirm-body": "¿Desea salir de la creación de empleados?",
+    "performance": "Desempeño",
+    "assign-performance": "Calificar Desempeño"
   },
   "offers": {
     "title": "Ofertas",
@@ -207,7 +210,11 @@
     "profiles": "Postulaciones",
     "estado": "Estado",
     "perfil": "Profile",
-    "postulations": "Postulaciones"
+    "postulations": "Postulaciones",
+    "comment": "Comentario",
+    "grade": "Calificación",
+    "save-grade": "Calificar",
+    "grade-candidate": "Calificación De Desempeño"
   },
   "applications": {
     "title": "Postulaciones",

@@ -10,6 +10,7 @@ import {
 } from 'rxjs';
 import { ApiService } from '../../../core/services/api/api.service';
 import { Offer } from '../models/offer';
+import { CreateGradeDto } from '../dtos/create-grade.dto';
 
 @Injectable({
   providedIn: 'root',
@@ -54,4 +55,9 @@ export class OffersService {
   getPostulationsByOffer(offerId: number) {
     return this.#api.get(`pruebas/${offerId}/postulaciones`);
   }
+
+  // createGrade(): Observable<CreateGradeDto> {
+  //   return this.#api.post()
+
+  // }
 }

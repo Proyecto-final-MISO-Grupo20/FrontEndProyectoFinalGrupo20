@@ -11,10 +11,14 @@ import {
 } from '@angular/forms';
 import { CandidatesSkills } from './../../../modules/home/models/candidates-skills';
 import { SkillType } from '../../../modules/technical-data/models/skills';
+import { ApplicationsService } from '../../../modules/applications/services/applications.service';
+import { MessageService } from 'primeng/api';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sort-table-applications',
   standalone: true,
+  providers: [MessageService],
   imports: [
     CommonModule,
     UiModule,
@@ -34,6 +38,11 @@ export class SortTableapplicationsComponent implements OnInit {
 
   registerForm!: FormGroup;
   formBuilder = inject(FormBuilder);
+  applicationsService = inject(ApplicationsService);
+  messageService = inject(MessageService);
+  router = inject(Router);
+  buttonLoading: boolean = false;
+  selectedCandidate!: CandidatesSkills;
 
   columns!: string[];
   showConfirmDialog = false;
@@ -63,10 +72,8 @@ export class SortTableapplicationsComponent implements OnInit {
 
   initializeForm() {
     this.registerForm = this.formBuilder.group({
-      skillName: ['', Validators.required],
-      skillType: ['', Validators.required],
-      fecha: ['', Validators.required],
-      tiempoMeses: [
+      fecha_inicio: ['', Validators.required],
+      meses: [
         '',
         [
           Validators.required,
@@ -74,7 +81,7 @@ export class SortTableapplicationsComponent implements OnInit {
           Validators.maxLength(50),
         ],
       ],
-      valorDinero: [
+      valor: [
         '',
         [
           Validators.required,
@@ -91,7 +98,8 @@ export class SortTableapplicationsComponent implements OnInit {
     this.currentCandidateTools = this.getSkills(candidate);
   }
 
-  setShowHireDialog(show: boolean) {
+  setShowHireDialog(show: boolean, candidate: CandidatesSkills) {
+    this.selectedCandidate = candidate;
     this.showHireDialog = show;
   }
 
@@ -137,5 +145,38 @@ export class SortTableapplicationsComponent implements OnInit {
 
     console.log(result);
     return result;
+  }
+
+  onSubmit() {
+    this.buttonLoading = true;
+
+    this.applicationsService
+      .createContract(this.urlId, {
+        ...this.registerForm.value,
+        candidato_id: this.selectedCandidate.id,
+      })
+      .subscribe({
+        next: (res) => {
+          this.show('success', 'Contrato', 'Se realizó el contrato');
+
+          this.router.navigateByUrl(`offers/${this.urlId}`);
+
+          this.buttonLoading = false;
+        },
+        error: (err) => {
+          this.show(
+            'error',
+            'Contrato',
+            'Ocurrió un error al realizar el contrato'
+          );
+
+          this.buttonLoading = false;
+        },
+        complete: () => (this.buttonLoading = false),
+      });
+  }
+
+  show(severity: string, summary: string, detail: string) {
+    this.messageService.add({ severity, summary, detail });
   }
 }

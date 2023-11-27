@@ -1,32 +1,21 @@
 @if (isMobile) {
-<p-accordion
-  class="w-full"
- 
-  expandIcon="pi pi-bars"
-  collapseIcon="pi pi-minus"
->
+<p-accordion class="w-full" expandIcon="pi pi-bars" collapseIcon="pi pi-minus">
   <p-accordionTab>
     <ng-template pTemplate="header"> </ng-template>
     <ng-template pTemplate="content">
       <ul class="items-list list-responsive">
         @for (item of itemList; track item) {
-  <li
-         
-          [routerLink]="item"
-          routerLinkActive="link-active"
-        >
+        <li [routerLink]="item" routerLinkActive="link-active">
           {{ item + '.title' | transloco }}
         </li>
-}
+        }
         <lib-language-picker></lib-language-picker>
         <i (click)="logout()" class="pi pi-sign-out logout"></i>
       </ul>
     </ng-template>
   </p-accordionTab>
 </p-accordion>
-}
-
-@if (!isMobile) {
+} @if (!isMobile) {
 <section class="header-wrapper">
   <div class="header-container">
     <img
@@ -35,20 +24,16 @@
       class="header__image"
     />
     @if (itemList) {
-<div class="items-section">
+    <div class="items-section">
       <ul class="items-list">
         @for (item of itemList; track item) {
-  <li
-         
-          [routerLink]="item"
-          routerLinkActive="link-active"
-        >
+        <li [routerLink]="item" routerLinkActive="link-active">
           {{ item + '.title' | transloco }}
         </li>
-}
+        }
       </ul>
     </div>
-}
+    }
 
     <lib-language-picker></lib-language-picker>
 
