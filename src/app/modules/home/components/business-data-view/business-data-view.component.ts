@@ -7,21 +7,30 @@ import { Subscription, tap } from 'rxjs';
 import { BusinessHomeService } from '../../services/business-home/business-home.service';
 import { CandidatesSkills } from '../../models/candidates-skills';
 import { SkillType } from '../../../technical-data/models/skills';
+import { BusinessDataDialogComponent } from '../business-data-dialog/business-data-dialog.component';
 
 @Component({
   selector: 'app-business-data-view',
   standalone: true,
-  imports: [CommonModule, UiModule, LanguageModule, FormsModule],
+  imports: [
+    CommonModule,
+    UiModule,
+    LanguageModule,
+    FormsModule,
+    BusinessDataDialogComponent,
+  ],
   templateUrl: './business-data-view.component.html',
   styleUrls: ['./business-data-view.component.scss'],
 })
 export class BusinessDataViewComponent implements OnInit {
-  @Input() data!: any;
+  @Input() data!: CandidatesSkills[];
   @Input() loading = false;
 
   businessHomeService = inject(BusinessHomeService);
   dataSubsctiption!: Subscription;
   searcher!: string;
+  dialogVisible: boolean = false;
+  selectedCandidate!: CandidatesSkills;
 
   ngOnInit() {
     this.dataSubsctiption = this.businessHomeService.filteredData$
@@ -62,5 +71,10 @@ export class BusinessDataViewComponent implements OnInit {
       ...this.businessHomeService.getActiveFilters(),
       search: search,
     });
+  }
+
+  showDialog(candidate: CandidatesSkills) {
+    this.selectedCandidate = candidate;
+    this.dialogVisible = true;
   }
 }

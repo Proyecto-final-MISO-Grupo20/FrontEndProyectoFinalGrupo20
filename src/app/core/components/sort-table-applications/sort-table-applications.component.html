@@ -15,6 +15,16 @@
   <ng-template pTemplate="caption">
     <div class="header-container">
       <h3>{{ header | transloco }}</h3>
+
+      <div
+        class="actions__button actions__button--red"
+        [routerLink]="'/offers/' + urlId"
+      >
+        <i
+          class="pi pi-arrow-circle-left"
+          style="color: #fff; font-size: 1.2rem"
+        ></i>
+      </div>
     </div>
   </ng-template>
   }
@@ -39,6 +49,7 @@
         <p-columnFilter type="text" [field]="column"></p-columnFilter>
       </th>
       } }
+      <th></th>
       <th></th>
       <th></th>
     </tr>
@@ -84,7 +95,7 @@
           @if (data.skills.length > 0) {
           <div
             class="actions__button actions__button--blue"
-            (click)="setShowHireDialog(true)"
+            (click)="setShowHireDialog(true, data)"
           >
             <i class="pi pi-check" style="color: #fff; font-size: 1.2rem"></i>
           </div>
@@ -172,90 +183,107 @@
   header="Header"
   [(visible)]="showHireDialog"
   [breakpoints]="{ '960px': '75vw' }"
-  [style]="{ width: '40vw', height: '200vw' }"
+  [style]="{ width: '40vw' }"
   [draggable]="false"
   [resizable]="false"
   position="center"
 >
   <ng-template pTemplate="header">
-    <span style="font-size: large; font-weight: bolder" class="text-xl font-bold">
+    <span
+      style="font-size: large; font-weight: bolder"
+      class="text-xl font-bold header-text"
+    >
       {{ 'applications.hire-candidate' | transloco }}
     </span>
   </ng-template>
   <ng-template pTemplate="body">
     <div class="dialog-body">
-      <form [formGroup]="registerForm" class="register__form">
+      <form
+        [formGroup]="registerForm"
+        class="register__form"
+        (ngSubmit)="onSubmit()"
+      >
         <p class="skill-text"></p>
-      
+
         <!-- Campo para ingresar el tiempo en meses -->
         <div class="p-field">
-          <label for="tiempo-meses">{{ 'applications.enter-months' | transloco }}</label>
+          <label for="tiempo-meses">{{
+            'applications.enter-months' | transloco
+          }}</label>
           <div class="p-input-container">
             <span class="p-float-label">
               <input
                 id="tiempo-meses"
                 type="number"
-                formControlName="tiempoMeses"
+                formControlName="meses"
                 class="p-inputtext p-inputwrapper"
-                style="width: 20rem;"
+                style="width: 20rem"
               />
               <label for="float-input"></label>
             </span>
-            <ng-container *ngIf="registerForm.get('tiempoMeses')?.errors">
+            <ng-container *ngIf="registerForm.get('meses')?.errors">
               <p-message
-                *ngIf="registerForm.get('tiempoMeses')?.hasError('required') && registerForm.get('tiempoMeses')?.touched"
+                *ngIf="
+                  registerForm.get('meses')?.hasError('required') &&
+                  registerForm.get('meses')?.touched
+                "
                 severity="error"
                 text="{{ 'applications.tiempoMeses-required' | transloco }}"
               ></p-message>
               <p-message
-                *ngIf="registerForm.get('tiempoMeses')?.hasError('minlength')"
+                *ngIf="registerForm.get('meses')?.hasError('minlength')"
                 severity="error"
                 text="{{ 'applications.tiempoMeses-min-length' | transloco }}"
               ></p-message>
               <p-message
-                *ngIf="registerForm.get('tiempoMeses')?.hasError('maxlength')"
+                *ngIf="registerForm.get('meses')?.hasError('maxlength')"
                 severity="error"
                 text="{{ 'applications.tiempoMeses-max-length' | transloco }}"
               ></p-message>
             </ng-container>
           </div>
         </div>
-      
+
         <!-- Campo para agregar el valor en dinero -->
         <div class="p-field">
-          <label for="valor-dinero">{{ 'applications.money-value' | transloco }}</label>
+          <label for="valor-dinero">{{
+            'applications.money-value' | transloco
+          }}</label>
           <div class="p-input-container">
             <span class="p-float-label">
-              <span class="currency-symbol">$</span>
+              <!-- <span class="currency-symbols">$</span> -->
               <input
                 id="valor-dinero"
                 type="text"
-                formControlName="valorDinero"
+                formControlName="valor"
                 class="p-inputtext p-inputwrapper"
-                style="width: 19.5rem;"
+                style="width: 19.5rem"
               />
               <label for="float-input"></label>
             </span>
-            <ng-container *ngIf="registerForm.get('valorDinero')?.errors">
+            <ng-container *ngIf="registerForm.get('valor')?.errors">
               <p-message
-                *ngIf="registerForm.get('valorDinero')?.hasError('required') && registerForm.get('valorDinero')?.touched"
+                *ngIf="
+                  registerForm.get('valor')?.hasError('required') &&
+                  registerForm.get('valor')?.touched
+                "
                 severity="error"
                 text="{{ 'applications.valorDinero-required' | transloco }}"
               ></p-message>
               <p-message
-                *ngIf="registerForm.get('valorDinero')?.hasError('minlength')"
+                *ngIf="registerForm.get('valor')?.hasError('minlength')"
                 severity="error"
                 text="{{ 'applications.valorDinero-min-length' | transloco }}"
               ></p-message>
               <p-message
-                *ngIf="registerForm.get('valorDinero')?.hasError('maxlength')"
+                *ngIf="registerForm.get('valor')?.hasError('maxlength')"
                 severity="error"
                 text="{{ 'applications.valorDinero-max-length' | transloco }}"
               ></p-message>
             </ng-container>
           </div>
         </div>
-      
+
         <!-- Calendario para seleccionar la fecha -->
         <div class="p-field">
           <label for="date">{{ 'applications.date' | transloco }}</label>
@@ -266,58 +294,41 @@
                   [(ngModel)]="date"
                   [showIcon]="true"
                   id="date"
-                  formControlName="fecha"
+                  formControlName="fecha_inicio"
                   placeholder="{{ 'Enter date' | transloco }}"
                   class="p-inputwrapper"
                   [style]="{ width: '20rem' }"
+                  appendTo="body"
                 ></p-calendar>
-                <label for="float-input"></label>
               </div>
-              <ng-container *ngIf="registerForm.get('fecha')?.errors">
-                <p-message
-                  *ngIf="registerForm.get('fecha')?.hasError('required') && registerForm.get('fecha')?.touched"
-                  severity="error"
-                  text="{{ 'applications.fecha-required' | transloco }}"
-                ></p-message>
-              </ng-container>
+              <label class="p-placeholder" for="date">
+                {{ 'Enter date' | transloco }}
+              </label>
             </span>
           </div>
         </div>
+
+        <div class="buttons-container">
+          <p-button
+            [loading]="buttonLoading"
+            type="submit"
+            [disabled]="!registerForm.valid"
+            label="{{ 'accept' | transloco }}"
+            icon="pi pi-check"
+            styleClass="p-button-text"
+          ></p-button>
+          <p-button
+            label="{{ 'cancel' | transloco }}"
+            icon="pi pi-times"
+            styleClass="p-button-text"
+            (click)="returnToApplications()"
+          ></p-button>
+        </div>
       </form>
-      
-        <p></p>
-      
-      
+
+      <p></p>
     </div>
   </ng-template>
-  <ng-template pTemplate="footer">
-    <p-button
-      icon="pi pi-check"
-      label="{{ 'exit' | transloco }}"
-      styleClass="p-button-text"
-      (onClick)="returnToApplications()"
-    ></p-button>
-  </ng-template>
-  <ng-template pTemplate="footer">
-    <div class="p-d-flex p-jc-between">
-      <p-button
-        label="{{ 'Accept' | transloco }}"
-        icon="pi pi-check"
-        styleClass="p-button-text"
-        (click)="returnToApplications()"
-      ></p-button>
-      <p-button
-        label="{{ 'Cancel' | transloco }}"
-        icon="pi pi-times"
-        styleClass="p-button-text"
-        (click)="returnToApplications()"
-      ></p-button>
-    </div>
-  </ng-template>
-  
 </p-dialog>
 
-
-
-
-
+<p-toast></p-toast>

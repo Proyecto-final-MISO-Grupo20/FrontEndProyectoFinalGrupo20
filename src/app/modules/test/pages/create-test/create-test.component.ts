@@ -48,21 +48,26 @@ export class CreateTestComponent implements OnInit {
 
   initializeForm() {
     this.resultsForm = this.formBuilder.group({
-      nombre: ['', [
-        Validators.required,
-        Validators.minLength(3),
-        Validators.maxLength(50),
-      ],],
-      comentario: ['', [
-        Validators.required,
-        Validators.minLength(3),
-        Validators.maxLength(255),
-      ],],
-      calificacion: ['', [
-        Validators.required,
-        Validators.minLength(1),
-        Validators.maxLength(3),
-      ],],
+      nombre: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(3),
+          Validators.maxLength(50),
+        ],
+      ],
+      comentario: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(3),
+          Validators.maxLength(255),
+        ],
+      ],
+      calificacion: [
+        '',
+        [Validators.required, Validators.minLength(1), Validators.maxLength(3)],
+      ],
     });
   }
 

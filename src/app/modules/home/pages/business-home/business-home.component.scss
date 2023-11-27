@@ -16,3 +16,17 @@
     }
   }
 }
+
+@media (max-width: 768px) {
+  .business {
+    &-home {
+      &-content {
+        display: block;
+
+        &-cards {
+          display: none;
+        }
+      }
+    }
+  }
+}

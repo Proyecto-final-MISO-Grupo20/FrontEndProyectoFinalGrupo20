@@ -1,4 +1,5 @@
 <p-table
+  styleClass="p-datatable-striped"
   responsiveLayout="stack"
   [breakpoint]="'960px'"
   [paginator]="true"
@@ -10,7 +11,7 @@
   [ngClass]="{ 'table-style': true }"
 >
   @if (header) {
-<ng-template pTemplate="caption">
+  <ng-template pTemplate="caption">
     <div class="header-container">
       <h3></h3>
       <div
@@ -22,32 +23,47 @@
       </div>
     </div>
   </ng-template>
-}
+  }
   <ng-template pTemplate="header" let-data>
     <tr>
       @for (column of columns; track column) {
-  <th>{{ column }}</th>
-}
+      <th [pSortableColumn]="column">
+        {{ column }}
+        <p-sortIcon [field]="column"></p-sortIcon>
+      </th>
+      }
       <th>Actions</th>
+    </tr>
+
+    <tr>
+      @for (column of columns; track column) {
+      <th>
+        @if (column !== 'empresaId' && column !== 'id' && column !== 'profiles')
+        {
+
+        <p-columnFilter type="text" [field]="column"></p-columnFilter>
+
+        }
+      </th>
+      }
+      <th></th>
     </tr>
   </ng-template>
   <ng-template pTemplate="body" let-data>
     <tr>
       @for (column of columns; track column) {
-  <td>
+      <td>
         @if (column !== 'dominio') {
-<div>
+        <div>
           {{ data[column] }}
         </div>
-}
-
-        @if (column === 'dominio') {
-<div class="numeric-column">
+        } @if (column === 'dominio') {
+        <div class="numeric-column">
           <p-rating [ngModel]="data[column]" [cancel]="false"></p-rating>
         </div>
-}
+        }
       </td>
-}
+      }
       <td>
         <div class="actions-container">
           <!-- <div class="actions__button actions__button--blue">
@@ -56,8 +72,10 @@
               style="color: #fff; font-size: 1.2rem"
             ></i>
           </div> -->
-          <div class="actions__button actions__button--red"
-          [pTooltip]="'technical-data.delete' | transloco">
+          <div
+            class="actions__button actions__button--red"
+            [pTooltip]="'technical-data.delete' | transloco"
+          >
             <i class="pi pi-trash" style="color: #fff; font-size: 1.2rem"></i>
           </div>
         </div>
@@ -67,7 +85,16 @@
 
   <ng-template pTemplate="emptymessage">
     <tr>
-      <td>{{ emptyMessage | transloco }}</td>
+      @if (!loading) {
+      <td>{{ 'projects.no-exist' | transloco }}</td>
+      } @if (loading) {
+      <td>
+        <p-progressSpinner
+          styleClass="w-4rem h-4rem"
+          animationDuration=".5s"
+        ></p-progressSpinner>
+      </td>
+      }
     </tr>
   </ng-template>
 </p-table>

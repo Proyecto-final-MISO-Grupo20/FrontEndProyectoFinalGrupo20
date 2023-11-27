@@ -1,10 +1,18 @@
 @use '/src/styles/abstracts';
 
-.home {
-  &-view {
-    @include abstracts.flexbox(column, space-evenly, center, 0);
-  }
-  &-title {
-    color: abstracts.$primary;
+.business {
+  &-home {
+    &-header {
+      text-align: center;
+      color: abstracts.$primary;
+    }
+
+    &-content {
+      @include abstracts.flexbox(inherit, normal, normal, 0);
+
+      &-cards {
+        @include abstracts.flexbox(column, normal, normal, 2rem);
+      }
+    }
   }
 }

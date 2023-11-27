@@ -11,10 +11,15 @@ import {
 } from '@angular/forms';
 import { CandidatesSkills } from './../../../modules/home/models/candidates-skills';
 import { SkillType } from '../../../modules/technical-data/models/skills';
+import { ApplicationsService } from '../../../modules/applications/services/applications.service';
+import { MessageService } from 'primeng/api';
+import { Router } from '@angular/router';
+import { OfferState } from 'src/app/modules/offers/utils/offer-state.enum';
 
 @Component({
   selector: 'app-sort-table-applications',
   standalone: true,
+  providers: [MessageService],
   imports: [
     CommonModule,
     UiModule,
@@ -34,6 +39,11 @@ export class SortTableapplicationsComponent implements OnInit {
 
   registerForm!: FormGroup;
   formBuilder = inject(FormBuilder);
+  applicationsService = inject(ApplicationsService);
+  messageService = inject(MessageService);
+  router = inject(Router);
+  buttonLoading: boolean = false;
+  selectedCandidate!: CandidatesSkills;
 
   columns!: string[];
   showConfirmDialog = false;
@@ -55,6 +65,10 @@ export class SortTableapplicationsComponent implements OnInit {
     return SkillType;
   }
 
+  get offersState() {
+    return OfferState;
+  }
+
   ngOnInit(): void {
     this.setColumns();
     this.checkScreenWidth();
@@ -63,10 +77,8 @@ export class SortTableapplicationsComponent implements OnInit {
 
   initializeForm() {
     this.registerForm = this.formBuilder.group({
-      skillName: ['', Validators.required],
-      skillType: ['', Validators.required],
-      fecha: ['', Validators.required],
-      tiempoMeses: [
+      fecha_inicio: ['', Validators.required],
+      meses: [
         '',
         [
           Validators.required,
@@ -74,7 +86,14 @@ export class SortTableapplicationsComponent implements OnInit {
           Validators.maxLength(50),
         ],
       ],
-      valorDinero: ['',[Validators.required, Validators.minLength(1), Validators.maxLength(10)]],
+      valor: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(1),
+          Validators.maxLength(10),
+        ],
+      ],
     });
   }
 
@@ -84,9 +103,9 @@ export class SortTableapplicationsComponent implements OnInit {
     this.currentCandidateTools = this.getSkills(candidate);
   }
 
-  setShowHireDialog(show: boolean) {
+  setShowHireDialog(show: boolean, candidate: CandidatesSkills) {
+    this.selectedCandidate = candidate;
     this.showHireDialog = show;
-
   }
 
   checkScreenWidth(): void {
@@ -129,7 +148,58 @@ export class SortTableapplicationsComponent implements OnInit {
       ),
     };
 
-    console.log(result);
     return result;
+  }
+
+  onSubmit() {
+    this.buttonLoading = true;
+
+    this.applicationsService
+      .createContract(this.urlId, {
+        meses: this.registerForm.value.meses,
+        valor: this.registerForm.value.valor,
+        fecha_inicio: this.setDateStructure(),
+        candidato_id: this.selectedCandidate.id,
+      })
+      .subscribe({
+        next: (res) => {
+          this.show('success', 'Contrato', 'Se realizó el contrato');
+
+          this.router.navigateByUrl(`offers/${this.urlId}`);
+
+          this.buttonLoading = false;
+        },
+        error: (err) => {
+          this.show(
+            'error',
+            'Contrato',
+            'Ocurrió un error al realizar el contrato'
+          );
+
+          this.buttonLoading = false;
+        },
+        complete: () => (this.buttonLoading = false),
+      });
+  }
+
+  show(severity: string, summary: string, detail: string) {
+    this.messageService.add({ severity, summary, detail });
+  }
+
+  setDateStructure() {
+    const originalTimestamp = this.registerForm.value.fecha_inicio;
+
+    // Parse the original timestamp
+    const parsedDate = new Date(originalTimestamp);
+
+    // Extract year, month, and day
+    const year = parsedDate.getUTCFullYear();
+    const month = (parsedDate.getUTCMonth() + 1).toString().padStart(2, '0'); // Months are zero-based
+    const day = parsedDate.getUTCDate().toString().padStart(2, '0');
+
+    // Create the desired structure
+    const convertedStructure = `${year}${month}${day}`;
+
+    return convertedStructure;
   }
 }

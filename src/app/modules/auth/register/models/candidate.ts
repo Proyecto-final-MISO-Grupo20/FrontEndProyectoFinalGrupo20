@@ -1,3 +1,5 @@
+import { Skill } from '../../../technical-data/models/skills';
+
 export interface Candidate {
   nombre: string;
   tipoDocumento: number;
@@ -8,4 +10,5 @@ export interface Candidate {
   fechaNacimiento: Date;
   telefono: number;
   pais: string;
+  skills?: Skill;
 }

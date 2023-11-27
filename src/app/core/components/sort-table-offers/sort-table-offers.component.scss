@@ -31,3 +31,14 @@
 .numeric-column {
   @include abstracts.flexbox(row, space-evenly, center, 0);
 }
+
+.login {
+  &__form {
+    @include abstracts.flexbox(column, space-between, normal, 2rem);
+  }
+}
+
+.buttons-container {
+  display: flex;
+  gap: 2rem;
+}

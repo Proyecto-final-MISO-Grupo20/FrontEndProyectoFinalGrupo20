@@ -19,6 +19,7 @@ import { CardModule } from 'primeng/card';
 import { CheckboxModule } from 'primeng/checkbox';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { TooltipModule } from 'primeng/tooltip';
+import { ToastModule } from 'primeng/toast';
 
 @NgModule({
   imports: [
@@ -43,6 +44,7 @@ import { TooltipModule } from 'primeng/tooltip';
     CheckboxModule,
     ProgressSpinnerModule,
     TooltipModule,
+    ToastModule,
   ],
   exports: [
     DropdownModule,
@@ -65,6 +67,7 @@ import { TooltipModule } from 'primeng/tooltip';
     CheckboxModule,
     ProgressSpinnerModule,
     TooltipModule,
+    ToastModule,
   ],
 })
 export class UiModule {}

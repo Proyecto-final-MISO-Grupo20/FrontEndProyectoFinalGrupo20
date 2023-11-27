@@ -1,4 +1,13 @@
-<div class="home-view">
-  <h2 class="home-title">Perfiles Solicitados</h2>
-  <app-candidate-data-view [data]="offersData"></app-candidate-data-view>
+<h2 class="business-home-header">
+  {{ 'business-home.search-result' | transloco }}
+</h2>
+<div class="business-home-content">
+  <app-candidate-data-view
+    [data]="filteredData"
+    [loading]="loading"
+    (searchFilter)="onSearchChange($event)"
+    (apply)="apply($event)"
+  ></app-candidate-data-view>
+
+  <p-toast></p-toast>
 </div>

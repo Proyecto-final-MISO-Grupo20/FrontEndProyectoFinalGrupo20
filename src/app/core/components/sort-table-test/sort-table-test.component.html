@@ -14,11 +14,23 @@
   <ng-template pTemplate="caption">
     <div class="header-container">
       <h3>{{ header | transloco }}</h3>
-      <div
-        class="actions__button actions__button--blue"
-        [routerLink]="'/test/create/' + parentId"
-      >
-        <i class="pi pi-plus" style="color: #fff; font-size: 1.2rem"></i>
+
+      <div class="buttons-container">
+        <div
+          class="actions__button actions__button--red"
+          [routerLink]="'/applications/' + parentId"
+        >
+          <i
+            class="pi pi-arrow-circle-left"
+            style="color: #fff; font-size: 1.2rem"
+          ></i>
+        </div>
+        <div
+          class="actions__button actions__button--blue"
+          [routerLink]="'/test/create/' + parentId"
+        >
+          <i class="pi pi-plus" style="color: #fff; font-size: 1.2rem"></i>
+        </div>
       </div>
     </div>
   </ng-template>

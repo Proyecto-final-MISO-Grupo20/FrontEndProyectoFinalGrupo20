@@ -1,5 +1,6 @@
 <h2>{{ 'technical-data.habilities' | transloco }}</h2>
 <app-technical-data-table
+  [loading]="loading"
   emptyMessage="technical-data.empty"
   [data]="candidateHabilities"
   header="technical-data.tools"

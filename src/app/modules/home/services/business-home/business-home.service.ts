@@ -35,4 +35,8 @@ export class BusinessHomeService {
   setActiveFilters(filter: any) {
     return this.#activeFilters.next(filter);
   }
+
+  getOffersList() {
+    return this.#api.get('offers');
+  }
 }

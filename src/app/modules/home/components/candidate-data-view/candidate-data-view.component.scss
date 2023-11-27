@@ -15,3 +15,25 @@
     background-color: salmon;
   }
 }
+
+.actions {
+  &-container {
+    @include abstracts.flexbox(row, space-evenly, center, 0);
+  }
+
+  &__button {
+    @include abstracts.flexbox(row, space-evenly, center, 0);
+    @include abstracts.hoverable();
+    @include abstracts.rounded(2rem);
+    height: 2.5rem;
+    width: 2.5rem;
+
+    &--blue {
+      background-color: abstracts.$primary;
+    }
+
+    &--red {
+      background-color: abstracts.$danger;
+    }
+  }
+}

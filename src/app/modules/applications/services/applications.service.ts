@@ -10,6 +10,7 @@ import {
 import { ApiService } from '../../../core/services/api/api.service';
 import { Application } from '../models/application';
 import { Skill } from '../../technical-data/models/skills';
+import { CreateContractDto } from '../dtos/create-contract.dto';
 
 @Injectable({
   providedIn: 'root',
@@ -49,5 +50,9 @@ export class ApplicationsService {
         );
       })
     );
+  }
+
+  createContract(offerId: number, data: CreateContractDto) {
+    return this.#api.post(`contratos/${offerId}`, data);
   }
 }
