@@ -56,8 +56,14 @@ export class OffersService {
     return this.#api.get(`pruebas/${offerId}/postulaciones`);
   }
 
-  // createGrade(): Observable<CreateGradeDto> {
-  //   return this.#api.post()
-
-  // }
+  createGrade(
+    candidateId: number,
+    projectId: number,
+    data: CreateGradeDto
+  ): Observable<CreateGradeDto> {
+    return this.#api.post(
+      `grades/candidates/${candidateId}/projects/${projectId}`,
+      data
+    );
+  }
 }

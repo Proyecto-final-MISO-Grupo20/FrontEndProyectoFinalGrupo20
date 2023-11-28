@@ -1,4 +1,12 @@
-import { Component, HostListener, Input, OnInit, inject } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  HostListener,
+  Input,
+  OnInit,
+  Output,
+  inject,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UiModule } from 'ui';
 import { LanguageModule } from 'language';
@@ -11,6 +19,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { OffersService } from '../../../modules/offers/services/offers.service';
 
 @Component({
   selector: 'app-sort-table-offers',
@@ -30,6 +39,8 @@ export class SortTableOffersComponent implements OnInit {
   @Input() header!: string;
   @Input() data!: any[];
   @Input() loading = false;
+  @Input() projectId!: number;
+  @Output() setGrade = new EventEmitter();
 
   columns!: string[];
   performanceDialogVisible = false;
@@ -40,6 +51,8 @@ export class SortTableOffersComponent implements OnInit {
 
   gradeForm!: FormGroup;
   formBuilder = inject(FormBuilder);
+  offersService = inject(OffersService);
+  selectedCandidateId!: number;
 
   get offersState() {
     return OfferState;
@@ -91,7 +104,8 @@ export class SortTableOffersComponent implements OnInit {
     return offerSeverity[offer.estado];
   }
 
-  showAssignPerformanceDialog() {
+  showAssignPerformanceDialog(candidateId: number) {
+    this.selectedCandidateId = candidateId;
     this.performanceDialogVisible = true;
   }
 
@@ -103,6 +117,18 @@ export class SortTableOffersComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.gradeForm.value);
+    this.offersService
+      .createGrade(
+        this.selectedCandidateId,
+        this.projectId,
+        this.gradeForm.value
+      )
+      .subscribe({
+        next: (res) => {
+          this.setGrade.emit(true);
+          this.performanceDialogVisible = false;
+        },
+        error: (err) => console.error(err),
+      });
   }
 }
