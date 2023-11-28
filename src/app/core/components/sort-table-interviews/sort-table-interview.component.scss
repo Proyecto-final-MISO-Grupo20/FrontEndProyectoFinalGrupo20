@@ -67,3 +67,9 @@
   margin: 0;
   /* Otros estilos que desees aplicar */
 }
+
+@media (max-width: 768px) {
+  .add-interview {
+    display: none;
+  }
+}

@@ -17,7 +17,7 @@
           <h3>{{ header | transloco }}</h3>
           @if (userType === 3) {
           <div
-            class="actions__button actions__button--blue"
+            class="actions__button actions__button--blue add-interview"
             [routerLink]="'/interviews/create'"
             [pTooltip]="'interviews.create-interview' | transloco"
           >
@@ -69,23 +69,24 @@
 
           <td>
             <div class="numeric-column">
-              @if (userType === 3) {
+              @if (userType === 3) { @if(data.calificacion) {
+              <p-rating
+                [readonly]="true"
+                [cancel]="false"
+                [ngModel]="data.calificacion"
+              ></p-rating>
+              } @else {
               <div
                 class="actions__button actions__button--blue"
                 (click)="handleClick($event, data)"
-                [pTooltip]="
-                  data.calificacion > 0
-                    ? ('interviews.view-results' | transloco)
-                    : ('interviews.record-results' | transloco)
-                "
+                [pTooltip]="'interviews.record-results' | transloco"
               >
                 <i
-                  [class]="data.calificacion > 0 ? 'pi pi-eye' : 'pi pi-book'"
+                  [class]="'pi pi-book'"
                   style="color: #fff; font-size: 1.2rem"
                 ></i>
               </div>
-
-              } @if (userType === 2 && data.calificacion !== '') {
+              } } @if (userType === 2 && data.calificacion !== '') {
               <div
                 class="actions__button actions__button--blue"
                 (click)="setShowInterviewInformation(true, data)"
