@@ -361,7 +361,8 @@
   "exit": "Exit",
   "candidate": "Candidate",
   "business": "Business",
-  "name": "ohooo<",
+  "name": "Nombre",
+  "dominio": "Domain",
   "register-button": "Register",
   "sign-out": "Sign Out"
 }

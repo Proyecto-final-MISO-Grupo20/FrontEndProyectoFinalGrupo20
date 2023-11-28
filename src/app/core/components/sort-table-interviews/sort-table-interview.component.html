@@ -60,6 +60,9 @@
           @for (column of columns; track column; let index = $index) {
           <td>
             @if (column !== 'calificacion' && column !== 'id') {
+            <span class="p-column-title"
+              >{{ 'interviews.' + column | transloco }}:</span
+            >
 
             {{ data[column] }}
 
@@ -68,39 +71,42 @@
           }
 
           <td>
-            <div class="numeric-column">
-              @if (userType === 3) { @if(data.calificacion) {
-              <p-rating
-                [readonly]="true"
-                [cancel]="false"
-                [ngModel]="data.calificacion"
-              ></p-rating>
-              } @else {
-              <div
-                class="actions__button actions__button--blue add-result"
-                (click)="handleClick($event, data)"
-                [pTooltip]="'interviews.record-results' | transloco"
-              >
-                <i
-                  [class]="'pi pi-book'"
-                  style="color: #fff; font-size: 1.2rem"
-                ></i>
-              </div>
-              } } @if (userType === 2 && data.calificacion !== '') {
-              <div
-                class="actions__button actions__button--blue"
-                (click)="setShowInterviewInformation(true, data)"
-                [pTooltip]="'interviews.view-results' | transloco"
-              >
-                <i
-                  [class]="'pi pi-eye'"
-                  style="color: #fff; font-size: 1.2rem"
-                ></i>
-              </div>
-              } @if (userType === 2 && data.calificacion === '') {
-              <div>NA</div>
-              }
+            @if (userType === 3) { @if(data.calificacion) {
+            <span class="p-column-title"
+              >{{ 'interviews.calificacion' | transloco }}:</span
+            >
+
+            <p-rating
+              [readonly]="true"
+              [cancel]="false"
+              [ngModel]="data.calificacion"
+            ></p-rating>
+            } @else {
+            <div
+              class="actions__button actions__button--blue add-result"
+              (click)="handleClick($event, data)"
+              [pTooltip]="'interviews.record-results' | transloco"
+            >
+              <i
+                [class]="'pi pi-book'"
+                style="color: #fff; font-size: 1.2rem"
+              ></i>
             </div>
+            } } @if (userType === 2 && data.calificacion !== '') {
+            <span class="p-column-title"
+              >{{ 'interviews.calificacion' | transloco }}:</span
+            >
+            <p-rating
+              [readonly]="true"
+              [cancel]="false"
+              [ngModel]="data.calificacion"
+            ></p-rating>
+            } @if (userType === 2 && data.calificacion === '') {
+            <span class="p-column-title"
+              >{{ 'interviews.calificacion' | transloco }}:</span
+            >
+            <div>NA</div>
+            }
           </td>
         </tr>
       </ng-template>

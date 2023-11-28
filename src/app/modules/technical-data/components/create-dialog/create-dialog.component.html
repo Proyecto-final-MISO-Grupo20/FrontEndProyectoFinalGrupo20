@@ -9,18 +9,20 @@
   position="center"
 >
   <ng-template pTemplate="header">
-    <span class="text-xl font-bold">{{ 'technical-data.assign' | transloco  }}</span>
+    <span class="text-xl font-bold">{{
+      'technical-data.assign' | transloco
+    }}</span>
   </ng-template>
   <form class="skills__form" [formGroup]="createForm">
     <p-dropdown
-      [style]="{ width: '22.5rem' }"
+      [style]="{ width: '100%' }"
       formControlName="skill"
-      placeholder="{{ 'technical-data.select' | transloco }} "
+      placeholder="{{ 'Seleccionar' }} "
       [options]="data"
       optionLabel="nombre"
     ></p-dropdown>
 
-    <p>{{ 'technical-data.assessment' | transloco  }}</p>
+    <p>{{ 'technical-data.assessment' | transloco }}</p>
 
     <p-rating formControlName="dominio" [cancel]="false"></p-rating>
   </form>

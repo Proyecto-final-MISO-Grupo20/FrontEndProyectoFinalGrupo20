@@ -25,10 +25,12 @@ export class TestComponent implements OnInit {
   tests!: any[];
   successCreateApplication!: string | null;
   offerId!: number;
+  postulationId!: number;
   loading = false;
 
   ngOnInit(): void {
     this.offerId = this.activatedRoute.snapshot.params['offerId'];
+    this.postulationId = this.activatedRoute.snapshot.params['postulationId'];
 
     this.getApplications();
     this.setSuccessCreated();
