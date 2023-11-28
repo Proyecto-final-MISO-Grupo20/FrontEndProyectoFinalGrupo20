@@ -31,3 +31,9 @@
 .numeric-column {
   @include abstracts.flexbox(row, space-evenly, center, 0);
 }
+
+@media (max-width: 768px) {
+  .add-employee {
+    display: none;
+  }
+}

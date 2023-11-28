@@ -17,7 +17,7 @@
           <h3>{{ header | transloco }}</h3>
           @if (userType === 3) {
           <div
-            class="actions__button actions__button--blue"
+            class="actions__button actions__button--blue add-interview"
             [routerLink]="'/interviews/create'"
             [pTooltip]="'interviews.create-interview' | transloco"
           >
@@ -60,6 +60,9 @@
           @for (column of columns; track column; let index = $index) {
           <td>
             @if (column !== 'calificacion' && column !== 'id') {
+            <span class="p-column-title"
+              >{{ 'interviews.' + column | transloco }}:</span
+            >
 
             {{ data[column] }}
 
@@ -68,38 +71,42 @@
           }
 
           <td>
-            <div class="numeric-column">
-              @if (userType === 3) {
-              <div
-                class="actions__button actions__button--blue"
-                (click)="handleClick($event, data)"
-                [pTooltip]="
-                  data.calificacion > 0
-                    ? ('interviews.view-results' | transloco)
-                    : ('interviews.record-results' | transloco)
-                "
-              >
-                <i
-                  [class]="data.calificacion > 0 ? 'pi pi-eye' : 'pi pi-book'"
-                  style="color: #fff; font-size: 1.2rem"
-                ></i>
-              </div>
+            @if (userType === 3) { @if(data.calificacion) {
+            <span class="p-column-title"
+              >{{ 'interviews.calificacion' | transloco }}:</span
+            >
 
-              } @if (userType === 2 && data.calificacion !== '') {
-              <div
-                class="actions__button actions__button--blue"
-                (click)="setShowInterviewInformation(true, data)"
-                [pTooltip]="'interviews.view-results' | transloco"
-              >
-                <i
-                  [class]="'pi pi-eye'"
-                  style="color: #fff; font-size: 1.2rem"
-                ></i>
-              </div>
-              } @if (userType === 2 && data.calificacion === '') {
-              <div>NA</div>
-              }
+            <p-rating
+              [readonly]="true"
+              [cancel]="false"
+              [ngModel]="data.calificacion"
+            ></p-rating>
+            } @else {
+            <div
+              class="actions__button actions__button--blue add-result"
+              (click)="handleClick($event, data)"
+              [pTooltip]="'interviews.record-results' | transloco"
+            >
+              <i
+                [class]="'pi pi-book'"
+                style="color: #fff; font-size: 1.2rem"
+              ></i>
             </div>
+            } } @if (userType === 2 && data.calificacion !== '') {
+            <span class="p-column-title"
+              >{{ 'interviews.calificacion' | transloco }}:</span
+            >
+            <p-rating
+              [readonly]="true"
+              [cancel]="false"
+              [ngModel]="data.calificacion"
+            ></p-rating>
+            } @if (userType === 2 && data.calificacion === '') {
+            <span class="p-column-title"
+              >{{ 'interviews.calificacion' | transloco }}:</span
+            >
+            <div>NA</div>
+            }
           </td>
         </tr>
       </ng-template>

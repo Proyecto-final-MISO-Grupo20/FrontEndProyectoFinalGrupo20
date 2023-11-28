@@ -358,7 +358,8 @@
   "exit": "Salir",
   "candidate": "Candidato",
   "business": "Empresa",
-  "name": "ohooo<",
+  "name": "Nombre",
+  "dominio": "Dominio",
   "register-button": "Registrar",
   "sign-out": "Cerrar Sesión"
 }

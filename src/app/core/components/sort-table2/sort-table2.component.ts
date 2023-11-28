@@ -1,9 +1,8 @@
 import { Component, HostListener, Input, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UiModule } from 'ui';
-import { RatingModule } from 'primeng/rating';
 import { LanguageModule } from 'language';
-import { IncrementalStateKind } from '@angular/compiler-cli/src/ngtsc/incremental';
+
 import {
   FormBuilder,
   FormGroup,

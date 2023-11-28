@@ -3,19 +3,15 @@
     <h1 class="projects-title">{{ 'offers.title' | transloco }}</h1>
 
     @if (successCreate) {
-<p-message
-     
+    <p-message
       [style]="{ width: '22.5rem' }"
       severity="success"
       text="{{
         'projects.success-create' | transloco: { project: createdOffer }
       }}"
     ></p-message>
-}
-
-    @if (successCreateOffer) {
-<p-message
-     
+    } @if (successCreateOffer) {
+    <p-message
       [style]="{ width: '22.5rem' }"
       severity="success"
       text="{{
@@ -23,10 +19,12 @@
           | transloco: { profile: successCreateOffer }
       }}"
     ></p-message>
-}
+    }
     <app-sort-table-offers
+      [projectId]="projectId"
       [loading]="loading"
       [header]="'offers.list'"
+      (setGrade)="ngOnInit()"
       [data]="offers"
     ></app-sort-table-offers>
   </div>

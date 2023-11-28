@@ -8,3 +8,12 @@
     padding-top: 2rem;
   }
 }
+
+@media (max-width: 768px) {
+  .home {
+    &-wrapper {
+      margin: 0 auto;
+      width: 90%;
+    }
+  }
+}

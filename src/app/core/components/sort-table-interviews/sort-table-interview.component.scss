@@ -67,3 +67,17 @@
   margin: 0;
   /* Otros estilos que desees aplicar */
 }
+
+.p-column-title {
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .add-interview {
+    display: none;
+  }
+
+  .add-result {
+    display: none;
+  }
+}

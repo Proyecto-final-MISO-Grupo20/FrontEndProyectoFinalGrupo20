@@ -45,7 +45,6 @@
         }
       </th>
       }
-      <th>{{ 'projects.actions' | transloco }}</th>
     </tr>
 
     <tr>
@@ -59,7 +58,6 @@
         }
       </th>
       }
-      <th></th>
     </tr>
   </ng-template>
 
@@ -69,12 +67,21 @@
       <td>
         @if (column !== 'profiles' && column !== 'empresaId' && column !== 'id'
         && column !== 'codigo') {
+        <span class="p-column-title"
+          >{{ 'projects.' + column | transloco }}:</span
+        >
         <div>
           {{ data[column] }}
         </div>
         } @if(column === 'codigo') {
+        <span class="p-column-title"
+          >{{ 'projects.' + column | transloco }}:</span
+        >
         <p-tag [value]="data[column]" [style]="{ 'font-size': '1rem' }"></p-tag>
         } @if (column === 'profiles') {
+        <span class="p-column-title"
+          >{{ 'projects.' + column | transloco }}:</span
+        >
         <div class="numeric-column">
           {{ data[column].length }}
           <div
@@ -100,13 +107,6 @@
         }
       </td>
       }
-      <td>
-        <div class="actions-container">
-          <div class="actions__button actions__button--red">
-            <i class="pi pi-trash" style="color: #fff; font-size: 1.2rem"></i>
-          </div>
-        </div>
-      </td>
     </tr>
   </ng-template>
 

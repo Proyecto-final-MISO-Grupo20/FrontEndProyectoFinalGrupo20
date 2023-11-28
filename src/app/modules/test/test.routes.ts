@@ -4,13 +4,13 @@ import { CreateTestComponent } from './pages/create-test/create-test.component';
 
 export const testsRoutes: Route[] = [
   {
-    path: ':offerId',
-    title: 'ABC Jobs | Test',
-    component: TestComponent,
-  },
-  {
-    path: 'create/:offerId',
+    path: 'create/:offerId/:postulationId',
     title: 'ABC Jobs | CreateTest',
     component: CreateTestComponent,
+  },
+  {
+    path: ':offerId/:postulationId',
+    title: 'ABC Jobs | Test',
+    component: TestComponent,
   },
 ];

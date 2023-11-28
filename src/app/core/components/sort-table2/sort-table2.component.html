@@ -15,7 +15,7 @@
     <div class="header-container">
       <h3>{{ header | transloco }}</h3>
       <div
-        class="actions__button actions__button--blue"
+        class="actions__button actions__button--blue add-employee"
         [routerLink]="'/employees/create'"
         [pTooltip]="'technical-data.create-new' | transloco"
       >
@@ -32,8 +32,6 @@
         <p-sortIcon [field]="column"></p-sortIcon>
       </th>
       }
-
-      <th class="header">{{ 'employees.' + 'actions' | transloco }}</th>
     </tr>
 
     <tr>
@@ -42,7 +40,6 @@
         <p-columnFilter type="text" [field]="column"></p-columnFilter>
       </th>
       }
-      <th></th>
     </tr>
   </ng-template>
   <ng-template pTemplate="body" let-data let-index>
@@ -50,9 +47,11 @@
       @for (column of columns; track column; let index = $index) {
       <td>
         @if (column !== 'profiles') {
-        <div>
-          {{ data[column] }}
-        </div>
+        <span class="p-column-title"
+          >{{ 'employees.' + column | transloco }}:</span
+        >
+        {{ data[column] }}
+
         } @if (column === 'profiles') {
         <div class="numeric-column">
           {{ data[column].length }}
@@ -68,25 +67,6 @@
         }
       </td>
       }
-
-      <td>
-        <div class="actions-container">
-          <div
-            class="actions__button actions__button--blue"
-            [pTooltip]="'employees.assign' | transloco"
-          >
-            <i
-              class="pi pi-check-circle"
-              style="color: #fff; font-size: 1.2rem"
-              (click)="setShowConfirmDialog(true); setCurrentEmployee(index)"
-            ></i>
-          </div>
-          <div class="actions__button actions__button--red"
-          [pTooltip]="'technical-data.delete' | transloco">
-            <i class="pi pi-trash" style="color: #fff; font-size: 1.2rem"></i>
-          </div>
-        </div>
-      </td>
     </tr>
   </ng-template>
 

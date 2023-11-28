@@ -36,6 +36,7 @@ export class CreateTestComponent implements OnInit {
   formBuilder = inject(FormBuilder);
   showConfirmDialog = false;
   offerId!: number;
+  postulationId!: number;
 
   setShowConfirmDialog(show: boolean) {
     this.showConfirmDialog = show;
@@ -43,6 +44,7 @@ export class CreateTestComponent implements OnInit {
 
   ngOnInit(): void {
     this.offerId = this.activatedRoute.snapshot.params['offerId'];
+    this.postulationId = this.activatedRoute.snapshot.params['postulationId'];
     this.initializeForm();
   }
 
@@ -75,18 +77,18 @@ export class CreateTestComponent implements OnInit {
     const data: CreateTestDto = {
       ...this.resultsForm.value,
       tipo: 1,
-      postulacionId: this.offerId,
+      postulacionId: this.postulationId,
     };
 
     this.testService.createTest(data).subscribe({
       next: (res) => {
-        this.router.navigateByUrl(`test/${this.offerId}`);
+        this.router.navigateByUrl(`test/${this.offerId}/${this.postulationId}`);
       },
       error: (err) => console.error(err),
     });
   }
 
   return() {
-    this.router.navigateByUrl(`test/${this.offerId}`);
+    this.router.navigateByUrl(`test/${this.offerId}/${this.postulationId}`);
   }
 }

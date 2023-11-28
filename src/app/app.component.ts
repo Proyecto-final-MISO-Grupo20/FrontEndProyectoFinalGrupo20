@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, HostListener, OnInit, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { TranslocoService } from '@ngneat/transloco';
 import { LanguageModule } from 'language';
@@ -19,6 +19,9 @@ export class AppComponent implements OnInit {
   location = inject(Location);
   session = inject(SessionService);
 
+  // Responsive
+  isMobile!: boolean;
+
   urlChange$!: VoidFunction;
   isAuthRoute = false;
 
@@ -29,6 +32,8 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.checkScreenWidth();
+
     this.urlChange$ = this.location.onUrlChange(
       (url) => (this.isAuthRoute = url.includes('auth'))
     );
@@ -37,10 +42,21 @@ export class AppComponent implements OnInit {
   }
 
   getHeaderBusinessList() {
-    return ['home', 'projects', 'interviews', 'employees'];
+    return !this.isMobile
+      ? ['home', 'projects', 'interviews', 'employees']
+      : ['home', 'interviews', 'employees'];
   }
 
   getHeaderCandidateList() {
     return ['home', 'technical-data', 'interviews'];
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event): void {
+    this.checkScreenWidth();
+  }
+
+  checkScreenWidth(): void {
+    this.isMobile = window.innerWidth <= 1115;
   }
 }
